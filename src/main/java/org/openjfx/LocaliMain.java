@@ -1,6 +1,7 @@
 package org.openjfx;
 
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -10,7 +11,7 @@ public class LocaliMain extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("localiLogInPage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("logInPage.fxml"));
 
         Scene scene = new Scene(root);
 
@@ -22,4 +23,5 @@ public class LocaliMain extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
 }
