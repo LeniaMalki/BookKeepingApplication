@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../../../java/customFonts/font.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.LocaliMain">
+   <children>
+      <AnchorPane layoutX="100.0" layoutY="100.0" prefHeight="106.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Text fill="#a8d8d3" layoutX="53.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-Round" text="LOCALI">
+               <font>
+                  <Font size="68.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="33.0" layoutY="140.0" prefHeight="367.0" prefWidth="200.0" style="-fx-background-color: #a8d8d3;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="106.0">
+         <children>
+            <Text fill="WHITE" layoutX="266.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-Round" text="Welcome to LOCALI">
+               <font>
+                  <Font size="98.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="458.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-LightRound" text="- a smooth way to budget">
+               <font>
+                  <Font size="48.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <Button fx:id="newEntryButton" alignment="CENTER" defaultButton="true" layoutX="535.0" layoutY="522.0" mnemonicParsing="false" prefHeight="69.0" prefWidth="433.0" style="-fx-background-color: F66A80; -fx-background-radius: 10;" styleClass="Enrique-Round" text="Add new entry" textFill="WHITE">
+         <font>
+            <Font size="40.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Button>
+      <AnchorPane layoutX="80.0" layoutY="747.0" prefHeight="101.0" prefWidth="417.0" style="-fx-border-color: #a8d8d3; -fx-border-radius: 20; -fx-border-width: 5;" styleClass="Enrique-Round">
+         <children>
+            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="9.0" layoutY="26.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../Images/bestick.png" />
+               </image>
+            </ImageView>
+            <Text fill="#615f5f" layoutX="86.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-Round" text="Food">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <ProgressBar layoutX="90.0" layoutY="67.0" prefHeight="10.0" prefWidth="283.0" progress="0.0" />
+            <Label alignment="CENTER" layoutX="209.0" layoutY="21.0" prefHeight="27.0" prefWidth="185.0" styleClass="Enrique-BoldRound" text="230kr of 500kr " textFill="#615f5f">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="541.0" layoutY="747.0" prefHeight="101.0" prefWidth="417.0" style="-fx-border-color: #a8d8d3; -fx-border-radius: 20; -fx-border-width: 5;" styleClass="Enrique-Round">
+         <children>
+            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="8.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="1006.0" layoutY="741.0" prefHeight="101.0" prefWidth="417.0" style="-fx-border-color: #a8d8d3; -fx-border-radius: 20; -fx-border-width: 5;" styleClass="Enrique-Round">
+         <children>
+            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="8.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="80.0" layoutY="873.0" prefHeight="101.0" prefWidth="417.0" style="-fx-border-color: #a8d8d3; -fx-border-radius: 20; -fx-border-width: 5;" styleClass="Enrique-Round">
+         <children>
+            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="2.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="541.0" layoutY="872.0" prefHeight="101.0" prefWidth="417.0" style="-fx-border-color: #a8d8d3; -fx-border-radius: 20; -fx-border-width: 5;" styleClass="Enrique-Round">
+         <children>
+            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="7.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </AnchorPane>
+      <Button fx:id="newBudgetButton" alignment="CENTER" defaultButton="true" layoutX="1006.0" layoutY="872.0" mnemonicParsing="false" prefHeight="101.0" prefWidth="417.0" style="-fx-background-color: #a8d8d3; -fx-background-radius: 20;" styleClass="Enrique-Round" text="Add new budget" textFill="#615f5f">
+         <font>
+            <Font size="24.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Button>
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="1337.0" layoutY="900.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../Images/greenPlus.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
