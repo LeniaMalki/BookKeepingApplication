@@ -1,0 +1,16 @@
+.header-Shadow{
+   -fx-background-color: #FFFFFF;
+   -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 20, 0, 0, 4);
+}
+.link{
+    -fx-underline: false;
+        -fx-border-color: transparent;
+        -fx-cursor: hand;
+    }
+.inactiveHeaderButton{
+    -fx-text-fill: #000000;
+}
+.activeHeaderButton{
+    -fx-text-fill: #F66A80;
+}
+
