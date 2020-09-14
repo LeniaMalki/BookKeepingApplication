@@ -2,15 +2,21 @@ package controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class entryPageController {
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class entryPageController implements Initializable {
 
     @FXML
     private Hyperlink logo;
@@ -54,13 +60,18 @@ public class entryPageController {
     @FXML
     private Button submitButton;
 
-    public void start(Stage stage) throws Exception{
+    @FXML
+    private AnchorPane headerAnchorPane;
 
-        Parent root = FXMLLoader.load(getClass().getResource("entryPage.fxml"));
 
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        try {
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("/org/openjfx/header.fxml"));
+            headerAnchorPane.getChildren().setAll(pane);
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

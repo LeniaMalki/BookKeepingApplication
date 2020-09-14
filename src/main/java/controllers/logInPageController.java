@@ -1,7 +1,9 @@
 package controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -10,6 +12,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class logInPageController {
 
@@ -28,14 +32,15 @@ public class logInPageController {
     @FXML
     private Hyperlink signUpLink;
 
-    public void start(Stage stage) throws Exception{
+    @FXML
+    private void loadFirstPage(ActionEvent event) throws IOException {
+        Parent startParent = FXMLLoader.load(getClass().getResource("/org/openjfx/firstPage.fxml"));
+        Scene startScene = new Scene(startParent);
 
-        Parent root = FXMLLoader.load(getClass().getResource("logInPage.fxml"));
 
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(startScene);
+        window.show();
     }
 
 

@@ -11,7 +11,9 @@ public class LocaliMain extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("deleteAccountPopUp.fxml"));
+        stage.setResizable(false);
+
+        Parent root = FXMLLoader.load(getClass().getResource("logInPage.fxml"));
 
         Scene scene = new Scene(root);
 
