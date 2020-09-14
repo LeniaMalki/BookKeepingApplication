@@ -1,27 +1,28 @@
-package org.openjfx;
+package controllers;
 
-import javafx.application.Application;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-public class LocaliMain extends Application {
+public class firstPageController {
 
-    @Override
-    public void start(Stage stage) throws Exception {
+    @FXML
+    private Button newEntryButton;
+
+    @FXML
+    private Button newBudgetButton;
+
+    public void start(Stage stage) throws Exception{
+
         Parent root = FXMLLoader.load(getClass().getResource("firstPage.fxml"));
 
         Scene scene = new Scene(root);
-
-        stage.setTitle("Locali");
         stage.setScene(scene);
         stage.show();
-    }
 
-    public static void main(String[] args) {
-        launch(args);
     }
-
 }
