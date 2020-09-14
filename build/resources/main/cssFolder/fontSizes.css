@@ -3,4 +3,14 @@
 }
 .font24px{
                     -fx-font-size: 24px;
+<<<<<<< HEAD
+=======
+
+}
+.font18px{
+-fx-font-size: 18px;
+}
+.font36px{
+-fx-font-size: 36px;
+>>>>>>> 83415cb85c0c3920eaa43379d539365df47ca183
 }
