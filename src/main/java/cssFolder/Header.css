@@ -2,10 +2,17 @@
    -fx-background-color: #FFFFFF;
    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 20, 0, 0, 4);
 }
+.localiLogo{
+    -fx-underline: false;
+        -fx-border-color: transparent;
+        -fx-cursor: hand;
+            -fx-font-size: 68px;}
 .link{
     -fx-underline: false;
         -fx-border-color: transparent;
         -fx-cursor: hand;
+            -fx-font-size: 35px;
+
     }
 .inactiveHeaderButton{
     -fx-text-fill: #000000;
