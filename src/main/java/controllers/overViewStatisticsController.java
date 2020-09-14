@@ -2,14 +2,20 @@ package controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class overViewStatisticsController {
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class overViewStatisticsController implements Initializable {
 
         @FXML
         private Button toDailyStatisticsButton;
@@ -38,14 +44,18 @@ public class overViewStatisticsController {
         @FXML
         private Text overviewMonthlyPieChartText;
 
+    @FXML
+    private AnchorPane headerAnchorPane;
 
-    public void start(Stage stage) throws Exception {
 
-        Parent root = FXMLLoader.load(getClass().getResource("statisticsOverviewPage.fxml"));
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        try {
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("/org/openjfx/header.fxml"));
+            headerAnchorPane.getChildren().setAll(pane);
 
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

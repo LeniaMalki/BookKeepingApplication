@@ -145,7 +145,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <Button fx:id="newBudgetButton" alignment="CENTER" defaultButton="true" layoutX="1006.0" layoutY="872.0" mnemonicParsing="false" prefHeight="101.0" prefWidth="417.0" style="-fx-background-color: #a8d8d3; -fx-background-radius: 20;" text="Add new budget" textFill="#615f5f">
+      <Button fx:id="newBudgetButton" alignment="CENTER" defaultButton="true" layoutX="1006.0" layoutY="872.0" mnemonicParsing="false" onAction="#loadNewBudgetPage" prefHeight="101.0" prefWidth="417.0" style="-fx-background-color: #a8d8d3; -fx-background-radius: 20;" text="Add new budget" textFill="#615f5f">
          <font>
             <Font size="24.0" />
          </font>

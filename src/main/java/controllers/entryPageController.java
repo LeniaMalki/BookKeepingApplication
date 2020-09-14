@@ -5,10 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -49,7 +46,7 @@ public class entryPageController implements Initializable {
     private TextField nameTextField;
 
     @FXML
-    private TextField categoryTextField;
+    private MenuButton categoryMenuButton;
 
     @FXML
     private TextField costTextField;
