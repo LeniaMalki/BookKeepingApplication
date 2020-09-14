@@ -196,8 +196,8 @@
       <Line endX="544.0" layoutX="818.0" layoutY="345.0" startX="-100.0" stroke="#0000004d" strokeWidth="2.0" />
    </children>
    <stylesheets>
-      <URL value="@../../../java/cssFolder/font.css" />
-      <URL value="@../../../java/cssFolder/Header.css" />
-      <URL value="@../../../java/cssFolder/entry.css" />
+      <URL value="@../../cssFolder/font.css" />
+      <URL value="@../../cssFolder/Header.css" />
+      <URL value="@../../cssFolder/entry.css" />
    </stylesheets>
 </AnchorPane>
