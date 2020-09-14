@@ -17,7 +17,7 @@
 }
 
 @font-face {
-    src:url('..//Fonts.Enrique/Enrique-LightRound.ttf');
+    src:url('../Fonts.Enrique/Enrique-LightRound.ttf');
 }
 .Enrique-LightRound{
 -fx-font-family: "Enrique Light Round"
