@@ -1,7 +1,7 @@
 
 //_____________________________________________Enrique_________________________________________________________________
 @font-face {
-    src:url('../../resources/Fonts.Enrique/Enrique-BoldRound.ttf');
+    src:url('../Fonts.Enrique/Enrique-BoldRound.ttf');
 }
 
 .Enrique-BoldRound{
@@ -10,14 +10,14 @@
 
 
 @font-face {
-    src:url('../../resources/Fonts.Enrique/Enrique-Round.ttf');
+    src:url('../Fonts.Enrique/Enrique-Round.ttf');
 }
 .Enrique-Round{
 -fx-font-family: "Enrique Round"
 }
 
 @font-face {
-    src:url('../../resources/Fonts.Enrique/Enrique-LightRound.ttf');
+    src:url('..//Fonts.Enrique/Enrique-LightRound.ttf');
 }
 .Enrique-LightRound{
 -fx-font-family: "Enrique Light Round"
@@ -26,7 +26,7 @@
 //_____________________________________________Nova_________________________________________________________________
 
 @font-face {
-    src:url('../../resources/Nova/NOVA.otf');
+    src:url('../Nova/NOVA.otf');
 }
 .NOVA{
 -fx-font-family: "NOVA"
