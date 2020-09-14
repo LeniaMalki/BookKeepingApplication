@@ -8,8 +8,8 @@
 
 <AnchorPane fx:id="scrolPaneInsert" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="59.0" prefWidth="647.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <stylesheets>
-      <URL value="@../../../java/cssFolder/entry.css" />
-      <URL value="@../../../java/cssFolder/font.css" />
+      <URL value="@../../cssFolder/entry.css" />
+      <URL value="@../../cssFolder/font.css" />
    </stylesheets>
    <children>
       <Text fx:id="articleName" layoutX="58.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-Round" text="Empty" wrappingWidth="53.13671875">

@@ -87,7 +87,7 @@
       </ImageView>
    </children>
    <stylesheets>
-      <URL value="@../../../java/cssFolder/Header.css" />
-      <URL value="@../../../java/cssFolder/font.css" />
+      <URL value="@../../cssFolder/Header.css" />
+      <URL value="@../../cssFolder/font.css" />
    </stylesheets>
 </AnchorPane>
