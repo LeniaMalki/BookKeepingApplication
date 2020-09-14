@@ -50,5 +50,17 @@ public class headerController {
     @FXML
     private Hyperlink goalsButton;
 
+    @FXML
+    private void escapeHatch(ActionEvent event) throws IOException {
 
-}
+        Parent startParent = FXMLLoader.load(getClass().getResource("/org/openjfx/firstPage.fxml"));
+        Scene startScene = new Scene(startParent);
+
+
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(startScene);
+        window.show();
+    }
+    }
+
+

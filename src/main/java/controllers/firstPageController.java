@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class firstPageController implements Initializable{
+public class firstPageController implements Initializable {
 
     @FXML
     private Button newEntryButton;
@@ -45,7 +45,20 @@ public class firstPageController implements Initializable{
         window.show();
     }
 
-    public void initialize(URL url, ResourceBundle resourceBundle)  {
+    @FXML
+    private void loadNewBudgetPage(ActionEvent event) throws IOException {
+
+        Parent startParent = FXMLLoader.load(getClass().getResource("/org/openjfx/budgetPage.fxml"));
+        Scene startScene = new Scene(startParent);
+
+
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(startScene);
+        window.show();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("/org/openjfx/header.fxml"));
             headerAnchorPane.getChildren().setAll(pane);
