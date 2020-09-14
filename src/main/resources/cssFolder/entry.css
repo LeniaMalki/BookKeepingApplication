@@ -21,6 +21,18 @@
     -fx-font-size: 25px;
 
 }
+
+.inactiveEntryButton:hover {
+    -fx-background-color: #FFFFFF;
+       -fx-text-fill: #F66A80;
+        -fx-font-size: 25px;
+             -fx-cursor: hand;
+
+
+
+}
+
+
 .savingsSelectButton{
     -fx-border-radius: 0px 10px 10px 0px;
         -fx-background-radius: 0px 10px 10px 0px;
@@ -45,6 +57,21 @@
                     -fx-font-size: 25px;
 
 }
+
+.add-button:hover{
+  -fx-background-color: #F66A80;
+   -fx-text-fill: #FFFFFF;
+        -fx-border-radius: 10px;
+                -fx-background-radius: 10px;
+                    -fx-font-size: 25px;
+                                 -fx-cursor: hand;
+
+
+
+}
+
+
+
 .dropShadow-scrollpane{
    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.10), 15, 0, 0, 4);
 }
