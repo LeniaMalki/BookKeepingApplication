@@ -2,12 +2,18 @@ package controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class budgetPageController {
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class budgetPageController implements Initializable {
 
     @FXML
     private Label foodLabel;
@@ -75,14 +81,18 @@ public class budgetPageController {
     @FXML
     private Button usePreviousBudgetButton;
 
+    @FXML
+    private AnchorPane headerAnchorPane;
 
-    public void start(Stage stage) throws Exception {
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("/org/openjfx/header.fxml"));
+            headerAnchorPane.getChildren().setAll(pane);
 
-        Parent root = FXMLLoader.load(getClass().getResource("budgetPage.fxml"));
-
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 }
