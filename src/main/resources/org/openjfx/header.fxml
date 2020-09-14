@@ -11,7 +11,7 @@
 
 <AnchorPane fx:id="header" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="106.0" prefWidth="1440.0" styleClass="header-Shadow" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.headerController">
    <children>
-      <Hyperlink fx:id="logo" layoutX="14.0" layoutY="-7.0" prefWidth="322.0" text="Locali" textFill="#a8d8d3">
+      <Hyperlink fx:id="logo" layoutX="14.0" layoutY="-7.0" onAction="#escapeHatch" prefHeight="126.0" prefWidth="209.0" text="Locali" textFill="#a8d8d3">
          <font>
             <Font size="68.0" />
          </font>

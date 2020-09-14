@@ -45,6 +45,18 @@ public class firstPageController implements Initializable {
         window.show();
     }
 
+    @FXML
+    private void loadNewBudgetPage(ActionEvent event) throws IOException {
+
+        Parent startParent = FXMLLoader.load(getClass().getResource("/org/openjfx/budgetPage.fxml"));
+        Scene startScene = new Scene(startParent);
+
+
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(startScene);
+        window.show();
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
