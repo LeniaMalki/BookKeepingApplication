@@ -10,9 +10,24 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+
 import java.io.IOException;
 
 public class headerController {
+
+
+
+    //Opens up/going back to first page when pressing on the Logo i.e. works as an escape hatch
+    public void escapeHatchHandler(ActionEvent actionEvent) throws IOException {
+        Parent startParent = FXMLLoader.load(getClass().getResource("/org/openjfx/firstPage.fxml"));
+        Scene startScene = new Scene(startParent);
+
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        window.setScene(startScene);
+        window.show();
+
+    }
+
 
     @FXML
     private AnchorPane header;

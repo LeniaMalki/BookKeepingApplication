@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class entryPageController implements Initializable {
+public class entryPageController implements Initializable{
 
     @FXML
     private Hyperlink logo;
@@ -63,8 +63,6 @@ public class entryPageController implements Initializable {
     @FXML
     private AnchorPane headerAnchorPane;
 
-
-    @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("/org/openjfx/header.fxml"));

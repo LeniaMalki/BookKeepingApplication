@@ -122,6 +122,5 @@
    </children>
    <stylesheets>
       <URL value="@../../cssFolder/font.css" />
-      <URL value="@../../cssFolder/boxShadow.css" />
    </stylesheets>
 </AnchorPane>

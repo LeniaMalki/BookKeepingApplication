@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class firstPageController implements Initializable {
+public class firstPageController implements Initializable{
 
     @FXML
     private Button newEntryButton;
@@ -45,8 +45,7 @@ public class firstPageController implements Initializable {
         window.show();
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void initialize(URL url, ResourceBundle resourceBundle)  {
         try {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("/org/openjfx/header.fxml"));
             headerAnchorPane.getChildren().setAll(pane);
