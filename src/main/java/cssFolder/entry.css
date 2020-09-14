@@ -11,16 +11,21 @@
 .expenceSelectButton{
     -fx-border-radius: 10px 0px 0px 10px;
         -fx-background-radius: 10px 0px 0px 10px;
+            -fx-font-size: 25px;
+
 
 }
 .incomeSelectButton{
     -fx-border-radius: 0px 0px 0px 0px;
             -fx-background-radius: 0;
+    -fx-font-size: 25px;
 
 }
 .savingsSelectButton{
     -fx-border-radius: 0px 10px 10px 0px;
         -fx-background-radius: 0px 10px 10px 0px;
+            -fx-font-size: 25px;
+
 }
 .droSshadow{
    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 4, 0, 0, 4);
@@ -37,6 +42,8 @@
    -fx-text-fill: #FFFFFF;
         -fx-border-radius: 10px;
                 -fx-background-radius: 10px;
+                    -fx-font-size: 25px;
+
 }
 .dropShadow-scrollpane{
    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.10), 15, 0, 0, 4);
