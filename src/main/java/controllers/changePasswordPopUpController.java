@@ -12,24 +12,25 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class deleteAccountPopUpController {
+
+public class changePasswordPopUpController {
 
     @FXML
-    private AnchorPane deleteAccountPopUp;
-
+    private AnchorPane changePasswordPopUp;
     @FXML
-    private Button deleteAccountButton;
-
+    private PasswordField signUpPassword;
     @FXML
-    private ImageView exitButton;
-
+    private PasswordField signUpConfirmPassword;
     @FXML
-    private PasswordField enterPasswordToDelete;
-
+    private ImageView newPasswordCheck;
+    @FXML
+    private ImageView confirmNewPasswordCheck;
+    @FXML
+    private Button changePasswordConfirm;
 
     public void start(Stage stage) throws Exception {
 
-        Parent root = FXMLLoader.load(getClass().getResource("deleteAcountPopUp.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("changePasswordPopUp.fxml"));
 
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -37,15 +38,15 @@ public class deleteAccountPopUpController {
 
     }
 
-    //Takes user back to logInPage when confirming to delete account
+    //Goes back to account page when confirming change of password
     @FXML
-    void onAction_ConfirmDeleteAccount_CLICKED(ActionEvent event) throws Exception {
-
-        Parent startParent = FXMLLoader.load(getClass().getResource("/org/openjfx/logInPage.fxml"));
+    void onAction_ConfirmChangePassword_CLICKED(ActionEvent event) throws Exception {
+        Parent startParent = FXMLLoader.load(getClass().getResource("/org/openjfx/accountPage.fxml"));
         Scene startScene = new Scene(startParent);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(startScene);
         window.show();
-
     }
+
+
 }

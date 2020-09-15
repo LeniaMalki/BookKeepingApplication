@@ -27,11 +27,6 @@ public class firstPageController implements Initializable {
     @FXML
     private AnchorPane headerAnchorPane;
 
-    @FXML
-    private void loadHeader() throws IOException{
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("/org/openjfx/header.fxml"));
-        headerAnchorPane.getChildren().setAll(pane);
-    }
 
     @FXML
     private void loadEntryPage(ActionEvent event) throws IOException {
@@ -45,8 +40,9 @@ public class firstPageController implements Initializable {
         window.show();
     }
 
+    //Takes user to from firstPage --> budgetPage when clicking on "New Budget"
     @FXML
-    private void loadNewBudgetPage(ActionEvent event) throws IOException {
+    private void onAction_loadBudgetPage_CLICKED(ActionEvent event) throws IOException {
 
         Parent startParent = FXMLLoader.load(getClass().getResource("/org/openjfx/budgetPage.fxml"));
         Scene startScene = new Scene(startParent);
@@ -57,6 +53,7 @@ public class firstPageController implements Initializable {
         window.show();
     }
 
+    //Loads the default header header.fxml and anchors it to top of page
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -66,7 +63,6 @@ public class firstPageController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
 
 
     }
