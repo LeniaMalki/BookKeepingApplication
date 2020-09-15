@@ -33,18 +33,23 @@ public class overViewStatisticsController implements ChildPane {
 
     @FXML
     void toDailyStatistics(ActionEvent event) {
-        parent.showStatisticsDetailPage();  //TODO DIVERSIFY FOR WEEKLY / DAILY / MONTHLY, TEXT AND PIECHART NEEDS TO
+        detailedStatistics("Daily");  //TODO DIVERSIFY FOR WEEKLY / DAILY / MONTHLY, TEXT AND PIECHART NEEDS TO
                                                 //UPDATE DEPENDING ON WHICH BUTTON YOU PRESS
     }
 
     @FXML
-    void toMonthlyStatistics(ActionEvent event) {
-        parent.showStatisticsDetailPage();
+    void toWeeklyStatistics(ActionEvent event) {
+        detailedStatistics("Weekly");
     }
 
     @FXML
-    void toWeeklyStatistics(ActionEvent event) {
-        parent.showStatisticsDetailPage();
+    void toMonthlyStatistics(ActionEvent event) {
+        detailedStatistics("Monthly");
+    }
+
+
+    private void detailedStatistics(String text){
+        parent.showStatisticsDetailPage(text);
     }
 
     @Override
