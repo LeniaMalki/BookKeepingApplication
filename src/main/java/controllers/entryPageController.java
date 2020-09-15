@@ -69,4 +69,5 @@ public class entryPageController implements Initializable{
             e.printStackTrace();
         }
     }
+
 }
