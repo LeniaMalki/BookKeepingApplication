@@ -10,7 +10,6 @@ public class mainController {
     private AnchorPane firstPage;
     private AnchorPane entryPage;
     private AnchorPane statisticsOverviewPage;
-    private AnchorPane statisticsDetailPage;
     private AnchorPane budgetOverviewPage;
     private AnchorPane budgetPage;
     private AnchorPane budgetCharPage;
@@ -29,7 +28,6 @@ public class mainController {
         budgetPage = PaneFactory.initBudgetPane();
         budgetCharPage = PaneFactory.initBudgetCharPane();
         statisticsOverviewPage = PaneFactory.initStatisticsOverviewPane();
-        statisticsDetailPage = PaneFactory.initStatisticsDetailPane();
         //goalsPage = loadPage.ini DO THIS
         //TODO add all main anchopanes
 
@@ -63,8 +61,11 @@ public class mainController {
         showPage(statisticsOverviewPage);
     }
 
-    void showStatisticsDetailPage(){
-        showPage(statisticsDetailPage);
+    void showStatisticsDetailPage(String text){
+        PaneFactory.Pane<detailStatisticsController> pane = PaneFactory.initStatisticsDetailPane();
+        showPage(pane.anchorPane);
+        pane.controller.setLabelPieChart(text);
+
     }
 
     void showBudgetCharPage() {

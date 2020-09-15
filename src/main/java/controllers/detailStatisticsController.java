@@ -39,4 +39,8 @@ public class detailStatisticsController implements ChildPane {
                 this.parent=parent;
                 headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
         }
+
+        public void setLabelPieChart(String labelPieChart) {
+                this.labelPieChart.setText(labelPieChart);
+        }
 }
