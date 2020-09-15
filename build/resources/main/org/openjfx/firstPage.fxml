@@ -17,12 +17,12 @@
       <AnchorPane fx:id="headerAnchorPane" layoutX="100.0" layoutY="100.0" prefHeight="106.0" prefWidth="1440.0" styleClass="header-Shadow" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <AnchorPane layoutX="33.0" layoutY="112.0" prefHeight="361.0" prefWidth="1440.0" style="-fx-background-color: #a8d8d3;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="112.0">
          <children>
-            <Text fill="WHITE" layoutX="266.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-Round" text="Welcome to LOCALI">
+            <Text fill="WHITE" layoutX="269.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-Round" text="Welcome to LOCALI">
                <font>
                   <Font size="98.0" />
                </font>
             </Text>
-            <Text fill="WHITE" layoutX="458.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-LightRound" text="- a smooth way to budget">
+            <Text fill="WHITE" layoutX="461.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-LightRound" text="- a smooth way to budget">
                <font>
                   <Font size="48.0" />
                </font>
