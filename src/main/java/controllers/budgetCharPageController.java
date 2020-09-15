@@ -23,6 +23,7 @@ public class budgetCharPageController implements Initializable {
     @FXML
     private AnchorPane headerAnchorPane;
 
+    public budgetPageController budgetPageController;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -33,8 +34,6 @@ public class budgetCharPageController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
 
     }
 }
