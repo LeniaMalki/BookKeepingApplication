@@ -13,7 +13,7 @@ public class LocaliMain extends Application {
     public void start(Stage stage) throws Exception {
         stage.setResizable(false);
 
-        Parent root = FXMLLoader.load(getClass().getResource("entryPage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("logInPage.fxml"));
 
         Scene scene = new Scene(root);
 
