@@ -11,7 +11,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class deleteAccountPopUpController {
-
     @FXML
     private AnchorPane deleteAccountPopUp;
 
@@ -23,14 +22,4 @@ public class deleteAccountPopUpController {
 
     @FXML
     private PasswordField enterDeletePasswordField;
-
-    public void start(Stage stage) throws Exception{
-
-        Parent root = FXMLLoader.load(getClass().getResource("deleteAcountPopUp.fxml"));
-
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-
-    }
 }

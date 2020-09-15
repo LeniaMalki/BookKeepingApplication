@@ -14,23 +14,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class headerController {
+public class headerController implements ChildPane{
 
-
-    //Opens up/going back to first page when pressing on the Logo i.e. works as an escape hatch
-    public void escapeHatchHandler(ActionEvent actionEvent) throws IOException {
-        Parent startParent = FXMLLoader.load(getClass().getResource("/org/openjfx/firstPage.fxml"));
-        Scene startScene = new Scene(startParent);
-
-        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        window.setScene(startScene);
-        window.show();
-
-    }
-
-
-    @FXML
-    private AnchorPane header;
+    mainController parent;
 
     @FXML
     private Hyperlink logo;
@@ -52,23 +38,29 @@ public class headerController {
 
     @FXML
     private void clickHeader(ActionEvent event) throws IOException {
-        Parent startParent;
         if (homeButton.equals(event.getTarget()) || logo.equals(event.getTarget())) {
-            startParent = FXMLLoader.load(getClass().getResource("/org/openjfx/firstPage.fxml"));
+            parent.showFirstPage();
         } else if (budgetButton.equals(event.getTarget())) {
-            startParent = FXMLLoader.load(getClass().getResource("/org/openjfx/bugetCharPage.fxml"));
+            parent.showBudgetCharPage();
         } else if (entryButton.equals(event.getTarget())) {
-            startParent = FXMLLoader.load(getClass().getResource("/org/openjfx/entryPage.fxml"));
+            parent.showEntryPage();
         } else if (statisticsButton.equals(event.getTarget())) {
-                startParent = FXMLLoader.load(getClass().getResource("/org/openjfx/statisticsOverviewPage.fxml"));
-        } else { throw new IllegalStateException("Unexpected value: " + event.getTarget());
+            parent.showStatisticsOverviewPage();
+        } else if (goalsButton.equals(event.getTarget())){
+            //TODO
         }
-        Scene startScene = new Scene(startParent);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(startScene);
-        window.show();
+
     }
-        
+
+    //Opens up/going back to first page when pressing on the Logo i.e. works as an escape hatch
+    public void escapeHatchHandler(ActionEvent actionEvent) throws IOException {
+        parent.showFirstPage();
+    }
+
+    @Override
+    public void initPane(mainController parent) {
+        this.parent = parent;
+    }
 
 }
 

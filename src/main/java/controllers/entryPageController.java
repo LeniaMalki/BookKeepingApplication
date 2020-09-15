@@ -1,19 +1,12 @@
 package controllers;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+public class entryPageController implements ChildPane {
 
-public class entryPageController implements Initializable{
+    mainController parent;
 
     @FXML
     private Hyperlink logo;
@@ -60,14 +53,9 @@ public class entryPageController implements Initializable{
     @FXML
     private AnchorPane headerAnchorPane;
 
-    public void initialize(URL location, ResourceBundle resources) {
-        try {
-            AnchorPane pane = FXMLLoader.load(getClass().getResource("/org/openjfx/header.fxml"));
-            headerAnchorPane.getChildren().setAll(pane);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    @Override
+    public void initPane(mainController parent) {
+        this.parent=parent;
+        headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
     }
-
 }
