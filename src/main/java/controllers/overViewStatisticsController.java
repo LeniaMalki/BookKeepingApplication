@@ -1,61 +1,55 @@
 package controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
-import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+public class overViewStatisticsController implements ChildPane {
 
-public class overViewStatisticsController implements Initializable {
+    mainController parent;
 
-        @FXML
-        private Button toDailyStatisticsButton;
+    @FXML
+    private PieChart dailyOverviewPieChart;
 
-        @FXML
-        private Button toMonthlyStatisticsButton;
+    @FXML
+    private PieChart weeklyOverviewPieChart;
 
-        @FXML
-        private Button toWeeklyStatisticsButton;
+    @FXML
+    private PieChart monthlyOverviewPieChart;
 
-        @FXML
-        private PieChart dailyOverviewPieChart;
+    @FXML
+    private Text overviewDailyPieChartText;
 
-        @FXML
-        private PieChart weeklyOverviewPieChart;
+    @FXML
+    private Text overviewWeeklyPieChartText;
 
-        @FXML
-        private PieChart monthlyOverviewPieChart;
-
-        @FXML
-        private Text overviewDailyPieChartText;
-
-        @FXML
-        private Text overviewWeeklyPieChartText;
-
-        @FXML
-        private Text overviewMonthlyPieChartText;
+    @FXML
+    private Text overviewMonthlyPieChartText;
 
     @FXML
     private AnchorPane headerAnchorPane;
 
+    @FXML
+    void toDailyStatistics(ActionEvent event) {
+        parent.showStatisticsDetailPage();  //TODO DIVERSIFY FOR WEEKLY / DAILY / MONTHLY, TEXT AND PIECHART NEEDS TO
+                                                //UPDATE DEPENDING ON WHICH BUTTON YOU PRESS
+    }
+
+    @FXML
+    void toMonthlyStatistics(ActionEvent event) {
+        parent.showStatisticsDetailPage();
+    }
+
+    @FXML
+    void toWeeklyStatistics(ActionEvent event) {
+        parent.showStatisticsDetailPage();
+    }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        try {
-            AnchorPane pane = FXMLLoader.load(getClass().getResource("/org/openjfx/header.fxml"));
-            headerAnchorPane.getChildren().setAll(pane);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void initPane(mainController parent) {
+        this.parent = parent;
+        headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
     }
 }

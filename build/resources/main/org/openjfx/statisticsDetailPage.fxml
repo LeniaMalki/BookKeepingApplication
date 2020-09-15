@@ -14,9 +14,9 @@
    <children>
       <PieChart fx:id="statisticsPieChart" layoutX="62.0" layoutY="416.0" prefHeight="472.0" prefWidth="500.0" />
       <AnchorPane fx:id="headerAnchorPane" layoutX="-2.0" layoutY="-7.0" prefHeight="106.0" prefWidth="1440.0" styleClass="header-Shadow" />
-      <ScrollPane fx:id="statisticsScrollPane" layoutX="625.0" layoutY="392.0" prefHeight="581.0" prefWidth="775.0" style="-fx-background-color: FFFFFF;">
+      <ScrollPane fx:id="statisticsScrollPane" layoutX="625.0" layoutY="392.0" prefHeight="519.0" prefWidth="762.0" style="-fx-background-color: FFFFFF;">
         <content>
-          <AnchorPane layoutY="300.0" minHeight="0.0" minWidth="0.0" prefHeight="575.0" prefWidth="760.0" style="-fx-background-color: FFFFFF;" styleClass="whiteBackground" />
+          <AnchorPane layoutY="300.0" minHeight="0.0" minWidth="0.0" prefHeight="514.0" prefWidth="758.0" style="-fx-background-color: FFFFFF;" styleClass="whiteBackground" />
         </content>
          <styleClass>
             <String fx:value="dropShadow-scrollpane" />
@@ -84,6 +84,15 @@
             <Font size="38.0" />
          </font>
       </Text>
+      <Button fx:id="removeEntry" layoutX="1174.0" layoutY="935.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="219.0" text="Remove Entry">
+         <font>
+            <Font size="25.0" />
+         </font>
+         <styleClass>
+            <String fx:value="Enrique-Round" />
+            <String fx:value="droSshadow" />
+         </styleClass>
+      </Button>
    </children>
    <stylesheets>
       <URL value="@../../cssFolder/font.css" />

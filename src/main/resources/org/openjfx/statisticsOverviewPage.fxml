@@ -10,7 +10,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.overViewStatisticsController">
    <children>
-      <Button fx:id="toDailyStatisticsButton" alignment="CENTER" defaultButton="true" layoutX="100.0" layoutY="280.0" mnemonicParsing="false" prefHeight="78.0" prefWidth="334.0" style="-fx-background-color: F66A80; -fx-background-radius: 10;" text="Daily Statistics" textFill="WHITE">
+      <Button alignment="CENTER" defaultButton="true" layoutX="100.0" layoutY="280.0" mnemonicParsing="false" onAction="#toDailyStatistics" prefHeight="78.0" prefWidth="334.0" style="-fx-background-color: F66A80; -fx-background-radius: 10;" text="Daily Statistics" textFill="WHITE">
          <font>
             <Font size="40.0" />
          </font>
@@ -22,8 +22,8 @@
             <String fx:value="font40px" />
          </styleClass>
       </Button>
-      <AnchorPane fx:id="headerAnchorPane" prefHeight="122.0" prefWidth="1445.0" styleClass="header-Shadow" stylesheets="@../../cssFolder/Header.css" />
-      <Button fx:id="toMonthlyStatisticsButton" alignment="CENTER" defaultButton="true" layoutX="983.0" layoutY="280.0" mnemonicParsing="false" prefHeight="78.0" prefWidth="353.0" style="-fx-background-color: F66A80; -fx-background-radius: 10;" text="Monthly Statistics" textFill="WHITE">
+      <AnchorPane fx:id="headerAnchorPane" prefHeight="122.0" prefWidth="1445.0" />
+      <Button alignment="CENTER" defaultButton="true" layoutX="983.0" layoutY="280.0" mnemonicParsing="false" onAction="#toMonthlyStatistics" prefHeight="78.0" prefWidth="353.0" style="-fx-background-color: F66A80; -fx-background-radius: 10;" text="Monthly Statistics" textFill="WHITE">
          <font>
             <Font size="40.0" />
          </font>
@@ -35,7 +35,7 @@
             <String fx:value="font40px" />
          </styleClass>
       </Button>
-      <Button fx:id="toWeeklyStatisticsButton" alignment="CENTER" defaultButton="true" layoutX="531.0" layoutY="280.0" mnemonicParsing="false" prefHeight="78.0" prefWidth="358.0" style="-fx-background-color: F66A80; -fx-background-radius: 10;" text="Weekly Statistics" textFill="WHITE">
+      <Button alignment="CENTER" defaultButton="true" layoutX="531.0" layoutY="280.0" mnemonicParsing="false" onAction="#toWeeklyStatistics" prefHeight="78.0" prefWidth="358.0" style="-fx-background-color: F66A80; -fx-background-radius: 10;" text="Weekly Statistics" textFill="WHITE">
          <font>
             <Font size="40.0" />
          </font>
