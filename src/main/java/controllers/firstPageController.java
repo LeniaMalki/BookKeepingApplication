@@ -21,22 +21,17 @@ public class firstPageController implements ChildPane {
     @FXML
     private AnchorPane headerAnchorPane;
 
-    @FXML
-    private void loadHeader() throws IOException{
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("/org/openjfx/header.fxml"));
-        headerAnchorPane.getChildren().setAll(pane);
-    }
 
     @FXML
     private void loadEntryPage(ActionEvent event) throws IOException {
         parent.showEntryPage();
     }
 
+
     @FXML
-    private void loadNewBudgetPage(ActionEvent event) throws IOException {
+    private void goToBudgetButton(ActionEvent event) throws IOException{
         parent.showBudgetPage();
     }
-
 
     @Override
     public void initPane(mainController parent) {

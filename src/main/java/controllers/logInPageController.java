@@ -27,7 +27,10 @@ public class logInPageController implements ChildPane {
     @FXML
     private Hyperlink signUpLink;
 
+    @FXML
+    private void signUpButton(ActionEvent event) throws IOException{
 
+    }
 
     @FXML
     private void loadFirstPage(ActionEvent event) throws IOException {
