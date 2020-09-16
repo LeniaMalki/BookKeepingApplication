@@ -1,27 +1,14 @@
 package controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
-import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+public class overViewStatisticsController implements ChildPane {
 
-public class overViewStatisticsController implements Initializable {
-
-    @FXML
-    private Button toDailyStatisticsButton;
-
-    @FXML
-    private Button toMonthlyStatisticsButton;
-
-    @FXML
-    private Button toWeeklyStatisticsButton;
+    mainController parent;
 
     @FXML
     private PieChart dailyOverviewPieChart;
@@ -44,15 +31,30 @@ public class overViewStatisticsController implements Initializable {
     @FXML
     private AnchorPane headerAnchorPane;
 
+    @FXML
+    void toDailyStatistics(ActionEvent event) {
+        detailedStatistics("Daily");  //TODO DIVERSIFY FOR WEEKLY / DAILY / MONTHLY, TEXT AND PIECHART NEEDS TO
+                                                //UPDATE DEPENDING ON WHICH BUTTON YOU PRESS
+    }
+
+    @FXML
+    void toWeeklyStatistics(ActionEvent event) {
+        detailedStatistics("Weekly");
+    }
+
+    @FXML
+    void toMonthlyStatistics(ActionEvent event) {
+        detailedStatistics("Monthly");
+    }
+
+
+    private void detailedStatistics(String text){
+        parent.showStatisticsDetailPage(text);
+    }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        try {
-            AnchorPane pane = FXMLLoader.load(getClass().getResource("/org/openjfx/header.fxml"));
-            headerAnchorPane.getChildren().setAll(pane);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void initPane(mainController parent) {
+        this.parent = parent;
+        headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
     }
 }

@@ -1,6 +1,7 @@
 package controllers;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventTarget;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -10,49 +11,59 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+
 import java.io.IOException;
 
-public class headerController {
-    @FXML
-    private AnchorPane header;
+public class headerController implements ChildPane{
+
+    mainController parent;
+
     @FXML
     private Hyperlink logo;
+
     @FXML
     private Hyperlink homeButton;
+
     @FXML
     private Hyperlink entryButton;
+
     @FXML
     private Hyperlink statisticsButton;
+
     @FXML
     private Hyperlink budgetButton;
-    @FXML
-    private Hyperlink goalsButton;
-    @FXML
-    private Hyperlink nameHyperlink;
 
-
-    //Handles the different menu buttons and gets user from one menu page to another
     @FXML
-    private void onAction_headerMenu_CLICKED(ActionEvent event) throws IOException {
-        Parent startParent;
+    private Hyperlink goalButton;
+
+    @FXML
+    private void clickHeader(ActionEvent event) throws IOException {
         if (homeButton.equals(event.getTarget()) || logo.equals(event.getTarget())) {
-            startParent = FXMLLoader.load(getClass().getResource("/org/openjfx/firstPage.fxml"));
+            parent.showFirstPage();
         } else if (budgetButton.equals(event.getTarget())) {
-            startParent = FXMLLoader.load(getClass().getResource("/org/openjfx/bugetCharPage.fxml"));
+            parent.showBudgetCharPage();
         } else if (entryButton.equals(event.getTarget())) {
-            startParent = FXMLLoader.load(getClass().getResource("/org/openjfx/entryPage.fxml"));
+            parent.showEntryPage();
         } else if (statisticsButton.equals(event.getTarget())) {
-            startParent = FXMLLoader.load(getClass().getResource("/org/openjfx/statisticsOverviewPage.fxml"));
-        } else if (nameHyperlink.equals(event.getTarget())) {
-            startParent = FXMLLoader.load(getClass().getResource("/org/openjfx/accountPage.fxml"));
-        } else {
-            throw new IllegalStateException("Unexpected value: " + event.getTarget());
+            parent.showStatisticsOverviewPage();
+        } else if (goalButton.equals(event.getTarget())){
+            parent.showGoalsPage();
         }
-        Scene startScene = new Scene(startParent);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(startScene);
-        window.show();
+
+
+
     }
+
+    //Opens up/going back to first page when pressing on the Logo i.e. works as an escape hatch
+    public void escapeHatchHandler(ActionEvent actionEvent) throws IOException {
+        parent.showFirstPage();
+    }
+
+    @Override
+    public void initPane(mainController parent) {
+        this.parent = parent;
+    }
+
 }
 
 
