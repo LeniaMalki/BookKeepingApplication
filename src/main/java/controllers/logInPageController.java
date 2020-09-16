@@ -2,24 +2,15 @@ package controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 
-
-public class logInPageController {
-
-    @FXML
-    private AnchorPane logInPage;
+public class logInPageController implements ChildPane {
+    mainController parent;
 
     @FXML
     private PasswordField logInField;
@@ -37,24 +28,18 @@ public class logInPageController {
     private Hyperlink signUpLink;
 
     @FXML
-    private AnchorPane positionForSignUpPopUp;
+    private void signUpButton(ActionEvent event) throws IOException{
 
+    }
 
     @FXML
     private void loadFirstPage(ActionEvent event) throws IOException {
-        Parent startParent = FXMLLoader.load(getClass().getResource("/org/openjfx/firstPage.fxml"));
-        Scene startScene = new Scene(startParent);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(startScene);
-        window.show();
+        parent.showFirstPage();
     }
 
-    //Opens up the signUpPopUp when clicking on "Sign Up"-hyperlink
-    @FXML
-    public void onAction_signUpHyperLink_CLICKED(ActionEvent actionEvent) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("/org/openjfx/signUpPopUp.fxml"));
-        positionForSignUpPopUp.getChildren().setAll(pane);
-        positionForSignUpPopUp.toFront();
+    @Override
+    public void initPane(mainController parent) {
+        this.parent = parent;
     }
 }
 

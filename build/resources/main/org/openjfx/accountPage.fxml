@@ -5,7 +5,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -13,125 +12,114 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.accountPageController">
-    <children>
-      <AnchorPane fx:id="darkBack" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" styleClass="background-colour" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <AnchorPane prefHeight="1027.0" prefWidth="1440.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-              <AnchorPane fx:id="positionOfPopUp" layoutX="272.0" layoutY="255.0" prefHeight="500.0" prefWidth="900.0">
-                  <effect>
-                      <DropShadow />
-                  </effect>
-              </AnchorPane>
-              <Text fill="#615f5f" layoutX="143.0" layoutY="70.609375" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-LightRound" text="Account settings">
-                  <font>
-                      <Font size="48.0" />
-                  </font>
-              </Text>
-              <Text disable="true" fill="#615f5f" layoutX="148.0" layoutY="323.9140625" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-BoldRound" text="Username">
-                  <font>
-                      <Font size="40.0" />
-                  </font>
-              </Text>
-              <Text fill="#615f5f" layoutX="153.0" layoutY="526.9140625" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-BoldRound" text="Name">
-                  <font>
-                      <Font size="40.0" />
-                  </font>
-              </Text>
-              <Text fill="#615f5f" layoutX="155.0" layoutY="728.9140625" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-BoldRound" text="Email">
-                  <font>
-                      <Font size="40.0" />
-                  </font>
-              </Text>
-              <Text fill="#615f5f" layoutX="900.0" layoutY="264.7421875" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-BoldRound" text="Password">
-                  <font>
-                      <Font size="40.0" />
-                  </font>
-              </Text>
-              <Text fill="#615f5f" layoutX="900.0" layoutY="457.7421875" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-BoldRound" text="Account">
-                  <font>
-                      <Font size="40.0" />
-                  </font>
-              </Text>
-              <Text fill="#615f5f" layoutX="900.0" layoutY="724.5078125" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-LightRound" text="Language">
-                  <font>
-                      <Font size="40.0" />
-                  </font>
-              </Text>
-              <Text fill="#615f5f" layoutX="900.0" layoutY="637.890625" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-BoldRound" text="Other">
-                  <font>
-                      <Font size="48.0" />
-                  </font>
-              </Text>
-              <TextField layoutX="145.0" layoutY="397.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="74.0" prefWidth="522.0" promptText="anders123">
-                  <font>
-                      <Font size="35.0" />
-                  </font>
-              </TextField>
-              <ImageView fx:id="editUsername" accessibleRole="BUTTON" fitHeight="50.0" fitWidth="50.0" layoutX="595.0" layoutY="407.0" pickOnBounds="true">
-                  <image>
-                      <Image url="@../../Images/editSymbol2.png" />
-                  </image>
-              </ImageView>
-              <TextField layoutX="144.0" layoutY="603.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="74.0" prefWidth="522.0" promptText="Anders">
-                  <font>
-                      <Font size="35.0" />
-                  </font>
-              </TextField>
-              <ImageView fx:id="editName" accessibleRole="BUTTON" fitHeight="50.0" fitWidth="50.0" layoutX="594.0" layoutY="613.0" pickOnBounds="true">
-                  <image>
-                      <Image url="@../../Images/editSymbol2.png" />
-                  </image>
-              </ImageView>
-              <TextField layoutX="144.0" layoutY="793.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="74.0" prefWidth="522.0" promptText="anders123@hotmail.com">
-                  <font>
-                      <Font size="35.0" />
-                  </font>
-              </TextField>
-              <ImageView fx:id="editEmail" accessibleRole="BUTTON" fitHeight="50.0" fitWidth="50.0" layoutX="594.0" layoutY="801.0" pickOnBounds="true">
-                  <image>
-                      <Image url="@../../Images/editSymbol2.png" />
-                  </image>
-              </ImageView>
-              <Text fill="#615f5f" layoutX="900.0" layoutY="790.6943359375" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-LightRound" text="English">
-                  <font>
-                      <Font size="35.0" />
-                  </font>
-              </Text>
-              <Hyperlink fx:id="changePasswordHyperLink" layoutX="908.0" layoutY="315.0" onAction="#changePasswordHyperLink_CLICKED" stylesheets="@../../cssFolder/accountPage.css" text="Change Password" textFill="#f66a80">
-                  <font>
-                      <Font size="35.0" />
-                  </font>
-                  <padding>
-                      <Insets left="1.0" />
-                  </padding>
-                  <styleClass>
-                      <String fx:value="Enrique-LightRound" />
-                      <String fx:value="accountPageHyperLink" />
-                  </styleClass>
-              </Hyperlink>
-              <Hyperlink fx:id="deleteAccountHyperLink" layoutX="903.0" layoutY="517.0" onAction="#deleteAccountHyperLink_CLICKED" stylesheets="@../../cssFolder/accountPage.css" text="Delete account" textFill="#f66a80">
-                  <font>
-                      <Font size="35.0" />
-                  </font>
-                  <padding>
-                      <Insets left="1.0" />
-                  </padding>
-                  <styleClass>
-                      <String fx:value="Enrique-LightRound" />
-                      <String fx:value="accountPageHyperLink" />
-                  </styleClass>
-              </Hyperlink>
-              <ImageView fx:id="changeLanguage" fitHeight="50.0" fitWidth="50.0" layoutX="1121.0" layoutY="865.0" pickOnBounds="true">
-                  <image>
-                      <Image url="@../../Images/kugghjul.png" />
-                  </image>
-              </ImageView>
-              <AnchorPane fx:id="headerAnchorPane" prefHeight="106.0" prefWidth="1440.0" styleClass="header-Shadow" />
-         </children>
-      </AnchorPane>
-    </children>
-    <stylesheets>
-        <URL value="@../../cssFolder/font.css" />
-      <URL value="@../../cssFolder/lightBox.css" />
-    </stylesheets>
+   <children>
+      <AnchorPane fx:id="headerAnchorPane" layoutX="110.0" layoutY="110.0" minHeight="-Infinity" prefHeight="106.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Text fill="#615f5f" layoutX="143.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-LightRound" text="Account settings">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Text>
+      <Text disable="true" fill="#615f5f" layoutX="145.0" layoutY="379.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-BoldRound" text="Username">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Text>
+      <Text fill="#615f5f" layoutX="147.0" layoutY="572.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-BoldRound" text="Name">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Text>
+      <Text fill="#615f5f" layoutX="144.0" layoutY="775.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-BoldRound" text="Email">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Text>
+      <Text fill="#615f5f" layoutX="900.0" layoutY="379.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-BoldRound" text="Password">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Text>
+      <Text fill="#615f5f" layoutX="900.0" layoutY="572.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-BoldRound" text="Account">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Text>
+      <Text fill="#615f5f" layoutX="900.0" layoutY="854.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-LightRound" text="Language">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Text>
+      <Text fill="#615f5f" layoutX="900.0" layoutY="775.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-BoldRound" text="Other">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Text>
+      <TextField layoutX="145.0" layoutY="397.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="74.0" prefWidth="522.0" promptText="anders123">
+         <font>
+            <Font size="35.0" />
+         </font>
+      </TextField>
+      <ImageView fx:id="editUsername" accessibleRole="BUTTON" fitHeight="50.0" fitWidth="50.0" layoutX="595.0" layoutY="407.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../Images/editSymbol2.png" />
+         </image>
+      </ImageView>
+      <TextField layoutX="144.0" layoutY="603.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="74.0" prefWidth="522.0" promptText="Anders">
+         <font>
+            <Font size="35.0" />
+         </font>
+      </TextField>
+      <ImageView fx:id="editName" accessibleRole="BUTTON" fitHeight="50.0" fitWidth="50.0" layoutX="594.0" layoutY="613.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../Images/editSymbol2.png" />
+         </image>
+      </ImageView>
+      <TextField layoutX="144.0" layoutY="793.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="74.0" prefWidth="522.0" promptText="anders123@hotmail.com">
+         <font>
+            <Font size="35.0" />
+         </font>
+      </TextField>
+      <ImageView fx:id="editEmail" accessibleRole="BUTTON" fitHeight="50.0" fitWidth="50.0" layoutX="594.0" layoutY="801.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../Images/editSymbol2.png" />
+         </image>
+      </ImageView>
+      <Text fill="#615f5f" layoutX="900.0" layoutY="904.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-LightRound" text="English">
+         <font>
+            <Font size="35.0" />
+         </font>
+      </Text>
+      <Hyperlink fx:id="changePasswordLink" layoutX="900.0" layoutY="403.0" stylesheets="@../../cssFolder/accountPage.css" text="Change Password" textFill="#f66a80">
+         <font>
+            <Font size="35.0" />
+         </font>
+         <padding>
+            <Insets left="1.0" />
+         </padding>
+         <styleClass>
+            <String fx:value="Enrique-LightRound" />
+            <String fx:value="accountPageHyperLink" />
+         </styleClass>
+      </Hyperlink>
+      <Hyperlink fx:id="deleteAccountLink" layoutX="900.0" layoutY="602.0" stylesheets="@../../cssFolder/accountPage.css" text="Delete account" textFill="#f66a80">
+         <font>
+            <Font size="35.0" />
+         </font>
+         <padding>
+            <Insets left="1.0" />
+         </padding>
+         <styleClass>
+            <String fx:value="Enrique-LightRound" />
+            <String fx:value="accountPageHyperLink" />
+         </styleClass>
+      </Hyperlink>
+      <ImageView fx:id="changeLanguage" fitHeight="50.0" fitWidth="50.0" layoutX="1121.0" layoutY="865.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../Images/kugghjul.png" />
+         </image>
+      </ImageView>
+   </children>
+   <stylesheets>
+      <URL value="@../../cssFolder/font.css" />
+   </stylesheets>
 </AnchorPane>

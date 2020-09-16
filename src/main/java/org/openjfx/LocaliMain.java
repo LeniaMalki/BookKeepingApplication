@@ -1,28 +1,23 @@
 package org.openjfx;
 
+import controllers.PaneFactory;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class LocaliMain extends Application {
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+public class LocaliMain extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        stage.setResizable(false);
-
-        Parent root = FXMLLoader.load(getClass().getResource("logInPage.fxml"));
-
-        Scene scene = new Scene(root);
-
+        Scene scene = new Scene(PaneFactory.initMain(), 1440, 1024);
         stage.setTitle("Locali");
         stage.setScene(scene);
         stage.show();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
     }
 
 }
