@@ -77,7 +77,10 @@ public class budgetPageController implements ChildPane {
     private MenuButton previousBudgetButton;
 
     @FXML
-    private Button usePreviousBudgetButton;
+    private CheckMenuItem checkMenuItem1;
+
+    @FXML
+    private CheckMenuItem checkMenuItem2;
 
     @FXML
     private AnchorPane headerAnchorPane;

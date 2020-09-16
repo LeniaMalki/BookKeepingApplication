@@ -1,0 +1,31 @@
+.linklinkFillPinkNOLine{
+    -fx-underline: false;
+    }
+
+.linklinkFillPinkNOLine:hover {
+    -fx-text-fill: #F66A80;
+     -fx-cursor: hand;
+
+}
+
+.linkFillWhite {
+    -fx-underline: false;
+
+}
+
+.linkFillWhite:hover {
+    -fx-text-fill: #ffffff;
+     -fx-cursor: hand;
+}
+
+.cursor:hover {
+
+
+     -fx-cursor: hand;
+
+}
+
+
+
+
+

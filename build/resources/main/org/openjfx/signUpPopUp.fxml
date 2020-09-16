@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.URL?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="signUpPopUp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="662.0" prefWidth="900.0"
+            style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1"
+            fx:controller="controllers.logInPageController">
+    <children>
+        <Text fill="#5f6368" layoutX="142.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              styleClass="Enrique-Round" text="Sign Up">
+            <font>
+                <Font size="48.0"/>
+            </font>
+        </Text>
+        <TextField fx:id="signUpName" alignment="BOTTOM_LEFT" layoutX="52.0" layoutY="130.0" minWidth="-Infinity"
+                   prefHeight="52.0" prefWidth="350.0" promptText="Name" style="-fx-background-color: #FFFFFF;">
+            <font>
+                <Font size="36.0"/>
+            </font>
+            <padding>
+                <Insets bottom="1.0"/>
+            </padding>
+            <styleClass>
+                <String fx:value="Enrique-Round"/>
+                <String fx:value="font24px"/>
+            </styleClass>
+            <effect>
+                <InnerShadow color="#00000021"/>
+            </effect>
+        </TextField>
+        <TextField fx:id="signUpUsername" alignment="BOTTOM_LEFT" layoutX="52.0" layoutY="304.0" minWidth="-Infinity"
+                   prefHeight="52.0" prefWidth="350.0" promptText="Username" style="-fx-background-color: #FFFFFF;">
+            <font>
+                <Font size="36.0"/>
+            </font>
+            <padding>
+                <Insets bottom="1.0"/>
+            </padding>
+            <styleClass>
+                <String fx:value="Enrique-Round"/>
+                <String fx:value="font24px"/>
+            </styleClass>
+            <effect>
+                <InnerShadow color="#00000021"/>
+            </effect>
+        </TextField>
+        <PasswordField fx:id="signUpPassword" alignment="BOTTOM_LEFT" layoutX="52.0" layoutY="392.0"
+                       minWidth="-Infinity" prefHeight="54.0" prefWidth="350.0" promptText="Password"
+                       style="-fx-background-color: #FFFFFF;">
+            <font>
+                <Font size="36.0"/>
+            </font>
+            <padding>
+                <Insets bottom="1.0"/>
+            </padding>
+            <styleClass>
+                <String fx:value="Enrique-Round"/>
+                <String fx:value="font24px"/>
+            </styleClass>
+            <effect>
+                <InnerShadow color="#00000021"/>
+            </effect>
+        </PasswordField>
+        <PasswordField fx:id="signUpConfirmPassword" alignment="BOTTOM_LEFT" layoutX="52.0" layoutY="483.0"
+                       minWidth="-Infinity" prefHeight="54.0" prefWidth="350.0" promptText="Confirm password"
+                       style="-fx-background-color: #FFFFFF;">
+            <font>
+                <Font size="36.0"/>
+            </font>
+            <padding>
+                <Insets bottom="1.0"/>
+            </padding>
+            <styleClass>
+                <String fx:value="Enrique-Round"/>
+                <String fx:value="font24px"/>
+            </styleClass>
+            <effect>
+                <InnerShadow color="#00000021"/>
+            </effect>
+        </PasswordField>
+        <ImageView fx:id="confirmPasswordIcon" fitHeight="50.0" fitWidth="50.0" layoutX="414.0" layoutY="485.0"
+                   pickOnBounds="true" preserveRatio="true"/>
+        <TextField fx:id="signUpEmail" alignment="BOTTOM_LEFT" layoutX="52.0" layoutY="223.0" minWidth="-Infinity"
+                   prefHeight="52.0" prefWidth="350.0" promptText="Email" style="-fx-background-color: #FFFFFF;">
+            <font>
+                <Font size="36.0"/>
+            </font>
+            <padding>
+                <Insets bottom="1.0"/>
+            </padding>
+            <styleClass>
+                <String fx:value="Enrique-Round"/>
+                <String fx:value="font24px"/>
+            </styleClass>
+            <effect>
+                <InnerShadow color="#00000021"/>
+            </effect>
+        </TextField>
+        <ImageView fx:id="signUpEmailIcon" fitHeight="50.0" fitWidth="50.0" layoutX="414.0" layoutY="224.0"
+                   pickOnBounds="true" preserveRatio="true"/>
+        <ImageView fx:id="signUpEmailIcon1" fitHeight="50.0" fitWidth="50.0" layoutX="414.0" layoutY="306.0"
+                   pickOnBounds="true" preserveRatio="true"/>
+        <ImageView fx:id="signUpNameIcon" fitHeight="50.0" fitWidth="50.0" layoutX="414.0" layoutY="132.0"
+                   pickOnBounds="true" preserveRatio="true"/>
+        <ImageView fitHeight="662.0" fitWidth="414.0" layoutX="486.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0"
+                   AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <image>
+                <Image url="@../../Images/lollipop.jpg"/>
+            </image>
+        </ImageView>
+        <Button fx:id="createAccount" alignment="CENTER" defaultButton="true" layoutX="70.0" layoutY="565.0"
+                mnemonicParsing="false" prefHeight="64.0" prefWidth="315.0"
+                style="-fx-background-color: #a8d8d3; -fx-background-radius: 5;" text="Create Account"
+                textFill="#655252">
+            <font>
+                <Font size="33.0"/>
+            </font>
+            <opaqueInsets>
+                <Insets/>
+            </opaqueInsets>
+            <styleClass>
+                <String fx:value="Enrique-LightRound"/>
+                <String fx:value="font24px"/>
+            </styleClass>
+            <effect>
+                <DropShadow/>
+            </effect>
+        </Button>
+    </children>
+    <stylesheets>
+        <URL value="@../../cssFolder/font.css"/>
+        <URL value="@../../cssFolder/fontSizes.css"/>
+    </stylesheets>
+</AnchorPane>
