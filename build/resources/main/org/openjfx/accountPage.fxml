@@ -13,7 +13,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.accountPageController">
    <children>
-      <AnchorPane layoutX="110.0" layoutY="110.0" minHeight="-Infinity" prefHeight="106.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <AnchorPane fx:id="headerAnchorPane" layoutX="110.0" layoutY="110.0" minHeight="-Infinity" prefHeight="106.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <Text fill="#615f5f" layoutX="143.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-LightRound" text="Account settings">
          <font>
             <Font size="48.0" />

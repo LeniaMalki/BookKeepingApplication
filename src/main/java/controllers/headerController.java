@@ -34,7 +34,7 @@ public class headerController implements ChildPane{
     private Hyperlink budgetButton;
 
     @FXML
-    private Hyperlink goalsButton;
+    private Hyperlink goalButton;
 
     @FXML
     private void clickHeader(ActionEvent event) throws IOException {
@@ -46,9 +46,11 @@ public class headerController implements ChildPane{
             parent.showEntryPage();
         } else if (statisticsButton.equals(event.getTarget())) {
             parent.showStatisticsOverviewPage();
-        } else if (goalsButton.equals(event.getTarget())){
-            //TODO
+        } else if (goalButton.equals(event.getTarget())){
+            parent.showGoalsPage();
         }
+
+
 
     }
 

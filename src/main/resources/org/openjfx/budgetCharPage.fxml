@@ -24,7 +24,7 @@
                   <String fx:value="textField" />
                </styleClass>
             </Button>
-            <Button fx:id="addNewBudgetButton" layoutX="1115.0" layoutY="48.0" mnemonicParsing="false" style="-fx-background-color: white;" text="Add new Budget" textFill="#f66a80" underline="true">
+            <Button fx:id="addNewBudgetButton" layoutX="1115.0" layoutY="48.0" mnemonicParsing="false" onAction="#addNewBudgetButton" style="-fx-background-color: white;" text="Add new Budget" textFill="#f66a80" underline="true">
                <styleClass>
                   <String fx:value="Enrique-LightRound" />
                   <String fx:value="textField" />

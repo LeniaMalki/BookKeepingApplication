@@ -25,12 +25,12 @@ public class mainController {
         firstPage = PaneFactory.initFirstPane();
         accountPage = PaneFactory.initAccountPane();
         entryPage = PaneFactory.initEntryPane();
-        budgetPage = PaneFactory.initBudgetPane();
+        goalsPage = PaneFactory.initGoalsPane(); //weird
         budgetCharPage = PaneFactory.initBudgetCharPane();
+        budgetPage = PaneFactory.initBudgetPane();
         statisticsOverviewPage = PaneFactory.initStatisticsOverviewPane();
-        //goalsPage = loadPage.ini DO THIS
-        //TODO add all main anchopanes
 
+        //TODO add all main anchopanes
 
 
         showPage(logInPage);
@@ -57,11 +57,16 @@ public class mainController {
         showPage(budgetPage);
     }
 
-    void showStatisticsOverviewPage(){
+    void showGoalsPage() {
+        showPage(goalsPage);
+    }
+
+
+    void showStatisticsOverviewPage() {
         showPage(statisticsOverviewPage);
     }
 
-    void showStatisticsDetailPage(String text){
+    void showStatisticsDetailPage(String text) {
         PaneFactory.Pane<detailStatisticsController> pane = PaneFactory.initStatisticsDetailPane();
         showPage(pane.anchorPane);
         pane.controller.setLabelPieChart(text);
