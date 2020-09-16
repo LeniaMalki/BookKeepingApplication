@@ -60,7 +60,7 @@
             <String fx:value="inactiveHeaderButton" />
          </styleClass>
       </Hyperlink>
-      <Hyperlink fx:id="goalsButton" layoutX="940.0" layoutY="21.0" prefHeight="65.0" prefWidth="146.0" text="Goals">
+      <Hyperlink fx:id="goalButton" layoutX="940.0" layoutY="21.0" onAction="#clickHeader" prefHeight="65.0" prefWidth="146.0" text="Goals">
          <font>
             <Font size="35.0" />
          </font>

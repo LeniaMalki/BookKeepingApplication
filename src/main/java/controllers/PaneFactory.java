@@ -101,6 +101,12 @@ public class PaneFactory {
         return pane.anchorPane;
     }
 
+    static AnchorPane initGoalsPane() {
+        Pane<goalsPageController> pane = loadInPane("org/openjfx/goalsPage.fxml");
+        pane.controller.initPane(parent);
+        return pane.anchorPane;
+    }
+
     static Pane<detailStatisticsController> initStatisticsDetailPane() {
         Pane<detailStatisticsController> pane = loadInPane("org/openjfx/statisticsDetailPage.fxml");
         pane.controller.initPane(parent);
