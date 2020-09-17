@@ -3,7 +3,7 @@ package controllers;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 
-public class goalsPageController implements ChildPane{
+public class goalsPageController implements ChildPane {
 
     mainController parent;
 
@@ -12,7 +12,7 @@ public class goalsPageController implements ChildPane{
 
     @Override
     public void initPane(mainController parent) {
-        this.parent=parent;
+        this.parent = parent;
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
     }
 }
