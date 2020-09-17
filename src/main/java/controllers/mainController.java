@@ -15,12 +15,16 @@ public class mainController {
     private AnchorPane budgetCharPage;
     private AnchorPane accountPage;
     private AnchorPane goalsPage;
+    private AnchorPane signUpPopUp;
+    private AnchorPane generalPopUp;
+
 
     @FXML
     private AnchorPane mainAnchor;
 
 
     public void init() {
+        signUpPopUp = PaneFactory.initSignUpPopUp();
         logInPage = PaneFactory.initLoginPane();
         firstPage = PaneFactory.initFirstPane();
         accountPage = PaneFactory.initAccountPane();
@@ -39,6 +43,10 @@ public class mainController {
     // TODO make one for each anchopane
     void showLogInPage() {
         showPage(logInPage);
+    }
+
+    void showSignUpPage() {
+        showPage(signUpPopUp);
     }
 
     void showFirstPage() {
@@ -82,4 +90,16 @@ public class mainController {
         mainAnchor.getChildren().add(pane);
         mainAnchor.toFront();
     }
+
+    //Getters and setters
+    AnchorPane getSignUpPopUp() {
+        return signUpPopUp;
+    }
+
+    ;
+
+
 }
+
+
+

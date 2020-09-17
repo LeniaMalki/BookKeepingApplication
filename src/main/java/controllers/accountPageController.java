@@ -29,11 +29,13 @@ public class accountPageController implements ChildPane {
     @FXML
     private ImageView changeLanguage;
 
+    private Hyperlink accountPage;
+
     @Override
     public void initPane(mainController parent) {
         this.parent = parent;
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
     }
 
-    //Test
+
 }

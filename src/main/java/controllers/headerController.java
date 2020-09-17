@@ -8,7 +8,11 @@ import java.io.IOException;
 
 public class headerController implements ChildPane {
 
+
     mainController parent;
+
+    @FXML
+    Hyperlink accountPageButton;
 
     @FXML
     private Hyperlink logo;
@@ -38,6 +42,8 @@ public class headerController implements ChildPane {
             parent.showEntryPage();
         } else if (statisticsButton.equals(event.getTarget())) {
             parent.showStatisticsOverviewPage();
+        } else if (accountPageButton.equals((event.getTarget()))) {
+            parent.showAccountPage();
         } else if (goalButton.equals(event.getTarget())) {
             parent.showGoalsPage();
         }
