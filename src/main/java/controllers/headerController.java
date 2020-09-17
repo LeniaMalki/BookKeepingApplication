@@ -1,20 +1,12 @@
 package controllers;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventTarget;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
-
 
 import java.io.IOException;
 
-public class headerController implements ChildPane{
+public class headerController implements ChildPane {
 
     mainController parent;
 
@@ -46,10 +38,9 @@ public class headerController implements ChildPane{
             parent.showEntryPage();
         } else if (statisticsButton.equals(event.getTarget())) {
             parent.showStatisticsOverviewPage();
-        } else if (goalButton.equals(event.getTarget())){
+        } else if (goalButton.equals(event.getTarget())) {
             parent.showGoalsPage();
         }
-
 
 
     }

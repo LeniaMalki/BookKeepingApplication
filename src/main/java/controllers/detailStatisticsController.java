@@ -1,4 +1,5 @@
 package controllers;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -7,40 +8,40 @@ import javafx.scene.text.Text;
 
 public class detailStatisticsController implements ChildPane {
 
-        mainController parent;
+    mainController parent;
 
-        @FXML
-        private ScrollPane statisticsScrollPane;
+    @FXML
+    private ScrollPane statisticsScrollPane;
 
-        @FXML
-        private Button statisticsButtonFood;
+    @FXML
+    private Button statisticsButtonFood;
 
-        @FXML
-        private Button statisticsButtonHousehold;
+    @FXML
+    private Button statisticsButtonHousehold;
 
-        @FXML
-        private Button statisticsButtonOther;
+    @FXML
+    private Button statisticsButtonOther;
 
-        @FXML
-        private Button statisticsButtonShopping;
+    @FXML
+    private Button statisticsButtonShopping;
 
-        @FXML
-        private Button statisticsButtonTransport;
+    @FXML
+    private Button statisticsButtonTransport;
 
-        @FXML
-        private Text labelPieChart;
+    @FXML
+    private Text labelPieChart;
 
-        @FXML
-        private AnchorPane headerAnchorPane;
+    @FXML
+    private AnchorPane headerAnchorPane;
 
 
-        @Override
-        public void initPane(mainController parent) {
-                this.parent=parent;
-                headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
-        }
+    @Override
+    public void initPane(mainController parent) {
+        this.parent = parent;
+        headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
+    }
 
-        public void setLabelPieChart(String labelPieChart) {
-                this.labelPieChart.setText(labelPieChart);
-        }
+    public void setLabelPieChart(String labelPieChart) {
+        this.labelPieChart.setText(labelPieChart);
+    }
 }
