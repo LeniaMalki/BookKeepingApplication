@@ -65,6 +65,12 @@ public class PaneFactory {
         return pane.anchorPane;
     }
 
+    static AnchorPane initSignUpPopUp() {
+        Pane<signUpPageController> pane = loadInPane("org/openjfx/signUpPopUp.fxml");
+        pane.controller.initPane(parent);
+        return pane.anchorPane;
+    }
+
     static AnchorPane initBudgetCharPane() {
         Pane<budgetCharPageController> pane = loadInPane("org/openjfx/budgetCharPage.fxml");
         pane.controller.initPane(parent);
@@ -105,6 +111,8 @@ public class PaneFactory {
         Pane<deleteAccountPopUpController> pane = loadInPane("org/openjfx/deleteAccountPopUp.fxml");
         return pane.anchorPane;
     }
+
+
 
     /**
      * A private class that makes us let us store controllers and anchor panes as one.

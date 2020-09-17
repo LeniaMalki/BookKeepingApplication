@@ -11,7 +11,7 @@
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="signUpPopUp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
             minWidth="-Infinity" prefHeight="662.0" prefWidth="900.0"
             style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1"
-            fx:controller="controllers.logInPageController">
+            fx:controller="controllers.signUpPageController">
     <children>
         <Text fill="#5f6368" layoutX="142.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0"
               styleClass="Enrique-Round" text="Sign Up">
