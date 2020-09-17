@@ -1,19 +1,17 @@
 package controllers;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+public class budgetPageController implements ChildPane {
 
-public class budgetPageController implements Initializable {
+    mainController parent;
+    @Override
+    public void initPane(mainController parent) {
+        this.parent=parent;
+        headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
+    }
 
     @FXML
     private Label foodLabel;
@@ -87,15 +85,8 @@ public class budgetPageController implements Initializable {
     @FXML
     private AnchorPane headerAnchorPane;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            AnchorPane pane = FXMLLoader.load(getClass().getResource("/org/openjfx/header.fxml"));
-            headerAnchorPane.getChildren().setAll(pane);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+    @FXML
+    private void stateOfSlider (){
+        foodAmountLabel.setText(Integer.toString((int) foodSlider.getValue()));
     }
 }

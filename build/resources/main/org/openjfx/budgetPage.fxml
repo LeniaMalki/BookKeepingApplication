@@ -16,7 +16,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" styleClass="whiteBackground" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.budgetPageController">
    <children>
       <AnchorPane fx:id="headerAnchorPane" layoutX="-2.0" layoutY="-7.0" prefHeight="106.0" prefWidth="1440.0" styleClass="header-Shadow" />
-      <Pane layoutY="149.0" prefHeight="875.0" prefWidth="1440.0" style="-fx-background-color: white;">
+      <Pane layoutY="149.0" prefHeight="875.0" prefWidth="1440.0" style="-fx-background-color: white;" styleClass="budg">
          <children>
             <VBox alignment="TOP_RIGHT" layoutX="-19.0" layoutY="295.0" prefHeight="544.0" prefWidth="189.0" spacing="70.0">
                <children>
@@ -57,7 +57,7 @@
             </VBox>
             <VBox layoutY="295.0" prefHeight="544.0" prefWidth="875.0" spacing="83.0" styleClass="droSshadow">
                <children>
-                  <Slider fx:id="foodSlider" />
+                  <Slider fx:id="foodSlider" onScroll="#stateOfSlider" />
                   <Slider fx:id="householdSlider" />
                   <Slider fx:id="shoppingSlider" />
                   <Slider fx:id="transportSlider" />
@@ -70,32 +70,32 @@
             </VBox>
             <VBox layoutX="896.0" layoutY="296.0" prefHeight="200.0" prefWidth="100.0" spacing="70.0">
                <children>
-                  <Label fx:id="foodAmountLabel" styleClass="Enrique-LightRound" text="Label">
+                  <Label fx:id="foodAmountLabel" styleClass="Enrique-LightRound" text="0">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label fx:id="householdAmountLabel" styleClass="Enrique-LightRound" text="Label">
+                  <Label fx:id="householdAmountLabel" styleClass="Enrique-LightRound" text="0">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label fx:id="shoppingAmountLabel" styleClass="Enrique-LightRound" text="Label">
+                  <Label fx:id="shoppingAmountLabel" styleClass="Enrique-LightRound" text="0">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label fx:id="transportAmountLabel" styleClass="Enrique-LightRound" text="Label">
+                  <Label fx:id="transportAmountLabel" styleClass="Enrique-LightRound" text="0">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label fx:id="otherAmountLabel" styleClass="Enrique-LightRound" text="Label">
+                  <Label fx:id="otherAmountLabel" styleClass="Enrique-LightRound" text="0">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label fx:id="savingsAmountLabel" styleClass="Enrique-LightRound" text="Label">
+                  <Label fx:id="savingsAmountLabel" styleClass="Enrique-LightRound" text="0">
                      <font>
                         <Font size="24.0" />
                      </font>
