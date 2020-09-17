@@ -8,6 +8,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -151,7 +152,7 @@
                   <String fx:value="droSshadow" />
                </styleClass>
             </Button>
-            <Button fx:id="enterIncomeButton" layoutX="80.0" layoutY="130.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="219.0" style="-fx-background-color: white; -fx-border-color: black;" text="Enter Income" underline="true">
+            <Button fx:id="enterIncomeButton" layoutX="286.0" layoutY="131.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="219.0" style="-fx-background-color: white; -fx-border-color: black;" text="Enter Income" underline="true">
                <font>
                   <Font size="25.0" />
                </font>
@@ -175,6 +176,11 @@
                   <Font size="25.0" />
                </font>
             </MenuButton>
+            <TextField fx:id="enterIncomeTextField" layoutX="77.0" layoutY="146.0" prefHeight="48.0" prefWidth="184.0" promptText="Enter Income">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </TextField>
          </children></Pane>
    </children>
    <stylesheets>
