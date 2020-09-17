@@ -55,7 +55,7 @@ public class entryPageController implements ChildPane {
 
     @Override
     public void initPane(mainController parent) {
-        this.parent=parent;
+        this.parent = parent;
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
     }
 }

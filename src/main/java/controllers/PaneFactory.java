@@ -3,6 +3,7 @@ package controllers;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
+
 import java.io.IOException;
 
 
@@ -13,19 +14,6 @@ import java.io.IOException;
  */
 public class PaneFactory {
     private static mainController parent;
-
-    /**
-     * A private class that makes us let us store controllers and anchor panes as one.
-     */
-    static class Pane<T> {
-        AnchorPane anchorPane;
-        T controller;
-
-        Pane(AnchorPane anchorPane, T controller) {
-            this.anchorPane = anchorPane;
-            this.controller = controller;
-        }
-    }
 
     /**
      * A generalized function for fetching root and controller from a function
@@ -46,7 +34,7 @@ public class PaneFactory {
     }
 
     // Create page
-    public static Parent initMain(){
+    public static Parent initMain() {
         Pane<mainController> pane = loadInPane("org/openjfx/mainAnchor.fxml");
         PaneFactory.parent = pane.controller;
         pane.controller.init();
@@ -113,9 +101,22 @@ public class PaneFactory {
         return pane;
     }
 
-    static AnchorPane initDelAccPopup(){
+    static AnchorPane initDelAccPopup() {
         Pane<deleteAccountPopUpController> pane = loadInPane("org/openjfx/deleteAccountPopUp.fxml");
         return pane.anchorPane;
+    }
+
+    /**
+     * A private class that makes us let us store controllers and anchor panes as one.
+     */
+    static class Pane<T> {
+        AnchorPane anchorPane;
+        T controller;
+
+        Pane(AnchorPane anchorPane, T controller) {
+            this.anchorPane = anchorPane;
+            this.controller = controller;
+        }
     }
 }
 

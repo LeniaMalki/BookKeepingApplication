@@ -34,7 +34,7 @@ public class overViewStatisticsController implements ChildPane {
     @FXML
     void toDailyStatistics(ActionEvent event) {
         detailedStatistics("Daily");  //TODO DIVERSIFY FOR WEEKLY / DAILY / MONTHLY, TEXT AND PIECHART NEEDS TO
-                                                //UPDATE DEPENDING ON WHICH BUTTON YOU PRESS
+        //UPDATE DEPENDING ON WHICH BUTTON YOU PRESS
     }
 
     @FXML
@@ -48,7 +48,7 @@ public class overViewStatisticsController implements ChildPane {
     }
 
 
-    private void detailedStatistics(String text){
+    private void detailedStatistics(String text) {
         parent.showStatisticsDetailPage(text);
     }
 
