@@ -57,9 +57,7 @@ public class entryPageController implements ChildPane{
     private void activateEntryTypeButton(ActionEvent event){
         Button btn = (Button) event.getSource();
         for(Button b:entryButtonTypeCluster){
-            if(b.getStyleClass().equals("activeEntryButton")){
-                b.getStyleClass().remove("activeEntryButton");
-            }
+            b.getStyleClass().remove("activeEntryButton");
             b.getStyleClass().add("inactiveEntryButton");
         }
         btn.getStyleClass().add("activeEntryButton");
