@@ -3,28 +3,20 @@ package controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.event.ActionEvent;
 
-public class entryPageController implements ChildPane {
+import java.util.ArrayList;
+import java.util.List;
+
+public class entryPageController implements ChildPane{
 
     mainController parent;
-
-    @FXML
-    private Hyperlink logo;
-
-    @FXML
-    private Hyperlink homeButton;
-
-    @FXML
-    private Hyperlink entryButton;
-
-    @FXML
-    private Hyperlink statisticsButton;
-
-    @FXML
-    private Hyperlink budgetButton;
-
-    @FXML
-    private Hyperlink goalsButton;
+    private Button CurrentActiveEntryButton;
+    private List<Button> entryButtonTypeCluster=new ArrayList(){{
+        add(expencesButton);
+        add(incomebutton);
+        add(savingButton);
+    }};
 
     @FXML
     private Button expencesButton;
@@ -48,6 +40,8 @@ public class entryPageController implements ChildPane {
     private ScrollPane entryPageScrollPane;
 
     @FXML
+    AnchorPane entryTypeGroupAnchorPane;
+    @FXML
     private Button submitButton;
 
     @FXML
@@ -57,5 +51,17 @@ public class entryPageController implements ChildPane {
     public void initPane(mainController parent) {
         this.parent = parent;
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
+    }
+
+    @FXML
+    private void activateEntryTypeButton(ActionEvent event){
+        Button btn = (Button) event.getSource();
+        for(Button b:entryButtonTypeCluster){
+            if(b.getStyleClass().equals("activeEntryButton")){
+                b.getStyleClass().remove("activeEntryButton");
+            }
+            b.getStyleClass().add("inactiveEntryButton");
+        }
+        btn.getStyleClass().add("activeEntryButton");
     }
 }
