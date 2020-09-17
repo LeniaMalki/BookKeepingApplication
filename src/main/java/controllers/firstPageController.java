@@ -3,7 +3,6 @@ package controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 
@@ -29,13 +28,13 @@ public class firstPageController implements ChildPane {
 
 
     @FXML
-    private void goToBudgetButton(ActionEvent event) throws IOException{
+    private void goToBudgetButton(ActionEvent event) throws IOException {
         parent.showBudgetPage();
     }
 
     @Override
     public void initPane(mainController parent) {
-        this.parent=parent;
+        this.parent = parent;
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
     }
 }

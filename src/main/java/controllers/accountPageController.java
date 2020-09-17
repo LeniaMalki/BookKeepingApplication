@@ -1,4 +1,5 @@
 package controllers;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.image.ImageView;
@@ -33,4 +34,6 @@ public class accountPageController implements ChildPane {
         this.parent = parent;
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
     }
+
+    //Test
 }
