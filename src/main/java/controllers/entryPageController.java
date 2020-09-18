@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
-public class entryPageController implements ChildPane {
+public class entryPageController implements iPane {
 
     mainController parent;
 

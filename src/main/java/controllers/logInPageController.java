@@ -2,40 +2,27 @@ package controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
-public class logInPageController implements ChildPane {
+public class logInPageController implements iPane {
+
     mainController parent;
-
     @FXML
-    private AnchorPane positionForSignUpPopUp;
-
+    private AnchorPane back;
     @FXML
-    private PasswordField logInField;
+    private AnchorPane pos_for_popUp_on_LogInPage;
 
-    @FXML
-    private TextField usernameField;
-
-    @FXML
-    private Hyperlink forgotPassword;
-
-    @FXML
-    private Button logInButton;
-
-    @FXML
-    private Hyperlink signUpLink;
 
     @FXML
     private void signUpButton(ActionEvent event) throws IOException {
-        positionForSignUpPopUp.getChildren().clear();
-        positionForSignUpPopUp.getChildren().add(parent.getSignUpPopUp());
-        positionForSignUpPopUp.toFront();
+        pos_for_popUp_on_LogInPage.getChildren().clear();
+        pos_for_popUp_on_LogInPage.getChildren().add(parent.getSignUpPopUp());
+        back.toFront();
+        back.setStyle("-fx-background-color: #000000");
+        back.setOpacity(0.5);
+        pos_for_popUp_on_LogInPage.toFront();
 
     }
 

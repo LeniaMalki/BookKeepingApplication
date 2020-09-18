@@ -8,7 +8,7 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
-public class firstPageController implements ChildPane {
+public class firstPageController implements iPane {
     mainController parent;
 
     @FXML

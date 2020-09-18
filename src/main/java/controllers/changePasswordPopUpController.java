@@ -3,7 +3,6 @@ package controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,6 +13,8 @@ import javafx.stage.Stage;
 
 
 public class changePasswordPopUpController {
+
+    mainController parent;
 
     @FXML
     private AnchorPane changePasswordPopUp;
@@ -41,11 +42,13 @@ public class changePasswordPopUpController {
     //Goes back to account page when confirming change of password
     @FXML
     void onAction_ConfirmChangePassword_CLICKED(ActionEvent event) throws Exception {
-        Parent startParent = FXMLLoader.load(getClass().getResource("/org/openjfx/accountPage.fxml"));
-        Scene startScene = new Scene(startParent);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(startScene);
-        window.show();
+        parent.getChangePasswordPopUp().isDisabled();
+        parent.showAccountPage();
+
+    }
+
+    public void initPane(mainController parent) {
+        this.parent = parent;
     }
 
 

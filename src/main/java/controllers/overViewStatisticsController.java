@@ -6,7 +6,7 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
-public class overViewStatisticsController implements ChildPane {
+public class overViewStatisticsController implements iPane {
 
     mainController parent;
 

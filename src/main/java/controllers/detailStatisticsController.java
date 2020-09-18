@@ -6,7 +6,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
-public class detailStatisticsController implements ChildPane {
+public class detailStatisticsController implements iPane {
 
     mainController parent;
 
