@@ -12,11 +12,29 @@ public class Entry<T> implements EntrySubject{
     double amout;
     String name;
     String category;
+    String typeOfEntry;
 
-    public Entry(double cost, String name, String category) {
+    public double getAmout() {
+        return amout;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public String getTypeOfEntry() {
+        return typeOfEntry;
+    }
+
+    public Entry(double cost, String name, String category, String typeOfEntry) {
         this.amout = cost;
         this.name = name;
         this.category=category;
+        this.typeOfEntry=typeOfEntry;
     }
 
     @Override
