@@ -7,7 +7,7 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
-public class budgetCharPageController implements ChildPane {
+public class budgetCharPageController implements iPane {
 
     mainController parent;
 
@@ -27,7 +27,7 @@ public class budgetCharPageController implements ChildPane {
 
     @Override
     public void initPane(mainController parent) {
-        this.parent=parent;
+        this.parent = parent;
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
     }
 }

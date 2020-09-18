@@ -13,7 +13,10 @@ import java.io.IOException;
  * @author Oscar
  */
 public class PaneFactory {
+
     private static mainController parent;
+
+    //Gets the root of the pane and it´s controller
 
     /**
      * A generalized function for fetching root and controller from a function
@@ -33,7 +36,7 @@ public class PaneFactory {
         return pane;
     }
 
-    // Create page
+    // Create main anchor
     public static Parent initMain() {
         Pane<mainController> pane = loadInPane("org/openjfx/mainAnchor.fxml");
         PaneFactory.parent = pane.controller;
@@ -109,9 +112,15 @@ public class PaneFactory {
 
     static AnchorPane initDelAccPopup() {
         Pane<deleteAccountPopUpController> pane = loadInPane("org/openjfx/deleteAccountPopUp.fxml");
+        pane.controller.initPane(parent);
         return pane.anchorPane;
     }
 
+    public static AnchorPane initChangePasswordPopUp() {
+        Pane<changePasswordPopUpController> pane = loadInPane("org/openjfx/changePasswordPopUp.fxml");
+        pane.controller.initPane(parent);
+        return pane.anchorPane;
+    }
 
 
     /**
@@ -127,4 +136,3 @@ public class PaneFactory {
         }
     }
 }
-

@@ -3,7 +3,7 @@ package controllers;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 
-public class goalsPageController implements ChildPane {
+public class goalsPageController implements iPane {
 
     mainController parent;
 

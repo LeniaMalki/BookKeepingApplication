@@ -6,7 +6,7 @@ import javafx.scene.control.Hyperlink;
 
 import java.io.IOException;
 
-public class headerController implements ChildPane {
+public class headerController implements iPane {
 
 
     mainController parent;

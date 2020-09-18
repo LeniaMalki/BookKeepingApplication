@@ -5,7 +5,7 @@ package controllers;
  *
  * @author Oscar
  */
-public interface ChildPane {
+public interface iPane {
     void initPane(mainController parent);
 
 }

@@ -1,21 +1,24 @@
 package controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 public class deleteAccountPopUpController {
-    @FXML
-    private AnchorPane deleteAccountPopUp;
 
     @FXML
-    private Button deleteAccountButton;
+    public AnchorPane delAccPopUp;
+
+
+    mainController parent;
+
+    public void initPane(mainController parent) {
+        this.parent = parent;
+    }
+
 
     @FXML
-    private ImageView closeButtom;
-
-    @FXML
-    private PasswordField enterDeletePasswordField;
+    public void deleteAccountConfirm(ActionEvent actionEvent) {
+        parent.showLogInPage();
+    }
 }
