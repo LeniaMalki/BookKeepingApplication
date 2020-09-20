@@ -181,6 +181,7 @@
                   <Font size="25.0" />
                </font>
             </TextField>
+            <TextField fx:id="transportTextField" layoutX="565.0" layoutY="119.0" />
          </children></Pane>
    </children>
    <stylesheets>
