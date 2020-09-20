@@ -1,11 +1,13 @@
 package controllers;
 
+import Model.Budget;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+
 
 public class budgetPageController implements ChildPane {
 
@@ -30,10 +32,24 @@ public class budgetPageController implements ChildPane {
                 savingsAmountLabel.setText(new Integer((int) shoppingSlider.getValue()) + " kr");
 
                 //transportTextField.setText(new Integer((int) transportSlider.getValue()) + " kr");
+                String typed = transportTextField.getText();
+                int value = Integer.parseInt(typed);
+                foodSlider.setValue(value);
 
                 System.out.println("R,G,B = " + foodSlider.getValue() + "," + householdSlider.getValue() + "," + shoppingSlider.getValue());
             }
         };
+        //
+
+      /*  int total = (int) (foodSlider.getValue() + householdSlider.getValue() + shoppingSlider.getValue()
+                + transportSlider.getValue() + otherSlider.getValue() + savingsSlider.getValue());
+
+        if (total == enterIncomeTextField.getText()){
+            foodSlider.blockIncrementProperty(foodSlider.getValue());
+
+        }*/
+
+
 
         foodSlider.valueProperty().addListener(changeListener);
         householdSlider.valueProperty().addListener(changeListener);
@@ -63,6 +79,7 @@ public class budgetPageController implements ChildPane {
 
     private void onSaveButtonPressed(){
         //budget.setFood(foodTextField.getText);
+
     }
 
     @FXML
@@ -139,5 +156,9 @@ public class budgetPageController implements ChildPane {
 
     @FXML
     private TextField enterIncomeTextField;
+
+    @FXML
+    private TextField transportTextField;
+
 
 }
