@@ -61,7 +61,6 @@ public class budgetPageController implements ChildPane {
                 savingsProgressBar.setProgress(savingsSlider.getValue() / 100);
 
 
-
                 /*foodAmountLabel.setText(new Integer((int) foodSlider.getValue()) + " kr");
                 householdAmountLabel.setText(new Integer((int) householdSlider.getValue()) + " kr");
                 shoppingAmountLabel.setText(new Integer((int) shoppingSlider.getValue()) + " kr");
@@ -120,7 +119,16 @@ public class budgetPageController implements ChildPane {
         savingsSlider.setStyle("-fx-control-inner-background: null");
         savingsProgressBar.setStyle("-fx-accent: #F66A80");
 
+        foodTextField.setText("0");
+        householdTextField.setText("0");
+        shoppingTextField.setText("0");
+        transportTextField.setText("0");
+        otherTextField.setText("0");
+        savingsTextField.setText("0");
 
+
+
+        
 
 
 
@@ -140,68 +148,7 @@ public class budgetPageController implements ChildPane {
 
         });
 
-
-
-
-
-
-
-
-
-        //
-
-      /*  int total = (int) (foodSlider.getValue() + householdSlider.getValue() + shoppingSlider.getValue()
-                + transportSlider.getValue() + otherSlider.getValue() + savingsSlider.getValue());
-
-        if (total == enterIncomeTextField.getText()){
-            foodSlider.blockIncrementProperty(foodSlider.getValue());
-
-        }*/
-
-
-
-
-    /*    foodSlider.valueProperty().addListener(changeListener);
-        householdSlider.valueProperty().addListener(changeListener);
-        shoppingSlider.valueProperty().addListener(changeListener);
-        transportSlider.valueProperty().addListener(changeListener);
-        otherSlider.valueProperty().addListener(changeListener);
-        savingsSlider.valueProperty().addListener(changeListener);*/
-
-        //foodSlider.setStyle("-fx-base: #F66A80");
-       /* householdSlider.setStyle("-fx-base: #F66A80");
-        shoppingSlider.setStyle("-fx-base: #F66A80");
-        transportSlider.setStyle("-fx-base: #F66A80");
-        otherSlider.setStyle("-fx-base: #F66A80");
-        savingsSlider.setStyle("-fx-base: #F66A80");
-*/
-        //foodSlider.setStyle("-fx-base: #F66A80");
-        //foodSlider.setStyle("-fx-control-inner-background: null);
-
-        /*foodSlider.setStyle("-fx-control-inner-background: null");
-        foodProgressBar.setStyle("-fx-accent: #F66A80");*/
-
-
-        //foodSlider.setStyle("-fx-background-color: linear-gradient(to right, #2D819D 20%, #969696 20%)");
-
-        //-fx-background-color: linear-gradient(to right, #2D819D 20%, #969696 20%)
-
-
-        foodAmountLabel.setText("0 kr");
-        householdAmountLabel.setText("0 kr");
-        shoppingAmountLabel.setText("0 kr");
-        transportAmountLabel.setText("0 kr");
-        otherAmountLabel.setText("0 kr");
-        savingsAmountLabel.setText("0 kr");
-
     }
-
-    private void onSaveButtonPressed(){
-        //budget.setFood(foodTextField.getText);
-
-    }
-
-    
 
     @FXML
     private void bindShoppingText() {
@@ -213,8 +160,20 @@ public class budgetPageController implements ChildPane {
     private void bindShoppingSlider() {
         String value = Double.toString(transportSlider.getValue()).format("%.2f", transportSlider.getValue()); //.format("%.2f", transportSlider.getValue()
         transportTextField.setText(value); //transportSlider.valueProperty()); //new StringConverter<Number>()
+    }
 
-       /* {
+    private void onSaveButtonPressed(){
+        //budget.setFood(foodTextField.getText);
+    }
+
+
+/*z
+    @FXML
+    private void bindShoppingSlider() {
+        String value = Double.toString(transportSlider.getValue()).format("%.2f", transportSlider.getValue()); //.format("%.2f", transportSlider.getValue()
+        transportTextField.setText(value); //transportSlider.valueProperty()); //new StringConverter<Number>()*/
+
+    /* {
 
             @Override
             public String toString(Number t)
@@ -230,15 +189,6 @@ public class budgetPageController implements ChildPane {
 
 
         });*/
-
-
-    }
-/*
-    @FXML
-    private void bindShoppingSlider() {
-        String value = Double.toString(transportSlider.getValue()).format("%.2f", transportSlider.getValue()); //.format("%.2f", transportSlider.getValue()
-        transportTextField.setText(value); //transportSlider.valueProperty()); //new StringConverter<Number>()*/
-    
     
     
 
@@ -261,24 +211,6 @@ public class budgetPageController implements ChildPane {
 
     @FXML
     private Label savingsLabel;
-
-    @FXML
-    private Label foodAmountLabel;
-
-    @FXML
-    private Label householdAmountLabel;
-
-    @FXML
-    private Label shoppingAmountLabel;
-
-    @FXML
-    private Label transportAmountLabel;
-
-    @FXML
-    private Label otherAmountLabel;
-
-    @FXML
-    private Label savingsAmountLabel;
 
     @FXML
     private Slider foodSlider;
@@ -321,6 +253,23 @@ public class budgetPageController implements ChildPane {
 
     @FXML
     private TextField transportTextField;
+
+    @FXML
+    private TextField foodTextField;
+
+    @FXML
+    private TextField householdTextField;
+
+    @FXML
+    private TextField shoppingTextField;
+
+    @FXML
+    private TextField otherTextField;
+
+    @FXML
+    private TextField savingsTextField;
+
+
 
     @FXML
     private ProgressBar foodProgressBar;
@@ -376,3 +325,50 @@ public class budgetPageController implements ChildPane {
 
         TextFormatter<Double> textFormatter = new TextFormatter<>(converter, 0.0, filter);
         transportTextField.setTextFormatter(textFormatter);*/
+
+
+
+
+
+
+
+
+
+
+//
+
+      /*  int total = (int) (foodSlider.getValue() + householdSlider.getValue() + shoppingSlider.getValue()
+                + transportSlider.getValue() + otherSlider.getValue() + savingsSlider.getValue());
+
+        if (total == enterIncomeTextField.getText()){
+            foodSlider.blockIncrementProperty(foodSlider.getValue());
+
+        }*/
+
+
+
+
+    /*    foodSlider.valueProperty().addListener(changeListener);
+        householdSlider.valueProperty().addListener(changeListener);
+        shoppingSlider.valueProperty().addListener(changeListener);
+        transportSlider.valueProperty().addListener(changeListener);
+        otherSlider.valueProperty().addListener(changeListener);
+        savingsSlider.valueProperty().addListener(changeListener);*/
+
+//foodSlider.setStyle("-fx-base: #F66A80");
+       /* householdSlider.setStyle("-fx-base: #F66A80");
+        shoppingSlider.setStyle("-fx-base: #F66A80");
+        transportSlider.setStyle("-fx-base: #F66A80");
+        otherSlider.setStyle("-fx-base: #F66A80");
+        savingsSlider.setStyle("-fx-base: #F66A80");
+*/
+//foodSlider.setStyle("-fx-base: #F66A80");
+//foodSlider.setStyle("-fx-control-inner-background: null);
+
+        /*foodSlider.setStyle("-fx-control-inner-background: null");
+        foodProgressBar.setStyle("-fx-accent: #F66A80");*/
+
+
+//foodSlider.setStyle("-fx-background-color: linear-gradient(to right, #2D819D 20%, #969696 20%)");
+
+//-fx-background-color: linear-gradient(to right, #2D819D 20%, #969696 20%)

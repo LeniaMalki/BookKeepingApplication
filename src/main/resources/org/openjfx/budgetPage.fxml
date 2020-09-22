@@ -66,13 +66,13 @@
                   <StackPane prefHeight="120.0" prefWidth="691.0">
                      <children>
                         <ProgressBar fx:id="foodProgressBar" minHeight="10.0" prefHeight="15.0" prefWidth="679.0" progress="0.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" styleClass="droSshadow" />
-                        <Slider fx:id="foodSlider" prefHeight="12.0" prefWidth="691.0" />
+                        <Slider fx:id="foodSlider" prefHeight="16.0" prefWidth="679.0" />
                      </children>
                   </StackPane>
                   <StackPane prefHeight="150.0" prefWidth="200.0">
                      <children>
                         <ProgressBar fx:id="householdProgressBar" prefHeight="15.0" prefWidth="677.0" progress="0.0" styleClass="droSshadow" />
-                        <Slider fx:id="householdSlider" />
+                        <Slider fx:id="householdSlider" prefWidth="678.0" />
                      </children>
                   </StackPane>
                   <StackPane prefHeight="150.0" prefWidth="200.0">
@@ -101,41 +101,41 @@
                   </StackPane>
                </children>
             </VBox>
-            <VBox layoutX="896.0" layoutY="296.0" prefHeight="200.0" prefWidth="100.0" spacing="70.0">
+            <VBox layoutX="896.0" layoutY="296.0" prefHeight="200.0" prefWidth="100.0" spacing="64.0">
                <children>
-                  <Label fx:id="foodAmountLabel" styleClass="Enrique-LightRound" text="Label">
+                  <TextField fx:id="foodTextField" onKeyTyped="#bindShoppingText">
                      <font>
-                        <Font size="24.0" />
+                        <Font size="18.0" />
                      </font>
-                  </Label>
-                  <Label fx:id="householdAmountLabel" styleClass="Enrique-LightRound" text="Label">
+                  </TextField>
+                  <TextField fx:id="householdTextField" onKeyTyped="#bindShoppingText">
                      <font>
-                        <Font size="24.0" />
+                        <Font size="18.0" />
                      </font>
-                  </Label>
-                  <Label fx:id="shoppingAmountLabel" styleClass="Enrique-LightRound" text="Label">
+                  </TextField>
+                  <TextField fx:id="shoppingTextField" onKeyTyped="#bindShoppingText">
                      <font>
-                        <Font size="24.0" />
+                        <Font size="18.0" />
                      </font>
-                  </Label>
-                  <Label fx:id="transportAmountLabel" styleClass="Enrique-LightRound" text="Label">
+                  </TextField>
+                  <TextField fx:id="transportTextField" onKeyTyped="#bindShoppingText">
                      <font>
-                        <Font size="24.0" />
+                        <Font size="18.0" />
                      </font>
-                  </Label>
-                  <Label fx:id="otherAmountLabel" styleClass="Enrique-LightRound" text="Label">
+                  </TextField>
+                  <TextField fx:id="otherTextField" onKeyTyped="#bindShoppingText">
                      <font>
-                        <Font size="24.0" />
+                        <Font size="18.0" />
                      </font>
-                  </Label>
-                  <Label fx:id="savingsAmountLabel" styleClass="Enrique-LightRound" text="Label">
+                  </TextField>
+                  <TextField fx:id="savingsTextField" onKeyTyped="#bindShoppingText">
                      <font>
-                        <Font size="24.0" />
+                        <Font size="18.0" />
                      </font>
-                  </Label>
+                  </TextField>
                </children>
             </VBox>
-            <VBox layoutX="977.0" layoutY="296.0" prefHeight="200.0" prefWidth="100.0" spacing="70.0">
+            <VBox layoutX="1010.0" layoutY="296.0" prefHeight="200.0" prefWidth="100.0" spacing="70.0">
                <children>
                   <Label styleClass="Enrique-LightRound" text="kr">
                      <font>
@@ -184,17 +184,7 @@
                   <String fx:value="droSshadow" />
                </styleClass>
             </Button>
-            <Button fx:id="enterIncomeButton" layoutX="286.0" layoutY="131.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="219.0" style="-fx-background-color: white; -fx-border-color: black;" text="Enter Income" underline="true">
-               <font>
-                  <Font size="25.0" />
-               </font>
-               <styleClass>
-                  <String fx:value="Enrique-Round" />
-                  <String fx:value="droSshadow" />
-                  <String fx:value="textField" />
-               </styleClass>
-            </Button>
-            <MenuButton fx:id="previousBudgetButton" layoutX="1099.0" layoutY="132.0" mnemonicParsing="false" style="-fx-background-color: white; -fx-border-color: black;" text="Previous Budget">
+            <MenuButton fx:id="previousBudgetButton" layoutX="1106.0" layoutY="154.0" mnemonicParsing="false" style="-fx-background-color: white; -fx-border-color: black;" text="Previous Budget">
               <items>
                   <CheckMenuItem fx:id="checkMenuItem1" mnemonicParsing="false" text="Action1" />
                   <CheckMenuItem fx:id="checkMenuItem2" mnemonicParsing="false" text="Action1" />
@@ -208,12 +198,15 @@
                   <Font size="25.0" />
                </font>
             </MenuButton>
-            <TextField fx:id="enterIncomeTextField" layoutX="77.0" layoutY="146.0" prefHeight="48.0" prefWidth="184.0" promptText="Enter Income">
+            <TextField fx:id="enterIncomeTextField" alignment="CENTER" layoutX="77.0" layoutY="146.0" prefHeight="63.0" prefWidth="201.0" promptText="Enter Income" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: black; -fx-border-radius: 10;">
                <font>
                   <Font size="25.0" />
                </font>
+               <styleClass>
+                  <String fx:value="Enrique-BoldRound" />
+                  <String fx:value="droSshadow" />
+               </styleClass>
             </TextField>
-            <TextField fx:id="transportTextField" layoutX="565.0" layoutY="119.0" onKeyTyped="#bindShoppingText" />
          </children></Pane>
    </children>
    <stylesheets>
