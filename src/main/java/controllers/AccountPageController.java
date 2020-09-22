@@ -1,6 +1,7 @@
 package controllers;
 
-import Model.mainModel;
+import Model.UserObserver;
+import Model.MainModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -9,8 +10,8 @@ import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 
 
-public class accountPageController implements iPane, UserObserver {
-    mainController parent;
+public class AccountPageController implements iPane, UserObserver {
+    MainController parent;
     @FXML
     private AnchorPane headerAnchorPane;
     @FXML
@@ -21,7 +22,7 @@ public class accountPageController implements iPane, UserObserver {
     @FXML
     private TextField editableUsername;
 
-    private Model.mainModel mainModel;
+    private MainModel mainModel;
 
 
 
@@ -47,12 +48,12 @@ public class accountPageController implements iPane, UserObserver {
 
     }
 
-    public void initPane(mainModel mainModel) {
+    public void initPane(MainModel mainModel) {
         this.mainModel = mainModel;
         mainModel.add(this);
     }
 
-    public void initPane(mainController parent) {
+    public void initPane(MainController parent) {
         this.parent = parent;
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
     }
