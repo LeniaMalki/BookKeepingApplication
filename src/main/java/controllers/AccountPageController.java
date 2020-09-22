@@ -1,6 +1,6 @@
 package controllers;
 
-import Model.UserObserver;
+import Model.observers.UserObserver;
 import Model.MainModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

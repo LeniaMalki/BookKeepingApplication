@@ -1,6 +1,8 @@
 package Model;
 
 
+import Model.observers.UserObserver;
+
 import java.util.ArrayList;
 import java.util.List;
 
