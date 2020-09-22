@@ -1,7 +1,5 @@
 package controllers;
 
-import Model.observers.UserObserver;
-import Model.MainModel;
 import Model.Interfaces.UserObserver;
 import Model.Interfaces.iPane;
 import Model.MainModel;

@@ -9,14 +9,13 @@ public class DeleteAccountPopUpController {
     @FXML
     public AnchorPane delAccPopUp;
 
-    MainController parent;
 
-    public void initPane(MainController parent) {
     MainController parent;
 
     public void initPane(MainController parent) {
         this.parent = parent;
     }
+
 
     @FXML
     public void deleteAccountConfirm(ActionEvent actionEvent) {
