@@ -1,13 +1,15 @@
 package controllers;
 
+import Model.mainModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
 
-public class accountPageController implements iPane {
+public class accountPageController implements iPane, UserObserver {
     mainController parent;
     @FXML
     private AnchorPane headerAnchorPane;
@@ -15,6 +17,11 @@ public class accountPageController implements iPane {
     private AnchorPane pos_for_popUp_on_accountPage;
     @FXML
     private AnchorPane back;
+
+    @FXML
+    private TextField editableUsername;
+
+    private Model.mainModel mainModel;
 
 
 
@@ -38,11 +45,13 @@ public class accountPageController implements iPane {
         back.setOpacity(0.5);
         pos_for_popUp_on_accountPage.toFront();
 
-
-
     }
 
-    @Override
+    public void initPane(mainModel mainModel) {
+        this.mainModel = mainModel;
+        mainModel.add(this);
+    }
+
     public void initPane(mainController parent) {
         this.parent = parent;
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
@@ -51,4 +60,16 @@ public class accountPageController implements iPane {
     public AnchorPane getPos_for_popUp_on_accountPage() {
         return pos_for_popUp_on_accountPage;
     }
+
+    @Override
+    public void notifed() {
+        updateAccountUsereName();
+
+    }
+
+    private void updateAccountUsereName() {
+        editableUsername.setText(mainModel.getUserName());
+    }
+
+
 }

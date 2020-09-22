@@ -63,7 +63,7 @@
                         <Font size="48.0" />
                     </font>
                 </Text>
-                <TextField layoutX="145.0" layoutY="397.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="74.0" prefWidth="522.0" promptText="anders123">
+                <TextField fx:id="editableUsername" layoutX="145.0" layoutY="397.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="74.0" prefWidth="522.0" promptText="anders123">
                     <font>
                         <Font size="35.0" />
                     </font>
