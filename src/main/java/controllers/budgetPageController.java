@@ -52,12 +52,22 @@ public class budgetPageController implements ChildPane {
             @Override
             public void changed(ObservableValue<? extends Number> observable,
                                 Number oldValue, Number newValue) {
-                foodAmountLabel.setText(new Integer((int) foodSlider.getValue()) + " kr");
+
+                foodProgressBar.setProgress(foodSlider.getValue() / 100);
+                householdProgressBar.setProgress(householdSlider.getValue() / 100);
+                shoppingProgressBar.setProgress(shoppingSlider.getValue() / 100);
+                transportProgressBar.setProgress(transportSlider.getValue() / 100);
+                otherProgressBar.setProgress(otherSlider.getValue() / 100);
+                savingsProgressBar.setProgress(savingsSlider.getValue() / 100);
+
+
+
+                /*foodAmountLabel.setText(new Integer((int) foodSlider.getValue()) + " kr");
                 householdAmountLabel.setText(new Integer((int) householdSlider.getValue()) + " kr");
                 shoppingAmountLabel.setText(new Integer((int) shoppingSlider.getValue()) + " kr");
                 transportAmountLabel.setText(new Integer((int) shoppingSlider.getValue()) + " kr");
                 otherAmountLabel.setText(new Integer((int) shoppingSlider.getValue()) + " kr");
-                savingsAmountLabel.setText(new Integer((int) shoppingSlider.getValue()) + " kr");
+                savingsAmountLabel.setText(new Integer((int) shoppingSlider.getValue()) + " kr");*/
 
                 //transportTextField.setText(new Integer((int) transportSlider.getValue()) + " kr");
                 /*String typed = transportTextField.getText();
@@ -69,57 +79,66 @@ public class budgetPageController implements ChildPane {
         };
 
 
-        foodSlider.valueProperty().addListener(new ChangeListener<Number>() {
+     /*   foodSlider.valueProperty().addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> ov,
                                 Number old_val, Number new_val) {
                 foodProgressBar.setProgress(new_val.doubleValue() / 100);
-                foodProgressIndicator.setProgress(new_val.doubleValue() / 100);
             }
-        });
+        });*/
 
         foodProgressBar.setLayoutX(foodSlider.getLayoutX());
         foodProgressBar.setLayoutY(foodSlider.getLayoutY());
+        householdProgressBar.setLayoutX(householdSlider.getLayoutX());
+        householdProgressBar.setLayoutY(householdSlider.getLayoutY());
+        shoppingProgressBar.setLayoutX(shoppingSlider.getLayoutX());
+        shoppingProgressBar.setLayoutY(shoppingSlider.getLayoutY());
+        transportProgressBar.setLayoutX(transportSlider.getLayoutX());
+        transportProgressBar.setLayoutY(transportSlider.getLayoutY());
+        otherProgressBar.setLayoutX(otherSlider.getLayoutX());
+        otherProgressBar.setLayoutY(otherSlider.getLayoutY());
+        savingsProgressBar.setLayoutX(savingsSlider.getLayoutX());
+        savingsProgressBar.setLayoutY(savingsSlider.getLayoutY());
+
+
+        foodSlider.valueProperty().addListener(changeListener);
+        householdSlider.valueProperty().addListener(changeListener);
+        shoppingSlider.valueProperty().addListener(changeListener);
+        transportSlider.valueProperty().addListener(changeListener);
+        otherSlider.valueProperty().addListener(changeListener);
+        savingsSlider.valueProperty().addListener(changeListener);
+
+        foodSlider.setStyle("-fx-control-inner-background: null");
+        foodProgressBar.setStyle("-fx-accent: #F66A80");
+        householdSlider.setStyle("-fx-control-inner-background: null");
+        householdProgressBar.setStyle("-fx-accent: #F66A80");
+        shoppingSlider.setStyle("-fx-control-inner-background: null");
+        shoppingProgressBar.setStyle("-fx-accent: #F66A80");
+        transportSlider.setStyle("-fx-control-inner-background: null");
+        transportProgressBar.setStyle("-fx-accent: #F66A80");
+        otherSlider.setStyle("-fx-control-inner-background: null");
+        otherProgressBar.setStyle("-fx-accent: #F66A80");
+        savingsSlider.setStyle("-fx-control-inner-background: null");
+        savingsProgressBar.setStyle("-fx-accent: #F66A80");
 
 
 
 
 
-
-/*
-
-        Pattern validEditingState = Pattern.compile("-?(([1-9][0-9]*)|0)?(\\.[0-9]*)?");
-
-        UnaryOperator<TextFormatter.Change> filter = c -> {
-            String text = c.getControlNewText();
-            if (validEditingState.matcher(text).matches()) {
-                return c ;
-            } else {
-                return null ;
+        transportTextField.textProperty().bindBidirectional(transportSlider.valueProperty(), new NumberStringConverter()
+        {
+            public String toString(int t)
+            {
+                int value = (int) Math.floor(t);
+                return String.valueOf(value);
             }
-        };
-        StringConverter<Double> converter = new StringConverter<Double>() {
 
             @Override
-            public Double fromString(String s) {
-                if (s.isEmpty() || "-".equals(s) || ".".equals(s) || "-.".equals(s)) {
-                    return 0.0 ;
-                } else {
-                    return Double.valueOf(s);
-                }
+            public Integer fromString(String string)
+            {
+                return Integer.parseInt(string);
             }
 
-
-            @Override
-            public String toString(Double d) {
-                return d.toString();
-            }
-        };
-
-        TextFormatter<Double> textFormatter = new TextFormatter<>(converter, 0.0, filter);
-        transportTextField.setTextFormatter(textFormatter);
-
-
-*/
+        });
 
 
 
@@ -150,16 +169,18 @@ public class budgetPageController implements ChildPane {
         savingsSlider.valueProperty().addListener(changeListener);*/
 
         //foodSlider.setStyle("-fx-base: #F66A80");
-        householdSlider.setStyle("-fx-base: #F66A80");
+       /* householdSlider.setStyle("-fx-base: #F66A80");
         shoppingSlider.setStyle("-fx-base: #F66A80");
         transportSlider.setStyle("-fx-base: #F66A80");
         otherSlider.setStyle("-fx-base: #F66A80");
         savingsSlider.setStyle("-fx-base: #F66A80");
-
-        //foodSlider.setStyle("-fx-base: null");
+*/
+        //foodSlider.setStyle("-fx-base: #F66A80");
         //foodSlider.setStyle("-fx-control-inner-background: null);
 
-        foodSlider.setStyle("-fx-control-inner-background: null");
+        /*foodSlider.setStyle("-fx-control-inner-background: null");
+        foodProgressBar.setStyle("-fx-accent: #F66A80");*/
+
 
         //foodSlider.setStyle("-fx-background-color: linear-gradient(to right, #2D819D 20%, #969696 20%)");
 
@@ -179,6 +200,8 @@ public class budgetPageController implements ChildPane {
         //budget.setFood(foodTextField.getText);
 
     }
+
+    
 
     @FXML
     private void bindShoppingText() {
@@ -210,6 +233,14 @@ public class budgetPageController implements ChildPane {
 
 
     }
+/*
+    @FXML
+    private void bindShoppingSlider() {
+        String value = Double.toString(transportSlider.getValue()).format("%.2f", transportSlider.getValue()); //.format("%.2f", transportSlider.getValue()
+        transportTextField.setText(value); //transportSlider.valueProperty()); //new StringConverter<Number>()*/
+    
+    
+    
 
 
 
@@ -295,6 +326,53 @@ public class budgetPageController implements ChildPane {
     private ProgressBar foodProgressBar;
 
     @FXML
-    private ProgressIndicator foodProgressIndicator;
+    private ProgressBar householdProgressBar;
+
+    @FXML
+    private ProgressBar shoppingProgressBar;
+
+    @FXML
+    private ProgressBar transportProgressBar;
+
+    @FXML
+    private ProgressBar otherProgressBar;
+
+    @FXML
+    private ProgressBar savingsProgressBar;
+
 
 }
+
+
+
+/*
+        Pattern validEditingState = Pattern.compile("-?(([1-9][0-9]*)|0)?(\\.[0-9]*)?");
+
+        UnaryOperator<TextFormatter.Change> filter = c -> {
+            String text = c.getControlNewText();
+            if (validEditingState.matcher(text).matches()) {
+                return c ;
+            } else {
+                return null ;
+            }
+        };
+        StringConverter<Double> converter = new StringConverter<Double>() {
+
+            @Override
+            public Double fromString(String s) {
+                if (s.isEmpty() || "-".equals(s) || ".".equals(s) || "-.".equals(s)) {
+                    return 0.0 ;
+                } else {
+                    return Double.valueOf(s);
+                }
+            }
+
+
+            @Override
+            public String toString(Double d) {
+                return d.toString();
+            }
+        };
+
+        TextFormatter<Double> textFormatter = new TextFormatter<>(converter, 0.0, filter);
+        transportTextField.setTextFormatter(textFormatter);*/
