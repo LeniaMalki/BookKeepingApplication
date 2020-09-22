@@ -14,21 +14,6 @@ public class Entry<T> implements EntrySubject{
     String category;
     String typeOfEntry;
 
-    public double getAmout() {
-        return amout;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public String getTypeOfEntry() {
-        return typeOfEntry;
-    }
 
     public Entry(double cost, String name, String category, String typeOfEntry) {
         this.amout = cost;
@@ -64,6 +49,22 @@ public class Entry<T> implements EntrySubject{
     @Override
     public Object getUpdate(newEntryObserver obj) {
         return this.message;
+    }
+
+    public double getAmout() {
+        return amout;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public String getTypeOfEntry() {
+        return typeOfEntry;
     }
 
 }
