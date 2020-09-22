@@ -82,7 +82,7 @@
                 <String fx:value="whiteBackground" />
             </styleClass>
          <content>
-            <FlowPane fx:id="entryFlowPlane" prefHeight="581.0" prefWidth="644.0" />
+            <FlowPane fx:id="entryFlowPlane" prefHeight="581.0" prefWidth="644.0" style="-fx-background-color: FFFFFF;" />
          </content>
         </ScrollPane>
         <Text fill="#5f6368" layoutX="749.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-BoldRound" text="Article">
@@ -100,7 +100,7 @@
                 <Font size="24.0" />
             </font>
         </Text>
-        <Button fx:id="submitButton" layoutX="1144.0" layoutY="944.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="219.0" text="Submit">
+        <Button fx:id="submitButton" layoutX="1144.0" layoutY="944.0" mnemonicParsing="false" onAction="#submitEntries" prefHeight="58.0" prefWidth="219.0" text="Submit">
             <font>
                 <Font size="25.0" />
             </font>
