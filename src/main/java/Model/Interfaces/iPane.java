@@ -1,4 +1,6 @@
-package controllers;
+package Model.Interfaces;
+
+import controllers.MainController;
 
 /**
  * A interface for all the panes that needs to be aware of the mainAnchor
@@ -6,6 +8,6 @@ package controllers;
  * @author Oscar
  */
 public interface iPane {
-    void initPane(mainController parent);
+    void initPane(MainController parent);
 
 }

@@ -1,12 +1,13 @@
 package controllers;
 
+import Model.Interfaces.iPane;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
-public class budgetPageController implements iPane {
+public class BudgetPageController implements iPane {
 
-    mainController parent;
+    MainController parent;
     @FXML
     private Label foodLabel;
     @FXML
@@ -57,7 +58,7 @@ public class budgetPageController implements iPane {
     private AnchorPane headerAnchorPane;
 
     @Override
-    public void initPane(mainController parent) {
+    public void initPane(MainController parent) {
         this.parent = parent;
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
     }

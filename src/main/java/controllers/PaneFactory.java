@@ -14,7 +14,7 @@ import java.io.IOException;
  */
 public class PaneFactory {
 
-    private static mainController parent;
+    private static MainController parent;
 
     //Gets the root of the pane and it´s controller
 
@@ -38,86 +38,86 @@ public class PaneFactory {
 
     // Create main anchor
     public static Parent initMain() {
-        Pane<mainController> pane = loadInPane("org/openjfx/mainAnchor.fxml");
+        Pane<MainController> pane = loadInPane("org/openjfx/mainAnchor.fxml");
         PaneFactory.parent = pane.controller;
         pane.controller.init();
         return pane.anchorPane;
     }
 
     static AnchorPane initLoginPane() {
-        Pane<logInPageController> pane = loadInPane("org/openjfx/logInPage.fxml");
+        Pane<LogInPageController> pane = loadInPane("org/openjfx/logInPage.fxml");
         pane.controller.initPane(parent);
         return pane.anchorPane;
     }
 
     static AnchorPane initFirstPane() {
-        Pane<firstPageController> pane = loadInPane("org/openjfx/firstPage.fxml");
+        Pane<FirstPageController> pane = loadInPane("org/openjfx/firstPage.fxml");
         pane.controller.initPane(parent);
         return pane.anchorPane;
     }
 
     static AnchorPane initAccountPane() {
-        Pane<accountPageController> pane = loadInPane("org/openjfx/accountPage.fxml");
+        Pane<AccountPageController> pane = loadInPane("org/openjfx/accountPage.fxml");
         pane.controller.initPane(parent);
         return pane.anchorPane;
     }
 
     static AnchorPane initBudgetPane() {
-        Pane<budgetPageController> pane = loadInPane("org/openjfx/budgetPage.fxml");
+        Pane<BudgetPageController> pane = loadInPane("org/openjfx/budgetPage.fxml");
         pane.controller.initPane(parent);
         return pane.anchorPane;
     }
 
     static AnchorPane initSignUpPopUp() {
-        Pane<signUpPageController> pane = loadInPane("org/openjfx/signUpPopUp.fxml");
+        Pane<SignUpPageController> pane = loadInPane("org/openjfx/signUpPopUp.fxml");
         pane.controller.initPane(parent);
         return pane.anchorPane;
     }
 
     static AnchorPane initBudgetCharPane() {
-        Pane<budgetCharPageController> pane = loadInPane("org/openjfx/budgetCharPage.fxml");
+        Pane<BudgetCharPageController> pane = loadInPane("org/openjfx/budgetCharPage.fxml");
         pane.controller.initPane(parent);
         return pane.anchorPane;
     }
 
     static AnchorPane initEntryPane() {
-        Pane<entryPageController> pane = loadInPane("org/openjfx/entryPage.fxml");
+        Pane<EntryPageController> pane = loadInPane("org/openjfx/entryPage.fxml");
         pane.controller.initPane(parent);
         return pane.anchorPane;
     }
 
     static AnchorPane initHeader() {
-        Pane<headerController> pane = loadInPane("org/openjfx/header.fxml");
+        Pane<HeaderController> pane = loadInPane("org/openjfx/header.fxml");
         pane.controller.initPane(parent);
         return pane.anchorPane;
     }
 
     static AnchorPane initStatisticsOverviewPane() {
-        Pane<overViewStatisticsController> pane = loadInPane("org/openjfx/statisticsOverviewPage.fxml");
+        Pane<OverViewStatisticsController> pane = loadInPane("org/openjfx/statisticsOverviewPage.fxml");
         pane.controller.initPane(parent);
         return pane.anchorPane;
     }
 
     static AnchorPane initGoalsPane() {
-        Pane<goalsPageController> pane = loadInPane("org/openjfx/goalsPage.fxml");
+        Pane<GoalsPageController> pane = loadInPane("org/openjfx/goalsPage.fxml");
         pane.controller.initPane(parent);
         return pane.anchorPane;
     }
 
-    static Pane<detailStatisticsController> initStatisticsDetailPane() {
-        Pane<detailStatisticsController> pane = loadInPane("org/openjfx/statisticsDetailPage.fxml");
+    static Pane<DetailStatisticsController> initStatisticsDetailPane() {
+        Pane<DetailStatisticsController> pane = loadInPane("org/openjfx/statisticsDetailPage.fxml");
         pane.controller.initPane(parent);
         return pane;
     }
 
     static AnchorPane initDelAccPopup() {
-        Pane<deleteAccountPopUpController> pane = loadInPane("org/openjfx/deleteAccountPopUp.fxml");
+        Pane<DeleteAccountPopUpController> pane = loadInPane("org/openjfx/deleteAccountPopUp.fxml");
         pane.controller.initPane(parent);
         return pane.anchorPane;
     }
 
     public static AnchorPane initChangePasswordPopUp() {
-        Pane<changePasswordPopUpController> pane = loadInPane("org/openjfx/changePasswordPopUp.fxml");
+        Pane<ChangePasswordPopUpController> pane = loadInPane("org/openjfx/changePasswordPopUp.fxml");
         pane.controller.initPane(parent);
         return pane.anchorPane;
     }

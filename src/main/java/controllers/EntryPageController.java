@@ -1,6 +1,7 @@
 package controllers;
 
 import Model.Entry;
+import Model.Interfaces.iPane;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
@@ -9,9 +10,9 @@ import javafx.scene.layout.FlowPane;
 
 import java.util.ArrayList;
 
-public class entryPageController implements iPane{
+public class EntryPageController implements iPane {
 
-    mainController parent;
+    MainController parent;
 
 
     private Button currentActiveEntryButton;
@@ -53,7 +54,7 @@ public class entryPageController implements iPane{
     private ArrayList<Entry> entryList=new ArrayList<>();
 
     @Override
-    public void initPane(mainController parent) {
+    public void initPane(MainController parent) {
         this.parent = parent;
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
         entryButtonTypeCluster.add(expencesButton);

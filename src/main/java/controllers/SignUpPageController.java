@@ -1,6 +1,7 @@
 package controllers;
 
-import Model.mainModel;
+import Model.Interfaces.UserObserver;
+import Model.MainModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -11,11 +12,11 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
-public class signUpPageController implements UserObserver {
+public class SignUpPageController implements UserObserver {
 
     public AnchorPane signUpPopUp;
-    mainController parent;
-    private mainModel mainModel;
+    MainController parent;
+    private MainModel mainModel;
     @FXML
     private TextField signUpName;
 
@@ -52,14 +53,14 @@ public class signUpPageController implements UserObserver {
         parent.showFirstPage();
     }
 
-    public void initPane(mainModel mainModel) {
+    public void initPane(MainModel mainModel) {
 
         this.mainModel = mainModel;
         mainModel.add(this);
 
     }
 
-    public void initPane(mainController parent) {
+    public void initPane(MainController parent) {
         this.parent = parent;
     }
 

@@ -1,6 +1,6 @@
-package Model;
+package Model.Interfaces;
 
-public interface newEntryObserver {
+public interface EntryObserver {
 
         //method to update the observer, used by subject
         public void update();

@@ -1,17 +1,18 @@
 package controllers;
 
+import Model.Interfaces.iPane;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 
-public class goalsPageController implements iPane {
+public class GoalsPageController implements iPane {
 
-    mainController parent;
+    MainController parent;
 
     @FXML
     private AnchorPane headerAnchorPane;
 
     @Override
-    public void initPane(mainController parent) {
+    public void initPane(MainController parent) {
         this.parent = parent;
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
     }

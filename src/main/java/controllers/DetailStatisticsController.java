@@ -1,14 +1,15 @@
 package controllers;
 
+import Model.Interfaces.iPane;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
-public class detailStatisticsController implements iPane {
+public class DetailStatisticsController implements iPane {
 
-    mainController parent;
+    MainController parent;
 
     @FXML
     private ScrollPane statisticsScrollPane;
@@ -36,7 +37,7 @@ public class detailStatisticsController implements iPane {
 
 
     @Override
-    public void initPane(mainController parent) {
+    public void initPane(MainController parent) {
         this.parent = parent;
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
     }
