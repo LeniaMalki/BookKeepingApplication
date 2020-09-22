@@ -2,6 +2,7 @@ package controllers;
 
 
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 
 public class mainController {
@@ -15,12 +16,18 @@ public class mainController {
     private AnchorPane budgetCharPage;
     private AnchorPane accountPage;
     private AnchorPane goalsPage;
+    private AnchorPane signUpPopUp;
+    private AnchorPane deleteAccountPopUp;
+    private AnchorPane changePasswordPopUp;
+
 
     @FXML
     private AnchorPane mainAnchor;
 
 
     public void init() {
+        signUpPopUp = PaneFactory.initSignUpPopUp();
+        deleteAccountPopUp = PaneFactory.initDelAccPopup();
         logInPage = PaneFactory.initLoginPane();
         firstPage = PaneFactory.initFirstPane();
         accountPage = PaneFactory.initAccountPane();
@@ -29,6 +36,7 @@ public class mainController {
         budgetCharPage = PaneFactory.initBudgetCharPane();
         budgetPage = PaneFactory.initBudgetPane();
         statisticsOverviewPage = PaneFactory.initStatisticsOverviewPane();
+        changePasswordPopUp = PaneFactory.initChangePasswordPopUp();
 
         //TODO add all main anchopanes
 
@@ -82,4 +90,27 @@ public class mainController {
         mainAnchor.getChildren().add(pane);
         mainAnchor.toFront();
     }
+
+    /**
+     * Getters and setters
+      *
+     */
+    AnchorPane getSignUpPopUp() {
+        return signUpPopUp;
+    }
+
+    AnchorPane getAccountPage() {
+        return accountPage;
+    }
+
+    AnchorPane getDeleteAccountPopUp() {
+        return deleteAccountPopUp;
+    }
+
+    public Node getChangePasswordPopUp() {
+        return changePasswordPopUp;
+    }
 }
+
+
+
