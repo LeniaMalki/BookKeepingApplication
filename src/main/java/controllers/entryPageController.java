@@ -7,7 +7,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.event.ActionEvent;
 import javafx.scene.layout.FlowPane;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class entryPageController implements ChildPane{
@@ -79,7 +78,7 @@ public class entryPageController implements ChildPane{
     }
 
     @FXML
-    private void addEntry(ActionEvent event) {
+    private void addEntry(ActionEvent event){
         System.out.println(currentActiveEntryButton.getText());
         Entry entry =new Entry(Double.parseDouble(costTextField.getText()), nameTextField.getText(), categoryComboBox.getValue(),currentActiveEntryButton.getText());
         entryList.add(entry);
