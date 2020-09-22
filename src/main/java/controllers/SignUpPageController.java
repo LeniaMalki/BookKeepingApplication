@@ -1,7 +1,5 @@
 package controllers;
 
-import Model.observers.UserObserver;
-import Model.MainModel;
 import Model.Interfaces.UserObserver;
 import Model.MainModel;
 import javafx.event.ActionEvent;
@@ -77,4 +75,3 @@ public class SignUpPageController implements UserObserver {
     }
 
 }
-

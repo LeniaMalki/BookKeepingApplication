@@ -10,7 +10,6 @@ import javafx.scene.layout.FlowPane;
 
 import java.util.ArrayList;
 
-public class EntryPageController implements iPane{
 public class EntryPageController implements iPane {
 
     MainController parent;
