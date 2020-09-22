@@ -9,7 +9,7 @@ import javafx.scene.layout.FlowPane;
 
 import java.util.ArrayList;
 
-public class entryPageController implements ChildPane{
+public class entryPageController implements iPane{
 
     mainController parent;
 
