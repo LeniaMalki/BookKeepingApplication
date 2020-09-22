@@ -11,8 +11,6 @@ import java.io.IOException;
 
 public class EntryListItemController extends AnchorPane {
 
-    @FXML
-     AnchorPane scrollPaneInsert;
 
     @FXML
      Text articleName;
@@ -30,17 +28,21 @@ public class EntryListItemController extends AnchorPane {
         parent.showEntryPage();
     }
 
-    public EntryListItemController(Entry entry) {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("org/openjfx/entryPageScrollPaneInsert.fxml"));
+    public EntryListItemController(Entry entry, boolean color) {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/openjfx/entryPageScrollPaneInsert.fxml"));
+        fxmlLoader.setController(this);
+        fxmlLoader.setRoot(this);
         try {
             fxmlLoader.load();
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
-        this.articleName.setText(entry.getName());
         categoryName.setText(entry.getCategory());
         costName.setText(String.valueOf(entry.getAmout()));
-
+        articleName.setText(entry.getName());
+        if (color){
+            this.getStyleClass().add("pinkInsert");
+        }
     }
 
 

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class EntryPageController implements iPane {
 
     MainController parent;
-
+    boolean listItemPink=false;
 
     private Button currentActiveEntryButton;
 
@@ -80,10 +80,21 @@ public class EntryPageController implements iPane {
 
     @FXML
     private void addEntry(ActionEvent event){
-        System.out.println(currentActiveEntryButton.getText());
         Entry entry =new Entry(Double.parseDouble(costTextField.getText()), nameTextField.getText(), categoryComboBox.getValue(),currentActiveEntryButton.getText());
         entryList.add(entry);
-        entryFlowPlane.getChildren().add(new EntryListItemController(entry));
+        entryFlowPlane.getChildren().add(new EntryListItemController(entry,listItemPink));
+        listItemPink = !listItemPink;
+        costTextField.clear();
+        nameTextField.clear();
+        categoryComboBox.valueProperty().set("Category");
+    }
+    @FXML
+
+    private void submitEntries(ActionEvent event){
+        for(Entry entry : entryList){
+            entry.notifyObservers();
+        }
+        entryFlowPlane.getChildren().clear();
 
     }
 }
