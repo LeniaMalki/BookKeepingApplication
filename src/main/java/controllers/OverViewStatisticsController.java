@@ -6,9 +6,9 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
-public class overViewStatisticsController implements iPane {
+public class OverViewStatisticsController implements iPane {
 
-    mainController parent;
+    MainController parent;
 
     @FXML
     private PieChart dailyOverviewPieChart;
@@ -53,7 +53,7 @@ public class overViewStatisticsController implements iPane {
     }
 
     @Override
-    public void initPane(mainController parent) {
+    public void initPane(MainController parent) {
         this.parent = parent;
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
     }

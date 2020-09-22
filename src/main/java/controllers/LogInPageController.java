@@ -6,9 +6,9 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
-public class logInPageController implements iPane {
+public class LogInPageController implements iPane {
 
-    mainController parent;
+    MainController parent;
     @FXML
     private AnchorPane back;
     @FXML
@@ -32,7 +32,7 @@ public class logInPageController implements iPane {
     }
 
     @Override
-    public void initPane(mainController parent) {
+    public void initPane(MainController parent) {
         this.parent = parent;
     }
 }

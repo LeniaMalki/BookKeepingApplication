@@ -1,10 +1,10 @@
 package Model;
 
-public class accountMaker {
+public class AccountMaker {
 
    private User user;
 
-    public accountMaker(User user) {
+    public AccountMaker(User user) {
         this.user = user;
     }
 

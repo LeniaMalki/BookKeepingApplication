@@ -6,10 +6,10 @@ import javafx.scene.control.Hyperlink;
 
 import java.io.IOException;
 
-public class headerController implements iPane {
+public class HeaderController implements iPane {
 
 
-    mainController parent;
+    MainController parent;
 
     @FXML
     Hyperlink accountPageButton;
@@ -57,7 +57,7 @@ public class headerController implements iPane {
     }
 
     @Override
-    public void initPane(mainController parent) {
+    public void initPane(MainController parent) {
         this.parent = parent;
     }
 

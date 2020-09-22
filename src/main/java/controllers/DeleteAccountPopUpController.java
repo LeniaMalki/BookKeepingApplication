@@ -4,18 +4,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 
-public class deleteAccountPopUpController {
+public class DeleteAccountPopUpController {
 
     @FXML
     public AnchorPane delAccPopUp;
 
+    MainController parent;
 
-    mainController parent;
-
-    public void initPane(mainController parent) {
+    public void initPane(MainController parent) {
         this.parent = parent;
     }
-
 
     @FXML
     public void deleteAccountConfirm(ActionEvent actionEvent) {

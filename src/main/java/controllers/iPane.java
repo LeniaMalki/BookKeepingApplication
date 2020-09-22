@@ -6,6 +6,6 @@ package controllers;
  * @author Oscar
  */
 public interface iPane {
-    void initPane(mainController parent);
+    void initPane(MainController parent);
 
 }
