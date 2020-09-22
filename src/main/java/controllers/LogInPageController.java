@@ -1,5 +1,6 @@
 package controllers;
 
+import Model.Interfaces.iPane;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;

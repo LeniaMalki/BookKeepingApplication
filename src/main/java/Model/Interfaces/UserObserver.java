@@ -1,4 +1,5 @@
-package Model.observers;
+
+package Model.Interfaces;
 
 public interface UserObserver {
     public abstract void notifed();
