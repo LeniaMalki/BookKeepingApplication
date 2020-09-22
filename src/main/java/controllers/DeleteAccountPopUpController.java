@@ -12,6 +12,9 @@ public class DeleteAccountPopUpController {
     MainController parent;
 
     public void initPane(MainController parent) {
+    MainController parent;
+
+    public void initPane(MainController parent) {
         this.parent = parent;
     }
 

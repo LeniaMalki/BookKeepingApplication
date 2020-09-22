@@ -2,6 +2,7 @@ package Model;
 
 
 import Model.observers.UserObserver;
+import Model.Interfaces.UserObserver;
 
 import java.util.ArrayList;
 import java.util.List;

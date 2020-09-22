@@ -1,6 +1,7 @@
 package controllers;
 
 import Model.Entry;
+import Model.Interfaces.iPane;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
@@ -10,6 +11,7 @@ import javafx.scene.layout.FlowPane;
 import java.util.ArrayList;
 
 public class EntryPageController implements iPane{
+public class EntryPageController implements iPane {
 
     MainController parent;
 
