@@ -8,9 +8,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 
-public class changePasswordPopUpController {
+public class ChangePasswordPopUpController {
 
-    mainController parent;
+    MainController parent;
 
     @FXML
     private AnchorPane changePasswordPopUp;
@@ -25,7 +25,7 @@ public class changePasswordPopUpController {
     @FXML
     private Button changePasswordConfirm;
 
-    public void initPane(mainController parent) {
+    public void initPane(MainController parent) {
         this.parent = parent;
     }
 

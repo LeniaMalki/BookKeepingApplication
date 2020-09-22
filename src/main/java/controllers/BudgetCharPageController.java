@@ -1,5 +1,6 @@
 package controllers;
 
+import Model.Interfaces.iPane;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -7,9 +8,9 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
-public class budgetCharPageController implements iPane {
+public class BudgetCharPageController implements iPane {
 
-    mainController parent;
+    MainController parent;
 
     @FXML
     private Button editBudgetButton;
@@ -26,7 +27,7 @@ public class budgetCharPageController implements iPane {
 
 
     @Override
-    public void initPane(mainController parent) {
+    public void initPane(MainController parent) {
         this.parent = parent;
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
     }

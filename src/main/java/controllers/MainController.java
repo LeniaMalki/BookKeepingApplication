@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 
-public class mainController {
+public class MainController {
 
     private AnchorPane logInPage;
     private AnchorPane firstPage;
@@ -75,7 +75,7 @@ public class mainController {
     }
 
     void showStatisticsDetailPage(String text) {
-        PaneFactory.Pane<detailStatisticsController> pane = PaneFactory.initStatisticsDetailPane();
+        PaneFactory.Pane<DetailStatisticsController> pane = PaneFactory.initStatisticsDetailPane();
         showPage(pane.anchorPane);
         pane.controller.setLabelPieChart(text);
 

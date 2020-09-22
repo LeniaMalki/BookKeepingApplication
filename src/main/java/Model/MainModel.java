@@ -1,12 +1,12 @@
 package Model;
 
 
-import controllers.UserObserver;
+import Model.Interfaces.UserObserver;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class mainModel {
+public class MainModel {
     User user;
     private final List<UserObserver> observers = new ArrayList<>();
     private int state;

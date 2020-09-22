@@ -1,6 +1,7 @@
 package controllers;
 
 
+import Model.Interfaces.iPane;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -8,8 +9,8 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
-public class firstPageController implements iPane {
-    mainController parent;
+public class FirstPageController implements iPane {
+    MainController parent;
 
     @FXML
     private Button newEntryButton;
@@ -33,7 +34,7 @@ public class firstPageController implements iPane {
     }
 
     @Override
-    public void initPane(mainController parent) {
+    public void initPane(MainController parent) {
         this.parent = parent;
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
     }
