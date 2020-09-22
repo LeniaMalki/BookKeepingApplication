@@ -93,7 +93,6 @@ public class mainController {
 
     /**
      * Getters and setters
-      *
      */
     AnchorPane getSignUpPopUp() {
         return signUpPopUp;
