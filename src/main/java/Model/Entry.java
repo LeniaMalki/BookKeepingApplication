@@ -1,11 +1,13 @@
 package Model;
 
+import Model.observers.EntrySubject;
+
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class Entry<T> implements EntrySubject{
-    private List<NewEntryObserver> observers = new ArrayList<>();
+public class Entry<T> implements EntrySubject {
+    private List<AccountMaker.NewEntryObserver> observers = new ArrayList<>();
     private T message;
     private boolean changed;
 
@@ -23,19 +25,19 @@ public class Entry<T> implements EntrySubject{
     }
 
     @Override
-    public void register(NewEntryObserver obj) {
+    public void register(AccountMaker.NewEntryObserver obj) {
         if(obj == null) throw new NullPointerException("Null Observer");
         if(!observers.contains(obj)) observers.add(obj);
     }
 
     @Override
     public void notifyObservers() {
-        List<NewEntryObserver> observersLocal = null;
+        List<AccountMaker.NewEntryObserver> observersLocal = null;
         if (!changed) return;
 
         observersLocal = new ArrayList<>(this.observers);
         this.changed=false;
-        for (NewEntryObserver obj : observersLocal) {
+        for (AccountMaker.NewEntryObserver obj : observersLocal) {
             obj.update();
         }
     }
@@ -47,7 +49,7 @@ public class Entry<T> implements EntrySubject{
     }
 
     @Override
-    public Object getUpdate(NewEntryObserver obj) {
+    public Object getUpdate(AccountMaker.NewEntryObserver obj) {
         return this.message;
     }
 
