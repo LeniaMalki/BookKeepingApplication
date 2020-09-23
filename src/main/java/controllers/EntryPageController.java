@@ -62,6 +62,8 @@ public class EntryPageController implements iPane {
         entryButtonTypeCluster.add(incomebutton);
         categoryComboBox.getItems().addAll("Food","Household","Shopping","Transportation","Other");
         currentActiveEntryButton=expencesButton;
+        entryPageScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+
     }
 
     @FXML
