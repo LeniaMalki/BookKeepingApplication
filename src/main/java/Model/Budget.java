@@ -9,7 +9,13 @@ public class Budget {
     private int savingsCost;
     private int otherCost;
 
-    protected Budget() {
+    protected Budget(int foodCost, int householdCost, int shoppingCost, int transportCost, int savingsCost, int otherCost) {
+        this.foodCost = foodCost;
+        this.householdCost = householdCost;
+        this.shoppingCost = shoppingCost;
+        this.transportCost = transportCost;
+        this.savingsCost = savingsCost;
+        this.otherCost = otherCost;
     }
 
     public int getFoodCost() {
