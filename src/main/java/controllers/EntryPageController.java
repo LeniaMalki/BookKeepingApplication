@@ -13,7 +13,12 @@ import java.util.ArrayList;
 public class EntryPageController implements iPane {
 
     MainController parent;
+
     boolean listItemPink=false;
+
+    private ArrayList<Button> entryButtonTypeCluster=new ArrayList<>();
+
+    private ArrayList<Entry> entryList=new ArrayList<>();
 
     private Button currentActiveEntryButton;
 
@@ -50,8 +55,6 @@ public class EntryPageController implements iPane {
     @FXML
     private AnchorPane headerAnchorPane;
 
-    private ArrayList<Button> entryButtonTypeCluster=new ArrayList<>();
-    private ArrayList<Entry> entryList=new ArrayList<>();
 
     @Override
     public void initPane(MainController parent) {
@@ -67,7 +70,7 @@ public class EntryPageController implements iPane {
     }
 
     @FXML
-    private void activateEntryTypeButton(ActionEvent event){
+        private void activateEntryTypeButton(ActionEvent event){
         Button btn = (Button) event.getSource();
         for(Button b : entryButtonTypeCluster){
             b.getStyleClass().remove("activeEntryButton");
@@ -81,7 +84,7 @@ public class EntryPageController implements iPane {
     }
 
     @FXML
-    private void addEntry(ActionEvent event){
+        private void addEntry(ActionEvent event){
         Entry entry =new Entry(Double.parseDouble(costTextField.getText()), nameTextField.getText(), categoryComboBox.getValue(),currentActiveEntryButton.getText());
         entryList.add(entry);
         entryFlowPlane.getChildren().add(new EntryListItemController(entry,listItemPink));
