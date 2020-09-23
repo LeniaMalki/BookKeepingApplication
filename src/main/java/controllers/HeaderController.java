@@ -52,11 +52,6 @@ public class HeaderController implements iPane {
 
     }
 
-    //Opens up/going back to first page when pressing on the Logo i.e. works as an escape hatch
-    public void escapeHatchHandler(ActionEvent actionEvent) throws IOException {
-        parent.showFirstPage();
-    }
-
     @Override
     public void initPane(MainController parent) {
         this.parent = parent;

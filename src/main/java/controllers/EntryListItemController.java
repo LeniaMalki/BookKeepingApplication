@@ -23,12 +23,7 @@ public class EntryListItemController extends AnchorPane {
     MainController parent;
 
 
-    @FXML
-    private void loadEntryPage(ActionEvent event) throws IOException {
-        parent.showEntryPage();
-    }
-
-    public EntryListItemController(Entry entry, boolean color) {
+    public EntryListItemController(Entry entry, boolean pinkColor) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/openjfx/entryPageScrollPaneInsert.fxml"));
         fxmlLoader.setController(this);
         fxmlLoader.setRoot(this);
@@ -40,7 +35,7 @@ public class EntryListItemController extends AnchorPane {
         categoryName.setText(entry.getCategory());
         costName.setText(String.valueOf(entry.getAmout()));
         articleName.setText(entry.getName());
-        if (color){
+        if (pinkColor){
             this.getStyleClass().add("pinkInsert");
         }
     }
