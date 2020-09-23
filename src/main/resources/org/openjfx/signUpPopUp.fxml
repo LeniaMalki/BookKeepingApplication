@@ -99,7 +99,7 @@
         <ImageView fx:id="signUpEmailIcon" fitHeight="50.0" fitWidth="50.0" layoutX="705.0" layoutY="222.0" pickOnBounds="true" preserveRatio="true" />
         <ImageView fx:id="signUpEmailIcon1" fitHeight="50.0" fitWidth="50.0" layoutX="705.0" layoutY="304.0" pickOnBounds="true" preserveRatio="true" />
         <ImageView fx:id="signUpNameIcon" fitHeight="50.0" fitWidth="50.0" layoutX="705.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true" />
-        <Button fx:id="createAccount" alignment="CENTER" defaultButton="true" layoutX="307.0" layoutY="561.0" mnemonicParsing="false" onAction="#createAccount" prefHeight="64.0" prefWidth="315.0" style="-fx-background-color: #a8d8d3; -fx-background-radius: 5;" text="Create Account" textFill="#655252">
+        <Button fx:id="createAccount" alignment="CENTER" defaultButton="true" layoutX="307.0" layoutY="561.0" mnemonicParsing="false" onAction="#handleCreateAccountAction" prefHeight="64.0" prefWidth="315.0" style="-fx-background-color: #a8d8d3; -fx-background-radius: 5;" text="Create Account" textFill="#655252">
             <font>
                 <Font size="33.0" />
             </font>

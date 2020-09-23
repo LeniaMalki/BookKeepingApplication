@@ -1,22 +1,20 @@
 package controllers;
 
-import Model.Interfaces.UserObserver;
-import Model.MainModel;
+import Model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
-import java.io.IOException;
-
-public class SignUpPageController implements UserObserver {
+public class SignUpPageController {
 
     public AnchorPane signUpPopUp;
+
     MainController parent;
-    private MainModel mainModel;
+    User user = User.getInstance();
+
     @FXML
     private TextField signUpName;
 
@@ -30,49 +28,42 @@ public class SignUpPageController implements UserObserver {
     private PasswordField signUpConfirmPassword;
 
     @FXML
-    private ImageView confirmPasswordIcon;
-
-    @FXML
     private TextField signUpEmail;
 
     @FXML
-    private ImageView signUpEmailIcon;
-
-    @FXML
-    private ImageView signUpEmailIcon1;
-
-    @FXML
-    private ImageView signUpNameIcon;
-
-    @FXML
     private Button createAccount;
-
-
-    @FXML
-    private void createAccount(ActionEvent event) throws IOException {
-        parent.showFirstPage();
-    }
-
-    public void initPane(MainModel mainModel) {
-
-        this.mainModel = mainModel;
-        mainModel.add(this);
-
-    }
 
     public void initPane(MainController parent) {
         this.parent = parent;
     }
 
-    @Override
-    public void notifed() {
-        updateUserName();
+
+    @FXML
+    private void handleCreateAccountAction(ActionEvent event) {
+        user.setName(signUpName.getText());
+        user.setUsername(signUpUsername.getText());
+        user.setEmailAddress(signUpEmail.getText());
+        user.setPassword(signUpPassword.getText());
+        user.setConfirmPassword(signUpConfirmPassword.getText());
+
+        if (user.isAllFieldsEntered()) {
+
+            if (user.doesPasswordMatch(user.getConfirmPassword())) {
+                System.out.println("all fields entered: " + user.getName() + " " + user.getUsername() + " " + user.getEmailAddress() + " " + user.getPassword());
+                parent.showFirstPage();
+            }
+
+            else  {System.out.println("Password does not match!");
+
+
+            }
+        }
+
+        else System.out.println("fields missing");
+
 
     }
 
-    private void updateUserName() {
-        mainModel.setUsername(signUpUsername.toString());
-    }
 
 }
 

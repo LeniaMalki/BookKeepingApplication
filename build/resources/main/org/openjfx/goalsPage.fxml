@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" styleClass="whiteBackground" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.goalsPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" styleClass="whiteBackground" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GoalsPageController">
    <children>
       <AnchorPane fx:id="headerAnchorPane" layoutX="-3.0" layoutY="-4.0" prefHeight="120.0" prefWidth="1453.0" styleClass="header-Shadow" />
       <Button fx:id="addEditGoals" alignment="CENTER" contentDisplay="CENTER" layoutX="589.0" layoutY="922.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="257.0" text="Add/Edit Goals" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="591.0" AnchorPane.rightAnchor="591.0" AnchorPane.topAnchor="922.0">

@@ -2,34 +2,39 @@ package Model;
 
 public class User {
 
-    private String name;
-    private String language;
-    private String username;
-    private char emailAddress;
-    private char password;
+    private static User userInstance;
 
-    public User(String name, String  username, char emailAddress, char password) {
-        this.name = name;
-        this.username = username;
-        this.emailAddress = emailAddress;
-        this.password = password;
+    private String name;
+    private String username;
+    private String emailAddress;
+    private String password;
+    private String confirmPassword;
+
+    private User() {
+
     }
 
-//Testttest
+    public static User getInstance() {
+        if (userInstance == null) {
+            userInstance = new User();
+        }
+        return userInstance;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getLanguage() {
-        return language;
-    }
-
-    public void setLanguage(String language) {
-        this.language = language;
     }
 
     public String getUsername() {
@@ -40,19 +45,31 @@ public class User {
         this.username = username;
     }
 
-    public char getEmailAddress() {
+    public String getEmailAddress() {
         return emailAddress;
     }
 
-    public void setEmailAddress(char emailAddress) {
+    public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
     }
 
-    public char getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(char password) {
+    public void setPassword(String password) {
         this.password = password;
     }
+
+    //_________________________________________________________________________________________________________________
+
+    public boolean isAllFieldsEntered() {
+
+        return (name != null && username != null && emailAddress != null && password != null && confirmPassword != null);
+    }
+
+    public boolean doesPasswordMatch(String confirmPassword) {
+        return this.password.equals(confirmPassword);
+    }
+
 }

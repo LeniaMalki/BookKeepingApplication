@@ -1,8 +1,6 @@
 package controllers;
 
-import Model.Interfaces.UserObserver;
 import Model.Interfaces.iPane;
-import Model.MainModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -11,7 +9,7 @@ import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 
 
-public class AccountPageController implements iPane, UserObserver {
+public class UserPageController implements iPane {
     MainController parent;
     @FXML
     private AnchorPane headerAnchorPane;
@@ -22,10 +20,6 @@ public class AccountPageController implements iPane, UserObserver {
 
     @FXML
     private TextField editableUsername;
-
-    private MainModel mainModel;
-
-
 
     @FXML
     private void onDeleteAccountLinkPressed(ActionEvent event) throws IOException {
@@ -49,28 +43,10 @@ public class AccountPageController implements iPane, UserObserver {
 
     }
 
-    public void initPane(MainModel mainModel) {
-        this.mainModel = mainModel;
-        mainModel.add(this);
-    }
 
     public void initPane(MainController parent) {
         this.parent = parent;
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
-    }
-
-    public AnchorPane getPos_for_popUp_on_accountPage() {
-        return pos_for_popUp_on_accountPage;
-    }
-
-    @Override
-    public void notifed() {
-        updateAccountUsereName();
-
-    }
-
-    private void updateAccountUsereName() {
-        editableUsername.setText(mainModel.getUserName());
     }
 
 
