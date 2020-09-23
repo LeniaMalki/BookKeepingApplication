@@ -57,7 +57,7 @@ public class PaneFactory {
     }
 
     static AnchorPane initAccountPane() {
-        Pane<AccountPageController> pane = loadInPane("org/openjfx/accountPage.fxml");
+        Pane<UserPageController> pane = loadInPane("org/openjfx/accountPage.fxml");
         pane.controller.initPane(parent);
         return pane.anchorPane;
     }
