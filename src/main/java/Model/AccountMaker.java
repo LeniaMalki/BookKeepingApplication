@@ -2,7 +2,7 @@ package Model;
 
 public class AccountMaker {
 
-   private User user;
+    private User user;
 
     public AccountMaker(User user) {
         this.user = user;
