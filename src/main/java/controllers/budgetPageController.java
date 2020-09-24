@@ -167,33 +167,6 @@ public class budgetPageController implements ChildPane {
     }
 
 
-/*z
-    @FXML
-    private void bindShoppingSlider() {
-        String value = Double.toString(transportSlider.getValue()).format("%.2f", transportSlider.getValue()); //.format("%.2f", transportSlider.getValue()
-        transportTextField.setText(value); //transportSlider.valueProperty()); //new StringConverter<Number>()*/
-
-    /* {
-
-            @Override
-            public String toString(Number t)
-            {
-                return t.toString();
-            }
-
-            @Override
-            public Number fromString(String string)
-            {
-                return Double.parseDouble(string);
-            }
-
-
-        });*/
-    
-    
-
-
-
     @FXML
     private Label foodLabel;
 
@@ -268,8 +241,6 @@ public class budgetPageController implements ChildPane {
 
     @FXML
     private TextField savingsTextField;
-
-
 
     @FXML
     private ProgressBar foodProgressBar;
@@ -372,3 +343,27 @@ public class budgetPageController implements ChildPane {
 //foodSlider.setStyle("-fx-background-color: linear-gradient(to right, #2D819D 20%, #969696 20%)");
 
 //-fx-background-color: linear-gradient(to right, #2D819D 20%, #969696 20%)
+
+/*z
+    @FXML
+    private void bindShoppingSlider() {
+        String value = Double.toString(transportSlider.getValue()).format("%.2f", transportSlider.getValue()); //.format("%.2f", transportSlider.getValue()
+        transportTextField.setText(value); //transportSlider.valueProperty()); //new StringConverter<Number>()*/
+
+    /* {
+
+            @Override
+            public String toString(Number t)
+            {
+                return t.toString();
+            }
+
+            @Override
+            public Number fromString(String string)
+            {
+                return Double.parseDouble(string);
+            }
+
+
+        });*/
+    
