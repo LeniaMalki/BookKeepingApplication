@@ -42,6 +42,7 @@ public class budgetPageController implements ChildPane {
     public void initPane(mainController parent) {
         this.parent=parent;
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
+        
 
 // TODO -- when writing a value into the textfield the slider showed adjust accordingly
         //TODO -- values on slider not that specfic round to 10/100
