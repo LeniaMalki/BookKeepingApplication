@@ -1,5 +1,7 @@
 package org.openjfx;
 
+import Model.User;
+import controllers.AccountPageController;
 import controllers.PaneFactory;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -14,10 +16,16 @@ public class LocaliMain extends Application {
         stage.setTitle("Locali");
         stage.setScene(scene);
         stage.show();
+
+
     }
 
     public static void main(String[] args) {
         launch(args);
+
+
+
+
     }
 
 }

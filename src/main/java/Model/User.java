@@ -1,6 +1,18 @@
 package Model;
 
-public class User {
+import Model.Interfaces.AccountObserver;
+import Model.Interfaces.AccountSubject;
+import Model.Interfaces.EntryObserver;
+import Model.Interfaces.UserObserver;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Observer;
+
+public class User implements AccountSubject {
+
+    private final List<AccountObserver> UserObservers = new ArrayList<AccountObserver>();
+
 
     private static User userInstance;
 
@@ -61,15 +73,18 @@ public class User {
         this.password = password;
     }
 
-    //_________________________________________________________________________________________________________________
 
-    public boolean isAllFieldsEntered() {
+    @Override
+    public void add(AccountObserver o) {
+        UserObservers.add(o);
 
-        return (name != null && username != null && emailAddress != null && password != null && confirmPassword != null);
     }
 
-    public boolean doesPasswordMatch(String confirmPassword) {
-        return this.password.equals(confirmPassword);
-    }
+    @Override
+    public void notifyListeners() {
+        for (AccountObserver observer : UserObservers) {
+            observer.update();
+        }
 
+    }
 }

@@ -55,6 +55,7 @@ public class MainController {
 
     void showAccountPage() {
         showPage(accountPage);
+
     }
 
     void showEntryPage() {
@@ -109,6 +110,8 @@ public class MainController {
     public Node getChangePasswordPopUp() {
         return changePasswordPopUp;
     }
+
+
 }
 
 
