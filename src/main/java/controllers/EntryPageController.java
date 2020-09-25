@@ -15,13 +15,12 @@ import java.util.ArrayList;
 
 public class EntryPageController implements iPane {
 
+    private final ArrayList<Button> entryButtonTypeCluster = new ArrayList<>();
+    private final ArrayList<Entry> entryList = new ArrayList<>();
     MainController parent;
-
     boolean listItemPink = false;
     @FXML
     AnchorPane entryTypeGroupAnchorPane;
-    private final ArrayList<Button> entryButtonTypeCluster = new ArrayList<>();
-    private final ArrayList<Entry> entryList = new ArrayList<>();
     private Button currentActiveEntryButton;
     @FXML
     private Button expencesButton;

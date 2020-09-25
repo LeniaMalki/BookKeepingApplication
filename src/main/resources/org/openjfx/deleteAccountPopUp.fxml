@@ -50,10 +50,16 @@
                 <Font size="15.0" />
             </font>
         </PasswordField>
+      <Text fx:id="passwordIncorrectMessage" fill="RED" layoutX="321.0" layoutY="449.0" strokeType="OUTSIDE" strokeWidth="0.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
     </children>
     <stylesheets>
         <URL value="@../../cssFolder/font.css" />
         <URL value="@../../cssFolder/fontSizes.css" />
       <URL value="@../../cssFolder/linkActions.css" />
+      <URL value="@../../cssFolder/buttonActions.css" />
     </stylesheets>
 </AnchorPane>

@@ -2,7 +2,6 @@ package controllers;
 
 import Model.AccountHandler;
 import Model.Interfaces.AccountObserver;
-import Model.Interfaces.AccountSubject;
 import Model.Interfaces.iPane;
 import Model.User;
 import javafx.event.ActionEvent;
@@ -12,57 +11,51 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class AccountPageController implements iPane, AccountObserver {
 
-
-    private final AccountSubject subject = null;
-    private final List<AccountObserver> accountPageObservers = new ArrayList<AccountObserver>();
     User user = User.getInstance();
     MainController parent;
+
     @FXML
     private AnchorPane headerAnchorPane;
     @FXML
     private AnchorPane pos_for_popUp_on_accountPage;
     @FXML
     private AnchorPane back;
-
     @FXML
     private TextField usernameSetting;
     @FXML
     private TextField nameSetting;
     @FXML
     private TextField emailSetting;
-
     @FXML
     private Button submitChangesButton;
 
-
     @FXML
     private void onDeleteAccountLinkPressed(ActionEvent event) throws IOException {
-        pos_for_popUp_on_accountPage.getChildren().clear();
-        pos_for_popUp_on_accountPage.getChildren().add(parent.getDeleteAccountPopUp());
-        back.toFront();
-        back.setStyle("-fx-background-color: #000000");
-        back.setOpacity(0.5);
-        pos_for_popUp_on_accountPage.toFront();
 
+        popUpOpener();
+        pos_for_popUp_on_accountPage.getChildren().add(parent.getDeleteAccountPopUp());
     }
 
     @FXML
     private void onChangePasswordLinkPressed(ActionEvent event) throws IOException {
-        pos_for_popUp_on_accountPage.getChildren().clear();
+        popUpOpener();
         pos_for_popUp_on_accountPage.getChildren().add(parent.getChangePasswordPopUp());
+    }
+
+    /**
+     * Handles image view for opening a pop up on account page
+     */
+    private void popUpOpener() {
+        pos_for_popUp_on_accountPage.getChildren().clear();
         back.toFront();
         back.setStyle("-fx-background-color: #000000");
         back.setOpacity(0.5);
         pos_for_popUp_on_accountPage.toFront();
-
     }
-
 
     public void initPane(MainController parent) {
         this.parent = parent;
@@ -72,13 +65,11 @@ public class AccountPageController implements iPane, AccountObserver {
 
     }
 
-
     public void setAccountFields() {
         usernameSetting.setText(user.getUsername());
         nameSetting.setText(user.getName());
         emailSetting.setText(user.getEmailAddress());
     }
-
 
     @Override
     public void update() {

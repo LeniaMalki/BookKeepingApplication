@@ -33,6 +33,8 @@ public class ChangePasswordPopUpController {
     //Goes back to account page when confirming change of password
     @FXML
     void onAction_ConfirmChangePassword_CLICKED(ActionEvent event) throws Exception {
+
+
         parent.getChangePasswordPopUp().toBack();
         parent.showAccountPage();
 
