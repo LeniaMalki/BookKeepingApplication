@@ -120,5 +120,6 @@
         <URL value="@../../cssFolder/font.css" />
         <URL value="@../../cssFolder/fontSizes.css" />
       <URL value="@../../cssFolder/linkActions.css" />
+      <URL value="@../../cssFolder/buttonActions.css" />
     </stylesheets>
 </AnchorPane>

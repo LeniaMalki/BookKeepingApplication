@@ -16,7 +16,7 @@ public class PaneFactory {
 
     private static MainController parent;
 
-    //Gets the root of the pane and it´s controller
+//Gets the root of the pane and it´s controller
 
     /**
      * A generalized function for fetching root and controller from a function

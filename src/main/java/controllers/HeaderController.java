@@ -16,26 +16,19 @@ public class HeaderController implements iPane, AccountObserver {
 
     @FXML
     Hyperlink accountPageButton;
-
+    User user = User.getInstance();
     @FXML
     private Hyperlink logo;
-
     @FXML
     private Hyperlink homeButton;
-
     @FXML
     private Hyperlink entryButton;
-
     @FXML
     private Hyperlink statisticsButton;
-
     @FXML
     private Hyperlink budgetButton;
-
     @FXML
     private Hyperlink goalButton;
-
-    User user = User.getInstance();
 
     @FXML
     private void clickHeader(ActionEvent event) throws IOException {

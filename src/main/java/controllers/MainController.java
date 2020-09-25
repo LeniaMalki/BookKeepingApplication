@@ -20,10 +20,8 @@ public class MainController {
     private AnchorPane deleteAccountPopUp;
     private AnchorPane changePasswordPopUp;
 
-
     @FXML
     private AnchorPane mainAnchor;
-
 
     public void init() {
         signUpPopUp = PaneFactory.initSignUpPopUp();
@@ -43,6 +41,7 @@ public class MainController {
 
         showPage(logInPage);
     }
+
 
     // TODO make one for each anchopane
     void showLogInPage() {
@@ -97,6 +96,10 @@ public class MainController {
      */
     AnchorPane getSignUpPopUp() {
         return signUpPopUp;
+    }
+
+    AnchorPane getLogInPage() {
+        return logInPage;
     }
 
     AnchorPane getAccountPage() {

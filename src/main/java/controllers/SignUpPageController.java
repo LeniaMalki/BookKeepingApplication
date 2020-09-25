@@ -15,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 public class SignUpPageController {
+
     public AnchorPane signUpPopUp;
     MainController parent;
 
@@ -52,9 +53,8 @@ public class SignUpPageController {
         };
 
         if (accountHandler.createUser(signUpName, signUpUsername, signUpEmail, signUpPassword, signUpConfirmPassword) != null) {
-            parent.showFirstPage();
             user.notifyListeners();
-
+            parent.showFirstPage();
 
         } else System.out.println("Invalid user inputs! ");
 
