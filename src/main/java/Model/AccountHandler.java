@@ -74,12 +74,21 @@ public abstract class AccountHandler {
 
         int len = name.length();
 
-        for (int i = 0; i < len; i++) {
+        if (len == 0)
+        {
+            return false;
+        }
 
-            // checks whether the character is not a letter if it is not a letter ,it will return false
+        else {
+            for (int i = 0; i < len; i++) {
 
-            if ((!Character.isLetter(name.charAt(i)))) {
-                return false;
+                // checks whether the character is not a letter if it is not a letter ,it will return false
+
+                if ((!Character.isLetter(name.charAt(i)))) {
+                    return false;
+                }
+
+
             }
         }
         return true;
@@ -99,6 +108,8 @@ public abstract class AccountHandler {
         emailSetting.setText(user.getEmailAddress());
 
     }
+
+
 
 
 

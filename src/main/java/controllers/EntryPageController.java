@@ -2,10 +2,13 @@ package controllers;
 
 import Model.Entry;
 import Model.Interfaces.iPane;
-import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 
 import java.util.ArrayList;
@@ -14,38 +17,26 @@ public class EntryPageController implements iPane {
 
     MainController parent;
 
-    boolean listItemPink=false;
-
-    private ArrayList<Button> entryButtonTypeCluster=new ArrayList<>();
-
-    private ArrayList<Entry> entryList=new ArrayList<>();
-
-    private Button currentActiveEntryButton;
-
-    @FXML
-    private Button expencesButton;
-
-    @FXML
-    private Button incomebutton;
-
-    @FXML
-    private Button savingButton;
-
-    @FXML
-    private TextField nameTextField;
-
-    @FXML
-    private ComboBox<String> categoryComboBox;
-
-    @FXML
-    private TextField costTextField;
-
-    @FXML
-    private ScrollPane entryPageScrollPane;
-
+    boolean listItemPink = false;
     @FXML
     AnchorPane entryTypeGroupAnchorPane;
-
+    private final ArrayList<Button> entryButtonTypeCluster = new ArrayList<>();
+    private final ArrayList<Entry> entryList = new ArrayList<>();
+    private Button currentActiveEntryButton;
+    @FXML
+    private Button expencesButton;
+    @FXML
+    private Button incomebutton;
+    @FXML
+    private Button savingButton;
+    @FXML
+    private TextField nameTextField;
+    @FXML
+    private ComboBox<String> categoryComboBox;
+    @FXML
+    private TextField costTextField;
+    @FXML
+    private ScrollPane entryPageScrollPane;
     @FXML
     private Button submitButton;
 
@@ -63,18 +54,18 @@ public class EntryPageController implements iPane {
         entryButtonTypeCluster.add(expencesButton);
         entryButtonTypeCluster.add(savingButton);
         entryButtonTypeCluster.add(incomebutton);
-        categoryComboBox.getItems().addAll("Food","Household","Shopping","Transportation","Other");
-        currentActiveEntryButton=expencesButton;
+        categoryComboBox.getItems().addAll("Food", "Household", "Shopping", "Transportation", "Other");
+        currentActiveEntryButton = expencesButton;
         entryPageScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 
     }
 
     @FXML
-        private void activateEntryTypeButton(ActionEvent event){
+    private void activateEntryTypeButton(ActionEvent event) {
         Button btn = (Button) event.getSource();
-        for(Button b : entryButtonTypeCluster){
+        for (Button b : entryButtonTypeCluster) {
             b.getStyleClass().remove("activeEntryButton");
-            if(!b.getStyleClass().contains("inactiveEntryButton")) {
+            if (!b.getStyleClass().contains("inactiveEntryButton")) {
                 b.getStyleClass().add("inactiveEntryButton");
             }
         }
@@ -84,19 +75,20 @@ public class EntryPageController implements iPane {
     }
 
     @FXML
-        private void addEntry(ActionEvent event){
-        Entry entry =new Entry(Double.parseDouble(costTextField.getText()), nameTextField.getText(), categoryComboBox.getValue(),currentActiveEntryButton.getText());
+    private void addEntry(ActionEvent event) {
+        Entry entry = new Entry(Double.parseDouble(costTextField.getText()), nameTextField.getText(), categoryComboBox.getValue(), currentActiveEntryButton.getText());
         entryList.add(entry);
-        entryFlowPlane.getChildren().add(new EntryListItemController(entry,listItemPink));
+        entryFlowPlane.getChildren().add(new EntryListItemController(entry, listItemPink));
         listItemPink = !listItemPink;
         costTextField.clear();
         nameTextField.clear();
         categoryComboBox.valueProperty().set("Category");
     }
+
     @FXML
 
-    private void submitEntries(ActionEvent event){
-        for(Entry entry : entryList){
+    private void submitEntries(ActionEvent event) {
+        for (Entry entry : entryList) {
             entry.notifyObservers();
         }
         entryFlowPlane.getChildren().clear();

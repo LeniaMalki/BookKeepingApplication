@@ -1,13 +1,15 @@
 package controllers;
 
+import Model.Interfaces.AccountObserver;
 import Model.Interfaces.iPane;
+import Model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
 
 import java.io.IOException;
 
-public class HeaderController implements iPane {
+public class HeaderController implements iPane, AccountObserver {
 
 
     MainController parent;
@@ -33,6 +35,8 @@ public class HeaderController implements iPane {
     @FXML
     private Hyperlink goalButton;
 
+    User user = User.getInstance();
+
     @FXML
     private void clickHeader(ActionEvent event) throws IOException {
         if (homeButton.equals(event.getTarget()) || logo.equals(event.getTarget())) {
@@ -55,8 +59,13 @@ public class HeaderController implements iPane {
     @Override
     public void initPane(MainController parent) {
         this.parent = parent;
+        user.add(this);
     }
 
+    @Override
+    public void update() {
+        this.accountPageButton.setText(user.getName());
+    }
 }
 
 

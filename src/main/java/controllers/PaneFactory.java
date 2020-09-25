@@ -63,8 +63,6 @@ public class PaneFactory {
     }
 
 
-
-
     static AnchorPane initBudgetPane() {
         Pane<BudgetPageController> pane = loadInPane("org/openjfx/budgetPage.fxml");
         pane.controller.initPane(parent);

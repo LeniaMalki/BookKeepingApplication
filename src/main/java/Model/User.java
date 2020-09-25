@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observer;
 
-public class User implements AccountSubject {
+public class User implements AccountSubject, AccountObserver {
 
     private final List<AccountObserver> UserObservers = new ArrayList<AccountObserver>();
 
@@ -85,6 +85,15 @@ public class User implements AccountSubject {
         for (AccountObserver observer : UserObservers) {
             observer.update();
         }
+
+    }
+
+    // _____________________________________ Acting as an observer ______________________________________
+
+
+    @Override
+    public void update() {
+
 
     }
 }
