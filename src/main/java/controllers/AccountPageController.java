@@ -1,26 +1,28 @@
 package controllers;
 
+import Model.AccountHandler;
 import Model.Interfaces.AccountObserver;
 import Model.Interfaces.AccountSubject;
-import Model.Interfaces.EntrySubject;
 import Model.Interfaces.iPane;
 import Model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class AccountPageController implements iPane, AccountObserver {
 
 
-
-
+    private final AccountSubject subject = null;
+    private final List<AccountObserver> accountPageObservers = new ArrayList<AccountObserver>();
     User user = User.getInstance();
     MainController parent;
-    private AccountSubject subject = null;
     @FXML
     private AnchorPane headerAnchorPane;
     @FXML
@@ -34,6 +36,9 @@ public class AccountPageController implements iPane, AccountObserver {
     private TextField nameSetting;
     @FXML
     private TextField emailSetting;
+
+    @FXML
+    private Button submitChangesButton;
 
 
     @FXML
@@ -68,7 +73,7 @@ public class AccountPageController implements iPane, AccountObserver {
     }
 
 
-   public void setAccountFields() {
+    public void setAccountFields() {
         usernameSetting.setText(user.getUsername());
         nameSetting.setText(user.getName());
         emailSetting.setText(user.getEmailAddress());
@@ -81,6 +86,80 @@ public class AccountPageController implements iPane, AccountObserver {
 
     }
 
+    public void onUsernameEdited() {
+        user.setUsername(usernameSetting.getText());
+        System.out.println("username  " + user.getUsername());
+    }
 
+    public void onNameEdited() {
+
+        user.setName(nameSetting.getText());
+        System.out.println("name:  " + user.getName());
+
+    }
+
+    public void onEmailEdited() {
+        user.setEmailAddress(emailSetting.getText());
+        System.out.println("email address:  " + user.getEmailAddress());
+    }
+
+    private boolean changeAccountTextFields() {
+
+        int numError = 0;
+
+        AccountHandler accountHandler = new AccountHandler() {
+            @Override
+            public boolean isValidEmail(String email) {
+                return super.isValidEmail(email);
+            }
+
+            @Override
+            public boolean isValidName(String name) {
+                return super.isValidName(name);
+            }
+        };
+
+        if (!accountHandler.isValidEmail(emailSetting.getText())) {
+
+            emailSetting.getStyleClass().add("confirmationButtonRed");
+            numError++;
+        }
+        if (!accountHandler.isValidName(nameSetting.getText())) {
+
+            nameSetting.getStyleClass().add("confirmationButtonRed");
+            numError++;
+        }
+        if (usernameSetting.getText().length() == 0) {
+            usernameSetting.getStyleClass().add("confirmationButtonRed");
+            numError++;
+        }
+
+        if (accountHandler.isValidName(nameSetting.getText()) && accountHandler.isValidEmail(emailSetting.getText()) && !(usernameSetting.getText().length() == 0)) {
+
+            nameSetting.getStyleClass().remove("confirmationButtonRed");
+            emailSetting.getStyleClass().remove("confirmationButtonRed");
+            usernameSetting.getStyleClass().remove("confirmationButtonRed");
+            nameSetting.getStyleClass().add("confirmationButtonGreen");
+            emailSetting.getStyleClass().add("confirmationButtonGreen");
+            usernameSetting.getStyleClass().add("confirmationButtonGreen");
+        }
+
+        return numError == 0;
+    }
+
+
+    @FXML
+    private void onActionSubmitChangesButton() {
+
+        if (changeAccountTextFields()) {
+            onUsernameEdited();
+            onEmailEdited();
+            onNameEdited();
+        }
+
+        submitChangesButton.getStyleClass().add("confirmationButtonRed");
+
+
+    }
 
 }
