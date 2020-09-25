@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="accountSettings" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UserPageController">
+<AnchorPane fx:id="accountSettings" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AccountPageController">
     <children>
         <AnchorPane fx:id="pos_for_popUp_on_accountPage" layoutX="358.0" layoutY="180.0" prefHeight="662.0" prefWidth="900.0">
             <effect>
@@ -63,7 +63,7 @@
                         <Font size="48.0" />
                     </font>
                 </Text>
-                <TextField layoutX="145.0" layoutY="397.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="74.0" prefWidth="522.0" promptText="anders123">
+                <TextField fx:id="usernameSetting" layoutX="145.0" layoutY="397.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="74.0" prefWidth="522.0" promptText="anders123">
                     <font>
                         <Font size="35.0" />
                     </font>
@@ -73,7 +73,7 @@
                         <Image url="@../../Images/editSymbol2.png" />
                     </image>
                 </ImageView>
-                <TextField fx:id="accountName" layoutX="144.0" layoutY="603.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="74.0" prefWidth="522.0" promptText="Anders">
+                <TextField fx:id="nameSetting" layoutX="144.0" layoutY="603.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="74.0" prefWidth="522.0" promptText="Anders">
                     <font>
                         <Font size="35.0" />
                     </font>
@@ -83,7 +83,7 @@
                         <Image url="@../../Images/editSymbol2.png" />
                     </image>
                 </ImageView>
-                <TextField layoutX="144.0" layoutY="793.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="74.0" prefWidth="522.0" promptText="anders123@hotmail.com">
+                <TextField fx:id="emailSetting" layoutX="144.0" layoutY="793.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="74.0" prefWidth="522.0" promptText="anders123@hotmail.com">
                     <font>
                         <Font size="35.0" />
                     </font>

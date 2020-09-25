@@ -1,6 +1,10 @@
 package controllers;
 
+import Model.Interfaces.AccountObserver;
+import Model.Interfaces.AccountSubject;
+import Model.Interfaces.EntrySubject;
 import Model.Interfaces.iPane;
+import Model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -9,8 +13,14 @@ import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 
 
-public class UserPageController implements iPane {
+public class AccountPageController implements iPane, AccountObserver {
+
+
+
+
+    User user = User.getInstance();
     MainController parent;
+    private AccountSubject subject = null;
     @FXML
     private AnchorPane headerAnchorPane;
     @FXML
@@ -19,7 +29,12 @@ public class UserPageController implements iPane {
     private AnchorPane back;
 
     @FXML
-    private TextField editableUsername;
+    private TextField usernameSetting;
+    @FXML
+    private TextField nameSetting;
+    @FXML
+    private TextField emailSetting;
+
 
     @FXML
     private void onDeleteAccountLinkPressed(ActionEvent event) throws IOException {
@@ -47,7 +62,25 @@ public class UserPageController implements iPane {
     public void initPane(MainController parent) {
         this.parent = parent;
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
+
+        user.add(this);
+
     }
+
+
+   public void setAccountFields() {
+        usernameSetting.setText(user.getUsername());
+        nameSetting.setText(user.getName());
+        emailSetting.setText(user.getEmailAddress());
+    }
+
+
+    @Override
+    public void update() {
+        setAccountFields();
+
+    }
+
 
 
 }

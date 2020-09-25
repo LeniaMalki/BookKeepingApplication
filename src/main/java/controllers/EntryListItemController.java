@@ -1,7 +1,6 @@
 package controllers;
 
 import Model.Entry;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
@@ -13,13 +12,13 @@ public class EntryListItemController extends AnchorPane {
 
 
     @FXML
-     Text articleName;
+    Text articleName;
 
     @FXML
-     Text categoryName;
+    Text categoryName;
 
     @FXML
-     Text costName;
+    Text costName;
     MainController parent;
 
 
@@ -35,11 +34,10 @@ public class EntryListItemController extends AnchorPane {
         categoryName.setText(entry.getCategory());
         costName.setText(String.valueOf(entry.getAmout()));
         articleName.setText(entry.getName());
-        if (pinkColor){
+        if (pinkColor) {
             this.getStyleClass().add("pinkInsert");
         }
     }
-
 
 
 }
