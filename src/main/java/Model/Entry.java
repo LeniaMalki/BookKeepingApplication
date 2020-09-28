@@ -1,5 +1,6 @@
 package Model;
 
+import Model.Interfaces.AccountObserver;
 import Model.Interfaces.EntrySubject;
 import Model.Interfaces.EntryObserver;
 
@@ -10,7 +11,6 @@ import java.util.List;
 public class Entry<T> implements EntrySubject {
     private List<EntryObserver> observers = new ArrayList<>();
     private T message;
-    private boolean changed;
 
     double amout;
     String name;
@@ -26,33 +26,17 @@ public class Entry<T> implements EntrySubject {
     }
 
     @Override
-    public void register(EntryObserver obj) {
-        if(obj == null) throw new NullPointerException("Null Observer");
-        if(!observers.contains(obj)) observers.add(obj);
+    public void add (EntryObserver o ) {
+        observers.add(o);
     }
 
     @Override
-    public void notifyObservers() {
-        List<EntryObserver> observersLocal = null;
-        if (!changed) return;
-
-        observersLocal = new ArrayList<>(this.observers);
-        this.changed=false;
-        for (EntryObserver obj : observersLocal) {
-            obj.update();
+    public void notifyListeners () {
+        for ( EntryObserver observer : observers ) {
+            observer.update ();
         }
     }
 
-    public void submitOneEntry(T entry){
-        this.message=entry;
-        this.changed=true;
-        notifyObservers();
-    }
-
-    @Override
-    public Object getUpdate(EntryObserver obj) {
-        return this.message;
-    }
 
     public double getAmout() {
         return amout;
