@@ -84,13 +84,14 @@ public class EntryPageController implements iPane {
         categoryComboBox.valueProperty().set("Category");
     }
 
-    @FXML
 
+    @FXML
     private void submitEntries(ActionEvent event) {
         for (Entry entry : entryList) {
-            entry.notifyObservers();
+            entry.notifyListeners();
         }
         entryFlowPlane.getChildren().clear();
+        entryList.clear();
 
     }
 }
