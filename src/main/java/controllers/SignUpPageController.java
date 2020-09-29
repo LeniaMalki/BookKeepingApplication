@@ -21,6 +21,8 @@ public class SignUpPageController {
 
     User user = User.getInstance();
 
+    //TESTCOMMIT
+
     @FXML
     private TextField signUpName;
     @FXML
