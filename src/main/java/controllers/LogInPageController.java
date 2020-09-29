@@ -1,18 +1,18 @@
 package controllers;
 
+import Model.Interfaces.AccountObserver;
 import Model.Interfaces.iPane;
 import Model.User;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 
-import java.io.IOException;
-
-public class LogInPageController implements iPane {
+public class LogInPageController implements iPane, AccountObserver {
 
     @FXML
     public AnchorPane pos_for_popUp_on_LogInPage;
@@ -32,9 +32,24 @@ public class LogInPageController implements iPane {
     @FXML
     private Text userExistanceText;
 
+    @FXML
+    private AnchorPane logInPage;
 
     @FXML
-    private void signUpButton(ActionEvent event) throws IOException {
+    private AnchorPane logInContent;
+
+    @FXML
+    private Line passwordLine;
+
+    @FXML
+    private Line userNameLine;
+
+
+    @FXML
+    private void signUpButton() {
+        back.setVisible(true);
+        pos_for_popUp_on_LogInPage.setVisible(true);
+
         pos_for_popUp_on_LogInPage.getChildren().clear();
         pos_for_popUp_on_LogInPage.getChildren().add(parent.getSignUpPopUp());
         back.toFront();
@@ -45,41 +60,79 @@ public class LogInPageController implements iPane {
     }
 
     @FXML
-    private void loadFirstPage(ActionEvent event) throws IOException {
+    private void loadFirstPage() {
 
-        if (user.getName() != null) {
+        int caseNumber = logInCaseChecker();
 
-            if (!user.getUsername().equals(usernameField.toString())) {
+        switch (caseNumber) {
 
-                usernameField.getStyleClass().add("confirmationButtonRed");
-                System.out.println("Incorrect Username ");
+            case 0 -> {
+                userExistanceText.setText("No user registered!");
+                userNameLine.setStroke(Color.RED);
+                passwordLine.setStroke(Color.RED);
             }
 
-            if (!user.getPassword().equals(logInField.toString())) {
+            case 1 -> {
+                userNameLine.setStroke(Color.GREEN);
+                passwordLine.setStroke(Color.RED);
+                userExistanceText.setText("Incorrect password! ");
+            }
+            case 2 -> {
+                userNameLine.setStroke(Color.RED);
+                passwordLine.setStroke(Color.GREEN);
+                userExistanceText.setText("Incorrect username! ");
+            }
 
-                logInField.getStyleClass().add("confirmationButtonRed");
-
-                System.out.println("Password ");
-            } else if (user.getUsername() != null && user.getPassword() != null) {
-
+            case 3 -> {
+                userNameLine.setStroke(Color.GREEN);
+                passwordLine.setStroke(Color.GREEN);
                 parent.showFirstPage();
-                System.out.println("Correct log in");
-                logInButton.getStyleClass().add("confirmationButtonGreen");
-
             }
-        } else {
-            userExistanceText.setText("No user registered!");
 
         }
-
 
     }
 
     @Override
     public void initPane(MainController parent) {
         this.parent = parent;
+        user.add(this);
     }
+
+    @Override
+    public void update() {
+        if (User.getInstance() != null) {
+
+            hidePopUp();
+        }
+    }
+
+    @FXML
+    private void hidePopUp() {
+
+        back.setVisible(false);
+        pos_for_popUp_on_LogInPage.setVisible(false);
+        logInContent.toFront();
+
+    }
+
+
+    private int logInCaseChecker() {
+
+        int caseNumber = 0;
+
+        if (user.getName() == null) {
+            return caseNumber;
+        }
+
+        if (user.getUsername().equals(usernameField.getText())) {
+            caseNumber++;
+        }
+        if (user.getPassword().equals(logInField.getText())) {
+            caseNumber = caseNumber + 2;
+        }
+
+        return caseNumber;
+    }
+
 }
-
-
-
