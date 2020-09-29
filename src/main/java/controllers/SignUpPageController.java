@@ -1,8 +1,3 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
 package controllers;
 
 import Model.AccountHandler;
@@ -21,8 +16,6 @@ public class SignUpPageController {
 
     User user = User.getInstance();
 
-    //TESTCOMMIT
-
     @FXML
     private TextField signUpName;
     @FXML
@@ -37,9 +30,6 @@ public class SignUpPageController {
     private Button createAccount;
 
 
-    public SignUpPageController() {
-    }
-
     public void initPane(MainController parent) {
         this.parent = parent;
     }
@@ -49,16 +39,27 @@ public class SignUpPageController {
 
         AccountHandler accountHandler = new AccountHandler() {
             @Override
-            public User createUser(TextField signUpName, TextField signUpUsername, TextField signUpEmail, TextField signUpPassword, TextField signUpConfirmPassword) {
+            public User createUser(TextField signUpName, TextField signUpUsername, TextField signUpEmail,
+                                   TextField signUpPassword, TextField signUpConfirmPassword) {
                 return super.createUser(signUpName, signUpUsername, signUpEmail, signUpPassword, signUpConfirmPassword);
             }
         };
 
         if (accountHandler.createUser(signUpName, signUpUsername, signUpEmail, signUpPassword, signUpConfirmPassword) != null) {
             user.notifyListeners();
-            parent.showFirstPage();
+            clearTextFields();
 
         } else System.out.println("Invalid user inputs! ");
+
+    }
+
+
+    private void clearTextFields() {
+
+        signUpName.clear();
+        signUpEmail.clear();
+        signUpPassword.clear();
+        signUpConfirmPassword.clear();
 
     }
 
