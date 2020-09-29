@@ -41,13 +41,12 @@ public class LogInPageController implements iPane {
         back.setStyle("-fx-background-color: #000000");
         back.setOpacity(0.5);
         pos_for_popUp_on_LogInPage.toFront();
-
     }
 
     @FXML
     private void loadFirstPage(ActionEvent event) throws IOException {
 
-        if (user.getName() != null) {
+       /* if (user.getName() != null) {
 
             if (!user.getUsername().equals(usernameField.toString())) {
 
@@ -62,16 +61,18 @@ public class LogInPageController implements iPane {
                 System.out.println("Password ");
             } else if (user.getUsername() != null && user.getPassword() != null) {
 
+
+        */
                 parent.showFirstPage();
                 System.out.println("Correct log in");
                 logInButton.getStyleClass().add("confirmationButtonGreen");
 
-            }
+     /*       }
         } else {
             userExistanceText.setText("No user registered!");
 
         }
-
+*/
 
     }
 
