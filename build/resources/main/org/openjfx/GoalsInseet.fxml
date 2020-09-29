@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="810.0" styleClass="SelectedBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane layoutX="14.0" layoutY="13.0" prefHeight="95.0" prefWidth="95.0" styleClass="notSelectedBox">
+         <children>
+            <ImageView fitHeight="94.0" fitWidth="95.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </AnchorPane>
+      <Text fx:id="savingNameText" layoutX="129.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Någon Sorts sparning" wrappingWidth="370.13671875">
+         <styleClass>
+            <String fx:value="font30px" />
+            <String fx:value="SelectedBox" />
+            <String fx:value="Enrique-Round" />
+         </styleClass>
+      </Text>
+      <Text fx:id="savingGoalText" layoutX="593.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="55000 SEK">
+         <styleClass>
+            <String fx:value="Enrique-Round" />
+            <String fx:value="font36px" />
+         </styleClass>
+      </Text>
+   </children>
+   <stylesheets>
+      <URL value="@../../cssFolder/font.css" />
+      <URL value="@../../cssFolder/fontSizes.css" />
+      <URL value="@../../cssFolder/Goals.css" />
+   </stylesheets>
+   <effect>
+      <DropShadow offsetX="-5.0" spread="0.1" />
+   </effect>
+</AnchorPane>
