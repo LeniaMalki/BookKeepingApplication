@@ -1,6 +1,5 @@
 package Model;
 
-import Model.Interfaces.AccountObserver;
 import Model.Interfaces.EntrySubject;
 import Model.Interfaces.EntryObserver;
 
@@ -12,14 +11,14 @@ public class Entry<T> implements EntrySubject {
     private List<EntryObserver> observers = new ArrayList<>();
     private T message;
 
-    double amout;
+    double amount;
     String name;
     String category;
     String typeOfEntry;
 
 
     public Entry(double cost, String name, String category, String typeOfEntry) {
-        this.amout = cost;
+        this.amount = cost;
         this.name = name;
         this.category=category;
         this.typeOfEntry=typeOfEntry;
@@ -38,8 +37,8 @@ public class Entry<T> implements EntrySubject {
     }
 
 
-    public double getAmout() {
-        return amout;
+    public double getAmount() {
+        return amount;
     }
 
     public String getName() {
