@@ -19,6 +19,9 @@ public class MainController {
     private AnchorPane signUpPopUp;
     private AnchorPane deleteAccountPopUp;
     private AnchorPane changePasswordPopUp;
+    private AnchorPane detailStatistics;
+    private DetailStatisticsController detailStatisticsController;
+
 
     @FXML
     private AnchorPane mainAnchor;
@@ -35,10 +38,9 @@ public class MainController {
         budgetPage = PaneFactory.initBudgetPane();
         statisticsOverviewPage = PaneFactory.initStatisticsOverviewPane();
         changePasswordPopUp = PaneFactory.initChangePasswordPopUp();
-
-        //TODO add all main anchopanes
-
-
+        PaneFactory.Pane<DetailStatisticsController> detailPane = PaneFactory.initStatisticsDetailPane();
+        detailStatistics = detailPane.anchorPane;
+        detailStatisticsController = detailPane.controller;
         showPage(logInPage);
     }
 
@@ -75,10 +77,8 @@ public class MainController {
     }
 
     void showStatisticsDetailPage(String text) {
-        PaneFactory.Pane<DetailStatisticsController> pane = PaneFactory.initStatisticsDetailPane();
-        showPage(pane.anchorPane);
-        pane.controller.setLabelPieChart(text);
-
+        detailStatisticsController.setLabelPieChart(text);
+        showPage(detailStatistics);
     }
 
     void showBudgetCharPage() {
