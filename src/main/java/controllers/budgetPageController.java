@@ -2,13 +2,17 @@ package controllers;
 
 import Model.Budget;
 import com.sun.javafx.scene.control.IntegerField;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.StackedBarChart;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 
+import java.text.NumberFormat;
 
 
 import javafx.beans.property.*;
@@ -25,27 +29,28 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.util.converter.IntegerStringConverter;
 import javafx.util.converter.NumberStringConverter;
 
+import javafx.util.converter.DoubleStringConverter;
+
 import javafx.util.StringConverter;
 import javafx.beans.property.IntegerProperty;
+
+import java.io.IOException;
 import java.util.function.UnaryOperator;
 import java.util.regex.Pattern;
 import javafx.scene.layout.StackPane;
 
 
 
-
-
 public class budgetPageController implements ChildPane {
 
     mainController parent;
+    Budget budget;
+
     @Override
     public void initPane(mainController parent) {
-        this.parent=parent;
+        this.parent = parent;
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
-        
 
-// TODO -- when writing a value into the textfield the slider showed adjust accordingly
-        //TODO -- values on slider not that specfic round to 10/100
 
         //transportAmountLabel.setText(String.valueOf(Math.round(Float.parseFloat(transportSlider.getValue() + ""))));
 
@@ -54,39 +59,35 @@ public class budgetPageController implements ChildPane {
             public void changed(ObservableValue<? extends Number> observable,
                                 Number oldValue, Number newValue) {
 
+                /*foodSlider.setValue(newValue.intValue());
+                householdSlider.setValue(newValue.intValue());
+                shoppingSlider.setValue(newValue.intValue());
+                transportSlider.setValue(newValue.intValue());
+                otherSlider.setValue(newValue.intValue());
+                savingsSlider.setValue(newValue.intValue());*/
+
+                //foodSlider.setValue(newValue.intValue());
+
+
+
                 foodProgressBar.setProgress(foodSlider.getValue() / 100);
                 householdProgressBar.setProgress(householdSlider.getValue() / 100);
                 shoppingProgressBar.setProgress(shoppingSlider.getValue() / 100);
                 transportProgressBar.setProgress(transportSlider.getValue() / 100);
                 otherProgressBar.setProgress(otherSlider.getValue() / 100);
                 savingsProgressBar.setProgress(savingsSlider.getValue() / 100);
-
-
-                /*foodAmountLabel.setText(new Integer((int) foodSlider.getValue()) + " kr");
-                householdAmountLabel.setText(new Integer((int) householdSlider.getValue()) + " kr");
-                shoppingAmountLabel.setText(new Integer((int) shoppingSlider.getValue()) + " kr");
-                transportAmountLabel.setText(new Integer((int) shoppingSlider.getValue()) + " kr");
-                otherAmountLabel.setText(new Integer((int) shoppingSlider.getValue()) + " kr");
-                savingsAmountLabel.setText(new Integer((int) shoppingSlider.getValue()) + " kr");*/
-
-                //transportTextField.setText(new Integer((int) transportSlider.getValue()) + " kr");
-                /*String typed = transportTextField.getText();
-                int value = Integer.parseInt(typed);
-                foodSlider.setValue(value);*/
-
-                System.out.println("R,G,B = " + foodSlider.getValue() + "," + householdSlider.getValue() + "," + shoppingSlider.getValue());
             }
         };
 
+        foodSlider.valueProperty().addListener(changeListener);
+        householdSlider.valueProperty().addListener(changeListener);
+        shoppingSlider.valueProperty().addListener(changeListener);
+        transportSlider.valueProperty().addListener(changeListener);
+        otherSlider.valueProperty().addListener(changeListener);
+        savingsSlider.valueProperty().addListener(changeListener);
 
-     /*   foodSlider.valueProperty().addListener(new ChangeListener<Number>() {
-            public void changed(ObservableValue<? extends Number> ov,
-                                Number old_val, Number new_val) {
-                foodProgressBar.setProgress(new_val.doubleValue() / 100);
-            }
-        });*/
 
-        foodProgressBar.setLayoutX(foodSlider.getLayoutX());
+      /*  foodProgressBar.setLayoutX(foodSlider.getLayoutX());
         foodProgressBar.setLayoutY(foodSlider.getLayoutY());
         householdProgressBar.setLayoutX(householdSlider.getLayoutX());
         householdProgressBar.setLayoutY(householdSlider.getLayoutY());
@@ -97,15 +98,7 @@ public class budgetPageController implements ChildPane {
         otherProgressBar.setLayoutX(otherSlider.getLayoutX());
         otherProgressBar.setLayoutY(otherSlider.getLayoutY());
         savingsProgressBar.setLayoutX(savingsSlider.getLayoutX());
-        savingsProgressBar.setLayoutY(savingsSlider.getLayoutY());
-
-
-        foodSlider.valueProperty().addListener(changeListener);
-        householdSlider.valueProperty().addListener(changeListener);
-        shoppingSlider.valueProperty().addListener(changeListener);
-        transportSlider.valueProperty().addListener(changeListener);
-        otherSlider.valueProperty().addListener(changeListener);
-        savingsSlider.valueProperty().addListener(changeListener);
+        savingsProgressBar.setLayoutY(savingsSlider.getLayoutY());*/
 
         foodSlider.setStyle("-fx-control-inner-background: null");
         foodProgressBar.setStyle("-fx-accent: #F66A80");
@@ -120,71 +113,140 @@ public class budgetPageController implements ChildPane {
         savingsSlider.setStyle("-fx-control-inner-background: null");
         savingsProgressBar.setStyle("-fx-accent: #F66A80");
 
-        foodTextField.setText("0");
-        householdTextField.setText("0");
-        shoppingTextField.setText("0");
-        transportTextField.setText("0");
-        otherTextField.setText("0");
-        savingsTextField.setText("0");
 
+   /*     int income = Integer.parseInt(String.valueOf(budget.getIncome()));
+        int currentIncome = income;*/
 
-
-        
-
-
-
-        transportTextField.textProperty().bindBidirectional(transportSlider.valueProperty(), new NumberStringConverter()
-        {
-            public String toString(int t)
-            {
+        /*transportTextField.textProperty().bindBidirectional(transportSlider.valueProperty(), new NumberStringConverter() {
+            public String toString(int t) {
                 int value = (int) Math.floor(t);
                 return String.valueOf(value);
             }
 
             @Override
-            public Integer fromString(String string)
-            {
+            public Integer fromString(String string) {
+                return Integer.parseInt(string);
+            }
+
+        });*/
+
+        //textField.textProperty().bindBidirectional(slider.valueProperty(), new NumberStringConverter());
+
+
+        transportTextField.textProperty().bindBidirectional(transportSlider.valueProperty(), new NumberStringConverter());
+        foodTextField.textProperty().bindBidirectional(foodSlider.valueProperty(), new NumberStringConverter());
+        householdTextField.textProperty().bindBidirectional(householdSlider.valueProperty(), new NumberStringConverter());
+        shoppingTextField.textProperty().bindBidirectional(shoppingSlider.valueProperty(), new NumberStringConverter());
+        otherTextField.textProperty().bindBidirectional(otherSlider.valueProperty(), new NumberStringConverter());
+        savingsTextField.textProperty().bindBidirectional(savingsSlider.valueProperty(), new NumberStringConverter());
+
+
+
+/*
+        StringConverter<Integer> converter = new StringConverter<Integer>() {
+
+            @Override
+            public Integer fromString(String string) {
+                return Integer.parseInt(string);
+            }
+
+
+            @Override
+            public String toString(Integer integer) {
+                return integer.toString();
+            }
+        };*/
+
+        //transportTextField.textProperty().bindBiD(transportSlider.valueProperty(), converter);
+
+
+        //Bindings.bindBidirectional(transportTextField, transportSlider, new NumberStringConverter());
+
+
+
+    }
+
+
+/*    public void bindSliderText(TextField textfield, Slider slider) {
+
+        textfield.textProperty().bindBidirectional(slider.valueProperty(), new NumberStringConverter() {
+            public String toString(int t) {
+                int value = (int) Math.floor(t);
+                return String.valueOf(value);
+            }
+
+            @Override
+            public Integer fromString(String string) {
                 return Integer.parseInt(string);
             }
 
         });
 
+        // bind text
+        double x = Double.parseDouble(textfield.getText());
+        slider.setValue(x);
+
+        // bind slider
+        String value = Double.toString(slider.getValue()).format("%.2f", slider.getValue());
+        textfield.setText(value);
+
+
+    }*/
+
+
+//TODO-- fix this method; probably have to launch(arg) or something
+
+    private void addingMenuItem(){
+        int i = 1;
+        RadioMenuItem radioMenuItem = new RadioMenuItem("Budget" + i);
+        ToggleGroup toggleGroup = new ToggleGroup();
+        radioMenuItem.setToggleGroup(toggleGroup);
+        radioMenuItem.setSelected(true);
+        previousBudgetButton.getItems().add(radioMenuItem);
+        i++;
     }
 
+
     @FXML
-    private void bindShoppingText() {
-        double x = Double.parseDouble(transportTextField.getText());
-        transportSlider.setValue(x);
+    private void onSaveButtonPressed(ActionEvent event) throws IOException {
+        budget.setFoodCost((int) foodSlider.getValue());
+        budget.setHouseholdCost((int) householdSlider.getValue());
+        budget.setShoppingCost((int) shoppingSlider.getValue());
+        budget.setTransportCost((int) transportSlider.getValue());
+        budget.setSavingsCost((int) savingsSlider.getValue());
+        budget.setOtherCost((int) otherSlider.getValue());
+
+
+
+    }
+    @FXML
+    private void canDrag(ActionEvent event){
+        int income = 150;
+        int currentIncome = 0;
+        sumOfAllSliders(foodSlider, income, currentIncome);
+        sumOfAllSliders(householdSlider, income, currentIncome);
+        sumOfAllSliders(transportSlider, income, currentIncome);
+        sumOfAllSliders(shoppingSlider, income, currentIncome);
+        sumOfAllSliders(otherSlider, income, currentIncome);
+        sumOfAllSliders(savingsSlider, income, currentIncome);
+        System.out.println(currentIncome);
+
     }
 
-    @FXML
-    private void bindShoppingSlider() {
-        String value = Double.toString(transportSlider.getValue()).format("%.2f", transportSlider.getValue()); //.format("%.2f", transportSlider.getValue()
-        transportTextField.setText(value); //transportSlider.valueProperty()); //new StringConverter<Number>()
+
+    private int sumOfAllSliders ( Slider slider, int maxTotal, int currentTotal){
+        if (slider.getValue() > (maxTotal - currentTotal)) {
+            slider.setValue(maxTotal - currentTotal);
+
+            currentTotal = (int) (foodSlider.getValue() + householdSlider.getValue()
+                    + shoppingSlider.getValue() + transportSlider.getValue() + otherSlider.getValue() + savingsSlider.getValue());
+        } else{
+            currentTotal = (int) (foodSlider.getValue() + householdSlider.getValue()
+                    + shoppingSlider.getValue() + transportSlider.getValue() + otherSlider.getValue() + savingsSlider.getValue());
+        }
+        return currentTotal;
     }
 
-    private void onSaveButtonPressed(){
-        //budget.setFood(foodTextField.getText);
-    }
-
-
-    @FXML
-    private Label foodLabel;
-
-    @FXML
-    private Label householdLabel;
-
-    @FXML
-    private Label shoppingLabel;
-
-    @FXML
-    private Label transportLabel;
-
-    @FXML
-    private Label otherLabel;
-
-    @FXML
-    private Label savingsLabel;
 
     @FXML
     private Slider foodSlider;
@@ -206,9 +268,6 @@ public class budgetPageController implements ChildPane {
 
     @FXML
     private Button saveButton;
-
-    @FXML
-    private Button enterIncomeButton;
 
     @FXML
     private MenuButton previousBudgetButton;
@@ -260,6 +319,25 @@ public class budgetPageController implements ChildPane {
 
     @FXML
     private ProgressBar savingsProgressBar;
+
+
+
+
+
+/*
+
+    @FXML
+    private void bindTransportText () {
+        double x = Double.parseDouble(transportTextField.getText());
+        transportSlider.setValue(x);
+    }
+
+    @FXML
+    private void bindTransportSlider () {
+        String value = Double.toString(transportSlider.getValue()).format("%.2f", transportSlider.getValue()); //.format("%.2f", transportSlider.getValue()
+        transportTextField.setText(value); //transportSlider.valueProperty()); //new StringConverter<Number>()
+    }
+*/
 
 
 }
@@ -365,6 +443,90 @@ public class budgetPageController implements ChildPane {
                 return Double.parseDouble(string);
             }
 
+
+        });*/
+
+        /*foodAmountLabel.setText(new Integer((int) foodSlider.getValue()) + " kr");
+                householdAmountLabel.setText(new Integer((int) householdSlider.getValue()) + " kr");
+                shoppingAmountLabel.setText(new Integer((int) shoppingSlider.getValue()) + " kr");
+                transportAmountLabel.setText(new Integer((int) shoppingSlider.getValue()) + " kr");
+                otherAmountLabel.setText(new Integer((int) shoppingSlider.getValue()) + " kr");
+                savingsAmountLabel.setText(new Integer((int) shoppingSlider.getValue()) + " kr");*/
+
+//transportTextField.setText(new Integer((int) transportSlider.getValue()) + " kr");
+                /*String typed = transportTextField.getText();
+                int value = Integer.parseInt(typed);
+                foodSlider.setValue(value);*/
+
+
+                /*   foodSlider.valueProperty().addListener(new ChangeListener<Number>() {
+            public void changed(ObservableValue<? extends Number> ov,
+                                Number old_val, Number new_val) {
+                foodProgressBar.setProgress(new_val.doubleValue() / 100);
+            }
+        });*/
+
+/*                shoppingTextField.textProperty().bindBidirectional(shoppingSlider.valueProperty(), new NumberStringConverter() {
+public String toString(int t) {
+        int value = (int) Math.floor(t);
+        return String.valueOf(value);
+        }
+
+@Override
+public Integer fromString(String string) {
+        return Integer.parseInt(string);
+        }
+
+        });
+
+        foodTextField.textProperty().bindBidirectional(foodSlider.valueProperty(), new NumberStringConverter() {
+public String toString(int t) {
+        int value = (int) Math.floor(t);
+        return String.valueOf(value);
+        }
+
+@Override
+public Integer fromString(String string) {
+        return Integer.parseInt(string);
+        }
+
+        });
+
+        householdTextField.textProperty().bindBidirectional(householdSlider.valueProperty(), new NumberStringConverter() {
+public String toString(int t) {
+        int value = (int) Math.floor(t);
+        return String.valueOf(value);
+        }
+
+@Override
+public Integer fromString(String string) {
+        return Integer.parseInt(string);
+        }
+
+        });
+        otherTextField.textProperty().bindBidirectional(otherSlider.valueProperty(), new NumberStringConverter() {
+public String toString(int t) {
+        int value = (int) Math.floor(t);
+        return String.valueOf(value);
+        }
+
+@Override
+public Integer fromString(String string) {
+        return Integer.parseInt(string);
+        }
+
+        });
+
+        savingsTextField.textProperty().bindBidirectional(savingsSlider.valueProperty(), new NumberStringConverter() {
+public String toString(int t) {
+        int value = (int) Math.floor(t);
+        return String.valueOf(value);
+        }
+
+@Override
+public Integer fromString(String string) {
+        return Integer.parseInt(string);
+        }
 
         });*/
     
