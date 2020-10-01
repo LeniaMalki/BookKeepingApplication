@@ -1,12 +1,8 @@
 package controllers;
 
-import Model.AccountHandler;
-import Model.User;
-import javafx.event.ActionEvent;
+import Model.AccountDataHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
@@ -15,40 +11,37 @@ public class DeleteAccountPopUpController {
     @FXML
     public AnchorPane delAccPopUp;
     MainController parent;
-    User user = User.getInstance();
-
-    @FXML
-    private Button deleteAccountButton;
-    @FXML
-    private ImageView exitButton;
     @FXML
     private PasswordField enterPasswordToDelete;
     @FXML
     private Text passwordIncorrectMessage;
 
-
+    //Initialize
     public void initPane(MainController parent) {
         this.parent = parent;
     }
 
-
+    //Button actions
     @FXML
-    public void deleteAccountConfirm(ActionEvent actionEvent) {
+    private void deleteAccountConfirm() {
 
-
-        AccountHandler accountHandler = new AccountHandler() {
+        AccountDataHandler accountDataHandler = new AccountDataHandler() {
             @Override
-            public boolean doesPasswordMatch(String userPassword, String confirmPassword) {
-                return super.doesPasswordMatch(userPassword, confirmPassword);
+            public boolean doesPasswordMatch(String inputPassword) {
+                return super.doesPasswordMatch(inputPassword);
+            }
+
+            @Override
+            public void deleteAccount() {
+                super.deleteAccount();
             }
         };
 
-        if (accountHandler.doesPasswordMatch(user.getPassword(), enterPasswordToDelete.getText())) {
+        if (accountDataHandler.doesPasswordMatch(enterPasswordToDelete.getText())) {
+            accountDataHandler.deleteAccount();
             parent.showLogInPage();
-
         } else {
             passwordIncorrectMessage.setText("Password is incorrect! Try again.");
-            enterPasswordToDelete.getStyleClass().add("confirmationButtonRed");
         }
 
 
