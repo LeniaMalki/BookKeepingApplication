@@ -1,8 +1,10 @@
 package Model;
 
+import Model.Interfaces.iSavingsRegister;
+
 import java.util.HashMap;
 
-public class SavingsOverview {
+public class SavingsOverview implements iSavingsRegister {
     HashMap<String, SavingGoal> savingGoalHashMap = new HashMap<>();
     private static SavingsOverview savingsInstance;
 
@@ -21,4 +23,8 @@ public class SavingsOverview {
     }
 
 
+    @Override
+    public void addSavingsGoal(String name, SavingGoal goal) {
+        savingGoalHashMap.put(name,goal);
+    }
 }
