@@ -1,0 +1,16 @@
+.SelectedBox{
+     -fx-background-radius: 10px;
+     -fx-background-color: #DCDCDC;
+ }
+ .notSelectedBox{
+     -fx-background-radius: 10px;
+     -fx-background-color: #FFFFFF
+     }
+.blackText{
+    -fx-text-fill: black;
+}
+
+.whiteBackground{
+     -fx-background-color: #FFFFFF
+
+}
