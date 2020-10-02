@@ -10,7 +10,6 @@ import javafx.scene.chart.StackedBarChart;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
-public class BudgetPageController implements iPane {
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 
@@ -19,14 +18,13 @@ import javafx.util.converter.NumberStringConverter;
 import java.io.IOException;
 
 
-public class budgetPageController implements ChildPane {
+public class BudgetPageController implements iPane {
 
     MainController parent;
-    mainController parent;
     Budget budget;
 
     @Override
-    public void initPane(mainController parent) {
+    public void initPane(MainController parent) {
         this.parent = parent;
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
 
@@ -104,7 +102,6 @@ public class budgetPageController implements ChildPane {
 
 
     @FXML
-    private Label foodLabel;
     private void onSaveButtonPressed(ActionEvent event) throws IOException {
         budget.setFoodCost((int) foodSlider.getValue());
         budget.setHouseholdCost((int) householdSlider.getValue());
@@ -117,7 +114,6 @@ public class budgetPageController implements ChildPane {
     }
 
     @FXML
-    private Label householdLabel;
     private void canDrag(ActionEvent event) {
         int income = 150;
         int currentIncome = 0;
@@ -148,99 +144,98 @@ public class budgetPageController implements ChildPane {
 
     @FXML
     private Label shoppingLabel;
-    private Slider foodSlider;
 
     @FXML
     private Label transportLabel;
-    private Slider householdSlider;
 
     @FXML
     private Label otherLabel;
-    private Slider shoppingSlider;
 
     @FXML
     private Label savingsLabel;
-    private Slider transportSlider;
 
     @FXML
     private Label foodAmountLabel;
-    private Slider otherSlider;
 
     @FXML
     private Label householdAmountLabel;
-    private Slider savingsSlider;
 
     @FXML
     private Label shoppingAmountLabel;
-    private Button saveButton;
 
     @FXML
     private MenuButton previousBudgetButton;
 
     @FXML
     private Label transportAmountLabel;
-    private CheckMenuItem checkMenuItem1;
 
     @FXML
     private Label otherAmountLabel;
-    private CheckMenuItem checkMenuItem2;
 
     @FXML
     private Label savingsAmountLabel;
-    private AnchorPane headerAnchorPane;
 
     @FXML
     private Slider foodSlider;
+
+    @FXML
     private TextField enterIncomeTextField;
 
     @FXML
     private Slider householdSlider;
+
+    @FXML
     private TextField transportTextField;
 
     @FXML
     private Slider shoppingSlider;
+
+    @FXML
     private TextField foodTextField;
 
     @FXML
     private Slider transportSlider;
+
+    @FXML
     private TextField householdTextField;
 
     @FXML
     private Slider otherSlider;
+
+    @FXML
     private TextField shoppingTextField;
 
     @FXML
     private Slider savingsSlider;
+
+    @FXML
     private TextField otherTextField;
 
     @FXML
     private Button saveButton;
+
+    @FXML
     private TextField savingsTextField;
 
     @FXML
     private Button enterIncomeButton;
+
+    @FXML
     private ProgressBar foodProgressBar;
 
     @FXML
-    private MenuButton previousBudgetButton;
     private ProgressBar householdProgressBar;
 
     @FXML
-    private CheckMenuItem checkMenuItem1;
     private ProgressBar shoppingProgressBar;
 
     @FXML
-    private CheckMenuItem checkMenuItem2;
     private ProgressBar transportProgressBar;
 
     @FXML
     private AnchorPane headerAnchorPane;
 
-    @Override
-    public void initPane(MainController parent) {
-        this.parent = parent;
-        headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
-    }
+    @FXML
     private ProgressBar otherProgressBar;
 
     @FXML
