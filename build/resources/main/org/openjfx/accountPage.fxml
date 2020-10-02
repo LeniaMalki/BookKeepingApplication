@@ -8,6 +8,9 @@
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -35,12 +38,12 @@
                         <Font size="40.0" />
                     </font>
                 </Text>
-                <Text fill="#615f5f" layoutX="147.0" layoutY="533.9140625" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-BoldRound" text="Name">
+                <Text fill="#615f5f" layoutX="143.0" layoutY="558.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-BoldRound" text="Name">
                     <font>
                         <Font size="40.0" />
                     </font>
                 </Text>
-                <Text fill="#615f5f" layoutX="144.0" layoutY="736.9140625" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-BoldRound" text="Email">
+                <Text fill="#615f5f" layoutX="136.0" layoutY="754.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-BoldRound" text="Email">
                     <font>
                         <Font size="40.0" />
                     </font>
@@ -70,37 +73,22 @@
                         <Font size="35.0" />
                     </font>
                 </TextField>
-                <ImageView fx:id="editUsername" accessibleRole="BUTTON" fitHeight="50.0" fitWidth="50.0" layoutX="595.0" layoutY="407.0" pickOnBounds="true">
-                    <image>
-                        <Image url="@../../Images/editSymbol2.png" />
-                    </image>
-                </ImageView>
-                <TextField fx:id="nameSetting" layoutX="144.0" layoutY="603.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onNameEdited" prefHeight="74.0" prefWidth="522.0" promptText="Anders">
+                <TextField fx:id="nameSetting" layoutX="141.0" layoutY="577.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onNameEdited" prefHeight="74.0" prefWidth="522.0" promptText="Anders">
                     <font>
                         <Font size="35.0" />
                     </font>
                 </TextField>
-                <ImageView fx:id="editName" accessibleRole="BUTTON" fitHeight="50.0" fitWidth="50.0" layoutX="594.0" layoutY="613.0" pickOnBounds="true">
-                    <image>
-                        <Image url="@../../Images/editSymbol2.png" />
-                    </image>
-                </ImageView>
-                <TextField fx:id="emailSetting" layoutX="144.0" layoutY="793.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onEmailEdited" prefHeight="74.0" prefWidth="522.0" promptText="anders123@hotmail.com">
+                <TextField fx:id="emailSetting" layoutX="141.0" layoutY="767.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onEmailEdited" prefHeight="74.0" prefWidth="522.0" promptText="anders123@hotmail.com">
                     <font>
                         <Font size="35.0" />
                     </font>
                 </TextField>
-                <ImageView fx:id="editEmail" accessibleRole="BUTTON" fitHeight="50.0" fitWidth="50.0" layoutX="594.0" layoutY="801.0" pickOnBounds="true">
-                    <image>
-                        <Image url="@../../Images/editSymbol2.png" />
-                    </image>
-                </ImageView>
                 <Text fill="#615f5f" layoutX="900.0" layoutY="866.2314453125" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-LightRound" text="English">
                     <font>
                         <Font size="35.0" />
                     </font>
                 </Text>
-                <Hyperlink fx:id="changePasswordLink" layoutX="900.0" layoutY="403.0" onAction="#onChangePasswordLinkPressed" stylesheets="@../../cssFolder/accountPage.css" text="Change Password" textFill="#f66a80">
+                <Hyperlink fx:id="changePasswordLink" layoutX="900.0" layoutY="403.0" onAction="#openChangePasswordPop" stylesheets="@../../cssFolder/accountPage.css" text="Change Password" textFill="#f66a80" underline="true">
                     <font>
                         <Font size="35.0" />
                     </font>
@@ -112,7 +100,7 @@
                         <String fx:value="accountPageHyperLink" />
                     </styleClass>
                 </Hyperlink>
-                <Hyperlink fx:id="deleteAccountLink" layoutX="900.0" layoutY="602.0" onAction="#onDeleteAccountLinkPressed" stylesheets="@../../cssFolder/accountPage.css" text="Delete account" textFill="#f66a80">
+                <Hyperlink fx:id="deleteAccountLink" layoutX="900.0" layoutY="602.0" onAction="#openDeleteAccountPop" stylesheets="@../../cssFolder/accountPage.css" text="Delete account" textFill="#f66a80" underline="true">
                     <font>
                         <Font size="35.0" />
                     </font>
@@ -129,7 +117,7 @@
                         <Image url="@../../Images/kugghjul.png" />
                     </image>
                 </ImageView>
-            <Button fx:id="submitChangesButton" layoutX="254.0" layoutY="908.0" mnemonicParsing="false" onAction="#onActionSubmitChangesButton" text="Submit Changes">
+            <Button fx:id="submitChangesButton" alignment="CENTER" layoutX="254.0" layoutY="908.0" mnemonicParsing="false" onAction="#onActionSubmitChangesButton" text="Submit Changes">
                <font>
                   <Font size="36.0" />
                </font>
@@ -137,7 +125,14 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
                <effect>
-                  <DropShadow />
+                  <Lighting diffuseConstant="1.65">
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant azimuth="242.79" />
+                     </light>
+                  </Lighting>
                </effect>
             </Button>
             </children>

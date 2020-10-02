@@ -1,16 +1,13 @@
 package controllers;
 
-import Model.AccountHandler;
+import Model.AccountDataHandler;
 import Model.Interfaces.AccountObserver;
 import Model.Interfaces.iPane;
 import Model.User;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-
-import java.io.IOException;
 
 
 public class AccountPageController implements iPane, AccountObserver {
@@ -34,22 +31,21 @@ public class AccountPageController implements iPane, AccountObserver {
     private Button submitChangesButton;
 
     @FXML
-    private void onDeleteAccountLinkPressed(ActionEvent event) throws IOException {
-
-        popUpOpener();
+    private void openDeleteAccountPop() {
+        popUpHandler();
         pos_for_popUp_on_accountPage.getChildren().add(parent.getDeleteAccountPopUp());
     }
 
     @FXML
-    private void onChangePasswordLinkPressed(ActionEvent event) throws IOException {
-        popUpOpener();
+    private void openChangePasswordPop() {
+        popUpHandler();
         pos_for_popUp_on_accountPage.getChildren().add(parent.getChangePasswordPopUp());
     }
 
     /**
      * Handles image view for opening a pop up on account page
      */
-    private void popUpOpener() {
+    private void popUpHandler() {
         pos_for_popUp_on_accountPage.getChildren().clear();
         back.toFront();
         back.setStyle("-fx-background-color: #000000");
@@ -79,26 +75,21 @@ public class AccountPageController implements iPane, AccountObserver {
 
     public void onUsernameEdited() {
         user.setUsername(usernameSetting.getText());
-        System.out.println("username  " + user.getUsername());
     }
 
     public void onNameEdited() {
-
         user.setName(nameSetting.getText());
-        System.out.println("name:  " + user.getName());
-
     }
 
     public void onEmailEdited() {
         user.setEmailAddress(emailSetting.getText());
-        System.out.println("email address:  " + user.getEmailAddress());
     }
 
     private boolean changeAccountTextFields() {
 
         int numError = 0;
 
-        AccountHandler accountHandler = new AccountHandler() {
+        AccountDataHandler accountDataHandler = new AccountDataHandler() {
             @Override
             public boolean isValidEmail(String email) {
                 return super.isValidEmail(email);
@@ -110,12 +101,12 @@ public class AccountPageController implements iPane, AccountObserver {
             }
         };
 
-        if (!accountHandler.isValidEmail(emailSetting.getText())) {
+        if (!accountDataHandler.isValidEmail(emailSetting.getText())) {
 
             emailSetting.getStyleClass().add("confirmationButtonRed");
             numError++;
         }
-        if (!accountHandler.isValidName(nameSetting.getText())) {
+        if (!accountDataHandler.isValidName(nameSetting.getText())) {
 
             nameSetting.getStyleClass().add("confirmationButtonRed");
             numError++;
@@ -125,7 +116,7 @@ public class AccountPageController implements iPane, AccountObserver {
             numError++;
         }
 
-        if (accountHandler.isValidName(nameSetting.getText()) && accountHandler.isValidEmail(emailSetting.getText()) && !(usernameSetting.getText().length() == 0)) {
+        if (accountDataHandler.isValidName(nameSetting.getText()) && accountDataHandler.isValidEmail(emailSetting.getText()) && !(usernameSetting.getText().length() == 0)) {
 
             nameSetting.getStyleClass().remove("confirmationButtonRed");
             emailSetting.getStyleClass().remove("confirmationButtonRed");
