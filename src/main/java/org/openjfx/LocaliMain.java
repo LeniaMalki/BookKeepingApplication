@@ -14,6 +14,7 @@ public class LocaliMain extends Application {
     public void start(Stage stage) throws Exception {
         Scene scene = new Scene(PaneFactory.initMain(), 1440, 1024);
         stage.setTitle("Locali");
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
 

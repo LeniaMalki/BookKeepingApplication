@@ -37,21 +37,23 @@ public class LogInPageController implements iPane, AccountObserver {
 
     //Button actions
     @FXML
-    private void signUpButton() {
 
-        if (!(user.doesUserExist()) ) {
-            back.setVisible(true);
-            pos_for_popUp_on_LogInPage.setVisible(true);
+            private void signUpButton() {
 
-            pos_for_popUp_on_LogInPage.getChildren().clear();
-            pos_for_popUp_on_LogInPage.getChildren().add(parent.getSignUpPopUp());
-            back.toFront();
-            back.setStyle("-fx-background-color: #000000");
-            back.setOpacity(0.5);
-            pos_for_popUp_on_LogInPage.toFront();
-        }
-        else {userExistanceText.setText("A user already exits!");
+                if (!(user.doesUserExist()) ) {
+                    back.setVisible(true);
+                    pos_for_popUp_on_LogInPage.setVisible(true);
+
+                    pos_for_popUp_on_LogInPage.getChildren().clear();
+                    pos_for_popUp_on_LogInPage.getChildren().add(parent.getSignUpPopUp());
+                    back.toFront();
+                    back.setStyle("-fx-background-color: #000000");
+                    back.setOpacity(0.5);
+                    pos_for_popUp_on_LogInPage.toFront();
+                }
+                else {userExistanceText.setText("A user already exits!");
             userExistanceText.setFill(Color.RED); }
+
     }
 
     @FXML
@@ -71,6 +73,7 @@ public class LogInPageController implements iPane, AccountObserver {
             usernameField.clear();
             logInField.clear();
             parent.showFirstPage();
+
         } else {
             userExistanceText.setFill(Color.RED);
         }
