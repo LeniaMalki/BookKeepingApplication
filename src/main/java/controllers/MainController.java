@@ -33,7 +33,7 @@ public class MainController {
         firstPage = PaneFactory.initFirstPane();
         accountPage = PaneFactory.initAccountPane();
         entryPage = PaneFactory.initEntryPane();
-        goalsPage = PaneFactory.initGoalsPane(); //weird
+        goalsPage = PaneFactory.initGoalsPane();
         budgetCharPage = PaneFactory.initBudgetCharPane();
         budgetPage = PaneFactory.initBudgetPane();
         statisticsOverviewPage = PaneFactory.initStatisticsOverviewPane();
