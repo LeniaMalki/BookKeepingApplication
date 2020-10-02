@@ -39,7 +39,7 @@ public class Entry extends EntrySubject {
     }
 
     public Entry getEntry() {
-        return this;    
+        return this;
     }
 
 }
