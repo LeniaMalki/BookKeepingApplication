@@ -1,18 +1,25 @@
 package controllers;
 
+import Model.EntrySubject;
+import Model.Interfaces.EntryObserver;
+import Model.Interfaces.SavingsObserver;
 import Model.Interfaces.iIconSelector;
+import Model.SavingGoal;
+import Model.SavingsOverview;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
+import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 
-public class NewGoalsInsertController extends AnchorPane {
+public class NewGoalsInsertController extends AnchorPane implements EntryObserver {
 
     @FXML
     private AnchorPane savingsAnchorPane;
@@ -38,10 +45,15 @@ public class NewGoalsInsertController extends AnchorPane {
     @FXML
     private AnchorPane infoAnchorPane;
 
+    @FXML
+    private ImageView savingsImage;
+
     iIconSelector iconSelector;
 
+    SavingsOverview savingsOverview;
 
-    private int amoutSaved = 10;
+
+    private double amoutSaved = 0;
 
     public NewGoalsInsertController() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/openjfx/GoalsInseet.fxml"));
@@ -52,19 +64,54 @@ public class NewGoalsInsertController extends AnchorPane {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
-
+        savingsOverview = SavingsOverview.getInstance();
+        EntrySubject.add(this);
     }
 
     @FXML
-    public void addNewGoal(MouseEvent mouseEvent){
+    public void addNewGoal(MouseEvent mouseEvent) {
         savingNameText.setText(nameOfSavingTextField.getText());
-        savingGoalText.setText(amoutSaved + " of " + savingAmountTextField.getText() + " saved");
-        amoutSavedProgressBar.setProgress(amoutSaved/Double.parseDouble(savingAmountTextField.getText()));
+        updateSavingLabel();
+        updateProgressBar();
         savingsAnchorPane1.getChildren().clear();
         savingsAnchorPane1.setVisible(false);
+        savingsImage.setImage(new Image(new File("/../resources/Images/piggyBank.png").toURI().toString()));
+        try {
+            registerSavingGoal(Integer.parseInt(savingAmountTextField.getText()), savingNameText.getText(), savingsImage.getImage());
+        } catch (Exception e) {
+            System.out.println(e);
+        } finally {
+            //ge error message att det bara kan skrivas in integers här
+        }
+
     }
+
     @FXML
     public void newIconButtonClicked(MouseEvent mouseEvent) {
         iconSelector.selectIconForSavings();
+    }
+
+    private void registerSavingGoal(int goal, String name, Image image) {
+        SavingGoal savingGoal = new SavingGoal(goal, name, image);
+    }
+
+
+    @Override
+    public void update(String category, String type, double Value) {
+        if (category.equals(nameOfSavingTextField.getText())) {
+            amoutSaved =+ savingsOverview.getAmountSaved(category);
+            updateSavingLabel();
+            updateProgressBar();
+        }
+
+    }
+
+    private void updateSavingLabel() {
+        savingGoalText.setText(amoutSaved + " of " + savingAmountTextField.getText() + " saved");
+    }
+
+    private void updateProgressBar() {
+        amoutSavedProgressBar.setProgress(amoutSaved / Double.parseDouble(savingAmountTextField.getText()));
+
     }
 }
