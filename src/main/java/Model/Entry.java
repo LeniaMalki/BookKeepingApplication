@@ -1,18 +1,14 @@
 package Model;
 
+
 import Model.Interfaces.EntryObserver;
 
-import java.util.ArrayList;
-import java.util.List;
-
-
 public class Entry extends EntrySubject {
-    private List<EntryObserver> observers = new ArrayList<>();
 
     double amout;
-    String name;
-    String category;
-    String typeOfEntry;
+    final String name;
+    final String category;
+    final String typeOfEntry;
 
 
     public Entry(double cost, String name, String category, String typeOfEntry) {
@@ -42,4 +38,10 @@ public class Entry extends EntrySubject {
         return this;
     }
 
+    @Override
+    public void notifyListeners() {
+        for (EntryObserver observer : observers) {
+            observer.update(this.getCategory(), this.getTypeOfEntry(), this.getAmout());
+        }
+    }
 }

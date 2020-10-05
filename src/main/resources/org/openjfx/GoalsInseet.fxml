@@ -33,7 +33,7 @@
       </AnchorPane>
       <AnchorPane layoutX="14.0" layoutY="13.0" prefHeight="95.0" prefWidth="95.0" styleClass="notSelectedBox">
          <children>
-            <ImageView fitHeight="94.0" fitWidth="95.0" pickOnBounds="true" preserveRatio="true" styleClass="notSelectedBox" />
+            <ImageView fx:id="savingsImage" fitHeight="94.0" fitWidth="95.0" pickOnBounds="true" preserveRatio="true" styleClass="notSelectedBox" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="savingsAnchorPane1" layoutX="143.0" prefHeight="120.0" prefWidth="667.0" styleClass="whiteBackground">
