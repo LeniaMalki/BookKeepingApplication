@@ -10,10 +10,11 @@ import java.util.List;
 
 public class User implements AccountSubject, AccountObserver, EntrySubject {
 
+
+    private static EntryHandler entryHandler;
     private static User userInstance;
     private final List<AccountObserver> UserObservers = new ArrayList<AccountObserver>();
     private final List<EntryObserver> EntryObservers = new ArrayList<EntryObserver>();
-    private final List<Entry> entries = new ArrayList<>();
     private String name;
     private String username;
     private String emailAddress;
@@ -27,6 +28,7 @@ public class User implements AccountSubject, AccountObserver, EntrySubject {
     public static User getInstance() {
         if (userInstance == null) {
             userInstance = new User();
+            entryHandler = new EntryHandler();
         }
         return userInstance;
     }
@@ -76,14 +78,13 @@ public class User implements AccountSubject, AccountObserver, EntrySubject {
         this.password = password;
     }
 
-    public List<Entry> getEntries() {
-        return entries;
+    public EntryHandler getEntryHandler() {
+        return entryHandler;
     }
 
-    public void addEntry(Entry e) {
-        entries.add(e);
+    public boolean doesUserExist() {
+        return this.getName() != null;
     }
-
 
     @Override
     public void add(AccountObserver o) {

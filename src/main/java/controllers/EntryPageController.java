@@ -58,7 +58,6 @@ public class EntryPageController implements iPane {
         categoryComboBox.getItems().addAll("Food", "Household", "Shopping", "Transportation", "Other");
         currentActiveEntryButton = expencesButton;
         entryPageScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-
     }
 
     @FXML
@@ -90,11 +89,10 @@ public class EntryPageController implements iPane {
     @FXML
     private void submitEntries(ActionEvent event) {
         for (Entry entry : entryList) {
-            user.addEntry(entry);
+            user.getEntryHandler().addEntry(entry);
         }
         user.notifyEntryListeners();
         entryFlowPlane.getChildren().clear();
         entryList.clear();
-
     }
 }
