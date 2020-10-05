@@ -3,12 +3,12 @@ package Model;
 import Model.Interfaces.AccountObserver;
 import Model.Interfaces.AccountSubject;
 import Model.Interfaces.EntryObserver;
-import Model.Interfaces.EntrySubject;
+import Model.Interfaces.EntrySubjects;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class User implements AccountSubject, AccountObserver, EntrySubject {
+public class User implements AccountSubject, AccountObserver, EntrySubjects {
 
 
     private static EntryHandler entryHandler;
@@ -92,8 +92,9 @@ public class User implements AccountSubject, AccountObserver, EntrySubject {
 
     }
 
+
     @Override
-    public void add(EntryObserver o) {
+    public void addEntryListener(EntryObserver o) {
         EntryObservers.add(o);
     }
 
