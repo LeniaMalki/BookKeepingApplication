@@ -53,4 +53,8 @@ public class Entry<T> implements EntrySubject {
         return typeOfEntry;
     }
 
+    public Entry getEntry() {
+        return this;
+    }
+
 }

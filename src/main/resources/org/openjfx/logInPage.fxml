@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.PasswordField?>
@@ -17,101 +17,88 @@
 
 <AnchorPane fx:id="logInPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LogInPageController">
     <children>
-      <AnchorPane fx:id="back" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-        <AnchorPane fx:id="pos_for_popUp_on_LogInPage" layoutX="348.0" layoutY="170.0" prefHeight="662.0" prefWidth="900.0">
+      <AnchorPane fx:id="back" onMouseClicked="#hidePopUp" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></AnchorPane>
+        <AnchorPane fx:id="pos_for_popUp_on_LogInPage" layoutX="255.0" layoutY="220.0" pickOnBounds="false" prefHeight="662.0" prefWidth="900.0">
             <effect>
                 <DropShadow />
             </effect>
         </AnchorPane>
-      <AnchorPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="logInContent" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
                 <ImageView fitHeight="1024.0" fitWidth="864.0" pickOnBounds="true">
                     <image>
                         <Image url="@../../Images/Watermelon.png" />
                     </image>
                 </ImageView>
-                <Text fill="#a8d8d3" layoutX="231.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="NOVA" text="LOCALI" textAlignment="CENTER">
+                <Text fill="#a8d8d3" layoutX="269.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LOCALI" textAlignment="CENTER">
                     <font>
-                        <Font size="144.0" />
+                        <Font name="Bodoni MT" size="96.0" />
                     </font>
                 </Text>
-                <Text fill="WHITE" layoutX="258.0" layoutY="335.72265625" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-Round" text="localise your economy">
+                <Text fill="WHITE" layoutX="264.0" layoutY="335.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-Round" text="localise your economy">
                     <font>
                         <Font size="36.0" />
                     </font>
                 </Text>
-              <ImageView fitHeight="38.0" fitWidth="38.0" layoutX="945.0" layoutY="501.0" pickOnBounds="true" preserveRatio="true">
+              <ImageView fitHeight="38.0" fitWidth="38.0" layoutX="945.0" layoutY="431.0" pickOnBounds="true" preserveRatio="true">
                   <image>
                       <Image url="@../../Images/accountIcon.png" />
                   </image>
               </ImageView>
-              <ImageView fitHeight="38.0" fitWidth="38.0" layoutX="945.0" layoutY="599.0" pickOnBounds="true" preserveRatio="true">
+              <ImageView fitHeight="38.0" fitWidth="38.0" layoutX="945.0" layoutY="529.0" pickOnBounds="true" preserveRatio="true">
                   <image>
                       <Image url="@../../Images/lock.png" />
                   </image>
               </ImageView>
-              <PasswordField fx:id="logInField" alignment="BOTTOM_LEFT" layoutX="996.0" layoutY="592.0" minWidth="-Infinity" prefHeight="54.0" prefWidth="350.0" promptText="Password" style="-fx-background-color: #FFFFFF;">
+              <PasswordField fx:id="logInField" alignment="BOTTOM_LEFT" layoutX="996.0" layoutY="522.0" minWidth="-Infinity" prefHeight="54.0" prefWidth="350.0" promptText="Password" style="-fx-background-color: #FFFFFF;">
                   <font>
-                      <Font size="36.0" />
+                      <Font name="Book Antiqua" size="26.0" />
                   </font>
                   <padding>
                       <Insets bottom="1.0" />
                   </padding>
-                  <styleClass>
-                      <String fx:value="Enrique-Round" />
-                      <String fx:value="font36px" />
-                  </styleClass>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
               </PasswordField>
-              <TextField fx:id="usernameField" alignment="BOTTOM_LEFT" layoutX="996.0" layoutY="489.0" minWidth="-Infinity" prefHeight="52.0" prefWidth="350.0" promptText="Username" style="-fx-background-color: #FFFFFF;">
+              <TextField fx:id="usernameField" alignment="BOTTOM_LEFT" layoutX="996.0" layoutY="419.0" minWidth="-Infinity" prefHeight="52.0" prefWidth="350.0" promptText="Username" style="-fx-background-color: #FFFFFF;">
                   <font>
-                      <Font size="36.0" />
+                      <Font name="Book Antiqua" size="26.0" />
                   </font>
                   <padding>
                       <Insets bottom="1.0" />
                   </padding>
-                  <styleClass>
-                      <String fx:value="Enrique-Round" />
-                      <String fx:value="font36px" />
-                  </styleClass>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
               </TextField>
-              <Line endX="286.4000244140625" endY="-0.4000244140625" layoutX="1052.0" layoutY="651.0" startX="-122.20001220703125" startY="-0.4000244140625" stroke="#615f5f" />
-              <Line endX="286.4000244140625" endY="-0.4000244140625" layoutX="1047.0" layoutY="549.0" startX="-122.20001220703125" startY="-0.4000244140625" stroke="#615f5f" />
-              <Hyperlink fx:id="forgotPassword" layoutX="1203.0" layoutY="657.0" text="Forgot password?" textFill="#a8d8d3">
+              <Hyperlink fx:id="forgotPassword" layoutX="1203.0" layoutY="604.0" text="Forgot password?" textFill="#a8d8d3" underline="true">
                   <font>
-                      <Font size="18.0" />
+                      <Font name="Book Antiqua" size="18.0" />
                   </font>
-                  <styleClass>
-                      <String fx:value="Enrique-Round" />
-                      <String fx:value="font18px" />
-                  </styleClass>
               </Hyperlink>
-              <Button fx:id="logInButton" alignment="CENTER" defaultButton="true" layoutX="941.0" layoutY="753.0" mnemonicParsing="false" onAction="#loadFirstPage" prefHeight="64.0" prefWidth="447.15" style="-fx-background-color: #a8d8d3; -fx-background-radius: 38;" stylesheets="@../../cssFolder/linkActions.css" text="Login" textFill="WHITE">
+              <Button fx:id="logInButton" alignment="CENTER" defaultButton="true" layoutX="942.0" layoutY="723.0" mnemonicParsing="false" onAction="#onLoginClicked" prefHeight="64.0" prefWidth="447.15" style="-fx-background-color: #a8d8d3; -fx-background-radius: 38;" styleClass="linkFillWhite" stylesheets="@../../cssFolder/linkActions.css" text="Login" textFill="WHITE">
                   <font>
-                      <Font size="36.0" />
+                      <Font name="Book Antiqua" size="36.0" />
                   </font>
                   <opaqueInsets>
                       <Insets />
                   </opaqueInsets>
-                  <styleClass>
-                      <String fx:value="Enrique-Round" />
-                      <String fx:value="font36px" />
-                      <String fx:value="linkFillWhite" />
-                  </styleClass>
               </Button>
-              <Hyperlink fx:id="signUpLink" layoutX="1117.0" layoutY="860.0" onAction="#signUpButton" text="Sign Up" textAlignment="CENTER" textFill="#928c8c">
+              <Hyperlink fx:id="signUpLink" layoutX="1124.0" layoutY="828.0" onAction="#signUpButton" text="Sign Up" textAlignment="CENTER" textFill="#928c8c" underline="true">
                   <font>
-                      <Font size="24.0" />
+                      <Font name="Book Antiqua" size="24.0" />
                   </font>
-                  <styleClass>
-                      <String fx:value="Enrique-Round" />
-                      <String fx:value="font24px" />
-                  </styleClass>
               </Hyperlink>
-            <Text fx:id="userExistanceText" fill="RED" layoutX="1018.0" layoutY="729.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER">
+            <Text fx:id="userExistanceText" fill="WHITE" layoutX="1036.0" layoutY="367.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No user registered!" textAlignment="CENTER">
                <font>
-                  <Font size="36.0" />
+                  <Font name="Book Antiqua" size="27.0" />
                </font>
             </Text>
+            <Line endX="234.3333740234375" layoutX="1087.0" layoutY="511.0" startX="-100.0" stroke="#00000073" />
          </children>
       </AnchorPane>
     </children>

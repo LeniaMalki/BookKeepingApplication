@@ -1,6 +1,8 @@
 package controllers;
 
 import Model.Entry;
+import Model.EntryHandler;
+import Model.EntrySubject;
 import Model.Interfaces.EntryObserver;
 import Model.Interfaces.iPane;
 import Model.User;
@@ -17,6 +19,7 @@ import javafx.scene.text.Text;
 public class DetailStatisticsController implements iPane, EntryObserver {
 
     MainController parent;
+    EntryHandler entryHandler;
     User user = User.getInstance();
     boolean listItemPink = false;
 
@@ -40,6 +43,7 @@ public class DetailStatisticsController implements iPane, EntryObserver {
     public void initPane(MainController parent) {
         this.parent = parent;
         user.add(this);
+        entryHandler = user.getEntryHandler();
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
     }
 
@@ -54,36 +58,19 @@ public class DetailStatisticsController implements iPane, EntryObserver {
 
     private void updateStatistics() {
         flowpaneStat.getChildren().clear();
-        double foodAmount = 0;
-        double transportationAmount = 0;
-        double householdAmount = 0;
-        double shoppingAmount = 0;
-        double otherAmount = 0;
-        for (Entry entry : user.getEntries()) {
+
+        for (Entry entry : entryHandler.getEntries()) {
             flowpaneStat.getChildren().add(new EntryListItemController(entry, listItemPink));
             listItemPink = !listItemPink;
-            if (entry.getCategory().equals("Food")) {
-                foodAmount += entry.getAmount();
-            }
-            if (entry.getCategory().equals("Transportation")) {
-                transportationAmount += entry.getAmount();
-            }
-            if (entry.getCategory().equals("Household")) {
-                householdAmount += entry.getAmount();
-            }
-            if (entry.getCategory().equals("Shopping")) {
-                shoppingAmount += entry.getAmount();
-            }
-            if (entry.getCategory().equals("Other")) {
-                otherAmount += entry.getAmount();
-            }
+
         }
+        entryHandler.update();
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
-                new PieChart.Data("Food", foodAmount),
-                new PieChart.Data("Transportation", transportationAmount),
-                new PieChart.Data("Household", householdAmount),
-                new PieChart.Data("Shopping", shoppingAmount),
-                new PieChart.Data("Other", otherAmount));
+                new PieChart.Data("Food", entryHandler.getFoodAmount()),
+                new PieChart.Data("Transportation", entryHandler.getTransportationAmount()),
+                new PieChart.Data("Household", entryHandler.getHouseholdAmount()),
+                new PieChart.Data("Shopping", entryHandler.getShoppingAmount()),
+                new PieChart.Data("Other", entryHandler.getOtherAmount()));
         statisticsPieChart.setData(pieChartData);
     }
 
@@ -101,60 +88,38 @@ public class DetailStatisticsController implements iPane, EntryObserver {
         }
     }*/
 
-
-
-    @FXML
-    private void food(ActionEvent event) {
+    private void entriesCategory(String category) {
         flowpaneStat.getChildren().clear();
-        for (Entry entry : user.getEntries()) {
-            if (entry.getCategory().equals("Food")) {
+        for (Entry entry : entryHandler.getEntries()) {
+            if (entry.getCategory().equals(category)) {
                 flowpaneStat.getChildren().add(new EntryListItemController(entry, listItemPink));
                 listItemPink = !listItemPink;
             }
         }
+    }
+
+    @FXML
+    private void food(ActionEvent event) {
+        entriesCategory("Food");
     }
 
     @FXML
     private void transport(ActionEvent event) {
-        flowpaneStat.getChildren().clear();
-        for (Entry entry : user.getEntries()) {
-            if (entry.getCategory().equals("Transportation")) {
-                flowpaneStat.getChildren().add(new EntryListItemController(entry, listItemPink));
-                listItemPink = !listItemPink;
-            }
-        }
+        entriesCategory("Transportation");
     }
 
     @FXML
     private void other(ActionEvent event) {
-        flowpaneStat.getChildren().clear();
-        for (Entry entry : user.getEntries()) {
-            if (entry.getCategory().equals("Other")) {
-                flowpaneStat.getChildren().add(new EntryListItemController(entry, listItemPink));
-                listItemPink = !listItemPink;
-            }
-        }
+        entriesCategory("Other");
     }
 
     @FXML
     private void shopping(ActionEvent event) {
-        flowpaneStat.getChildren().clear();
-        for (Entry entry : user.getEntries()) {
-            if (entry.getCategory().equals("Shopping")) {
-                flowpaneStat.getChildren().add(new EntryListItemController(entry, listItemPink));
-                listItemPink = !listItemPink;
-            }
-        }
+        entriesCategory("Shopping");
     }
 
     @FXML
     private void household(ActionEvent event) {
-        flowpaneStat.getChildren().clear();
-        for (Entry entry : user.getEntries()) {
-            if (entry.getCategory().equals("Household")) {
-                flowpaneStat.getChildren().add(new EntryListItemController(entry, listItemPink));
-                listItemPink = !listItemPink;
-            }
-        }
+        entriesCategory("Household");
     }
 }

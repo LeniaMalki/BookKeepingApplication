@@ -1,18 +1,14 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
 package controllers;
 
-import Model.AccountHandler;
+import Model.AccountDataHandler;
 import Model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 
 public class SignUpPageController {
 
@@ -31,33 +27,64 @@ public class SignUpPageController {
     private PasswordField signUpConfirmPassword;
     @FXML
     private TextField signUpEmail;
+
     @FXML
-    private Button createAccount;
-
-
-    public SignUpPageController() {
-    }
+    private Text fieldsMissingText;
 
     public void initPane(MainController parent) {
         this.parent = parent;
     }
 
     @FXML
-    private void handleCreateAccountAction(ActionEvent event) {
+    private void handleCreateAccountAction() {
 
-        AccountHandler accountHandler = new AccountHandler() {
+        AccountDataHandler accountDataHandler = new AccountDataHandler() {
             @Override
-            public User createUser(TextField signUpName, TextField signUpUsername, TextField signUpEmail, TextField signUpPassword, TextField signUpConfirmPassword) {
+            public User createUser(TextField signUpName, TextField signUpUsername, TextField signUpEmail,
+                                   TextField signUpPassword, TextField signUpConfirmPassword) {
                 return super.createUser(signUpName, signUpUsername, signUpEmail, signUpPassword, signUpConfirmPassword);
+            }
+
+            @Override
+            public boolean isAllFieldsEntered(TextField signUpName, TextField signUpUsername, TextField signUpEmail,
+                                              TextField signUpPassword, TextField signUpConfirmPassword) {
+                return super.isAllFieldsEntered(signUpName, signUpUsername, signUpEmail, signUpPassword,
+                                                signUpConfirmPassword);
             }
         };
 
-        if (accountHandler.createUser(signUpName, signUpUsername, signUpEmail, signUpPassword, signUpConfirmPassword) != null) {
-            user.notifyListeners();
-            parent.showFirstPage();
+        if (accountDataHandler.isAllFieldsEntered(signUpName, signUpUsername, signUpEmail, signUpPassword,
+                                                  signUpConfirmPassword)) {
+            fieldsMissingText.setFill(Color.WHITE);
 
-        } else System.out.println("Invalid user inputs! ");
+            if (accountDataHandler.createUser(signUpName, signUpUsername, signUpEmail, signUpPassword,
+                                              signUpConfirmPassword) != null) {
+                user.notifyListeners();
+                clearTextFields();
+            }
+        } else fieldsMissingText.setFill(Color.RED);
 
+    }
+
+    //TODO
+    @FXML
+    private void handleOnExitClicked () {
+    }
+
+
+    private void clearTextFields() {
+
+        signUpName.clear();
+        signUpName.setStyle("-fx-text-box-border: #FFFFFF;");
+
+        signUpEmail.clear();
+        signUpEmail.setStyle("-fx-text-box-border: #FFFFFF;");
+
+        signUpPassword.clear();
+        signUpPassword.setStyle("-fx-text-box-border: #FFFFFF;");
+
+        signUpConfirmPassword.clear();
+        signUpConfirmPassword.setStyle("-fx-text-box-border: #FFFFFF;");
     }
 
 
