@@ -42,13 +42,19 @@ public class DetailStatisticsController implements iPane, EntryObserver {
     @Override
     public void initPane(MainController parent) {
         this.parent = parent;
-        user.add(this);
+        user.addEntryListener(this);
         entryHandler = user.getEntryHandler();
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
     }
 
     public void setLabelPieChart(String labelPieChart) {
         this.labelPieChart.setText(labelPieChart);
+    }
+
+    @Override
+    public void update(String category, String type, double Value) {
+        //TODO whatever this is intended to do? @Artin
+
     }
 
     @Override
