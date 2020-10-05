@@ -14,4 +14,6 @@ public abstract class EntrySubject {
     }
 
     public abstract void notifyListeners();
-    }
+
+
+}
