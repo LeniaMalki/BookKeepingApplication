@@ -86,11 +86,11 @@ public class BudgetCharPageController implements iPane {
 
             XYChart.Series<String, Number> series2 = new XYChart.Series<>();
             series2.setName("1900");
-            series2.getData().add(new XYChart.Data<>("Food", 133));
-            series2.getData().add(new XYChart.Data<>("Household", 156));
-            series2.getData().add(new XYChart.Data<>("Shopping", 947));
-            series2.getData().add(new XYChart.Data<>("Transport", 408));
-            series1.getData().add(new XYChart.Data<>("Other", 6));
+            series2.getData().add(new XYChart.Data<>("Food", 0));
+            series2.getData().add(new XYChart.Data<>("Household", 0));
+            series2.getData().add(new XYChart.Data<>("Shopping", 0));
+            series2.getData().add(new XYChart.Data<>("Transport", 0));
+            series1.getData().add(new XYChart.Data<>("Other", 0));
 
             sb.getData().addAll(series1, series2);
 
