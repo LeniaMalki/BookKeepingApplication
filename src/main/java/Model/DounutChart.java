@@ -8,10 +8,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
-public class DoughnutChart extends PieChart {
+public class DounutChart extends PieChart {
     private final Circle innerCircle;
 
-    public DoughnutChart(ObservableList<Data> pieData) {
+    public DounutChart(ObservableList<Data> pieData) {
         super(pieData);
         super.setLegendVisible(false);
         super.setLabelsVisible(true);
