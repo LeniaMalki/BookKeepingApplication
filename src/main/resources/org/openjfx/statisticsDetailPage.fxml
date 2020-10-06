@@ -21,7 +21,7 @@
             <String fx:value="whiteBackground" />
          </styleClass>
          <content>
-            <FlowPane fx:id="flowpaneStat" prefHeight="518.0" prefWidth="759.0" />
+            <FlowPane fx:id="flowpaneStat" prefHeight="515.0" prefWidth="759.0" />
          </content>
       </ScrollPane>
       <Text fill="#5f6368" layoutX="749.0" layoutY="370.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-BoldRound" text="Article">
