@@ -2,22 +2,22 @@ package Model;
 
 public class Budget {
 
-    private int foodCost = 0;
-    private int householdCost = 0;
-    private int shoppingCost = 0;
-    private int transportCost = 0;
-    private int savingsCost = 0;
-    private int otherCost = 0;
-    private int income = 0;
+    private int foodCost;
+    private int householdCost;
+    private int shoppingCost;
+    private int transportCost;
+    private int savingsCost;
+    private int otherCost;
+    private int income;
 
-    protected Budget(/*int foodCost, int householdCost, int shoppingCost, int transportCost, int savingsCost, int otherCost, int income*/) {
-        /*this.foodCost = foodCost;
+    protected Budget(int foodCost, int householdCost, int shoppingCost, int transportCost, int savingsCost, int otherCost, int income) {
+        this.foodCost = foodCost;
         this.householdCost = householdCost;
         this.shoppingCost = shoppingCost;
         this.transportCost = transportCost;
         this.savingsCost = savingsCost;
         this.otherCost = otherCost;
-        this.income = income;*/
+        this.income = income;
     }
 
     public int getFoodCost() {

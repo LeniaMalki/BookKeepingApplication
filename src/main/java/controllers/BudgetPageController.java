@@ -16,12 +16,16 @@ import javafx.beans.value.ObservableValue;
 import javafx.util.converter.NumberStringConverter;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class BudgetPageController implements iPane {
 
     MainController parent;
     Budget budget;
+
+
+    private ArrayList<String> privousBudgets =new ArrayList<>();
 
     @Override
     public void initPane(MainController parent) {
@@ -43,7 +47,19 @@ public class BudgetPageController implements iPane {
                 otherSlider.setValue(newValue.intValue());
                 savingsSlider.setValue(newValue.intValue());*/
 
-                foodSlider.setValue(newValue.intValue());
+                //foodSlider.setValue(newValue.intValue());
+
+                int income = 150;
+                int currentIncome = 0;
+
+                sumOfAllSliders(foodSlider, income, currentIncome);
+                sumOfAllSliders(householdSlider, income, currentIncome);
+                sumOfAllSliders(transportSlider, income, currentIncome);
+                sumOfAllSliders(shoppingSlider, income, currentIncome);
+                sumOfAllSliders(otherSlider, income, currentIncome);
+                sumOfAllSliders(savingsSlider, income, currentIncome);
+
+                System.out.println(currentIncome);
 
 
                 foodProgressBar.setProgress(foodSlider.getValue() / 100);
@@ -61,6 +77,9 @@ public class BudgetPageController implements iPane {
         transportSlider.valueProperty().addListener(changeListener);
         otherSlider.valueProperty().addListener(changeListener);
         savingsSlider.valueProperty().addListener(changeListener);
+
+        //budget.setIncome(enterIncomeTextField.getText()));
+        foodSlider.setMax(budget.getIncome());
 
 
         foodSlider.setStyle("-fx-control-inner-background: null");
@@ -86,6 +105,12 @@ public class BudgetPageController implements iPane {
 
 
     }
+
+   /* @Override
+    public void update(String s){
+        privousBudgets.add(s);
+        previousBudgetComboBox.getItems().add(s);
+    }*/
 
 
 //TODO-- fix this method; probably have to launch(arg) or something
@@ -117,12 +142,6 @@ public class BudgetPageController implements iPane {
     private void canDrag(ActionEvent event) {
         int income = 150;
         int currentIncome = 0;
-        sumOfAllSliders(foodSlider, income, currentIncome);
-        sumOfAllSliders(householdSlider, income, currentIncome);
-        sumOfAllSliders(transportSlider, income, currentIncome);
-        sumOfAllSliders(shoppingSlider, income, currentIncome);
-        sumOfAllSliders(otherSlider, income, currentIncome);
-        sumOfAllSliders(savingsSlider, income, currentIncome);
         System.out.println(currentIncome);
 
     }
@@ -131,13 +150,11 @@ public class BudgetPageController implements iPane {
     private int sumOfAllSliders(Slider slider, int maxTotal, int currentTotal) {
         if (slider.getValue() > (maxTotal - currentTotal)) {
             slider.setValue(maxTotal - currentTotal);
+            //slider.adjustValue(maxTotal-currentTotal);
 
-            currentTotal = (int) (foodSlider.getValue() + householdSlider.getValue()
-                    + shoppingSlider.getValue() + transportSlider.getValue() + otherSlider.getValue() + savingsSlider.getValue());
-        } else {
-            currentTotal = (int) (foodSlider.getValue() + householdSlider.getValue()
-                    + shoppingSlider.getValue() + transportSlider.getValue() + otherSlider.getValue() + savingsSlider.getValue());
         }
+        currentTotal = (int) (foodSlider.getValue() + householdSlider.getValue()
+                + shoppingSlider.getValue() + transportSlider.getValue() + otherSlider.getValue() + savingsSlider.getValue());
         return currentTotal;
     }
 
@@ -240,6 +257,10 @@ public class BudgetPageController implements iPane {
 
     @FXML
     private ProgressBar savingsProgressBar;
+
+
+    @FXML
+    private ComboBox previousBudgetComboBox;
 }
 
 
