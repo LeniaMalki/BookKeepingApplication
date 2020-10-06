@@ -2,14 +2,19 @@ package Model;
 
 import Model.Interfaces.AccountObserver;
 import Model.Interfaces.AccountSubject;
+import Model.Interfaces.EntryObserver;
+import Model.Interfaces.EntrySubjects;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class User implements AccountSubject {
+public class User implements AccountSubject, AccountObserver, EntrySubjects {
 
+
+    private static EntryHandler entryHandler;
     private static User userInstance;
     private final List<AccountObserver> UserObservers = new ArrayList<AccountObserver>();
+    private final List<EntryObserver> EntryObservers = new ArrayList<EntryObserver>();
     private String name;
     private String username;
     private String emailAddress;
@@ -23,8 +28,14 @@ public class User implements AccountSubject {
     public static User getInstance() {
         if (userInstance == null) {
             userInstance = new User();
+            entryHandler = new EntryHandler();
         }
         return userInstance;
+    }
+
+    public static boolean userExists() {
+
+        return getInstance() != null;
     }
 
     public String getConfirmPassword() {
@@ -67,6 +78,10 @@ public class User implements AccountSubject {
         this.password = password;
     }
 
+    public EntryHandler getEntryHandler() {
+        return entryHandler;
+    }
+
     public boolean doesUserExist() {
         return this.getName() != null;
     }
@@ -74,6 +89,19 @@ public class User implements AccountSubject {
     @Override
     public void add(AccountObserver o) {
         UserObservers.add(o);
+
+    }
+
+
+    @Override
+    public void addEntryListener(EntryObserver o) {
+        EntryObservers.add(o);
+    }
+
+    public void notifyEntryListeners() {
+        for (EntryObserver observer : EntryObservers) {
+            observer.update();
+        }
 
     }
 
@@ -85,5 +113,12 @@ public class User implements AccountSubject {
 
     }
 
+// _____________________________________ Acting as an observer ______________________________________
 
+
+    @Override
+    public void update() {
+
+
+    }
 }
