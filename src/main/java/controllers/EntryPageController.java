@@ -17,7 +17,11 @@ import java.util.ArrayList;
 
 public class EntryPageController implements iPane, SavingsObserver {
 
-    private final ArrayList<Button> entryButtonTypeCluster = new ArrayList<>();
+    private final ArrayList<Button> entryButtonTypeCluster = new ArrayList<>(){{
+        add(expencesButton);
+        add(savingButton);
+        add(incomebutton);
+    }};
     private final ArrayList<Entry> entryList = new ArrayList<>();
     MainController parent;
     boolean listItemPink = false;
@@ -62,9 +66,6 @@ public class EntryPageController implements iPane, SavingsObserver {
     public void initPane(MainController parent) {
         this.parent = parent;
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
-        entryButtonTypeCluster.add(expencesButton);
-        entryButtonTypeCluster.add(savingButton);
-        entryButtonTypeCluster.add(incomebutton);
         categoryComboBox.getItems().addAll(expenceCategory);
         currentActiveEntryButton = expencesButton;
         entryPageScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
