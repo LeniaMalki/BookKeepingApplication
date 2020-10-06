@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" styleClass="whiteBackground" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DetailStatisticsController">
+   <children>
+      <PieChart fx:id="statisticsPieChart" layoutX="6.0" layoutY="280.0" prefHeight="622.0" prefWidth="606.0" />
+      <AnchorPane fx:id="headerAnchorPane" layoutX="-2.0" layoutY="-7.0" prefHeight="106.0" prefWidth="1440.0" styleClass="header-Shadow" />
+      <ScrollPane fx:id="statisticsScrollPane" layoutX="625.0" layoutY="392.0" prefHeight="519.0" prefWidth="762.0" style="-fx-background-color: FFFFFF;">
+         <styleClass>
+            <String fx:value="dropShadow-scrollpane" />
+            <String fx:value="whiteBackground" />
+         </styleClass>
+         <content>
+            <FlowPane fx:id="flowpaneStat" prefHeight="518.0" prefWidth="759.0" />
+         </content>
+      </ScrollPane>
+      <Text fill="#5f6368" layoutX="749.0" layoutY="370.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-BoldRound" text="Article">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text fill="#5f6368" layoutX="976.0" layoutY="370.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-BoldRound" text="Date">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text fill="#5f6368" layoutX="1258.0" layoutY="370.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-BoldRound" text="Cost">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Line endX="580.0" layoutX="818.0" layoutY="380.0" startX="-190.0" stroke="#0000004d" strokeWidth="2.0" />
+      <Button fx:id="statisticsButtonFood" layoutX="612.0" layoutY="250.0" mnemonicParsing="false" onAction="#food" prefHeight="25.0" prefWidth="162.0" text="Food" textAlignment="CENTER">
+         <styleClass>
+            <String fx:value="inactiveEntryButton" />
+            <String fx:value="scroll-bar" />
+            <String fx:value="Enrique-BoldRound" />
+            <String fx:value="expenceSelectButton" />
+            <String fx:value="droSshadow" />
+         </styleClass>
+      </Button>
+      <Button fx:id="statisticsButtonHousehold" layoutX="775.0" layoutY="250.0" mnemonicParsing="false" onAction="#household" prefHeight="25.0" prefWidth="162.0" text="Household" textAlignment="CENTER">
+         <styleClass>
+            <String fx:value="inactiveEntryButton" />
+            <String fx:value="Enrique-BoldRound" />
+            <String fx:value="incomeSelectButton" />
+            <String fx:value="droSshadow" />
+         </styleClass>
+      </Button>
+      <Button fx:id="statisticsButtonOther" layoutX="1250.0" layoutY="250.0" mnemonicParsing="false" onAction="#other" prefHeight="25.0" prefWidth="162.0" text="Other" textAlignment="CENTER">
+         <styleClass>
+            <String fx:value="inactiveEntryButton" />
+            <String fx:value="Enrique-BoldRound" />
+            <String fx:value="savingsSelectButton" />
+            <String fx:value="droSshadow" />
+         </styleClass>
+      </Button>
+      <Button fx:id="statisticsButtonShopping" layoutX="939.0" layoutY="250.0" mnemonicParsing="false" onAction="#shopping" prefHeight="25.0" prefWidth="162.0" text="Shopping" textAlignment="CENTER">
+         <styleClass>
+            <String fx:value="inactiveEntryButton" />
+            <String fx:value="Enrique-BoldRound" />
+            <String fx:value="incomeSelectButton" />
+            <String fx:value="droSshadow" />
+         </styleClass>
+      </Button>
+      <Button fx:id="statisticsButtonTransport" layoutX="1100.0" layoutY="250.0" mnemonicParsing="false" onAction="#transport" prefHeight="25.0" prefWidth="150.0" text="Transport" textAlignment="CENTER">
+         <styleClass>
+            <String fx:value="inactiveEntryButton" />
+            <String fx:value="Enrique-BoldRound" />
+            <String fx:value="incomeSelectButton" />
+            <String fx:value="droSshadow" />
+         </styleClass>
+      </Button>
+      <Text fx:id="labelPieChart" layoutX="-91.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-BoldRound" textAlignment="CENTER" wrappingWidth="485.0326156616211" x="150.0" y="220.0">
+         <font>
+            <Font size="56.0" />
+         </font>
+      </Text>
+      <Button layoutX="1174.0" layoutY="935.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="219.0" text="Remove Entry">
+         <font>
+            <Font size="25.0" />
+         </font>
+         <styleClass>
+            <String fx:value="Enrique-Round" />
+            <String fx:value="droSshadow" />
+         </styleClass>
+      </Button>
+   </children>
+   <stylesheets>
+      <URL value="@../../cssFolder/font.css" />
+      <URL value="@../../cssFolder/Header.css" />
+      <URL value="@../../cssFolder/entry.css" />
+   </stylesheets>
+</AnchorPane>
