@@ -70,21 +70,19 @@ public class NewGoalsInsertController extends AnchorPane implements EntryObserve
 
     @FXML
     public void addNewGoal(MouseEvent mouseEvent) {
-
+        savingNameText.setText(nameOfSavingTextField.getText());
+        updateSavingLabel();
+        updateProgressBar();
+        savingsAnchorPane1.getChildren().clear();
+        savingsAnchorPane1.setVisible(false);
         savingsImage.setImage(new Image(new File("/../resources/Images/piggyBank.png").toURI().toString()));
         try {
-            registerSavingGoal(Double.parseDouble(savingAmountTextField.getText()), savingNameText.getText(), savingsImage.getImage());
-            savingNameText.setText(nameOfSavingTextField.getText());
-            savingsAnchorPane1.getChildren().clear();
-            savingsAnchorPane1.setVisible(false);
-            updateSavingLabel();
-            updateProgressBar();
+            registerSavingGoal(Integer.parseInt(savingAmountTextField.getText()), savingNameText.getText(), savingsImage.getImage());
         } catch (Exception e) {
             System.out.println(e);
         } finally {
-            savingAmountTextField.setStyle("-fx-text-box-border: Red;");
+            //ge error message att det bara kan skrivas in integers här
         }
-
 
     }
 
@@ -93,7 +91,7 @@ public class NewGoalsInsertController extends AnchorPane implements EntryObserve
         iconSelector.selectIconForSavings();
     }
 
-    private void registerSavingGoal(double goal, String name, Image image) {
+    private void registerSavingGoal(int goal, String name, Image image) {
         SavingGoal savingGoal = new SavingGoal(goal, name, image);
     }
 

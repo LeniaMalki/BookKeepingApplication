@@ -8,11 +8,11 @@ import javafx.scene.image.ImageView;
 public class SavingGoal {
     iSavingsRegister register= SavingsOverview.getInstance();
     double savingGoalReached = 0;
-    double savingGoal;
+    int savingGoal;
     String savingName;
     Image image;
 
-    public SavingGoal(double savingGoal, String savingName, Image image) {
+    public SavingGoal(int savingGoal, String savingName, Image image) {
         this.savingGoal = savingGoal;
         this.savingName = savingName;
         if (image == null) {
