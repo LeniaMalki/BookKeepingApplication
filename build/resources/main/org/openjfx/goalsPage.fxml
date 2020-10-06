@@ -28,20 +28,19 @@
       </Text>
       <AnchorPane fx:id="infoAnchorPane" layoutX="80.0" layoutY="231.0" prefHeight="554.0" prefWidth="429.0">
          <children>
-            <AnchorPane layoutY="70.0" prefHeight="89.0" prefWidth="386.0" styleClass="SelectedBox">
+            <AnchorPane layoutY="70.0" onMouseClicked="#openBudget" prefHeight="89.0" prefWidth="386.0" styleClass="SelectedBox">
                <children>
-                  <Label fx:id="monthLabel" layoutX="275.0" layoutY="29.0" text="Month">
+                  <Label fx:id="plannedSavingsLabel" layoutX="69.0" layoutY="17.0" onMouseClicked="#openBudget" prefHeight="56.0" prefWidth="165.0" text="See budget">
                      <styleClass>
                         <String fx:value="font24px" />
                         <String fx:value="Enrique-Round" />
                      </styleClass>
                   </Label>
-                  <Label fx:id="plannedSavingsLabel" layoutX="26.0" layoutY="17.0" prefHeight="56.0" prefWidth="165.0" text="1020 SEK">
-                     <styleClass>
-                        <String fx:value="font24px" />
-                        <String fx:value="Enrique-Round" />
-                     </styleClass>
-                  </Label>
+                  <ImageView fitHeight="36.0" fitWidth="42.0" layoutX="22.0" layoutY="27.0" onMouseClicked="#openBudget" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Images/baseline_account_balance_black_48dp.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
             <Text layoutX="8.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Planned Savings:" wrappingWidth="272.13671875">
@@ -60,16 +59,16 @@
                         <String fx:value="blackText" />
                      </styleClass>
                   </Hyperlink>
-                  <ImageView fitHeight="64.0" fitWidth="42.0" layoutX="14.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="64.0" fitWidth="42.0" layoutX="14.0" layoutY="24.0" onMouseClicked="#addGoal" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../Images/baseline_add_black_48dp.png" />
                      </image>
                   </ImageView>
                </children>
             </AnchorPane>
-            <AnchorPane layoutY="159.0" prefHeight="89.0" prefWidth="386.0" styleClass="notSelectedBox">
+            <AnchorPane layoutY="159.0" onMouseClicked="#openEntry" prefHeight="89.0" prefWidth="386.0" styleClass="notSelectedBox">
                <children>
-                  <Hyperlink layoutX="67.0" layoutY="24.0" prefHeight="42.0" prefWidth="296.0" text="Add to Savings">
+                  <Hyperlink layoutX="67.0" layoutY="24.0" onAction="#openEntry" prefHeight="42.0" prefWidth="296.0" text="Add to Savings">
                      <styleClass>
                         <String fx:value="font24px" />
                         <String fx:value="Enrique-Round" />
@@ -77,7 +76,7 @@
                         <String fx:value="blackText" />
                      </styleClass>
                   </Hyperlink>
-                  <ImageView fitHeight="64.0" fitWidth="42.0" layoutX="14.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="64.0" fitWidth="42.0" layoutX="14.0" layoutY="24.0" onMouseClicked="#openEntry" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../Images/baseline_attach_money_black_48dp.png" />
                      </image>
@@ -85,18 +84,6 @@
                </children>
             </AnchorPane>
             <Line endX="264.0" layoutX="110.0" layoutY="337.0" startX="-99.0" stroke="#00000055" />
-            <Label fx:id="totalSavings" layoutX="15.0" layoutY="387.0" prefHeight="56.0" prefWidth="356.0" text="19,020.44 SEK">
-               <styleClass>
-                  <String fx:value="font40px" />
-                  <String fx:value="Enrique-Round" />
-               </styleClass>
-            </Label>
-            <Text layoutX="15.0" layoutY="381.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Savings:" wrappingWidth="272.13671875">
-               <styleClass>
-                  <String fx:value="Enrique-LightRound" />
-                  <String fx:value="font18px" />
-               </styleClass>
-            </Text>
          </children>
       </AnchorPane>
    </children>
