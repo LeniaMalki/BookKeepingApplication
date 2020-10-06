@@ -45,7 +45,7 @@ public class MainController {
     }
 
 
-    // TODO make one for each anchopane
+    // TODO make one for each anchorpane
     void showLogInPage() {
         showPage(logInPage);
     }

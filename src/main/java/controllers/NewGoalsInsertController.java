@@ -1,5 +1,6 @@
 package controllers;
 
+import Model.Entry;
 import Model.EntrySubject;
 import Model.Interfaces.EntryObserver;
 import Model.Interfaces.SavingsObserver;
@@ -73,8 +74,8 @@ public class NewGoalsInsertController extends AnchorPane implements EntryObserve
 
         savingsImage.setImage(new Image(new File("/../resources/Images/piggyBank.png").toURI().toString()));
         try {
-            registerSavingGoal(Double.parseDouble(savingAmountTextField.getText()), savingNameText.getText(), savingsImage.getImage());
             savingNameText.setText(nameOfSavingTextField.getText());
+            registerSavingGoal(Double.parseDouble(savingAmountTextField.getText()), savingNameText.getText(), savingsImage.getImage());
             savingsAnchorPane1.getChildren().clear();
             savingsAnchorPane1.setVisible(false);
             updateSavingLabel();
@@ -101,7 +102,7 @@ public class NewGoalsInsertController extends AnchorPane implements EntryObserve
     @Override
     public void update(String category, String type, double Value) {
         if (category.equals(nameOfSavingTextField.getText())) {
-            amoutSaved =+ savingsOverview.getAmountSaved(category);
+            amoutSaved += savingsOverview.getAmountSaved(category);
             updateSavingLabel();
             updateProgressBar();
         }
@@ -109,9 +110,11 @@ public class NewGoalsInsertController extends AnchorPane implements EntryObserve
     }
 
     @Override
-    public void update() {
+    public void update(Entry entry) {
 
     }
+
+
 
     private void updateSavingLabel() {
         savingGoalText.setText(amoutSaved + " of " + savingAmountTextField.getText() + " saved");

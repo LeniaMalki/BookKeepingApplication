@@ -14,7 +14,7 @@ public class DoughnutChart extends PieChart {
     public DoughnutChart(ObservableList<Data> pieData) {
         super(pieData);
         super.setLegendVisible(false);
-        super.setLabelsVisible(false);
+        super.setLabelsVisible(true);
         innerCircle = new Circle();
 
         // just styled in code for demo purposes,

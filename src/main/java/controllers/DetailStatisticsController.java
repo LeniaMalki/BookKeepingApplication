@@ -1,11 +1,8 @@
 package controllers;
 
-import Model.Entry;
-import Model.EntryHandler;
-import Model.EntrySubject;
+import Model.*;
 import Model.Interfaces.EntryObserver;
 import Model.Interfaces.iPane;
-import Model.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,11 +13,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Text;
 
+import java.util.ArrayList;
+
 public class DetailStatisticsController implements iPane, EntryObserver {
 
     MainController parent;
-    EntryHandler entryHandler;
-    User user = User.getInstance();
+    EntryHandler entryHandler=EntryHandler.getInstance();
+
     boolean listItemPink = false;
 
     @FXML
@@ -37,13 +36,15 @@ public class DetailStatisticsController implements iPane, EntryObserver {
 
     @FXML
     private AnchorPane headerAnchorPane;
-
+    @FXML
+    private AnchorPane chartPane;
+    DoughnutChart chart;
 
     @Override
     public void initPane(MainController parent) {
         this.parent = parent;
-        user.addEntryListener(this);
-        entryHandler = user.getEntryHandler();
+        EntrySubject.add(this);
+
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
     }
 
@@ -58,26 +59,28 @@ public class DetailStatisticsController implements iPane, EntryObserver {
     }
 
     @Override
-    public void update() {
-        updateStatistics();
+    public void update(Entry entry) {
+        updateStatistics(entry);
     }
 
-    private void updateStatistics() {
-        flowpaneStat.getChildren().clear();
+    private void updateStatistics(Entry entry) {
 
-        for (Entry entry : entryHandler.getEntries()) {
             flowpaneStat.getChildren().add(new EntryListItemController(entry, listItemPink));
             listItemPink = !listItemPink;
 
-        }
-        entryHandler.update();
+
+        entryHandler.updateGraph();
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
                 new PieChart.Data("Food", entryHandler.getFoodAmount()),
                 new PieChart.Data("Transportation", entryHandler.getTransportationAmount()),
                 new PieChart.Data("Household", entryHandler.getHouseholdAmount()),
                 new PieChart.Data("Shopping", entryHandler.getShoppingAmount()),
                 new PieChart.Data("Other", entryHandler.getOtherAmount()));
-        statisticsPieChart.setData(pieChartData);
+        if (chart==null){
+            chart = new DoughnutChart(pieChartData);
+            chartPane.getChildren().add(chart);
+        }else chart.setData(pieChartData);
+
     }
 
     /*@FXML

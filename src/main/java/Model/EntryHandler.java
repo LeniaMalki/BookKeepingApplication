@@ -1,9 +1,21 @@
 package Model;
 
+import Model.Interfaces.EntryObserver;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class EntryHandler {
+public class EntryHandler implements EntryObserver {
+    private static EntryHandler entryHandler;
+    private EntryHandler(){
+        EntrySubject.add(this);
+    }
+    public static EntryHandler getInstance(){
+        if (entryHandler==null){
+            entryHandler=new EntryHandler();
+        }
+        return entryHandler;
+    }
     private final List<Entry> entries = new ArrayList<>();
 
     public  double getFoodAmount() {
@@ -35,12 +47,11 @@ public class EntryHandler {
     public List<Entry> getEntries() {
         return entries;
     }
-
     public void addEntry(Entry e) {
         entries.add(e);
     }
 
-    public void update(){
+    public void updateGraph(){
         for (Entry entry : entries) {
             if (entry.getCategory().equals("Food")) {
                 foodAmount += entry.getAmount();
@@ -58,5 +69,15 @@ public class EntryHandler {
                 otherAmount += entry.getAmount();
             }
         }
+    }
+
+    @Override
+    public void update(String category, String type, double Value) {
+
+    }
+
+    @Override
+    public void update(Entry entry) {
+        addEntry(entry);
     }
 }
