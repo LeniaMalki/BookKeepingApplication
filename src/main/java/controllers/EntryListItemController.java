@@ -32,7 +32,7 @@ public class EntryListItemController extends AnchorPane {
             throw new RuntimeException(exception);
         }
         categoryName.setText(entry.getCategory());
-        costName.setText(String.valueOf(entry.getAmout()));
+        costName.setText(String.valueOf(entry.getAmount()));
         articleName.setText(entry.getName());
         if (pinkColor) {
             this.getStyleClass().add("pinkInsert");

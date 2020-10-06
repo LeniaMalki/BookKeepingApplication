@@ -51,6 +51,12 @@ public class SavingsOverview implements iSavingsRegister, SavingsSubject, EntryO
             addToSaving(category, money);
         }
     }
+
+    @Override
+    public void update() {
+        //Todo welp
+    }
+
     public double getAmountSaved(String name){
         return savingGoalHashMap.get(name).savingGoalReached;
     }

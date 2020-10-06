@@ -4,6 +4,7 @@ import Model.Entry;
 import Model.Interfaces.SavingsObserver;
 import Model.Interfaces.SavingsSubject;
 import Model.Interfaces.iPane;
+import Model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -20,6 +21,7 @@ public class EntryPageController implements iPane, SavingsObserver {
     private final ArrayList<Button> entryButtonTypeCluster = new ArrayList<>();
     private final ArrayList<Entry> entryList = new ArrayList<>();
     MainController parent;
+    User user = User.getInstance();
     boolean listItemPink = false;
     @FXML
     AnchorPane entryTypeGroupAnchorPane;
@@ -101,8 +103,9 @@ public class EntryPageController implements iPane, SavingsObserver {
     @FXML
     private void submitEntries(ActionEvent event) {
         for (Entry entry : entryList) {
-            entry.notifyListeners();
+            user.getEntryHandler().addEntry(entry);
         }
+        user.notifyEntryListeners();
         entryFlowPlane.getChildren().clear();
         entryList.clear();
     }

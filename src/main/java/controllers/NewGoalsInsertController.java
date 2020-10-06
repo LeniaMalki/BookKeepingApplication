@@ -108,6 +108,11 @@ public class NewGoalsInsertController extends AnchorPane implements EntryObserve
 
     }
 
+    @Override
+    public void update() {
+
+    }
+
     private void updateSavingLabel() {
         savingGoalText.setText(amoutSaved + " of " + savingAmountTextField.getText() + " saved");
     }
