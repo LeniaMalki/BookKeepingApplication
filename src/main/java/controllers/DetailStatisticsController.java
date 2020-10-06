@@ -13,8 +13,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Text;
 
-import java.util.ArrayList;
-
 public class DetailStatisticsController implements iPane, EntryObserver {
 
     MainController parent;
@@ -38,7 +36,7 @@ public class DetailStatisticsController implements iPane, EntryObserver {
     private AnchorPane headerAnchorPane;
     @FXML
     private AnchorPane chartPane;
-    DoughnutChart chart;
+    DounutChart chart;
 
     @Override
     public void initPane(MainController parent) {
@@ -77,7 +75,7 @@ public class DetailStatisticsController implements iPane, EntryObserver {
                 new PieChart.Data("Shopping", entryHandler.getShoppingAmount()),
                 new PieChart.Data("Other", entryHandler.getOtherAmount()));
         if (chart==null){
-            chart = new DoughnutChart(pieChartData);
+            chart = new DounutChart(pieChartData);
             chartPane.getChildren().add(chart);
         }else chart.setData(pieChartData);
 
