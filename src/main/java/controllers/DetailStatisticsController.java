@@ -19,10 +19,7 @@ public class DetailStatisticsController implements iPane, EntryObserver {
     EntryHandler entryHandler=EntryHandler.getInstance();
 
     boolean listItemPink = false;
-
-    @FXML
-    private PieChart statisticsPieChart;
-
+    
     @FXML
     private ScrollPane statisticsScrollPane;
 
