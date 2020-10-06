@@ -103,9 +103,8 @@ public class EntryPageController implements iPane, SavingsObserver {
     @FXML
     private void submitEntries(ActionEvent event) {
         for (Entry entry : entryList) {
-            user.getEntryHandler().addEntry(entry);
+        entry.notifyEntryListeners();
         }
-        user.notifyEntryListeners();
         entryFlowPlane.getChildren().clear();
         entryList.clear();
     }

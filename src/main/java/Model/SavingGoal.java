@@ -22,7 +22,7 @@ public class SavingGoal {
     }
 
     void addMoneyToSaving(double money) {
-        savingGoalReached = +money;
+        savingGoalReached =+ money;
     }
 
 }

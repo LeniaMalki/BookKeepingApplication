@@ -1,14 +1,10 @@
 package Model;
 
-import Model.Interfaces.EntrySubjects;
 import Model.Interfaces.EntryObserver;
 
-import java.util.ArrayList;
-import java.util.List;
 
-
-public class Entry extends EntrySubject implements EntrySubjects {
-    private List<EntryObserver> observers = new ArrayList<>();
+public class Entry extends EntrySubject {
+//    private List<EntryObserver> observers = new ArrayList<>();
     //private T message;
 
     double amount;
@@ -24,15 +20,11 @@ public class Entry extends EntrySubject implements EntrySubjects {
         this.typeOfEntry = typeOfEntry;
     }
 
-    @Override
-    public void addEntryListener(EntryObserver o ) {
-        observers.add(o);
-    }
 
-    @Override
     public void notifyEntryListeners() {
         for ( EntryObserver observer : observers ) {
-            observer.update ();
+            observer.update (this);
+            observer.update(getCategory(),getTypeOfEntry(),getAmount());
         }
     }
 

@@ -3,12 +3,11 @@ package Model;
 import Model.Interfaces.AccountObserver;
 import Model.Interfaces.AccountSubject;
 import Model.Interfaces.EntryObserver;
-import Model.Interfaces.EntrySubjects;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class User implements AccountSubject, AccountObserver, EntrySubjects {
+public class User implements AccountSubject, AccountObserver {
 
 
     private static EntryHandler entryHandler;
@@ -28,7 +27,6 @@ public class User implements AccountSubject, AccountObserver, EntrySubjects {
     public static User getInstance() {
         if (userInstance == null) {
             userInstance = new User();
-            entryHandler = new EntryHandler();
         }
         return userInstance;
     }
@@ -93,17 +91,9 @@ public class User implements AccountSubject, AccountObserver, EntrySubjects {
     }
 
 
-    @Override
-    public void addEntryListener(EntryObserver o) {
-        EntryObservers.add(o);
-    }
 
-    public void notifyEntryListeners() {
-        for (EntryObserver observer : EntryObservers) {
-            observer.update();
-        }
 
-    }
+
 
     @Override
     public void notifyListeners() {

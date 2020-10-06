@@ -53,9 +53,11 @@ public class SavingsOverview implements iSavingsRegister, SavingsSubject, EntryO
     }
 
     @Override
-    public void update() {
-        //Todo welp
+    public void update(Entry entry) {
+
     }
+
+
 
     public double getAmountSaved(String name){
         return savingGoalHashMap.get(name).savingGoalReached;
