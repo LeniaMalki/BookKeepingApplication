@@ -56,7 +56,7 @@ public class LogInPageController implements iPane, AccountObserver {
 
     @FXML
     private void onLoginClicked() {
-
+        parent.showFirstPage();
         LogInHandler logInHandler = new LogInHandler() {
             @Override
             public boolean logIn(TextField usernameField, TextField logInField) {

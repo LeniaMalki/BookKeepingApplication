@@ -13,6 +13,9 @@ public class Entry extends EntrySubject {
     String name;
     String category;
     String typeOfEntry;
+    boolean selected;
+
+
 
     /**
      * Constructor that initializes a new entry object
@@ -26,6 +29,7 @@ public class Entry extends EntrySubject {
         this.name = name;
         this.category = category;
         this.typeOfEntry = typeOfEntry;
+        this.selected = false;
     }
 
     /**
@@ -57,4 +61,13 @@ public class Entry extends EntrySubject {
     public Entry getEntry() {
         return this;
     }
+
+    public boolean getSelected(){
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
+
 }
