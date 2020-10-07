@@ -14,9 +14,11 @@ import java.io.IOException;
  */
 public class PaneFactory {
 
+    //________________________________________________ VARIABLES _______________________________________________________
+
     private static MainController parent;
 
-//Gets the root of the pane and it´s controller
+    //___________________________________-_____________ METHODS _______________________________________________________-
 
     /**
      * A generalized function for fetching root and controller from a function
@@ -36,7 +38,6 @@ public class PaneFactory {
         return pane;
     }
 
-    // Create main anchor
     public static Parent initMain() {
         Pane<MainController> pane = loadInPane("org/openjfx/mainAnchor.fxml");
         PaneFactory.parent = pane.controller;
@@ -123,9 +124,8 @@ public class PaneFactory {
         return pane.anchorPane;
     }
 
-
     /**
-     * A private class that makes us let us store controllers and anchor panes as one.
+     * A private class that let us store controllers and anchor panes as one.
      */
     static class Pane<T> {
         AnchorPane anchorPane;

@@ -1,15 +1,26 @@
 package Controller;
 
 import Controller.Interfaces.iPane;
+import Model.Entry;
+import Model.Interfaces.EntryObserver;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+/**
+ * A controller that handles the overview statistics page
+ * It listens to what happens to entries by implementing EntryObserver
+ *
+ * @author Oscar
+ */
+public class OverViewStatisticsController implements iPane, EntryObserver {
 
-public class OverViewStatisticsController implements iPane {
+    //________________________________________________ VARIABLES _______________________________________________________
 
     MainController parent;
+
+    //__________________________________________________ FXML __________________________________________________________
 
     @FXML
     private PieChart dailyOverviewPieChart;
@@ -32,23 +43,26 @@ public class OverViewStatisticsController implements iPane {
     @FXML
     private AnchorPane headerAnchorPane;
 
+    //_________________________________________________ METHODS ________________________________________________________
+
     @FXML
     void toDailyStatistics(ActionEvent event) {
         detailedStatistics("Daily");  //TODO DIVERSIFY FOR WEEKLY / DAILY / MONTHLY, TEXT AND PIECHART NEEDS TO
-        //UPDATE DEPENDING ON WHICH BUTTON YOU PRESS
     }
-
     @FXML
     void toWeeklyStatistics(ActionEvent event) {
         detailedStatistics("Weekly");
     }
-
     @FXML
     void toMonthlyStatistics(ActionEvent event) {
         detailedStatistics("Monthly");
     }
 
-
+    /**
+     * A function that shows different texts on the detailStatisticsPage depending on which button you press
+     *
+     * @param text that is either "Daily", "Monthly" or "Weekly"
+     */
     private void detailedStatistics(String text) {
         parent.showStatisticsDetailPage(text);
     }
@@ -57,5 +71,15 @@ public class OverViewStatisticsController implements iPane {
     public void initPane(MainController parent) {
         this.parent = parent;
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
+    }
+
+    @Override
+    public void update(String category, String type, double Value) {
+
+    }
+
+    @Override
+    public void update(Entry entry) {
+
     }
 }
