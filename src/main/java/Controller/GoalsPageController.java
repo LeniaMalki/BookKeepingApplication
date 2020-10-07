@@ -1,13 +1,10 @@
-package controllers;
+package Controller;
 
 import Model.Interfaces.iIconSelector;
-import Model.Interfaces.iPane;
-import javafx.event.ActionEvent;
+import Controller.Interfaces.iPane;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
-
-import java.awt.event.MouseEvent;
 
 public class GoalsPageController implements iPane, iIconSelector {
 

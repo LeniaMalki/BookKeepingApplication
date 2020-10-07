@@ -1,6 +1,6 @@
-package controllers;
+package Controller;
 
-import Model.Interfaces.iPane;
+import Controller.Interfaces.iPane;
 import Model.Budget;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

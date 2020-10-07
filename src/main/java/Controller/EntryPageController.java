@@ -1,9 +1,9 @@
-package controllers;
+package Controller;
 
 import Model.Entry;
 import Model.Interfaces.SavingsObserver;
 import Model.Interfaces.SavingsSubject;
-import Model.Interfaces.iPane;
+import Controller.Interfaces.iPane;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
