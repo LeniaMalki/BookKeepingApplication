@@ -54,6 +54,11 @@ public class EntryHandler implements EntryObserver {
      * A function that iterates through the list of entries and adds their values up in different categories
      */
     public void updateGraph() {
+        foodAmount = 0;
+        transportationAmount = 0;
+        householdAmount = 0;
+        shoppingAmount = 0;
+        otherAmount = 0;
         for (Entry entry : entries) {
             if (entry.getCategory().equals("Food")) {
                 foodAmount += entry.getAmount();
