@@ -33,8 +33,7 @@ public class DeleteAccountPopUpController {
         if (accountFacade.checkPasswordMatch(enterPasswordToDelete.getText())) {
             accountFacade.deleteAccount();
             parent.showLogInPage();
-        }
-        else
+        } else
             passwordIncorrectMessage.setText("Password is incorrect! Try again.");
 
 

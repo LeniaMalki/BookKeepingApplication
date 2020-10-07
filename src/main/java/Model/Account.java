@@ -1,7 +1,7 @@
 package Model;
 
 
-public class Account  {
+public class Account {
 
     //________________________________________________ Variables  ______________________________________________________
     private static Account accountInstance;
@@ -55,7 +55,8 @@ public class Account  {
 
 
     //________________________________________________ Methods _________________________________________________________
-    private Account() { }
+    private Account() {
+    }
 
     public boolean doesUserExist() {
         return this.getName() != null;
@@ -65,9 +66,8 @@ public class Account  {
         if (accountInstance == null) {
             accountInstance = new Account();
         }
-        return accountInstance; }
-
-
+        return accountInstance;
+    }
 
 
 }

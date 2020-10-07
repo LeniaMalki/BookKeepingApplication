@@ -101,7 +101,7 @@ public class EntryPageController implements iPane, SavingsObserver {
     @FXML
     private void submitEntries(ActionEvent event) {
         for (Entry entry : entryList) {
-        entry.notifyEntryListeners();
+            entry.notifyEntryListeners();
         }
         entryFlowPlane.getChildren().clear();
         entryList.clear();
@@ -110,7 +110,7 @@ public class EntryPageController implements iPane, SavingsObserver {
     @Override
     public void update(String s) {
         savingCategory.add(s);
-        if (currentActiveEntryButton== savingButton){
+        if (currentActiveEntryButton == savingButton) {
             categoryComboBox.getItems().add(s);
         }
     }

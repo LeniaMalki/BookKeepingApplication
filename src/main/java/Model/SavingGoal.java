@@ -6,7 +6,7 @@ import javafx.scene.image.ImageView;
 
 
 public class SavingGoal {
-    iSavingsRegister register= SavingsOverview.getInstance();
+    iSavingsRegister register = SavingsOverview.getInstance();
     double savingGoalReached = 0;
     double savingGoal;
     String savingName;
@@ -18,11 +18,11 @@ public class SavingGoal {
         if (image == null) {
             this.image = new Image("../resources/Images/piggyBank.png");
         } else this.image = image;
-        register.addSavingsGoal(savingName,this);
+        register.addSavingsGoal(savingName, this);
     }
 
     void addMoneyToSaving(double money) {
-        savingGoalReached =+ money;
+        savingGoalReached = +money;
     }
 
 }
