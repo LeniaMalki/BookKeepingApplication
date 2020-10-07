@@ -1,9 +1,8 @@
-package controllers;
+package Controller;
 
 import Model.Entry;
 import Model.EntrySubject;
 import Model.Interfaces.EntryObserver;
-import Model.Interfaces.SavingsObserver;
 import Model.Interfaces.iIconSelector;
 import Model.SavingGoal;
 import Model.SavingsOverview;

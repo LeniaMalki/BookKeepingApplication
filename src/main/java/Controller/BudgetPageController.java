@@ -1,12 +1,9 @@
-package controllers;
+package Controller;
 
-import Model.Interfaces.iPane;
+import Controller.Interfaces.iPane;
 import Model.Budget;
-import com.sun.javafx.scene.control.IntegerField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.StackedBarChart;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 

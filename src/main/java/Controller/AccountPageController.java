@@ -1,8 +1,8 @@
-package controllers;
+package Controller;
 
 import Model.AccountFacade;
 import Model.Interfaces.AccountObserver;
-import Model.Interfaces.iPane;
+import Controller.Interfaces.iPane;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;

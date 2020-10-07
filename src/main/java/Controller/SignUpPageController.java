@@ -1,4 +1,4 @@
-package controllers;
+package Controller;
 
 import Model.AccountFacade;
 import javafx.fxml.FXML;

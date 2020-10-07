@@ -1,13 +1,11 @@
-package controllers;
+package Controller;
 
 import Model.AccountFacade;
 import Model.Interfaces.AccountObserver;
-import Model.Interfaces.iPane;
+import Controller.Interfaces.iPane;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
-
-import java.io.IOException;
 
 public class HeaderController implements iPane, AccountObserver {
 

@@ -1,8 +1,8 @@
-package controllers;
+package Controller;
 
 import Model.*;
 import Model.Interfaces.EntryObserver;
-import Model.Interfaces.iPane;
+import Controller.Interfaces.iPane;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
