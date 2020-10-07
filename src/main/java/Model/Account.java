@@ -1,43 +1,26 @@
 package Model;
 
-import Model.Interfaces.AccountObserver;
-import Model.Interfaces.AccountSubject;
 import Model.Interfaces.EntryObserver;
 import Model.Interfaces.EntrySubjects;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class User implements AccountSubject, AccountObserver, EntrySubjects {
+public class Account implements EntrySubjects {
 
-
+    //________________________________________________ Variables  ______________________________________________________
     private static EntryHandler entryHandler;
-    private static User userInstance;
-    private final List<AccountObserver> UserObservers = new ArrayList<AccountObserver>();
+    private static Account accountInstance;
+
     private final List<EntryObserver> EntryObservers = new ArrayList<EntryObserver>();
+
     private String name;
     private String username;
     private String emailAddress;
     private String password;
     private String confirmPassword;
 
-    private User() {
-
-    }
-
-    public static User getInstance() {
-        if (userInstance == null) {
-            userInstance = new User();
-            entryHandler = new EntryHandler();
-        }
-        return userInstance;
-    }
-
-    public static boolean userExists() {
-
-        return getInstance() != null;
-    }
-
+    //________________________________________________ Getters/Setters  ________________________________________________
     public String getConfirmPassword() {
         return confirmPassword;
     }
@@ -78,20 +61,15 @@ public class User implements AccountSubject, AccountObserver, EntrySubjects {
         this.password = password;
     }
 
-    public EntryHandler getEntryHandler() {
-        return entryHandler;
+
+    //________________________________________________ Methods _________________________________________________________
+    private Account() {
+
     }
 
     public boolean doesUserExist() {
         return this.getName() != null;
     }
-
-    @Override
-    public void add(AccountObserver o) {
-        UserObservers.add(o);
-
-    }
-
 
     @Override
     public void addEntryListener(EntryObserver o) {
@@ -105,20 +83,17 @@ public class User implements AccountSubject, AccountObserver, EntrySubjects {
 
     }
 
-    @Override
-    public void notifyListeners() {
-        for (AccountObserver observer : UserObservers) {
-            observer.update();
+    public static Account getInstance() {
+        if (accountInstance == null) {
+            accountInstance = new Account();
+            entryHandler = new EntryHandler();
         }
-
+        return accountInstance;
     }
 
-// _____________________________________ Acting as an observer ______________________________________
-
-
-    @Override
-    public void update() {
-
-
+    public EntryHandler getEntryHandler() {
+        return entryHandler;
     }
+
+
 }
