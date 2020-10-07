@@ -1,9 +1,9 @@
 package controllers;
 
+import Model.AccountFacade;
 import Model.Interfaces.AccountObserver;
 import Model.Interfaces.iPane;
 import Model.LogInHandler;
-import Model.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -13,6 +13,11 @@ import javafx.scene.text.Text;
 
 public class LogInPageController implements iPane, AccountObserver {
 
+    //________________________________________________ VARIABLES _______________________________________________________
+
+    AccountFacade accountFacade = AccountFacade.getInstance();
+
+    //________________________________________________ FXML VARIABLES __________________________________________________
     @FXML
     public AnchorPane pos_for_popUp_on_LogInPage;
     @FXML
@@ -20,45 +25,37 @@ public class LogInPageController implements iPane, AccountObserver {
     @FXML
     public AnchorPane logInContent;
     private MainController parent;
-    private User user = User.getInstance();
     @FXML
     private PasswordField logInField;
     @FXML
     private TextField usernameField;
     @FXML
-    private Text userExistanceText;
+    private Text message;
 
-    //Initialize
+    //________________________________________________ Methods _________________________________________________________
     @Override
     public void initPane(MainController parent) {
         this.parent = parent;
-        user.add(this);
+        accountFacade.add(this);
     }
 
-    //Button actions
     @FXML
+    private void signUpButton() {
 
-            private void signUpButton() {
+        back.setVisible(true);
+        pos_for_popUp_on_LogInPage.setVisible(true);
 
-                if (!(user.doesUserExist()) ) {
-                    back.setVisible(true);
-                    pos_for_popUp_on_LogInPage.setVisible(true);
+        pos_for_popUp_on_LogInPage.getChildren().clear();
+        pos_for_popUp_on_LogInPage.getChildren().add(parent.getSignUpPopUp());
+        back.toFront();
+        back.setStyle("-fx-background-color: #000000");
+        back.setOpacity(0.5);
+        pos_for_popUp_on_LogInPage.toFront();
+        }
 
-                    pos_for_popUp_on_LogInPage.getChildren().clear();
-                    pos_for_popUp_on_LogInPage.getChildren().add(parent.getSignUpPopUp());
-                    back.toFront();
-                    back.setStyle("-fx-background-color: #000000");
-                    back.setOpacity(0.5);
-                    pos_for_popUp_on_LogInPage.toFront();
-                }
-                else {userExistanceText.setText("A user already exits!");
-            userExistanceText.setFill(Color.RED); }
-
-    }
 
     @FXML
     private void onLoginClicked() {
-        parent.showFirstPage();
 
         LogInHandler logInHandler = new LogInHandler() {
             @Override
@@ -70,16 +67,15 @@ public class LogInPageController implements iPane, AccountObserver {
         boolean caseNumber = logInHandler.logIn(usernameField, logInField);
 
         if (caseNumber) {
-            userExistanceText.setFill(Color.WHITE);
+            message.setFill(Color.WHITE);
             usernameField.clear();
             logInField.clear();
             parent.showFirstPage();
 
         } else {
-            userExistanceText.setFill(Color.RED);
+            message.setFill(Color.RED);
         }
     }
-
 
     @FXML
     private void hidePopUp() {
@@ -88,14 +84,8 @@ public class LogInPageController implements iPane, AccountObserver {
         logInContent.toFront();
     }
 
-    //Observer-pattern methods
     @Override
     public void update() {
-        if (User.getInstance() != null) {
-
-            hidePopUp();
-        }
+        hidePopUp();
     }
-
-
 }
