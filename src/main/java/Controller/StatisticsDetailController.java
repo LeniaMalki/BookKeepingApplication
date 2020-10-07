@@ -13,6 +13,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Text;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A controller class for handling the page for detail statistics.
  * It listens to what happens to entries by implementing EntryObserver
@@ -24,6 +27,7 @@ public class StatisticsDetailController implements iPane, EntryObserver {
     MainController parent;
     EntryHandler entryHandler = EntryHandler.getInstance();
     boolean listItemPink = false;
+    boolean allEntries;
 
     //__________________________________________________ FXML __________________________________________________________
 
@@ -48,10 +52,24 @@ public class StatisticsDetailController implements iPane, EntryObserver {
         this.parent = parent;
         EntrySubject.add(this);
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
+        allEntries = true;
     }
 
-    //TODO REMOVE ENTRY BUTTON
-    public void removeEntry() {
+    @FXML
+    public void removeEntry(ActionEvent event) {
+        final List<Entry> entries = entryHandler.getEntries();
+        for(Entry entry : entries){
+            if(entry.getSelected()){
+                entryHandler.removeEntry(entry);
+                if(!allEntries) {
+                    entriesCategory(entry.getCategory());
+                } else {
+                    entriesCategory("");
+                }
+            }
+            updatePie();
+        }
+
 
     }
 
@@ -75,8 +93,11 @@ public class StatisticsDetailController implements iPane, EntryObserver {
 
         flowpaneStat.getChildren().add(new EntryListItemController(entry, listItemPink));
         listItemPink = !listItemPink;
+        updatePie();
 
+    }
 
+    private void updatePie(){
         entryHandler.updateGraph();
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
                 new PieChart.Data("Food", entryHandler.getFoodAmount()),
@@ -88,9 +109,7 @@ public class StatisticsDetailController implements iPane, EntryObserver {
             chart = new DounutChart(pieChartData);
             chartPane.getChildren().add(chart);
         } else chart.setData(pieChartData);
-
     }
-
     /**
      * A general function that is used to decrease code duplication. It goes through all entries and checks if some
      * entries match the given one. In that case, we add it to our FlowPane.
@@ -104,6 +123,7 @@ public class StatisticsDetailController implements iPane, EntryObserver {
                 addToFlowPane(entry);
             }
         }
+        allEntries = category.equals("");
     }
 
     private void addToFlowPane(Entry entry) {
@@ -124,6 +144,7 @@ public class StatisticsDetailController implements iPane, EntryObserver {
     @FXML
     private void other(ActionEvent event) {
         entriesCategory("Other");
+
     }
 
     @FXML
