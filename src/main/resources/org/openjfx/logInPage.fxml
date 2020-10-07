@@ -93,7 +93,7 @@
                       <Font name="Book Antiqua" size="24.0" />
                   </font>
               </Hyperlink>
-            <Text fx:id="userExistanceText" fill="WHITE" layoutX="1036.0" layoutY="367.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No user registered!" textAlignment="CENTER">
+            <Text fx:id="message" fill="WHITE" layoutX="1036.0" layoutY="367.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No user registered!" textAlignment="CENTER">
                <font>
                   <Font name="Book Antiqua" size="27.0" />
                </font>
