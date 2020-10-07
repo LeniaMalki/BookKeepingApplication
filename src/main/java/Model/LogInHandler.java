@@ -5,14 +5,14 @@ import javafx.scene.control.TextField;
 
 public abstract class LogInHandler {
 
-    User user = User.getInstance();
+    Account account = Account.getInstance();
 
-    public boolean logIn (TextField usernameField, TextField logInField) {
+    public boolean logIn(TextField usernameField, TextField logInField) {
 
-        if (user.doesUserExist()) {
+        if (account.doesUserExist()) {
             return loginFieldChecker(usernameField, logInField) == 0;
         }
-       return false;
+        return false;
     }
 
 
@@ -20,17 +20,16 @@ public abstract class LogInHandler {
 
         int caseNumber = 0;
 
-        if (!(user.getUsername().equals(usernameField.getText()))) {
+        if (!(account.getUsername().equals(usernameField.getText()))) {
             usernameField.setStyle("-fx-text-box-border: #B22222;");
             caseNumber++;
         }
-        if (!(user.getPassword().equals(logInField.getText()))) {
+        if (!(account.getPassword().equals(logInField.getText()))) {
             logInField.setStyle("-fx-text-box-border: #B22222;");
             caseNumber++;
         }
         return caseNumber;
     }
-
 
 
 }

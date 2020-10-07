@@ -1,8 +1,8 @@
 package controllers;
 
+import Model.AccountFacade;
 import Model.Interfaces.AccountObserver;
 import Model.Interfaces.iPane;
-import Model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
@@ -11,12 +11,15 @@ import java.io.IOException;
 
 public class HeaderController implements iPane, AccountObserver {
 
+    //________________________________________________ VARIABLES _______________________________________________________
 
     MainController parent;
+    AccountFacade accountFacade = AccountFacade.getInstance();
+
+    //________________________________________________ FXML ____________________________________________________________
 
     @FXML
-    Hyperlink accountPageButton;
-    User user = User.getInstance();
+    private Hyperlink accountPageButton;
     @FXML
     private Hyperlink logo;
     @FXML
@@ -30,8 +33,10 @@ public class HeaderController implements iPane, AccountObserver {
     @FXML
     private Hyperlink goalButton;
 
+    //________________________________________________ Methods _________________________________________________________
+
     @FXML
-    private void clickHeader(ActionEvent event) throws IOException {
+    private void clickHeader(ActionEvent event) {
         if (homeButton.equals(event.getTarget()) || logo.equals(event.getTarget())) {
             parent.showFirstPage();
         } else if (budgetButton.equals(event.getTarget())) {
@@ -45,19 +50,17 @@ public class HeaderController implements iPane, AccountObserver {
         } else if (goalButton.equals(event.getTarget())) {
             parent.showGoalsPage();
         }
-
-
     }
 
     @Override
     public void initPane(MainController parent) {
         this.parent = parent;
-        user.add(this);
+        accountFacade.add(this);
     }
 
     @Override
     public void update() {
-        this.accountPageButton.setText(user.getName());
+        accountPageButton.setText(accountFacade.getAccountName());
     }
 }
 

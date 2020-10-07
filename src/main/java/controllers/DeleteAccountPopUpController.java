@@ -1,6 +1,6 @@
 package controllers;
 
-import Model.AccountDataHandler;
+import Model.AccountFacade;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.layout.AnchorPane;
@@ -8,41 +8,34 @@ import javafx.scene.text.Text;
 
 public class DeleteAccountPopUpController {
 
+    //________________________________________________ VARIABLES _______________________________________________________
+
+    MainController parent;
+    private final AccountFacade accountFacade = AccountFacade.getInstance();
+
+    //________________________________________________ FXML ____________________________________________________________
     @FXML
     public AnchorPane delAccPopUp;
-    MainController parent;
     @FXML
     private PasswordField enterPasswordToDelete;
     @FXML
     private Text passwordIncorrectMessage;
 
-    //Initialize
+    //________________________________________________ Methods _________________________________________________________
+
     public void initPane(MainController parent) {
         this.parent = parent;
     }
 
-    //Button actions
     @FXML
     private void deleteAccountConfirm() {
 
-        AccountDataHandler accountDataHandler = new AccountDataHandler() {
-            @Override
-            public boolean doesPasswordMatch(String inputPassword) {
-                return super.doesPasswordMatch(inputPassword);
-            }
-
-            @Override
-            public void deleteAccount() {
-                super.deleteAccount();
-            }
-        };
-
-        if (accountDataHandler.doesPasswordMatch(enterPasswordToDelete.getText())) {
-            accountDataHandler.deleteAccount();
+        if (accountFacade.checkPasswordMatch(enterPasswordToDelete.getText())) {
+            accountFacade.deleteAccount();
             parent.showLogInPage();
-        } else {
-            passwordIncorrectMessage.setText("Password is incorrect! Try again.");
         }
+        else
+            passwordIncorrectMessage.setText("Password is incorrect! Try again.");
 
 
     }
