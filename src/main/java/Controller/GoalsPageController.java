@@ -33,12 +33,10 @@ public class GoalsPageController implements iPane, iIconSelector {
 
     }
 
-<<<<<<< Updated upstream
-=======
     /**
      * open the budget page
      */
->>>>>>> Stashed changes
+
     @FXML
     private void openBudget() {
         parent.showBudgetPage();
@@ -52,12 +50,11 @@ public class GoalsPageController implements iPane, iIconSelector {
         parent.showEntryPage();
     }
 
-<<<<<<< Updated upstream
-=======
+
     /**
      * adds a new goal
      */
->>>>>>> Stashed changes
+
     @FXML
     private void addGoal() {
         goalFlowPane.getChildren().add(new NewGoalsInsertController());
