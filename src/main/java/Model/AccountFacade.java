@@ -47,7 +47,7 @@ public class AccountFacade implements AccountSubject {
     public Account createAccount(TextField signUpName, TextField signUpUsername,
                                  TextField signUpPassword, TextField signUpConfirmPassword, TextField signUpEmail) {
         return accountExistenceManager.createAccount(signUpName, signUpUsername,
-                                                     signUpPassword, signUpConfirmPassword, signUpEmail);
+                signUpPassword, signUpConfirmPassword, signUpEmail);
     }
 
     public void deleteAccount() {

@@ -26,7 +26,7 @@ public class MainController {
     private AnchorPane deleteAccountPopUp;
     private AnchorPane changePasswordPopUp;
     private AnchorPane detailStatistics;
-    private DetailStatisticsController detailStatisticsController;
+    private StatisticsDetailController detailStatisticsController;
 
     //________________________________________________ FXML ____________________________________________________________
     @FXML
@@ -45,7 +45,7 @@ public class MainController {
         budgetPage = PaneFactory.initBudgetPane();
         statisticsOverviewPage = PaneFactory.initStatisticsOverviewPane();
         changePasswordPopUp = PaneFactory.initChangePasswordPopUp();
-        PaneFactory.Pane<DetailStatisticsController> detailPane = PaneFactory.initStatisticsDetailPane();
+        PaneFactory.Pane<StatisticsDetailController> detailPane = PaneFactory.initStatisticsDetailPane();
         detailStatistics = detailPane.anchorPane;
         detailStatisticsController = detailPane.controller;
         showPage(logInPage);

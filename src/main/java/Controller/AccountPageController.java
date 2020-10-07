@@ -91,8 +91,7 @@ public class AccountPageController implements iPane, AccountObserver {
 
         if (!accountFacade.isAccountPageFieldsCorrect(usernameSetting, nameSetting, emailSetting)) {
             submitChangesButton.setStyle("-fx-text-box-border: #B22222;");
-        }
-        else {
+        } else {
             submitChangesButton.setStyle("-fx-text-box-border: #008000;");
         }
 

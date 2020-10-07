@@ -51,7 +51,7 @@ public class LogInPageController implements iPane, AccountObserver {
         back.setStyle("-fx-background-color: #000000");
         back.setOpacity(0.5);
         pos_for_popUp_on_LogInPage.toFront();
-        }
+    }
 
 
     @FXML
