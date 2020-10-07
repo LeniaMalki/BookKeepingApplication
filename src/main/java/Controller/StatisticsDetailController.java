@@ -19,7 +19,7 @@ import javafx.scene.text.Text;
  *
  * @author Oscar
  */
-public class DetailStatisticsController implements iPane, EntryObserver {
+public class StatisticsDetailController implements iPane, EntryObserver {
 
     //________________________________________________ VARIABLES _______________________________________________________
 
@@ -54,6 +54,11 @@ public class DetailStatisticsController implements iPane, EntryObserver {
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
     }
 
+    //TODO REMOVE ENTRY BUTTON
+    public void removeEntry(){
+
+    }
+
     /**
      * A function that gets the appropriate text for our different timespans for statistics
      *
@@ -63,16 +68,6 @@ public class DetailStatisticsController implements iPane, EntryObserver {
         this.labelPieChart.setText(labelPieChart);
     }
 
-    @Override
-    public void update(String category, String type, double Value) {
-        //TODO whatever this is intended to do? @Artin
-
-    }
-
-    @Override
-    public void update(Entry entry) {
-        updateStatistics(entry);
-    }
 
     /**
      * A function that creates a new PieChart by the use of an EntryHandler that has access to entries.
@@ -140,4 +135,16 @@ public class DetailStatisticsController implements iPane, EntryObserver {
     private void household(ActionEvent event) {
         entriesCategory("Household");
     }
+
+    @Override
+    public void update(String category, String type, double Value) {
+        //TODO whatever this is intended to do? @Artin
+
+    }
+
+    @Override
+    public void update(Entry entry) {
+        updateStatistics(entry);
+    }
+
 }
