@@ -22,15 +22,17 @@ public class GoalsPageController implements iPane, iIconSelector {
         goalFlowPane.setVgap(10);
 
     }
+
     @FXML
-    private void openBudget(){
+    private void openBudget() {
         parent.showBudgetPage();
     }
 
     @FXML
-    private void openEntry(){
+    private void openEntry() {
         parent.showEntryPage();
     }
+
     @FXML
     private void addGoal() {
         goalFlowPane.getChildren().add(new NewGoalsInsertController());

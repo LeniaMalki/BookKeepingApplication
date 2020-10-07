@@ -28,7 +28,9 @@ public class AccountEditor {
         return false;
     }
 
-    String getAccountName() {return account.getName();}
+    String getAccountName() {
+        return account.getName();
+    }
 
     boolean setAccountEmail(TextField textField) {
         if (accountValidityChecker.isValidEmail(textField.getText())) {

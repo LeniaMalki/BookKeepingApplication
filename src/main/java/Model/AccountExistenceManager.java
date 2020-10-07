@@ -24,17 +24,17 @@ public class AccountExistenceManager {
                           TextField signUpPassword, TextField signUpConfirmPassword, TextField signUpEmail) {
 
         if (isAllFieldsEntered(signUpName, signUpUsername,
-                               signUpPassword, signUpConfirmPassword, signUpEmail)) {
+                signUpPassword, signUpConfirmPassword, signUpEmail)) {
 
             if (signUpFieldsChecker(signUpName, signUpUsername,
-                                    signUpPassword, signUpConfirmPassword, signUpEmail) == 0) {
+                    signUpPassword, signUpConfirmPassword, signUpEmail) == 0) {
 
                 assignUserFields(signUpName, signUpUsername,
-                                 signUpPassword, signUpConfirmPassword, signUpEmail);
+                        signUpPassword, signUpConfirmPassword, signUpEmail);
                 return account;
             }
         }
-       return null;
+        return null;
     }
 
     private void assignUserFields(TextField signUpName, TextField signUpUsername,
@@ -73,7 +73,7 @@ public class AccountExistenceManager {
         } else signUpPassword.setStyle("-fx-text-box-border: #008000;");
 
         if (!accountValidityChecker.checkSignupPasswordMatch(signUpPassword.getText(),
-                                                             signUpConfirmPassword.getText())) {
+                signUpConfirmPassword.getText())) {
             signUpConfirmPassword.setStyle("-fx-text-box-border: #B22222;");
             i++;
         } else signUpConfirmPassword.setStyle("-fx-text-box-border: #008000;");

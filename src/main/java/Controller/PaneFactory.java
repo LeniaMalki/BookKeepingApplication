@@ -95,7 +95,7 @@ public class PaneFactory {
     }
 
     static AnchorPane initStatisticsOverviewPane() {
-        Pane<OverViewStatisticsController> pane = loadInPane("org/openjfx/statisticsOverviewPage.fxml");
+        Pane<StatisticsOverViewController> pane = loadInPane("org/openjfx/statisticsOverviewPage.fxml");
         pane.controller.initPane(parent);
         return pane.anchorPane;
     }
@@ -106,8 +106,8 @@ public class PaneFactory {
         return pane.anchorPane;
     }
 
-    static Pane<DetailStatisticsController> initStatisticsDetailPane() {
-        Pane<DetailStatisticsController> pane = loadInPane("org/openjfx/statisticsDetailPage.fxml");
+    static Pane<StatisticsDetailController> initStatisticsDetailPane() {
+        Pane<StatisticsDetailController> pane = loadInPane("org/openjfx/statisticsDetailPage.fxml");
         pane.controller.initPane(parent);
         return pane;
     }

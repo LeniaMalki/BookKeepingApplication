@@ -14,7 +14,7 @@ import javafx.scene.text.Text;
  *
  * @author Oscar
  */
-public class OverViewStatisticsController implements iPane, EntryObserver {
+public class StatisticsOverViewController implements iPane, EntryObserver {
 
     //________________________________________________ VARIABLES _______________________________________________________
 

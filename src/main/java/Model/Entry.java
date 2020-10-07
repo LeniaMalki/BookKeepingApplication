@@ -22,9 +22,9 @@ public class Entry extends EntrySubject {
 
 
     public void notifyEntryListeners() {
-        for ( EntryObserver observer : observers ) {
-            observer.update (this);
-            observer.update(getCategory(),getTypeOfEntry(),getAmount());
+        for (EntryObserver observer : observers) {
+            observer.update(this);
+            observer.update(getCategory(), getTypeOfEntry(), getAmount());
         }
     }
 

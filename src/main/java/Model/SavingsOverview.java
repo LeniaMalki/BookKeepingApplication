@@ -58,8 +58,7 @@ public class SavingsOverview implements iSavingsRegister, SavingsSubject, EntryO
     }
 
 
-
-    public double getAmountSaved(String name){
+    public double getAmountSaved(String name) {
         return savingGoalHashMap.get(name).savingGoalReached;
     }
 }
