@@ -28,9 +28,6 @@ public class StatisticsDetailController implements iPane, EntryObserver {
     //__________________________________________________ FXML __________________________________________________________
 
     @FXML
-    private ScrollPane statisticsScrollPane;
-
-    @FXML
     private FlowPane flowpaneStat;
 
     @FXML
@@ -38,8 +35,10 @@ public class StatisticsDetailController implements iPane, EntryObserver {
 
     @FXML
     private AnchorPane headerAnchorPane;
+
     @FXML
     private AnchorPane chartPane;
+
     DounutChart chart;
 
     //_________________________________________________ METHODS ________________________________________________________
@@ -48,7 +47,6 @@ public class StatisticsDetailController implements iPane, EntryObserver {
     public void initPane(MainController parent) {
         this.parent = parent;
         EntrySubject.add(this);
-
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
     }
 
@@ -101,19 +99,16 @@ public class StatisticsDetailController implements iPane, EntryObserver {
      */
     private void entriesCategory(String category) {
         flowpaneStat.getChildren().clear();
-        if (category.equals("")) {
-            for (Entry entry : entryHandler.getEntries()) {
-                flowpaneStat.getChildren().add(new EntryListItemController(entry, listItemPink));
-                listItemPink = !listItemPink;
-            }
-        } else {
-            for (Entry entry : entryHandler.getEntries()) {
-                if (entry.getCategory().equals(category)) {
-                    flowpaneStat.getChildren().add(new EntryListItemController(entry, listItemPink));
-                    listItemPink = !listItemPink;
-                }
+        for (Entry entry : entryHandler.getEntries()) {
+            if (category.equals("") || entry.getCategory().equals(category)) {
+                addToFlowPane(entry);
             }
         }
+    }
+
+    private void addToFlowPane(Entry entry) {
+        flowpaneStat.getChildren().add(new EntryListItemController(entry, listItemPink));
+        listItemPink = !listItemPink;
     }
 
     @FXML

@@ -1,8 +1,10 @@
 package Controller;
 
 import Model.Entry;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
@@ -45,6 +47,11 @@ public class EntryListItemController extends AnchorPane {
         if (pinkColor) {
             this.getStyleClass().add("pinkInsert");
         }
+    }
+
+    @FXML
+    private void selectEntry(MouseEvent event) {
+
     }
 
 

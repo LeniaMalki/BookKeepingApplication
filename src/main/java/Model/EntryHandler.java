@@ -46,6 +46,10 @@ public class EntryHandler implements EntryObserver {
         entries.add(e);
     }
 
+    public void removeEntry(Entry e){
+        entries.remove(e);
+    }
+
     /**
      * A function that iterates through the list of entries and adds their values up in different categories
      */
