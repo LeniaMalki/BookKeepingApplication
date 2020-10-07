@@ -1,18 +1,10 @@
 package Model;
 
-import Model.Interfaces.EntryObserver;
-import Model.Interfaces.EntrySubjects;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class Account implements EntrySubjects {
+public class Account  {
 
     //________________________________________________ Variables  ______________________________________________________
-    private static EntryHandler entryHandler;
     private static Account accountInstance;
-
-    private final List<EntryObserver> EntryObservers = new ArrayList<EntryObserver>();
 
     private String name;
     private String username;
@@ -63,37 +55,19 @@ public class Account implements EntrySubjects {
 
 
     //________________________________________________ Methods _________________________________________________________
-    private Account() {
-
-    }
+    private Account() { }
 
     public boolean doesUserExist() {
         return this.getName() != null;
     }
 
-    @Override
-    public void addEntryListener(EntryObserver o) {
-        EntryObservers.add(o);
-    }
-
-    public void notifyEntryListeners() {
-        for (EntryObserver observer : EntryObservers) {
-            observer.update();
-        }
-
-    }
-
     public static Account getInstance() {
         if (accountInstance == null) {
             accountInstance = new Account();
-            entryHandler = new EntryHandler();
         }
-        return accountInstance;
-    }
+        return accountInstance; }
 
-    public EntryHandler getEntryHandler() {
-        return entryHandler;
-    }
+
 
 
 }
