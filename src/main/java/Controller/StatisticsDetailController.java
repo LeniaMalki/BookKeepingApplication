@@ -21,7 +21,12 @@ import javafx.scene.text.Text;
  */
 public class StatisticsDetailController implements iPane, EntryObserver {
 
+<<<<<<< Updated upstream:src/main/java/Controller/StatisticsDetailController.java
     //________________________________________________ VARIABLES _______________________________________________________
+=======
+    MainController parent;
+    StatisticsHandler statisticsHandler = StatisticsHandler.getInstance();
+>>>>>>> Stashed changes:src/main/java/Controller/DetailStatisticsController.java
 
     MainController parent;
     EntryHandler entryHandler = EntryHandler.getInstance();
@@ -81,14 +86,23 @@ public class StatisticsDetailController implements iPane, EntryObserver {
         listItemPink = !listItemPink;
 
 
-        entryHandler.updateGraph();
+        statisticsHandler.updateGraph();
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
+<<<<<<< Updated upstream:src/main/java/Controller/StatisticsDetailController.java
                 new PieChart.Data("Food", entryHandler.getFoodAmount()),
                 new PieChart.Data("Transportation", entryHandler.getTransportationAmount()),
                 new PieChart.Data("Household", entryHandler.getHouseholdAmount()),
                 new PieChart.Data("Shopping", entryHandler.getShoppingAmount()),
                 new PieChart.Data("Other", entryHandler.getOtherAmount()));
         if (chart == null) {
+=======
+                new PieChart.Data("Food", statisticsHandler.getFoodAmount()),
+                new PieChart.Data("Transportation", statisticsHandler.getTransportationAmount()),
+                new PieChart.Data("Household", statisticsHandler.getHouseholdAmount()),
+                new PieChart.Data("Shopping", statisticsHandler.getShoppingAmount()),
+                new PieChart.Data("Other", statisticsHandler.getOtherAmount()));
+        if (chart==null){
+>>>>>>> Stashed changes:src/main/java/Controller/DetailStatisticsController.java
             chart = new DounutChart(pieChartData);
             chartPane.getChildren().add(chart);
         } else chart.setData(pieChartData);
@@ -103,7 +117,7 @@ public class StatisticsDetailController implements iPane, EntryObserver {
      */
     private void entriesCategory(String category) {
         flowpaneStat.getChildren().clear();
-        for (Entry entry : entryHandler.getEntries()) {
+        for (Entry entry : statisticsHandler.getEntries()) {
             if (entry.getCategory().equals(category)) {
                 flowpaneStat.getChildren().add(new EntryListItemController(entry, listItemPink));
                 listItemPink = !listItemPink;

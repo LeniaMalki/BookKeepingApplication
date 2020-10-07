@@ -7,7 +7,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
-
+/**
+ * Controller for a new entry as a listItem
+ *
+ * @author Artin
+ */
 public class EntryListItemController extends AnchorPane {
 
 
@@ -19,9 +23,13 @@ public class EntryListItemController extends AnchorPane {
 
     @FXML
     Text costName;
-    MainController parent;
 
 
+    /**
+     * Creates a new insert for a list and sets the test that is suppose to go in it
+     * @param entry is a entry submitted by the user and is used to set the name/cost/category of the listItem
+     * @param pinkColor check if the list item should be pink or not
+     */
     public EntryListItemController(Entry entry, boolean pinkColor) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/openjfx/entryPageScrollPaneInsert.fxml"));
         fxmlLoader.setController(this);

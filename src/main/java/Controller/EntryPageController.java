@@ -14,6 +14,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 
 import java.util.ArrayList;
+/**
+ * Controller for the entry page
+ *
+ * @author Artin
+ */
 
 public class EntryPageController implements iPane, SavingsObserver {
 
@@ -21,8 +26,6 @@ public class EntryPageController implements iPane, SavingsObserver {
     private final ArrayList<Entry> entryList = new ArrayList<>();
     MainController parent;
     boolean listItemPink = false;
-    @FXML
-    AnchorPane entryTypeGroupAnchorPane;
 
     private Button currentActiveEntryButton;
     @FXML
@@ -40,8 +43,6 @@ public class EntryPageController implements iPane, SavingsObserver {
     @FXML
     private ScrollPane entryPageScrollPane;
     @FXML
-    private Button submitButton;
-    @FXML
     private FlowPane entryFlowPlane;
     @FXML
     private AnchorPane headerAnchorPane;
@@ -58,10 +59,21 @@ public class EntryPageController implements iPane, SavingsObserver {
     }};
 
 
+    /**
+     * Initializes the pane when the program starts also adds the header
+     * @param parent the main controller
+     */
     @Override
     public void initPane(MainController parent) {
         this.parent = parent;
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
+        setValuesAtStart();
+    }
+
+    /**
+     * sets the values that need to be added at the start of the program
+     */
+    private void setValuesAtStart(){
         entryButtonTypeCluster.add(expencesButton);
         entryButtonTypeCluster.add(savingButton);
         entryButtonTypeCluster.add(incomebutton);
@@ -71,6 +83,10 @@ public class EntryPageController implements iPane, SavingsObserver {
         SavingsSubject.observers.add(this);
     }
 
+    /**
+     * activates of deactivates the button that is pressed, this is for choosing the entry type
+     * @param event if something is pressed an ActionEvent is fired and tells the system what happened
+     */
     @FXML
     private void activateEntryTypeButton(ActionEvent event) {
         Button btn = (Button) event.getSource();
@@ -86,8 +102,11 @@ public class EntryPageController implements iPane, SavingsObserver {
         checkCategoryBox(btn);
     }
 
+    /**
+     * Adds a new entry when the user has put in the right parameters and added
+     */
     @FXML
-    private void addEntry(ActionEvent event) {
+    private void addEntry() {
         Entry entry = new Entry(Double.parseDouble(costTextField.getText()), nameTextField.getText(), categoryComboBox.getValue(), currentActiveEntryButton.getText());
         entryList.add(entry);
         entryFlowPlane.getChildren().add(new EntryListItemController(entry, listItemPink));
@@ -98,8 +117,11 @@ public class EntryPageController implements iPane, SavingsObserver {
     }
 
 
+    /**
+     * Confirms all the entries that the user has added, as an extra step to make sure that everything is right
+     */
     @FXML
-    private void submitEntries(ActionEvent event) {
+    private void submitEntries() {
         for (Entry entry : entryList) {
             entry.notifyEntryListeners();
         }
@@ -107,6 +129,10 @@ public class EntryPageController implements iPane, SavingsObserver {
         entryList.clear();
     }
 
+    /**
+     * informs the object that a change has happened in a class that it observes
+     * @param s a string has been sent with the change
+     */
     @Override
     public void update(String s) {
         savingCategory.add(s);
@@ -115,6 +141,10 @@ public class EntryPageController implements iPane, SavingsObserver {
         }
     }
 
+    /**
+     * Checks what category box is selected and fills it with the right info
+     * @param b is the button that is active
+     */
     private void checkCategoryBox(Button b) {
         if (b == savingButton) {
             categoryComboBox.getItems().removeAll(expenceCategory);
