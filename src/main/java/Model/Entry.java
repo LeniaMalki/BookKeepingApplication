@@ -2,17 +2,25 @@ package Model;
 
 import Model.Interfaces.EntryObserver;
 
+/**
+ * A class creates entries that are imputed by the user
+ *
+ * @author Artin
+ */
 
 public class Entry extends EntrySubject {
-//    private List<EntryObserver> observers = new ArrayList<>();
-    //private T message;
-
     double amount;
     String name;
     String category;
     String typeOfEntry;
 
-
+    /**
+     * Constructor that initializes a new entry object
+     * @param cost the amount of money that the entry is about
+     * @param name name of the entrie
+     * @param category the category that the entry falls under
+     * @param typeOfEntry the type of entry the object is, income, expense or savings
+     */
     public Entry(double cost, String name, String category, String typeOfEntry) {
         this.amount = cost;
         this.name = name;
@@ -20,14 +28,15 @@ public class Entry extends EntrySubject {
         this.typeOfEntry = typeOfEntry;
     }
 
-
+    /**
+     * Notifies all the observers of the object
+     */
     public void notifyEntryListeners() {
         for (EntryObserver observer : observers) {
             observer.update(this);
             observer.update(getCategory(), getTypeOfEntry(), getAmount());
         }
     }
-
 
     public double getAmount() {
         return amount;
@@ -47,12 +56,5 @@ public class Entry extends EntrySubject {
 
     public Entry getEntry() {
         return this;
-    }
-
-    @Override
-    public void notifyListeners() {
-        for (EntryObserver observer : observers) {
-            observer.update(this.getCategory(), this.getTypeOfEntry(), amount);
-        }
     }
 }
