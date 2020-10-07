@@ -5,26 +5,12 @@ import Model.Interfaces.EntryObserver;
 import java.util.ArrayList;
 import java.util.List;
 
-<<<<<<< Updated upstream:src/main/java/Model/EntryHandler.java
+
 /**
  * A class that handles all the entries in our program
  *
  * @author Oscar
  */
-=======
-public class StatisticsHandler implements EntryObserver {
-    private static StatisticsHandler statisticsHandler;
-    private StatisticsHandler(){
-        EntrySubject.add(this);
-    }
-    public static StatisticsHandler getInstance(){
-        if (statisticsHandler ==null){
-            statisticsHandler =new StatisticsHandler();
-        }
-        return statisticsHandler;
-    }
-    private final List<Entry> entries = new ArrayList<>();
->>>>>>> Stashed changes:src/main/java/Model/StatisticsHandler.java
 
 public class EntryHandler implements EntryObserver {
 

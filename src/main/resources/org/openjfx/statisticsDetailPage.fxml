@@ -95,6 +95,14 @@
          </styleClass>
       </Button>
       <AnchorPane fx:id="chartPane" layoutX="32.0" layoutY="358.0" prefHeight="555.0" prefWidth="580.0" />
+      <Button layoutX="939.0" layoutY="182.0" mnemonicParsing="false" onAction="#allEntries" prefHeight="25.0" prefWidth="162.0" text="All Entries" textAlignment="CENTER">
+         <styleClass>
+            <String fx:value="inactiveEntryButton" />
+            <String fx:value="Enrique-BoldRound" />
+            <String fx:value="incomeSelectButton" />
+            <String fx:value="droSshadow" />
+         </styleClass>
+      </Button>
    </children>
    <stylesheets>
       <URL value="@../../cssFolder/font.css" />
