@@ -4,9 +4,15 @@ package Controller;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
+/**
+ * The main controller in the program. Shows different pages
+ *
+ * @author Oscar
+ */
 
 public class MainController {
 
+    //________________________________________________ VARIABLES _______________________________________________________
     private AnchorPane logInPage;
     private AnchorPane firstPage;
     private AnchorPane entryPage;
@@ -22,10 +28,11 @@ public class MainController {
     private AnchorPane detailStatistics;
     private DetailStatisticsController detailStatisticsController;
 
-
+    //________________________________________________ FXML ____________________________________________________________
     @FXML
     private AnchorPane mainAnchor;
 
+    //______________________________________________ METHODS ___________________________________________________________
     public void init() {
         signUpPopUp = PaneFactory.initSignUpPopUp();
         deleteAccountPopUp = PaneFactory.initDelAccPopup();
@@ -44,8 +51,6 @@ public class MainController {
         showPage(logInPage);
     }
 
-
-    // TODO make one for each anchorpane
     void showLogInPage() {
         showPage(logInPage);
     }
@@ -84,16 +89,19 @@ public class MainController {
     void showBudgetCharPage() {
         showPage(budgetCharPage);
     }
-
+    /**
+     * A function that shows us our desired AnchorPane
+     *
+     * @param pane an AnchorPane that is one of our visible pages in our program
+     */
     private void showPage(AnchorPane pane) {
         mainAnchor.getChildren().clear();
         mainAnchor.getChildren().add(pane);
         mainAnchor.toFront();
     }
 
-    /**
-     * Getters and setters
-     */
+    //____________________________________________ GETTERS / SETTERS ___________________________________________________
+
     AnchorPane getSignUpPopUp() {
         return signUpPopUp;
     }
