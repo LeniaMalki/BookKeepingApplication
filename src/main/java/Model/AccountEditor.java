@@ -6,9 +6,9 @@ public class AccountEditor {
     //________________________________________________ Variables _______________________________________________________
     private static AccountEditor accountEditor;
 
-    Account account = Account.getInstance();
+    private final Account account = Account.getInstance();
 
-    AccountValidityChecker accountValidityChecker = AccountValidityChecker.getInstance();
+    private final  AccountValidityChecker accountValidityChecker = AccountValidityChecker.getInstance();
 
     //________________________________________________ Methods _________________________________________________________
 
@@ -20,36 +20,26 @@ public class AccountEditor {
 
     }
 
-    boolean setAccountName(TextField textField) {
+    void setAccountName(TextField textField) {
         if (accountValidityChecker.isValidName(textField.getText())) {
             account.setName(textField.getText());
-            return true;
         } else textField.setStyle("-fx-text-box-border: #B22222;");
-        return false;
     }
 
-    String getAccountName() {
-        return account.getName();
-    }
-
-    boolean setAccountEmail(TextField textField) {
+    void setAccountEmail(TextField textField) {
         if (accountValidityChecker.isValidEmail(textField.getText())) {
             account.setEmailAddress(textField.getText());
-            return true;
         } else textField.setStyle("-fx-text-box-border: #B22222;");
-        return false;
 
     }
 
-    boolean setAccountUsername(TextField textField) {
+    void setAccountUsername(TextField textField) {
         if (textField.getText() != null) {
             account.setUsername(textField.getText());
-            return true;
         } else textField.setStyle("-fx-text-box-border: #B22222;");
-        return false;
     }
 
-    boolean setAccountPassword(TextField textField) {
+     boolean setAccountPassword(TextField textField) {
         if (accountValidityChecker.checkPasswordLength(textField.getText())) {
             account.setPassword(textField.getText());
             return true;
@@ -57,16 +47,46 @@ public class AccountEditor {
         return false;
     }
 
-    boolean isAccountPageFieldsCorrect(TextField name, TextField email, TextField username) {
-        return (accountValidityChecker.isValidName(name.toString()) && accountValidityChecker.isValidEmail(email.toString()) && !username.getText().equals(""));
+    boolean areAccountFieldsCorrect(TextField username, TextField name, TextField email) {
 
+        boolean areFieldsCorrect = true;
+
+        //Username
+        if (username.getText().equals("")) {
+            username.setStyle("-fx-text-box-border: #B22222;"); //RED
+            areFieldsCorrect = false;
+        }
+        else username.setStyle("-fx-text-box-border: #008000;");
+
+        //Name
+        if (!accountValidityChecker.isValidName(name.getText())) {
+            name.setStyle("-fx-text-box-border: #B22222;"); //RED
+            areFieldsCorrect = false;
+        }
+        else name.setStyle("-fx-text-box-border: #008000;");
+
+        //Email
+        if (!accountValidityChecker.isValidEmail(email.getText())) {
+            email.setStyle("-fx-text-box-border: #B22222;"); //RED
+            areFieldsCorrect = false;
+        }
+        else email.setStyle("-fx-text-box-border: #008000;");
+
+
+        return areFieldsCorrect;
     }
 
-    public String getAccountUsername() {
+
+    String getAccountName() {
+        return account.getName();
+    }
+    String getAccountUsername() {
         return account.getUsername();
     }
-
-    public String getAccountEmail() {
+    String getAccountEmail() {
         return account.getEmailAddress();
+    }
+    String getAccountPassword() {
+        return account.getPassword();
     }
 }
