@@ -16,7 +16,7 @@ public class LogInPageController implements iPane, AccountObserver {
 
     //________________________________________________ VARIABLES _______________________________________________________
 
-    AccountFacade accountFacade = AccountFacade.getInstance();
+    private final AccountFacade accountFacade = AccountFacade.getInstance();
 
     //________________________________________________ FXML VARIABLES __________________________________________________
     @FXML
@@ -43,17 +43,20 @@ public class LogInPageController implements iPane, AccountObserver {
     @FXML
     private void signUpButton() {
 
-        back.setVisible(true);
-        pos_for_popUp_on_LogInPage.setVisible(true);
+        if (accountFacade.getAccountName() == null) {
+            back.setVisible(true);
+            pos_for_popUp_on_LogInPage.setVisible(true);
 
-        pos_for_popUp_on_LogInPage.getChildren().clear();
-        pos_for_popUp_on_LogInPage.getChildren().add(parent.getSignUpPopUp());
-        back.toFront();
-        back.setStyle("-fx-background-color: #000000");
-        back.setOpacity(0.5);
-        pos_for_popUp_on_LogInPage.toFront();
+            pos_for_popUp_on_LogInPage.getChildren().clear();
+            pos_for_popUp_on_LogInPage.getChildren().add(parent.getSignUpPopUp());
+            back.toFront();
+            back.setStyle("-fx-background-color: #000000");
+            back.setOpacity(0.5);
+            pos_for_popUp_on_LogInPage.toFront();
+        }
+        else message.setText("An account already exists! ");
+
     }
-
 
     @FXML
     private void onLoginClicked() {
@@ -64,17 +67,21 @@ public class LogInPageController implements iPane, AccountObserver {
             }
         };
 
-        boolean caseNumber = logInHandler.logIn(usernameField, logInField);
-
-        if (caseNumber) {
-            message.setFill(Color.WHITE);
+        if (accountFacade.getAccountName() == null) {
+            message.setText("No user registered!");
+        }
+        else if (logInHandler.logIn(usernameField, logInField)) {
+            message.setText("");
+            usernameField.setStyle("-fx-text-box-border: #ffffff");
+            logInField.setStyle("-fx-text-box-border: #ffffff");
             usernameField.clear();
             logInField.clear();
             parent.showFirstPage();
-
-        } else {
-            message.setFill(Color.RED);
         }
+
+
+
+
     }
 
     @FXML

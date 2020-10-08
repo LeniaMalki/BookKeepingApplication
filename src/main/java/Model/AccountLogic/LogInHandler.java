@@ -7,29 +7,33 @@ public abstract class LogInHandler {
 
     Account account = Account.getInstance();
 
-    public boolean logIn(TextField usernameField, TextField logInField) {
 
-        if (account.doesUserExist()) {
-            return loginFieldChecker(usernameField, logInField) == 0;
-        }
-        return false;
+    private boolean checkLoginAccountName (TextField accountName) {
+        return account.getUsername().equals(accountName.getText());
     }
 
-
-    public int loginFieldChecker(TextField usernameField, TextField logInField) {
-
-        int caseNumber = 0;
-
-        if (!(account.getUsername().equals(usernameField.getText()))) {
-            usernameField.setStyle("-fx-text-box-border: #B22222;");
-            caseNumber++;
-        }
-        if (!(account.getPassword().equals(logInField.getText()))) {
-            logInField.setStyle("-fx-text-box-border: #B22222;");
-            caseNumber++;
-        }
-        return caseNumber;
+    private boolean checkLoginPassword(TextField password) {
+        return account.getPassword().equals(password.getText());
     }
+
+    public boolean logIn (TextField accountName, TextField password) {
+
+        boolean isLogInCorrect = true;
+        if (!checkLoginAccountName(accountName)) {
+            accountName.setStyle("-fx-text-box-border: #B22222;"); //RED
+            isLogInCorrect = false;
+        }
+        else accountName.setStyle("-fx-text-box-border: #008000;");
+        if (!checkLoginPassword(password)) {
+            password.setStyle("-fx-text-box-border: #B22222;"); //RED
+            isLogInCorrect = false;
+        }
+        else password.setStyle("-fx-text-box-border: #008000;");
+
+
+        return isLogInCorrect;
+    }
+
 
 
 }
