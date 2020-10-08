@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" style="-fx-background-color: FFFFFF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GoalsControllers.GoalsPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" style="-fx-background-color: FFFFFF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GoalsPageController">
    <children>
       <AnchorPane fx:id="headerAnchorPane" layoutX="-3.0" layoutY="-4.0" prefHeight="120.0" prefWidth="1453.0" styleClass="header-Shadow" />
       <ScrollPane layoutX="592.0" layoutY="287.0" prefHeight="690.0" prefWidth="827.0" styleClass="whiteBackground">
