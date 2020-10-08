@@ -1,6 +1,6 @@
 package Model.Interfaces;
 
-import Model.SavingGoal;
+import Model.GoalsLogic.SavingGoal;
 
 public interface iSavingsRegister {
     void addSavingsGoal(String name, SavingGoal goal);
