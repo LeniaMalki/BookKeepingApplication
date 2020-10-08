@@ -1,2 +1,0 @@
-org/openjfx/LocaliMain.java
- org.openjfx.LocaliMain

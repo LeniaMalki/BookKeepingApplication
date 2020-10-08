@@ -1,7 +1,10 @@
 package controllers;
 
 import Model.Entry;
+import Model.Interfaces.SavingsObserver;
+import Model.Interfaces.SavingsSubject;
 import Model.Interfaces.iPane;
+import Model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -13,14 +16,20 @@ import javafx.scene.layout.FlowPane;
 
 import java.util.ArrayList;
 
-public class EntryPageController implements iPane {
+public class EntryPageController implements iPane, SavingsObserver {
 
-    private final ArrayList<Button> entryButtonTypeCluster = new ArrayList<>();
+    private final ArrayList<Button> entryButtonTypeCluster = new ArrayList<>(){{
+        add(expencesButton);
+        add(savingButton);
+        add(incomebutton);
+    }};
     private final ArrayList<Entry> entryList = new ArrayList<>();
     MainController parent;
+    User user = User.getInstance();
     boolean listItemPink = false;
     @FXML
     AnchorPane entryTypeGroupAnchorPane;
+
     private Button currentActiveEntryButton;
     @FXML
     private Button expencesButton;
@@ -38,25 +47,31 @@ public class EntryPageController implements iPane {
     private ScrollPane entryPageScrollPane;
     @FXML
     private Button submitButton;
-
     @FXML
     private FlowPane entryFlowPlane;
-
     @FXML
     private AnchorPane headerAnchorPane;
+    private ArrayList<String> savingCategory = new ArrayList<>() {{
+        add("General Saving");
+    }};
+    private ArrayList<String> expenceCategory = new ArrayList<>() {{
+        add("Food");
+        add("Household");
+        add("Shopping");
+        add("Transportation");
+        add("Other");
+
+    }};
 
 
     @Override
     public void initPane(MainController parent) {
         this.parent = parent;
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
-        entryButtonTypeCluster.add(expencesButton);
-        entryButtonTypeCluster.add(savingButton);
-        entryButtonTypeCluster.add(incomebutton);
-        categoryComboBox.getItems().addAll("Food", "Household", "Shopping", "Transportation", "Other");
+        categoryComboBox.getItems().addAll(expenceCategory);
         currentActiveEntryButton = expencesButton;
         entryPageScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-
+        SavingsSubject.observers.add(this);
     }
 
     @FXML
@@ -71,6 +86,7 @@ public class EntryPageController implements iPane {
         btn.getStyleClass().remove("inactiveEntryButton");
         btn.getStyleClass().add("activeEntryButton");
         currentActiveEntryButton = btn;
+        checkCategoryBox(btn);
     }
 
     @FXML
@@ -88,10 +104,28 @@ public class EntryPageController implements iPane {
     @FXML
     private void submitEntries(ActionEvent event) {
         for (Entry entry : entryList) {
-            entry.notifyListeners();
+            user.getEntryHandler().addEntry(entry);
         }
+        user.notifyEntryListeners();
         entryFlowPlane.getChildren().clear();
         entryList.clear();
+    }
 
+    @Override
+    public void update(String s) {
+        savingCategory.add(s);
+        if (currentActiveEntryButton== savingButton){
+            categoryComboBox.getItems().add(s);
+        }
+    }
+
+    private void checkCategoryBox(Button b) {
+        if (b == savingButton) {
+            categoryComboBox.getItems().removeAll(expenceCategory);
+            categoryComboBox.getItems().addAll(savingCategory);
+        } else {
+            categoryComboBox.getItems().removeAll(savingCategory);
+            categoryComboBox.getItems().addAll(expenceCategory);
+        }
     }
 }
