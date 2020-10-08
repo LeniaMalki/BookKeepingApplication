@@ -1,30 +1,21 @@
-package Controller.AccountControllers;
-
-import Controller.MainControllers.MainController;
-import javafx.event.ActionEvent;
+package Controller;
+import Model.AccountFacade;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 
 
 public class ChangePasswordPopUpController {
 
     MainController parent;
+    private final AccountFacade accountFacade = AccountFacade.getInstance();
 
     @FXML
-    private AnchorPane changePasswordPopUp;
+    private PasswordField newPassword;
     @FXML
-    private PasswordField signUpPassword;
+    private PasswordField confirmPassword;
     @FXML
-    private PasswordField signUpConfirmPassword;
-    @FXML
-    private ImageView newPasswordCheck;
-    @FXML
-    private ImageView confirmNewPasswordCheck;
-    @FXML
-    private Button changePasswordConfirm;
+    private Text textMessage;
 
     public void initPane(MainController parent) {
         this.parent = parent;
@@ -33,11 +24,19 @@ public class ChangePasswordPopUpController {
 
     //Goes back to account page when confirming change of password
     @FXML
-    void onAction_ConfirmChangePassword_CLICKED(ActionEvent event) throws Exception {
+    void onAction_ConfirmChangePassword_CLICKED ()   {
 
+            //Checks if new password is valid
+            if (accountFacade.setAccountPassword(newPassword)) {
 
-        parent.getChangePasswordPopUp().toBack();
-        parent.showAccountPage();
+                //Checks if confirmPassword matches with new
+                if (newPassword.getText().equals(confirmPassword.getText()))  {
+                    accountFacade.setAccountPassword(newPassword);
+                    textMessage.setText("Changes saved! ");
+                }
+                else textMessage.setText("Password  does not match.");
+            }
+            else textMessage.setText("Invalid new password.");
 
     }
 

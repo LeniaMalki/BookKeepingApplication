@@ -6,21 +6,20 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.InnerShadow?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="signUpPopUp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="662.0" prefWidth="900.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AccountControllers.SignUpPageController">
+<AnchorPane fx:id="signUpPopUp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="662.0" prefWidth="579.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.SignUpPageController">
     <children>
-        <Text fill="#5f6368" layoutX="378.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up">
+        <Text fill="#5f6368" layoutX="232.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up">
             <font>
-                <Font name="Book Antiqua" size="48.0" />
+                <Font name="Lucida Sans Unicode" size="41.0" />
             </font>
         </Text>
-        <TextField fx:id="signUpName" alignment="BOTTOM_LEFT" layoutX="289.0" layoutY="128.0" minWidth="-Infinity" prefHeight="52.0" prefWidth="350.0" promptText="myName" style="-fx-background-color: #FFFFFF;">
+        <TextField fx:id="signUpName" alignment="BOTTOM_LEFT" layoutX="135.0" layoutY="176.0" minWidth="-Infinity" prefHeight="31.0" prefWidth="350.0" promptText="myName" style="-fx-background-color: #FFFFFF;">
             <font>
-                <Font size="18.0" />
+                <Font name="Lucida Sans Unicode" size="14.0" />
             </font>
             <padding>
                 <Insets bottom="1.0" />
@@ -29,9 +28,9 @@
                 <InnerShadow color="#00000021" />
             </effect>
         </TextField>
-        <TextField fx:id="signUpEmail" alignment="BOTTOM_LEFT" layoutX="289.0" layoutY="221.0" minWidth="-Infinity" prefHeight="52.0" prefWidth="350.0" promptText="myEmail@hotmail.com" style="-fx-background-color: #FFFFFF;">
+        <TextField fx:id="signUpEmail" alignment="BOTTOM_LEFT" layoutX="136.0" layoutY="251.0" minWidth="-Infinity" prefHeight="31.0" prefWidth="350.0" promptText="myEmail@hotmail.com" style="-fx-background-color: #FFFFFF;">
             <font>
-                <Font size="18.0" />
+                <Font name="Lucida Sans Unicode" size="14.0" />
             </font>
             <padding>
                 <Insets bottom="1.0" />
@@ -40,9 +39,9 @@
                 <InnerShadow color="#00000021" />
             </effect>
         </TextField>
-        <TextField fx:id="signUpUsername" alignment="BOTTOM_LEFT" layoutX="289.0" layoutY="312.0" minWidth="-Infinity" prefHeight="52.0" prefWidth="350.0" promptText="myUsername98" style="-fx-background-color: #FFFFFF;">
+        <TextField fx:id="signUpUsername" alignment="BOTTOM_LEFT" layoutX="137.0" layoutY="331.0" minWidth="-Infinity" prefHeight="31.0" prefWidth="350.0" promptText="myUsername98" style="-fx-background-color: #FFFFFF;">
             <font>
-                <Font size="18.0" />
+                <Font name="Lucida Sans Unicode" size="14.0" />
             </font>
             <padding>
                 <Insets bottom="1.0" />
@@ -51,9 +50,9 @@
                 <InnerShadow color="#00000021" />
             </effect>
         </TextField>
-        <PasswordField fx:id="signUpPassword" alignment="BOTTOM_LEFT" layoutX="289.0" layoutY="404.0" minWidth="-Infinity" prefHeight="54.0" prefWidth="350.0" promptText="Password" style="-fx-background-color: #FFFFFF;">
+        <PasswordField fx:id="signUpPassword" alignment="BOTTOM_LEFT" layoutX="137.0" layoutY="403.0" minWidth="-Infinity" prefHeight="31.0" prefWidth="350.0" promptText="Password" style="-fx-background-color: #FFFFFF;">
             <font>
-                <Font size="18.0" />
+                <Font name="Lucida Sans Unicode" size="14.0" />
             </font>
             <padding>
                 <Insets bottom="1.0" />
@@ -62,9 +61,9 @@
                 <InnerShadow color="#00000021" />
             </effect>
         </PasswordField>
-        <PasswordField fx:id="signUpConfirmPassword" alignment="BOTTOM_LEFT" layoutX="290.0" layoutY="492.0" minWidth="-Infinity" prefHeight="54.0" prefWidth="350.0" promptText="Confirm password" style="-fx-background-color: #FFFFFF;">
+        <PasswordField fx:id="signUpConfirmPassword" alignment="BOTTOM_LEFT" layoutX="135.0" layoutY="477.0" minWidth="-Infinity" prefHeight="31.0" prefWidth="350.0" promptText="Confirm password" style="-fx-background-color: #FFFFFF;">
             <font>
-                <Font size="18.0" />
+                <Font name="Lucida Sans Unicode" size="14.0" />
             </font>
             <padding>
                 <Insets bottom="1.0" />
@@ -73,46 +72,66 @@
                 <InnerShadow color="#00000021" />
             </effect>
         </PasswordField>
-        <ImageView fx:id="confirmPasswordIcon" fitHeight="50.0" fitWidth="50.0" layoutX="705.0" layoutY="483.0" pickOnBounds="true" preserveRatio="true" />
-        <ImageView fx:id="signUpEmailIcon" fitHeight="50.0" fitWidth="50.0" layoutX="705.0" layoutY="222.0" pickOnBounds="true" preserveRatio="true" />
-        <ImageView fx:id="signUpEmailIcon1" fitHeight="50.0" fitWidth="50.0" layoutX="705.0" layoutY="304.0" pickOnBounds="true" preserveRatio="true" />
-        <ImageView fx:id="signUpNameIcon" fitHeight="50.0" fitWidth="50.0" layoutX="705.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true" />
-        <Button fx:id="createAccount" alignment="CENTER" defaultButton="true" layoutX="305.0" layoutY="575.0" mnemonicParsing="false" onAction="#handleCreateAccountAction" prefHeight="64.0" prefWidth="315.0" style="-fx-background-color: #a8d8d3; -fx-background-radius: 5;" styleClass="linkFillWhite" text="Create Account" textFill="#464646">
+        <Button fx:id="createAccount" alignment="CENTER" defaultButton="true" layoutX="192.0" layoutY="569.0" mnemonicParsing="false" onAction="#handleCreateAccountAction" prefHeight="64.0" prefWidth="233.0" style="-fx-background-color: #a8d8d3; -fx-background-radius: 5;" styleClass="linkFillWhite" text="Create account" textFill="#464646">
             <font>
-                <Font name="Book Antiqua" size="32.0" />
+                <Font name="Lucida Sans Unicode" size="24.0" />
             </font>
             <opaqueInsets>
                 <Insets />
             </opaqueInsets>
         </Button>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <Text fx:id="fieldsMissingText" fill="WHITE" layoutX="346.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wrong or missing inputs!">
+      <Text fx:id="fieldsMissingText" fill="WHITE" layoutX="240.0" layoutY="551.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Missing inputs!">
          <font>
             <Font size="21.0" />
          </font></Text>
-      <Text fill="#5f6368" layoutX="289.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" wrappingWidth="128.5400390625">
+      <Text fill="#5f6368" layoutX="136.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First name" wrappingWidth="128.5400390625">
          <font>
-            <Font size="18.0" />
+            <Font name="Lucida Sans Unicode" size="14.0" />
          </font>
       </Text>
-      <Text fill="#5f6368" layoutX="289.0" layoutY="216.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" wrappingWidth="128.5400390625">
+      <Text fill="#5f6368" layoutX="137.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" wrappingWidth="128.5400390625">
          <font>
-            <Font size="18.0" />
+            <Font name="Lucida Sans Unicode" size="14.0" />
          </font>
       </Text>
-      <Text fill="#5f6368" layoutX="289.0" layoutY="311.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" wrappingWidth="128.5400390625">
+      <Text fill="#5f6368" layoutX="137.0" layoutY="324.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" wrappingWidth="128.5400390625">
          <font>
-            <Font size="18.0" />
+            <Font name="Lucida Sans Unicode" size="14.0" />
          </font>
       </Text>
-      <Text fill="#5f6368" layoutX="289.0" layoutY="398.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" wrappingWidth="128.5400390625">
+      <Text fill="#5f6368" layoutX="136.0" layoutY="396.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password (at least 8 characters)" wrappingWidth="350.0">
          <font>
-            <Font size="18.0" />
+            <Font name="Lucida Sans Unicode" size="14.0" />
          </font>
       </Text>
-      <Text fill="#5f6368" layoutX="289.0" layoutY="490.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm Password" wrappingWidth="173.5400390625">
+      <Text fill="#5f6368" layoutX="135.0" layoutY="470.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm Password" wrappingWidth="173.5400390625">
          <font>
-            <Font size="18.0" />
+            <Font name="Lucida Sans Unicode" size="14.0" />
+         </font>
+      </Text>
+      <Text boundsType="VISUAL" fill="RED" layoutX="115.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Text>
+      <Text boundsType="VISUAL" fill="RED" layoutX="116.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Text>
+      <Text boundsType="VISUAL" fill="RED" layoutX="116.0" layoutY="334.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Text>
+      <Text boundsType="VISUAL" fill="RED" layoutX="116.0" layoutY="406.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Text>
+      <Text boundsType="VISUAL" fill="RED" layoutX="116.0" layoutY="480.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+         <font>
+            <Font size="30.0" />
          </font>
       </Text>
     </children>
