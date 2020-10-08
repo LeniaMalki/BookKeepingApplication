@@ -1,45 +1,44 @@
 package Model;
 
-import Model.Interfaces.AccountObserver;
-import Model.Interfaces.EntrySubject;
+import Model.Interfaces.EntrySubjects;
 import Model.Interfaces.EntryObserver;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class Entry<T> implements EntrySubject {
+public class Entry extends EntrySubject implements EntrySubjects {
     private List<EntryObserver> observers = new ArrayList<>();
-    private T message;
+    //private T message;
 
-    double amout;
+    double amount;
     String name;
     String category;
     String typeOfEntry;
 
 
     public Entry(double cost, String name, String category, String typeOfEntry) {
-        this.amout = cost;
+        this.amount = cost;
         this.name = name;
-        this.category=category;
-        this.typeOfEntry=typeOfEntry;
+        this.category = category;
+        this.typeOfEntry = typeOfEntry;
     }
 
     @Override
-    public void add (EntryObserver o ) {
+    public void addEntryListener(EntryObserver o ) {
         observers.add(o);
     }
 
     @Override
-    public void notifyListeners () {
+    public void notifyEntryListeners() {
         for ( EntryObserver observer : observers ) {
             observer.update ();
         }
     }
 
 
-    public double getAmout() {
-        return amout;
+    public double getAmount() {
+        return amount;
     }
 
     public String getName() {
@@ -54,4 +53,14 @@ public class Entry<T> implements EntrySubject {
         return typeOfEntry;
     }
 
+    public Entry getEntry() {
+        return this;
+    }
+
+    @Override
+    public void notifyListeners() {
+        for (EntryObserver observer : observers) {
+            observer.update(this.getCategory(), this.getTypeOfEntry(), amount);
+        }
+    }
 }
