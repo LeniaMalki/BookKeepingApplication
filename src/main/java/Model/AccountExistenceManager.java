@@ -7,9 +7,9 @@ public class AccountExistenceManager {
     //________________________________________________ Variables _______________________________________________________
     private static AccountExistenceManager accountExistenceManager;
 
-    Account account = Account.getInstance();
+    private final Account account = Account.getInstance();
 
-    AccountValidityChecker accountValidityChecker = new AccountValidityChecker();
+    private final AccountValidityChecker accountValidityChecker = new AccountValidityChecker();
 
     //________________________________________________ Methods _________________________________________________________
 
@@ -23,9 +23,6 @@ public class AccountExistenceManager {
     Account createAccount(TextField signUpName, TextField signUpUsername,
                           TextField signUpPassword, TextField signUpConfirmPassword, TextField signUpEmail) {
 
-        if (isAllFieldsEntered(signUpName, signUpUsername,
-                signUpPassword, signUpConfirmPassword, signUpEmail)) {
-
             if (signUpFieldsChecker(signUpName, signUpUsername,
                     signUpPassword, signUpConfirmPassword, signUpEmail) == 0) {
 
@@ -33,7 +30,7 @@ public class AccountExistenceManager {
                         signUpPassword, signUpConfirmPassword, signUpEmail);
                 return account;
             }
-        }
+
         return null;
     }
 
@@ -80,11 +77,7 @@ public class AccountExistenceManager {
         return i;
     }
 
-    public boolean isAllFieldsEntered(TextField signUpName, TextField signUpUsername,
-                                      TextField signUpPassword, TextField signUpConfirmPassword,
-                                      TextField signUpEmail) {
-        return (!signUpName.getText().equals("") && !signUpUsername.getText().equals("") && !signUpEmail.getText().equals("") && !signUpPassword.getText().equals("") && !signUpConfirmPassword.getText().equals(""));
-    }
+
 
     void deleteAccount() {
         account.setName(null);

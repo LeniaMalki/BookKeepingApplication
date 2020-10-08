@@ -37,11 +37,21 @@ public class SignUpPageController {
 
     @FXML
     private void handleCreateAccountAction() {
-        if (!(accountFacade.createAccount(signUpName, signUpUsername, signUpPassword, signUpConfirmPassword,
+        if (!isAllFieldsEntered()) {
+            fieldsMissingText.setFill(Color.RED);
+        }
+        else if (!(accountFacade.createAccount(signUpName, signUpUsername, signUpPassword, signUpConfirmPassword,
                 signUpEmail) == null)) {
             accountFacade.notifyListeners();
+
             clearTextFields();
-        } else fieldsMissingText.setFill(Color.RED);
+        }
+        else fieldsMissingText.setFill(Color.WHITE);
+
+    }
+
+    public boolean isAllFieldsEntered() {
+        return (!signUpName.getText().equals("") && !signUpUsername.getText().equals("") && !signUpEmail.getText().equals("") && !signUpPassword.getText().equals("") && !signUpConfirmPassword.getText().equals(""));
     }
 
     private void clearTextFields() {

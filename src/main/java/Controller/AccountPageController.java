@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 
 /**
  * Handles the view for an account page.
@@ -32,7 +33,7 @@ public class AccountPageController implements iPane, AccountObserver {
     @FXML
     private TextField emailSetting;
     @FXML
-    private Button submitChangesButton;
+    private Text textMessage;
 
     //________________________________________________ Methods _________________________________________________________
 
@@ -52,6 +53,8 @@ public class AccountPageController implements iPane, AccountObserver {
      * Handles image view for opening a pop up on account page
      */
     private void popUpHandler() {
+        back.setVisible(true);
+        popUpPosition.setVisible(true);
         popUpPosition.getChildren().clear();
         back.toFront();
         back.setStyle("-fx-background-color: #000000");
@@ -88,14 +91,33 @@ public class AccountPageController implements iPane, AccountObserver {
      */
     @FXML
     private void onActionSubmitChangesButton() {
+        if (accountFacade.getAccountUsername().equals(usernameSetting.getText()) && accountFacade.getAccountName().equals(nameSetting.getText()) && accountFacade.getAccountEmail().equals(emailSetting.getText())) {
+            textMessage.setText("No changes made.");
+        }
 
-        if (!accountFacade.isAccountPageFieldsCorrect(usernameSetting, nameSetting, emailSetting)) {
-            submitChangesButton.setStyle("-fx-text-box-border: #B22222;");
-        } else {
-            submitChangesButton.setStyle("-fx-text-box-border: #008000;");
+        else if (accountFacade.isAccountPageFieldsCorrect(usernameSetting, nameSetting, emailSetting)) {
+            accountFacade.setAccountUsername  (usernameSetting) ;
+            accountFacade.setAccountName(nameSetting);
+            accountFacade.setAccountEmail(emailSetting);
+            textMessage.setText("Changes saved!");
+        }
+        else {
+            textMessage.setText("Incorrect input(s)!");
         }
 
 
+    }
+
+    @FXML
+    private void signOutAction () {
+        parent.showLogInPage();
+    }
+
+    @FXML
+    private void hidePopUp() {
+        back.setVisible(false);
+        popUpPosition.setVisible(false);
+        headerAnchorPane.toFront();
     }
 
 }

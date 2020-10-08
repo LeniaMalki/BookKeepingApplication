@@ -15,10 +15,12 @@ public class AccountFacade implements AccountSubject {
     AccountExistenceManager accountExistenceManager = AccountExistenceManager.getInstance();
     AccountEditor accountEditor = AccountEditor.getInstance();
 
+    public boolean checkPasswordValidity (TextField password) {
+        return accountEditor.setAccountPassword(password);
+    }
+
 
     private AccountFacade() {
-        this.accountExistenceManager = accountExistenceManager;
-        this.accountEditor = accountEditor;
     }
 
     public static AccountFacade getInstance() {
@@ -43,7 +45,20 @@ public class AccountFacade implements AccountSubject {
 
     }
 
-    //Methods
+    public void setAccountName (TextField name) {
+        accountEditor.setAccountName(name);
+    }
+    public void setAccountUsername (TextField username) {
+        accountEditor.setAccountUsername(username);
+    }
+    public boolean setAccountPassword (TextField  password) {
+        return accountEditor.setAccountPassword(password);
+    }
+
+    public void setAccountEmail (TextField email) {
+        accountEditor.setAccountEmail(email);
+    }
+
     public Account createAccount(TextField signUpName, TextField signUpUsername,
                                  TextField signUpPassword, TextField signUpConfirmPassword, TextField signUpEmail) {
         return accountExistenceManager.createAccount(signUpName, signUpUsername,
@@ -68,8 +83,12 @@ public class AccountFacade implements AccountSubject {
 
     }
 
-    public boolean isAccountPageFieldsCorrect(TextField name, TextField email, TextField username) {
-        return accountEditor.isAccountPageFieldsCorrect(name, email, username);
+    public String getAccountPassword () {
+       return accountEditor.getAccountPassword();
+    }
+
+    public boolean isAccountPageFieldsCorrect(TextField username, TextField name, TextField email) {
+        return accountEditor.areAccountFieldsCorrect(username, name, email);
     }
 
     public boolean checkPasswordMatch(String inputPassword) {
