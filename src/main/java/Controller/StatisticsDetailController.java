@@ -58,10 +58,10 @@ public class StatisticsDetailController implements iPane, EntryObserver {
     @FXML
     public void removeEntry(ActionEvent event) {
         final List<Entry> entries = entryHandler.getEntries();
-        for(Entry entry : entries){
-            if(entry.getSelected()){
+        for (Entry entry : entries) {
+            if (entry.getSelected()) {
                 entryHandler.removeEntry(entry);
-                if(!allEntries) {
+                if (!allEntries) {
                     entriesCategory(entry.getCategory());
                 } else {
                     entriesCategory("");
@@ -90,14 +90,12 @@ public class StatisticsDetailController implements iPane, EntryObserver {
      *              every other row pink and every other row white.
      */
     private void updateStatistics(Entry entry) {
-
-        flowpaneStat.getChildren().add(new EntryListItemController(entry, listItemPink));
-        listItemPink = !listItemPink;
+        addToFlowPane(entry);
         updatePie();
 
     }
 
-    private void updatePie(){
+    private void updatePie() {
         entryHandler.updateGraph();
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
                 new PieChart.Data("Food", entryHandler.getFoodAmount()),
@@ -110,6 +108,7 @@ public class StatisticsDetailController implements iPane, EntryObserver {
             chartPane.getChildren().add(chart);
         } else chart.setData(pieChartData);
     }
+
     /**
      * A general function that is used to decrease code duplication. It goes through all entries and checks if some
      * entries match the given one. In that case, we add it to our FlowPane.
