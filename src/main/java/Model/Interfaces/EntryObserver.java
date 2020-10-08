@@ -1,7 +1,6 @@
 package Model.Interfaces;
 
-import Model.Entry;
-import Model.EntrySubject;
+import Model.EntryLogic.Entry;
 
 public interface EntryObserver {
 
