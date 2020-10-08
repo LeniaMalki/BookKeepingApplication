@@ -1,6 +1,6 @@
 package Controller.Interfaces;
 
-import Controller.MainController;
+import Controller.MainControllers.MainController;
 
 /**
  * A interface for all the panes that needs to be aware of the mainAnchor
