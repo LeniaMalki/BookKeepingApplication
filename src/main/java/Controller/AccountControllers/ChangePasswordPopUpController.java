@@ -1,8 +1,10 @@
-package Controller;
-import Model.AccountFacade;
+package Controller.AccountControllers;
+import Model.AccountLogic.AccountFacade;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.text.Text;
+import Controller.MainControllers.MainController;
+
 
 
 public class ChangePasswordPopUpController {
