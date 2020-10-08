@@ -2,17 +2,31 @@ package Model.AccountLogic;
 
 import javafx.scene.control.TextField;
 
+/**
+ * Class which manages the creation and deletion of an account
+ *
+ * @author Lenia
+ */
 public class AccountExistenceManager {
 
     //________________________________________________ Variables _______________________________________________________
-    private static AccountExistenceManager accountExistenceManager;
+    private static  AccountExistenceManager accountExistenceManager;
 
     private final Account account = Account.getInstance();
 
-    private final AccountValidityChecker accountValidityChecker = new AccountValidityChecker();
+    private static final AccountValidityChecker accountValidityChecker = AccountValidityChecker.getInstance();
 
     //________________________________________________ Methods _________________________________________________________
 
+    /**
+     * Private constructor
+     */
+    private AccountExistenceManager() {
+    }
+
+    /**
+     * Method for obtaining/creating a accountExistenceManager object
+     */
     public static AccountExistenceManager getInstance() {
         if (accountExistenceManager == null) {
             accountExistenceManager = new AccountExistenceManager();
@@ -20,20 +34,48 @@ public class AccountExistenceManager {
         return accountExistenceManager;
     }
 
+    /**
+     * Handles the creation of an account
+     *
+     * @param signUpName            is passed in by the accountFacade though whichever controller is in need of the
+     *                              method
+     * @param signUpUsername        is passed in by the accountFacade though whichever controller is in need of the
+     *                              method
+     * @param signUpPassword        is passed in by the accountFacade though whichever controller is in need of the
+     *                              method
+     * @param signUpConfirmPassword is passed in by the accountFacade though whichever controller is in need of the
+     *                              method
+     * @param signUpEmail           is passed in by the accountFacade though whichever controller is in need of the
+     *                              method
+     */
     Account createAccount(TextField signUpName, TextField signUpUsername,
                           TextField signUpPassword, TextField signUpConfirmPassword, TextField signUpEmail) {
 
-            if (signUpFieldsChecker(signUpName, signUpUsername,
-                    signUpPassword, signUpConfirmPassword, signUpEmail) == 0) {
+        if (signUpFieldsChecker(signUpName, signUpUsername,
+                                signUpPassword, signUpConfirmPassword, signUpEmail) == 0) {
 
-                assignUserFields(signUpName, signUpUsername,
-                        signUpPassword, signUpConfirmPassword, signUpEmail);
-                return account;
-            }
+            assignUserFields(signUpName, signUpUsername,
+                             signUpPassword, signUpConfirmPassword, signUpEmail);
+            return account;
+        }
 
         return null;
     }
 
+    /**
+     * Sets the variables of the account instance. Used in method createAccount if all fields are valid
+     *
+     * @param signUpName            is passed in by the createAccount method through accountFacade though signUpPage
+     *                              textfields
+     * @param signUpUsername        is passed in by the createAccount method through accountFacade though signUpPage
+     *                              textfields
+     * @param signUpPassword        is passed in by the createAccount method through accountFacade though signUpPage
+     *                              textfields
+     * @param signUpConfirmPassword is passed in by the createAccount method through accountFacade though signUpPage
+     *                              textfields
+     * @param signUpEmail           is passed in by the createAccount method through accountFacade though signUpPage
+     *                              textfields
+     */
     private void assignUserFields(TextField signUpName, TextField signUpUsername,
                                   TextField signUpPassword, TextField signUpConfirmPassword, TextField signUpEmail) {
         account.setName(signUpName.getText());
@@ -44,6 +86,20 @@ public class AccountExistenceManager {
 
     }
 
+    /**
+     * Check whether the inputs for the account variables are valid by delegation t accountValidityChecker
+     *
+     * @param signUpName            is passed in by the createAccount method through accountFacade though signUpPage
+     *                              textfields
+     * @param signUpUsername        is passed in by the createAccount method through accountFacade though signUpPage
+     *                              textfields
+     * @param signUpPassword        is passed in by the createAccount method through accountFacade though signUpPage
+     *                              textfields
+     * @param signUpConfirmPassword is passed in by the createAccount method through accountFacade though signUpPage
+     *                              textfields
+     * @param signUpEmail           is passed in by the createAccount method through accountFacade though signUpPage
+     *                              textfields
+     */
     private int signUpFieldsChecker(TextField signUpName, TextField signUpUsername,
                                     TextField signUpPassword, TextField signUpConfirmPassword, TextField signUpEmail) {
 
@@ -70,15 +126,16 @@ public class AccountExistenceManager {
         } else signUpPassword.setStyle("-fx-text-box-border: #008000;");
 
         if (!accountValidityChecker.checkSignupPasswordMatch(signUpPassword.getText(),
-                signUpConfirmPassword.getText())) {
+                                                             signUpConfirmPassword.getText())) {
             signUpConfirmPassword.setStyle("-fx-text-box-border: #B22222;");
             i++;
         } else signUpConfirmPassword.setStyle("-fx-text-box-border: #008000;");
         return i;
     }
 
-
-
+    /**
+     * Deletes the account by setting all the accounts' variables to null
+     */
     void deleteAccount() {
         account.setName(null);
         account.setName(null);
@@ -88,6 +145,11 @@ public class AccountExistenceManager {
         account.setConfirmPassword(null);
     }
 
+    /**
+     * Check whether the the input password matches that of the account in order to delete the account
+     *
+     * @param inputPassword is passed in  through accountFacade though deleteAccountPopup textField
+     */
     boolean checkPasswordMatch(String inputPassword) {
         return inputPassword.equals(account.getPassword());
 

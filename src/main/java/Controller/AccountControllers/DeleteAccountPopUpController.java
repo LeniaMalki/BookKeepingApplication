@@ -7,16 +7,19 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
+/**
+ * Controller for deleting the account through account page > deleteAccountPopup
+ *
+ * @author Lenia
+ */
 public class DeleteAccountPopUpController {
 
     //________________________________________________ VARIABLES _______________________________________________________
 
-    MainController parent;
     private final AccountFacade accountFacade = AccountFacade.getInstance();
-
-    //________________________________________________ FXML ____________________________________________________________
     @FXML
     public AnchorPane delAccPopUp;
+    MainController parent;
     @FXML
     private PasswordField enterPasswordToDelete;
     @FXML
@@ -24,10 +27,16 @@ public class DeleteAccountPopUpController {
 
     //________________________________________________ Methods _________________________________________________________
 
+    /**
+     * initialized this pane
+     */
     public void initPane(MainController parent) {
         this.parent = parent;
     }
 
+    /**
+     * Handles the mouse action of deleting and account by delegation to AccountFacade's methods for deletion
+     */
     @FXML
     private void deleteAccountConfirm() {
 

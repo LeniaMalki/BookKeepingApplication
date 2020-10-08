@@ -1,26 +1,26 @@
 package Controller.AccountControllers;
+
+import Controller.Interfaces.iPane;
 import Controller.MainControllers.MainController;
 import Controller.MainControllers.PaneFactory;
 import Model.AccountLogic.AccountFacade;
 import Model.Interfaces.AccountObserver;
-import Controller.Interfaces.iPane;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
 /**
- * Handles the view for an account page.
- * Listens to changes made to an Account object by implementing AccountObserver.
+ * Controller for a handling the image view of the Account Page
+ *
+ * @author Lenia
  */
 public class AccountPageController implements iPane, AccountObserver {
-
     //________________________________________________ VARIABLES _______________________________________________________
+
     AccountFacade accountFacade = AccountFacade.getInstance();
     MainController parent;
 
-    //________________________________________________ FXML ____________________________________________________________
     @FXML
     private AnchorPane headerAnchorPane;
     @FXML
@@ -38,12 +38,18 @@ public class AccountPageController implements iPane, AccountObserver {
 
     //________________________________________________ Methods _________________________________________________________
 
+    /**
+     * Handles the mouse action for when the delete account link is clicked on
+     */
     @FXML
     private void openDeleteAccountPop() {
         popUpHandler();
         popUpPosition.getChildren().add(parent.getDeleteAccountPopUp());
     }
 
+    /**
+     * Handles the mouse action for when the change password  link is clicked on
+     */
     @FXML
     private void openChangePasswordPop() {
         popUpHandler();
@@ -63,6 +69,10 @@ public class AccountPageController implements iPane, AccountObserver {
         popUpPosition.toFront();
     }
 
+    /**
+     * Initialized the pane for which this controller is connected to
+     * Adds itself to the list of observers
+     */
     public void initPane(MainController parent) {
         this.parent = parent;
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
@@ -94,26 +104,29 @@ public class AccountPageController implements iPane, AccountObserver {
     private void onActionSubmitChangesButton() {
         if (accountFacade.getAccountUsername().equals(usernameSetting.getText()) && accountFacade.getAccountName().equals(nameSetting.getText()) && accountFacade.getAccountEmail().equals(emailSetting.getText())) {
             textMessage.setText("No changes made.");
-        }
-
-        else if (accountFacade.isAccountPageFieldsCorrect(usernameSetting, nameSetting, emailSetting)) {
-            accountFacade.setAccountUsername  (usernameSetting) ;
+        } else if (accountFacade.isAccountPageFieldsCorrect(usernameSetting, nameSetting, emailSetting)) {
+            accountFacade.setAccountUsername(usernameSetting);
             accountFacade.setAccountName(nameSetting);
             accountFacade.setAccountEmail(emailSetting);
             textMessage.setText("Changes saved!");
-        }
-        else {
+        } else {
             textMessage.setText("Incorrect input(s)!");
         }
 
 
     }
 
+    /**
+     * Handles the action when sign out is clicked
+     */
     @FXML
-    private void signOutAction () {
+    private void signOutAction() {
         parent.showLogInPage();
     }
 
+    /**
+     * Graphic method to hide pop ups
+     */
     @FXML
     private void hidePopUp() {
         back.setVisible(false);

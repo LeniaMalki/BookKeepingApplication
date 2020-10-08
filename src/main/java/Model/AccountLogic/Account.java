@@ -1,6 +1,10 @@
 package Model.AccountLogic;
 
-
+/**
+ * The concept of an account; designed through singleton pattern.
+ *
+ * @author Lenia
+ */
 public class Account {
 
     //________________________________________________ Variables  ______________________________________________________
@@ -12,56 +16,18 @@ public class Account {
     private String password;
     private String confirmPassword;
 
-    //________________________________________________ Getters/Setters  ________________________________________________
-    public String getConfirmPassword() {
-        return confirmPassword;
-    }
-
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getEmailAddress() {
-        return emailAddress;
-    }
-
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
 
     //________________________________________________ Methods _________________________________________________________
+
+    /**
+     * Private constructor
+     */
     private Account() {
     }
 
-    public boolean doesUserExist() {
-        return this.getName() != null;
-    }
-
+    /**
+     * Method for obtaining the account instance. Handles the creation of a new account object.
+     */
     public static Account getInstance() {
         if (accountInstance == null) {
             accountInstance = new Account();
@@ -69,5 +35,67 @@ public class Account {
         return accountInstance;
     }
 
+    /**
+     * Setter
+     */
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
+
+    /**
+     * Getter
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Setter
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * Getter
+     */
+    public String getUsername() {
+        return username;
+    }
+
+    /**
+     * Setter
+     */
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    /**
+     * Getter
+     */
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    /**
+     * Setter
+     */
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    /**
+     * Getter
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * Setter
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
 }

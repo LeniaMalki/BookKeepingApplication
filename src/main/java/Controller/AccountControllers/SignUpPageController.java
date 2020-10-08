@@ -8,6 +8,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
+/**
+ * Controller for signUp pop up through logInPage
+ *
+ * @author Lenia
+ */
+
 public class SignUpPageController {
 
     //________________________________________________ VARIABLES _______________________________________________________
@@ -15,7 +21,6 @@ public class SignUpPageController {
     private final AccountFacade accountFacade = AccountFacade.getInstance();
     MainController parent;
 
-    //________________________________________________ FXML ____________________________________________________________
     @FXML
     private TextField signUpName;
     @FXML
@@ -31,30 +36,41 @@ public class SignUpPageController {
 
     //________________________________________________ Methods _________________________________________________________
 
+    /**
+     * initialized this pane
+     */
     public void initPane(MainController parent) {
         this.parent = parent;
 
     }
 
+    /**
+     * Handles the mouse action of creating an account. The logic of creating and checking valid inputs is implemented
+     * through the AccountFacade
+     */
     @FXML
     private void handleCreateAccountAction() {
         if (!isAllFieldsEntered()) {
             fieldsMissingText.setFill(Color.RED);
-        }
-        else if (!(accountFacade.createAccount(signUpName, signUpUsername, signUpPassword, signUpConfirmPassword,
-                signUpEmail) == null)) {
+        } else if (!(accountFacade.createAccount(signUpName, signUpUsername, signUpPassword, signUpConfirmPassword,
+                                                 signUpEmail) == null)) {
             accountFacade.notifyListeners();
 
             clearTextFields();
-        }
-        else fieldsMissingText.setFill(Color.WHITE);
+        } else fieldsMissingText.setFill(Color.WHITE);
 
     }
 
-    public boolean isAllFieldsEntered() {
+    /**
+     * Checks whether all fields of the sign up page are entered and none is left blank
+     */
+    private boolean isAllFieldsEntered() {
         return (!signUpName.getText().equals("") && !signUpUsername.getText().equals("") && !signUpEmail.getText().equals("") && !signUpPassword.getText().equals("") && !signUpConfirmPassword.getText().equals(""));
     }
 
+    /**
+     * Resets all border colors and texts of the sign up page text fields.
+     */
     private void clearTextFields() {
 
         signUpName.clear();
