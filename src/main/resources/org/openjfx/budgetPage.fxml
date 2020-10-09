@@ -68,7 +68,7 @@
                   <StackPane prefHeight="120.0" prefWidth="691.0">
                      <children>
                         <ProgressBar fx:id="foodProgressBar" minHeight="10.0" prefHeight="15.0" prefWidth="679.0" progress="0.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" styleClass="droSshadow" />
-                        <Slider fx:id="foodSlider" majorTickUnit="1.0" max="0.0" minorTickCount="0" onMouseDragged="#updatingMoneyLeft" prefHeight="16.0" prefWidth="679.0" snapToTicks="true" />
+                        <Slider fx:id="foodSlider" onMouseDragged="#updatingMoneyLeft" prefWidth="678.0" />
                      </children>
                   </StackPane>
                   <StackPane prefHeight="150.0" prefWidth="200.0">

@@ -8,6 +8,7 @@ import Model.EntryLogic.Entry;
 import Model.EntryLogic.EntryHandler;
 import Model.EntryLogic.EntrySubject;
 import Model.Interfaces.EntryObserver;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.CategoryAxis;
@@ -80,13 +81,18 @@ public class BudgetCharPageController implements iPane, EntryObserver {
         EntrySubject.add(this);
     }
 
+    private void updateCharts(Entry entry){
+        entryHandler.updateGraph();
+        updatingStackedBarChart();
+    }
+
 
     private void updatingStackedBarChart(){
         //categoryAxis.setCategories(FXCollections.<String>observableArrayList(Arrays.asList("Food", "Household", "Shopping", "Transport", "Other", "Savings")));
 
         XYChart.Series<String, Number> series1 = new XYChart.Series<>();
         series1.setName("Budget");
-        series1.getData().add(new XYChart.Data<>("Food", 0));
+        series1.getData().add(new XYChart.Data<>("Food", updateBudgetValues("Food")));
         series1.getData().add(new XYChart.Data<>("Household", 0));
         series1.getData().add(new XYChart.Data<>("Shopping", 0));
         series1.getData().add(new XYChart.Data<>("Transport", 0));
@@ -94,15 +100,19 @@ public class BudgetCharPageController implements iPane, EntryObserver {
         series1.getData().add(new XYChart.Data<>("Savings", 0));
 
 
+
+
         XYChart.Series<String, Number> series2 = new XYChart.Series<>();
-        series2.setName("1900");
+        series2.setName("Expenses");
         series2.getData().add(new XYChart.Data<>("Food", entryHandler.getFoodAmount()));
         series2.getData().add(new XYChart.Data<>("Household", entryHandler.getHouseholdAmount()));
         series2.getData().add(new XYChart.Data<>("Shopping", entryHandler.getShoppingAmount()));
         series2.getData().add(new XYChart.Data<>("Transport", entryHandler.getTransportationAmount()));
-        series1.getData().add(new XYChart.Data<>("Other", entryHandler.getOtherAmount()));
+        series2.getData().add(new XYChart.Data<>("Other", entryHandler.getOtherAmount()));
 
-        stackedBarChart.getData().addAll(series1, series2);
+        //stackedBarChart.getData().addAll(series2);
+
+        stackedBarChart.getData().setAll(series2, series1);
 
     }
 
@@ -113,6 +123,17 @@ public class BudgetCharPageController implements iPane, EntryObserver {
 
     @Override
     public void update(Entry entry) {
-        updatingStackedBarChart();
+        updateCharts(entry);
     }
+
+    private int updateBudgetValues(String string){
+        int foodCost= budget.getFoodCost();
+        int householdCost = budget.getHouseholdCost();
+
+        if (string == "Food"){
+            return foodCost;
+        }
+        return householdCost;
+    }
+
 }
