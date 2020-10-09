@@ -72,13 +72,13 @@ public class StatisticsDetailController implements iPane, EntryObserver {
         for (Entry entry : entries) {
             if (entry.getSelected()) {
                 entryHandler.removeEntry(entry);
+                updatePie();
                 if (!allEntries) {
                     entriesCategory(entry.getCategory());
                 } else {
                     entriesCategory("");
                 }
             }
-            updatePie();
         }
     }
 
