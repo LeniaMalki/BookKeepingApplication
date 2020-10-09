@@ -92,9 +92,9 @@ public class AccountPageController implements iPane, AccountObserver {
      * Sets the account page fields name, through delegation, username and email when an Account object has been created
      */
     private void setAccountFields() {
-        this.usernameSetting.setText(accountFacade.getAccountUsername());
-        this.nameSetting.setText(accountFacade.getAccountName());
-        this.emailSetting.setText(accountFacade.getAccountEmail());
+        usernameSetting.setText(accountFacade.getAccountUsername());
+        nameSetting.setText(accountFacade.getAccountName());
+        emailSetting.setText(accountFacade.getAccountEmail());
     }
 
     /**
@@ -104,16 +104,14 @@ public class AccountPageController implements iPane, AccountObserver {
     private void onActionSubmitChangesButton() {
         if (accountFacade.getAccountUsername().equals(usernameSetting.getText()) && accountFacade.getAccountName().equals(nameSetting.getText()) && accountFacade.getAccountEmail().equals(emailSetting.getText())) {
             textMessage.setText("No changes made.");
-        } else if (accountFacade.isAccountPageFieldsCorrect(usernameSetting, nameSetting, emailSetting)) {
-            accountFacade.setAccountUsername(usernameSetting);
-            accountFacade.setAccountName(nameSetting);
-            accountFacade.setAccountEmail(emailSetting);
+        } else if (accountFacade.isAccountPageFieldsCorrect(usernameSetting.getText(), nameSetting.getText(), emailSetting.getText())) {
+            accountFacade.setAccountUsername(usernameSetting.getText());
+            accountFacade.setAccountName(nameSetting.getText());
+            accountFacade.setAccountEmail(emailSetting.getText());
             textMessage.setText("Changes saved!");
         } else {
             textMessage.setText("Incorrect input(s)!");
         }
-
-
     }
 
     /**
@@ -133,5 +131,9 @@ public class AccountPageController implements iPane, AccountObserver {
         popUpPosition.setVisible(false);
         headerAnchorPane.toFront();
     }
+
+
+
+
 
 }
