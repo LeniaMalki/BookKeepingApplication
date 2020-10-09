@@ -40,11 +40,11 @@ public class ChangePasswordPopUpController {
     void onAction_ConfirmChangePassword_CLICKED() {
 
         //Checks if new password is valid
-        if (accountFacade.setAccountPassword(newPassword)) {
+        if (accountFacade.setAccountPassword(newPassword.getText())) {
 
             //Checks if confirmPassword matches with new
             if (newPassword.getText().equals(confirmPassword.getText())) {
-                accountFacade.setAccountPassword(newPassword);
+                accountFacade.setAccountPassword(newPassword.getText());
                 textMessage.setText("Changes saved! ");
             } else textMessage.setText("Password  does not match.");
         } else textMessage.setText("Invalid new password.");
