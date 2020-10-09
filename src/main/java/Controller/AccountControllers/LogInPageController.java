@@ -6,13 +6,13 @@ import Model.AccountLogic.AccountFacade;
 import Model.AccountLogic.LogInHandler;
 import Model.Interfaces.AccountObserver;
 import javafx.fxml.FXML;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
 /**
  * Controller for login on login page
+ *
  * @author Lenia
  */
 
@@ -21,7 +21,6 @@ public class LogInPageController implements iPane, AccountObserver {
     //________________________________________________ VARIABLES _______________________________________________________
 
     private final AccountFacade accountFacade = AccountFacade.getInstance();
-
     @FXML
     public AnchorPane pos_for_popUp_on_LogInPage;
     @FXML
@@ -30,7 +29,7 @@ public class LogInPageController implements iPane, AccountObserver {
     public AnchorPane logInContent;
     private MainController parent;
     @FXML
-    private PasswordField logInField;
+    private TextField logInField;
     @FXML
     private TextField usernameField;
     @FXML
@@ -76,23 +75,20 @@ public class LogInPageController implements iPane, AccountObserver {
     private void onLoginClicked() {
         LogInHandler logInHandler = new LogInHandler() {
             @Override
-            public boolean logIn(TextField usernameField, TextField logInField) {
+            public boolean logIn(String usernameField, String logInField) {
                 return super.logIn(usernameField, logInField);
             }
         };
 
         if (accountFacade.getAccountName() == null) {
             message.setText("No user registered!");
-        } else if (logInHandler.logIn(usernameField, logInField)) {
+        } else if (logInHandler.logIn(usernameField.getText(), logInField.getText())) {
             message.setText("");
-            usernameField.setStyle("-fx-text-box-border: #ffffff");
-            logInField.setStyle("-fx-text-box-border: #ffffff");
-            usernameField.clear();
-            logInField.clear();
+            clearLogInFields();
+            //usernameField.setStyle("-fx-text-box-border: #ffffff");
+            //logInField.setStyle("-fx-text-box-border: #ffffff");
             parent.showFirstPage();
         }
-
-
     }
 
     /**
@@ -111,5 +107,10 @@ public class LogInPageController implements iPane, AccountObserver {
     @Override
     public void update() {
         hidePopUp();
+    }
+
+    private void clearLogInFields() {
+        this.usernameField.clear();
+        this.logInField.clear();
     }
 }

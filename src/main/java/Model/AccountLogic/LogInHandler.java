@@ -16,8 +16,8 @@ public abstract class LogInHandler {
      *
      * @param accountName is the variables obtained from logInTextField on logIn controller
      */
-    private boolean checkLoginAccountName(TextField accountName) {
-        return account.getUsername().equals(accountName.getText());
+    private boolean checkLoginAccountName(String accountName) {
+        return account.getUsername().equals(accountName);
     }
 
     /**
@@ -25,8 +25,8 @@ public abstract class LogInHandler {
      *
      * @param password is the variables obtained from logInTextField on logIn controller
      */
-    private boolean checkLoginPassword(TextField password) {
-        return account.getPassword().equals(password.getText());
+    private boolean checkLoginPassword(String password) {
+        return account.getPassword().equals(password);
     }
 
     /**
@@ -34,17 +34,19 @@ public abstract class LogInHandler {
      *
      * @param password is the variables obtained from logInTextField on logIn controller
      */
-    public boolean logIn(TextField accountName, TextField password) {
+    public boolean logIn(String accountName, String password) {
 
         boolean isLogInCorrect = true;
         if (!checkLoginAccountName(accountName)) {
-            accountName.setStyle("-fx-text-box-border: #B22222;"); //RED
+            System.out.println("Incorrect accountName");
+            //accountName.setStyle("-fx-text-box-border: #B22222;"); //RED
             isLogInCorrect = false;
-        } else accountName.setStyle("-fx-text-box-border: #008000;");
+        } //else accountName.setStyle("-fx-text-box-border: #008000;");
         if (!checkLoginPassword(password)) {
-            password.setStyle("-fx-text-box-border: #B22222;"); //RED
+            //password.setStyle("-fx-text-box-border: #B22222;"); //RED
+            System.out.println("Incorrect password");
             isLogInCorrect = false;
-        } else password.setStyle("-fx-text-box-border: #008000;");
+        } //else password.setStyle("-fx-text-box-border: #008000;");
 
 
         return isLogInCorrect;
