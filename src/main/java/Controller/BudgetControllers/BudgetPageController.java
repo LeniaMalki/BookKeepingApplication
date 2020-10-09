@@ -15,16 +15,81 @@ import javafx.beans.value.ObservableValue;
 import javafx.util.converter.NumberStringConverter;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 
 public class BudgetPageController implements iPane {
 
+    //________________________________________________ VARIABLES _______________________________________________________
+
     MainController parent;
     Budget budget;
+    private int [] previousBudgets = {32000, 5000, 3000, 3500, 1500, 2000, 17000};
 
+    //__________________________________________________ FXML __________________________________________________________
 
-    private ArrayList<String> privousBudgets =new ArrayList<>();
+    @FXML
+    private MenuButton previousBudgetButton;
+    @FXML
+    private TextField enterIncomeTextField;
+    @FXML
+    private Button saveButton;
+    @FXML
+    private AnchorPane headerAnchorPane;
+    @FXML
+    private ComboBox previousBudgetComboBox;
+    @FXML
+    private Label moneyLeft;
+    @FXML
+    private Label totalMoney;
+
+    @FXML
+    private Slider foodSlider;
+    @FXML
+    private Slider householdSlider;
+    @FXML
+    private Slider shoppingSlider;
+    @FXML
+    private Slider transportSlider;
+    @FXML
+    private Slider otherSlider;
+    @FXML
+    private Slider savingsSlider;
+
+    @FXML
+    private TextField foodTextField;
+    @FXML
+    private TextField householdTextField;
+    @FXML
+    private TextField shoppingTextField;
+    @FXML
+    private TextField transportTextField;
+    @FXML
+    private TextField otherTextField;
+    @FXML
+    private TextField savingsTextField;
+
+    @FXML
+    private ProgressBar foodProgressBar;
+    @FXML
+    private ProgressBar householdProgressBar;
+    @FXML
+    private ProgressBar shoppingProgressBar;
+    @FXML
+    private ProgressBar transportProgressBar;
+    @FXML
+    private ProgressBar otherProgressBar;
+    @FXML
+    private ProgressBar savingsProgressBar;
+
+    //_________________________________________________ METHODS ________________________________________________________
+
+    /**
+     * Initialisation method with a change listener
+     *
+     * @param parent the main controller
+     */
 
     @Override
     public void initPane(MainController parent) {
@@ -46,27 +111,15 @@ public class BudgetPageController implements iPane {
                 otherSlider.setValue(newValue.intValue());
                 savingsSlider.setValue(newValue.intValue());*/
 
-                //foodSlider.setValue(newValue.intValue());
+                int income = 0;
+                income = Integer.parseInt(enterIncomeTextField.getText());
 
-                int income = 150;
-                int currentIncome = 0;
-
-                sumOfAllSliders(foodSlider, income, currentIncome);
-                sumOfAllSliders(householdSlider, income, currentIncome);
-                sumOfAllSliders(transportSlider, income, currentIncome);
-                sumOfAllSliders(shoppingSlider, income, currentIncome);
-                sumOfAllSliders(otherSlider, income, currentIncome);
-                sumOfAllSliders(savingsSlider, income, currentIncome);
-
-                System.out.println(currentIncome);
-
-
-                foodProgressBar.setProgress(foodSlider.getValue() / 100);
-                householdProgressBar.setProgress(householdSlider.getValue() / 100);
-                shoppingProgressBar.setProgress(shoppingSlider.getValue() / 100);
-                transportProgressBar.setProgress(transportSlider.getValue() / 100);
-                otherProgressBar.setProgress(otherSlider.getValue() / 100);
-                savingsProgressBar.setProgress(savingsSlider.getValue() / 100);
+                foodProgressBar.setProgress(foodSlider.getValue() / income);
+                householdProgressBar.setProgress(householdSlider.getValue() / income);
+                shoppingProgressBar.setProgress(shoppingSlider.getValue() / income);
+                transportProgressBar.setProgress(transportSlider.getValue() / income);
+                otherProgressBar.setProgress(otherSlider.getValue() / income);
+                savingsProgressBar.setProgress(savingsSlider.getValue() / income);
             }
         };
 
@@ -76,10 +129,6 @@ public class BudgetPageController implements iPane {
         transportSlider.valueProperty().addListener(changeListener);
         otherSlider.valueProperty().addListener(changeListener);
         savingsSlider.valueProperty().addListener(changeListener);
-
-        //budget.setIncome(enterIncomeTextField.getText()));
-        foodSlider.setMax(budget.getIncome());
-
 
         foodSlider.setStyle("-fx-control-inner-background: null");
         foodProgressBar.setStyle("-fx-accent: #F66A80");
@@ -94,25 +143,16 @@ public class BudgetPageController implements iPane {
         savingsSlider.setStyle("-fx-control-inner-background: null");
         savingsProgressBar.setStyle("-fx-accent: #F66A80");
 
-
         transportTextField.textProperty().bindBidirectional(transportSlider.valueProperty(), new NumberStringConverter());
         foodTextField.textProperty().bindBidirectional(foodSlider.valueProperty(), new NumberStringConverter());
         householdTextField.textProperty().bindBidirectional(householdSlider.valueProperty(), new NumberStringConverter());
         shoppingTextField.textProperty().bindBidirectional(shoppingSlider.valueProperty(), new NumberStringConverter());
         otherTextField.textProperty().bindBidirectional(otherSlider.valueProperty(), new NumberStringConverter());
         savingsTextField.textProperty().bindBidirectional(savingsSlider.valueProperty(), new NumberStringConverter());
-
-
     }
 
-   /* @Override
-    public void update(String s){
-        privousBudgets.add(s);
-        previousBudgetComboBox.getItems().add(s);
-    }*/
 
-
-//TODO-- fix this method; probably have to launch(arg) or something
+//TODO-- FIX THIS METHOD -----------------------------------------------------------------------------------
 
     private void addingMenuItem() {
         int i = 1;
@@ -124,6 +164,11 @@ public class BudgetPageController implements iPane {
         i++;
     }
 
+    /**
+     * Saves all the values
+     *
+     * @param event if something is pressed an ActionEvent is fired and tells the system what happened
+     */
 
     @FXML
     private void onSaveButtonPressed(ActionEvent event) throws IOException {
@@ -133,133 +178,77 @@ public class BudgetPageController implements iPane {
         budget.setTransportCost((int) transportSlider.getValue());
         budget.setSavingsCost((int) savingsSlider.getValue());
         budget.setOtherCost((int) otherSlider.getValue());
-
-
+        budget.setIncome(enterIncomeTextField.getText());
     }
+
+    /**
+     * Sets the maxValues of the sliders according to the income
+     */
 
     @FXML
-    private void canDrag(ActionEvent event) {
-        int income = 150;
-        int currentIncome = 0;
-        System.out.println(currentIncome);
+    private void setMaxOnSlider(){
+        int income = 0;
+        income = Integer.parseInt(enterIncomeTextField.getText());
 
+        foodSlider.setMax(income);
+        householdSlider.setMax(income);
+        shoppingSlider.setMax(income);
+        transportSlider.setMax(income);
+        savingsSlider.setMax(income);
+        otherSlider.setMax(income);
     }
 
+    /**
+     * Updates the money left and total sum labels
+     */
 
-    private int sumOfAllSliders(Slider slider, int maxTotal, int currentTotal) {
-        if (slider.getValue() > (maxTotal - currentTotal)) {
-            slider.setValue(maxTotal - currentTotal);
-            //slider.adjustValue(maxTotal-currentTotal);
+    @FXML
+    private void updatingMoneyLeft(){
 
+        moneyLeft.setText("0");
+
+        int income = 0;
+        income = Integer.parseInt(enterIncomeTextField.getText());
+
+        if(enterIncomeTextField.equals(null)) {
+            income = 0;
         }
-        currentTotal = (int) (foodSlider.getValue() + householdSlider.getValue()
+
+        int totalSum = (int) (foodSlider.getValue() + householdSlider.getValue()
                 + shoppingSlider.getValue() + transportSlider.getValue() + otherSlider.getValue() + savingsSlider.getValue());
-        return currentTotal;
+
+        totalMoney.setText(String.valueOf(totalSum));
+
+        int difference = income - totalSum;
+        if(difference >= 0) {
+            moneyLeft.setText(String.valueOf(difference));
+            moneyLeft.setStyle("-fx-text-fill: green");
+
+        } else {
+            moneyLeft.setText(String.valueOf(difference));
+            moneyLeft.setStyle("-fx-text-fill: red");
+        }
+    }
+
+    private void previousBudgetPressed(){
+            int i = 0;
+            enterIncomeTextField.setText(String.valueOf(previousBudgets[i]));
+            i++;
+            foodSlider.setValue(previousBudgets[i]);
+            i++;
+            householdSlider.setValue(previousBudgets[i]);
+            i++;
+            shoppingSlider.setValue(previousBudgets[i]);
+            i++;
+            transportSlider.setValue(previousBudgets[i]);
+            i++;
+            otherSlider.setValue(previousBudgets[i]);
+            i++;
+            savingsSlider.setValue(previousBudgets[i]);
+
     }
 
 
-    @FXML
-    private Label shoppingLabel;
-
-    @FXML
-    private Label transportLabel;
-
-    @FXML
-    private Label otherLabel;
-
-    @FXML
-    private Label savingsLabel;
-
-    @FXML
-    private Label foodAmountLabel;
-
-    @FXML
-    private Label householdAmountLabel;
-
-    @FXML
-    private Label shoppingAmountLabel;
-
-    @FXML
-    private MenuButton previousBudgetButton;
-
-    @FXML
-    private Label transportAmountLabel;
-
-    @FXML
-    private Label otherAmountLabel;
-
-    @FXML
-    private Label savingsAmountLabel;
-
-    @FXML
-    private Slider foodSlider;
-
-    @FXML
-    private TextField enterIncomeTextField;
-
-    @FXML
-    private Slider householdSlider;
-
-    @FXML
-    private TextField transportTextField;
-
-    @FXML
-    private Slider shoppingSlider;
-
-    @FXML
-    private TextField foodTextField;
-
-    @FXML
-    private Slider transportSlider;
-
-    @FXML
-    private TextField householdTextField;
-
-    @FXML
-    private Slider otherSlider;
-
-    @FXML
-    private TextField shoppingTextField;
-
-    @FXML
-    private Slider savingsSlider;
-
-    @FXML
-    private TextField otherTextField;
-
-    @FXML
-    private Button saveButton;
-
-    @FXML
-    private TextField savingsTextField;
-
-    @FXML
-    private Button enterIncomeButton;
-
-    @FXML
-    private ProgressBar foodProgressBar;
-
-    @FXML
-    private ProgressBar householdProgressBar;
-
-    @FXML
-    private ProgressBar shoppingProgressBar;
-
-    @FXML
-    private ProgressBar transportProgressBar;
-
-    @FXML
-    private AnchorPane headerAnchorPane;
-
-    @FXML
-    private ProgressBar otherProgressBar;
-
-    @FXML
-    private ProgressBar savingsProgressBar;
-
-
-    @FXML
-    private ComboBox previousBudgetComboBox;
 }
 
 

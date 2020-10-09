@@ -33,7 +33,7 @@
                   <String fx:value="textField" />
                </styleClass>
             </Button>
-            <StackedBarChart fx:id="sb" layoutX="23.0" layoutY="147.0">
+            <StackedBarChart fx:id="stackedBarChart" layoutX="23.0" layoutY="147.0" prefHeight="537.0" prefWidth="805.0">
               <xAxis>
                 <CategoryAxis fx:id="categoryAxis" side="BOTTOM" />
               </xAxis>
