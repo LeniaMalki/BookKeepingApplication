@@ -11,8 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" styleClass="whiteBackground" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.BudgetCharPageController">
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" styleClass="whiteBackground" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.BudgetCharPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" styleClass="whiteBackground" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.BudgetControllers.BudgetCharPageController">
    <children>
       <AnchorPane fx:id="headerAnchorPane" layoutX="-2.0" layoutY="-7.0" prefHeight="106.0" prefWidth="1440.0" styleClass="header-Shadow" />
       <Pane layoutY="146.0" prefHeight="864.0" prefWidth="1440.0" style="-fx-background-color: white;">
@@ -34,7 +33,7 @@
                   <String fx:value="textField" />
                </styleClass>
             </Button>
-            <StackedBarChart fx:id="sb" layoutX="23.0" layoutY="147.0">
+            <StackedBarChart fx:id="stackedBarChart" layoutX="23.0" layoutY="147.0" prefHeight="537.0" prefWidth="805.0">
               <xAxis>
                 <CategoryAxis fx:id="categoryAxis" side="BOTTOM" />
               </xAxis>

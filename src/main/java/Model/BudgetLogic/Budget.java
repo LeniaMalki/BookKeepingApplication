@@ -2,15 +2,19 @@ package Model.BudgetLogic;
 
 public class Budget {
 
+    //________________________________________________ Variables  ______________________________________________________
+
     private int foodCost;
     private int householdCost;
     private int shoppingCost;
     private int transportCost;
     private int savingsCost;
     private int otherCost;
-    private int income;
+    private String income;
 
-    protected Budget(int foodCost, int householdCost, int shoppingCost, int transportCost, int savingsCost, int otherCost, int income) {
+    //________________________________________________ Methods _________________________________________________________
+
+    protected Budget(int foodCost, int householdCost, int shoppingCost, int transportCost, int savingsCost, int otherCost, String income) {
         this.foodCost = foodCost;
         this.householdCost = householdCost;
         this.shoppingCost = shoppingCost;
@@ -19,6 +23,9 @@ public class Budget {
         this.otherCost = otherCost;
         this.income = income;
     }
+
+    //____________________________________________ GETTERS / SETTERS ___________________________________________________
+
 
     public int getFoodCost() {
         return this.foodCost;
@@ -68,11 +75,11 @@ public class Budget {
         this.otherCost = otherCost;
     }
 
-    public int getIncome() {
+    public String getIncome() {
         return this.income;
     }
 
-    public void setIncome(int income) {
+    public void setIncome(String income) {
         this.income = income;
     }
 
