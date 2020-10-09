@@ -68,14 +68,14 @@ public class StatisticsOverViewController implements iPane, EntryObserver {
         parent.showStatisticsDetailPage(text);
     }
 
+    //__________ THIS PART IS NOT IMPLEMENTED YET, JUST SOME HARD CODED EXAMPLES TO ILLUSTRATE IN OUR PROGRAM __________
+
     private void updateStatistics(Entry entry) {
         entryHandler.updateGraph();
         updateDailyStatistics();
         updateWeeklyStatistics();
         updateMonthlyStatistics();
     }
-
-            //TODO CHANGE THIS DEPENDING ON WHAT WE HAVE TIME TO DO
     private void updateDailyStatistics(){
         ObservableList<PieChart.Data> pieChartData1 = FXCollections.observableArrayList(
                 new PieChart.Data("Food", entryHandler.getFoodAmount()),
@@ -114,6 +114,8 @@ public class StatisticsOverViewController implements iPane, EntryObserver {
             monthlyAnchor.getChildren().add(chart3);
         } else chart3.setData(pieChartData3);
     }
+    //__________________________________________________________________________________________________________________
+
     @Override
     public void initPane(MainController parent) {
         this.parent = parent;

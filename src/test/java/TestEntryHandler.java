@@ -6,19 +6,26 @@ public class TestEntryHandler {
 
     @Test
     public void testUpdatePieChart(){
+
         EntryHandler entryHandler = EntryHandler.getInstance();
 
-        Entry e1 = new Entry(20,"Jeans","Shopping","Expense");
-        Entry e2 = new Entry(10,"T-shirt","Shopping","Expense");
-        entryHandler.addEntry(e1);
-        entryHandler.addEntry(e2);
+        Entry shopping1 = new Entry(20,"Jeans","Shopping","Expense");
+        Entry shopping2 = new Entry(10,"T-shirt","Shopping","Expense");
+        Entry food = new Entry(10,"McDonalds","Food","Expense");
 
+        entryHandler.addEntry(shopping1);
+        entryHandler.addEntry(shopping2);
+        entryHandler.addEntry(food);
         entryHandler.updateGraph();
+
         assertEquals(entryHandler.getShoppingAmount(),30);
 
-        entryHandler.removeEntry(e1);
-
+        entryHandler.removeEntry(shopping1);
         entryHandler.updateGraph();
+
         assertEquals(entryHandler.getShoppingAmount(),10);
+        assertEquals(entryHandler.getShoppingAmount()+entryHandler.getFoodAmount(),20);
+
+
     }
 }
