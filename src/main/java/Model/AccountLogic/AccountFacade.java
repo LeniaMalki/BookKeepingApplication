@@ -47,7 +47,7 @@ public class AccountFacade implements AccountSubject {
      *
      * @param name is passed in by the controller in use of the method
      */
-    public void setAccountName(TextField name) {
+    public void setAccountName(String name) {
         accountEditor.setAccountName(name);
     }
 
@@ -66,7 +66,7 @@ public class AccountFacade implements AccountSubject {
      *
      * @param username is passed in by the controller in use of the method
      */
-    public void setAccountUsername(TextField username) {
+    public void setAccountUsername(String username) {
         accountEditor.setAccountUsername(username);
     }
 
@@ -85,7 +85,7 @@ public class AccountFacade implements AccountSubject {
      *
      * @param email is passed in by the controller in use of the method
      */
-    public void setAccountEmail(TextField email) {
+    public void setAccountEmail(String email) {
         accountEditor.setAccountEmail(email);
     }
 
@@ -95,7 +95,7 @@ public class AccountFacade implements AccountSubject {
      * @param password is passed in by the controller in use of the method
      * @return returns a boolean value if the username is valid
      */
-    public boolean setAccountPassword(TextField password) {
+    public boolean setAccountPassword(String password) {
         return accountEditor.setAccountPassword(password);
     }
 
@@ -110,8 +110,8 @@ public class AccountFacade implements AccountSubject {
      * @param signUpEmail           is passed in by the getText() method of corresponding textField in controller signUp
      * @return returns a created account
      */
-    public Account createAccount(TextField signUpName, TextField signUpUsername,
-                                 TextField signUpPassword, TextField signUpConfirmPassword, TextField signUpEmail) {
+    public Account createAccount(String signUpName, String signUpUsername,
+                                 String signUpPassword, String signUpConfirmPassword, String signUpEmail) {
         return accountExistenceManager.createAccount(signUpName, signUpUsername,
                                                      signUpPassword, signUpConfirmPassword, signUpEmail);
     }
@@ -146,7 +146,7 @@ public class AccountFacade implements AccountSubject {
     /**
      * Delegates the check for the changing of accont page's fields to accountEditor
      */
-    public boolean isAccountPageFieldsCorrect(TextField username, TextField name, TextField email) {
+    public boolean isAccountPageFieldsCorrect(String username, String name, String email) {
         return accountEditor.areAccountFieldsCorrect(username, name, email);
     }
 
