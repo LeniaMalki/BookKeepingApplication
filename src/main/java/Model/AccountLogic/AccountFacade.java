@@ -2,7 +2,6 @@ package Model.AccountLogic;
 
 import Model.Interfaces.AccountObserver;
 import Model.Interfaces.AccountSubject;
-import javafx.scene.control.TextField;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +24,8 @@ public class AccountFacade implements AccountSubject {
     private AccountFacade() {
     }
 
+
+    //---------------------------------------------------- GETTERS -----------------------------------------------------
     /**
      * Method for obtaining the account facade instance.
      */
@@ -43,15 +44,6 @@ public class AccountFacade implements AccountSubject {
     }
 
     /**
-     * Sets account name through delegation to accountEditor
-     *
-     * @param name is passed in by the controller in use of the method
-     */
-    public void setAccountName(String name) {
-        accountEditor.setAccountName(name);
-    }
-
-    /**
      * Gets account username through delegation to accountEditor
      *
      * @return returns account username
@@ -62,15 +54,6 @@ public class AccountFacade implements AccountSubject {
     }
 
     /**
-     * Sets account usernamename through delegation to accountEditor
-     *
-     * @param username is passed in by the controller in use of the method
-     */
-    public void setAccountUsername(String username) {
-        accountEditor.setAccountUsername(username);
-    }
-
-    /**
      * Gets account email through delegation to accountEditor
      *
      * @return returns account email
@@ -78,6 +61,26 @@ public class AccountFacade implements AccountSubject {
     public String getAccountEmail() {
         return accountEditor.getAccountEmail();
 
+    }
+
+    //---------------------------------------------------- SETTERS -----------------------------------------------------
+
+    /**
+     * Sets account name through delegation to accountEditor
+     *
+     * @param name is passed in by the controller in use of the method
+     */
+    public void setAccountName(String name) {
+        accountEditor.setAccountName(name);
+    }
+
+    /**
+     * Sets account usernamename through delegation to accountEditor
+     *
+     * @param username is passed in by the controller in use of the method
+     */
+    public void setAccountUsername(String username) {
+        accountEditor.setAccountUsername(username);
     }
 
     /**
@@ -93,11 +96,12 @@ public class AccountFacade implements AccountSubject {
      * Sets account password through delegation to accountEditor
      *
      * @param password is passed in by the controller in use of the method
-     * @return returns a boolean value if the username is valid
      */
-    public boolean setAccountPassword(String password) {
-        return accountEditor.setAccountPassword(password);
+    public void setAccountPassword(String password) {
+        accountEditor.setAccountPassword(password);
     }
+
+    //---------------------------------------------------- METHODS -----------------------------------------------------
 
     public boolean checkPassword (String password) {
         return accountExistenceManager.checkPassword(password);
@@ -120,13 +124,29 @@ public class AccountFacade implements AccountSubject {
                                                      signUpPassword, signUpConfirmPassword, signUpEmail);
     }
 
-
     /**
      * Delegates the deletion of an account to the account existence manager
      */
     public void deleteAccount() {
         accountExistenceManager.deleteAccount();
     }
+
+    /**
+     * Delegates the check for the changing of accont page's fields to accountEditor
+     */
+    public boolean isAccountPageFieldsCorrect(String username, String name, String email) {
+        return accountEditor.areAccountFieldsCorrect(username, name, email);
+    }
+
+    /**
+     * Delegates the check for password match to accountExistanceManager
+     */
+    public boolean checkPasswordMatch(String inputPassword) {
+        return accountExistenceManager.checkPasswordMatch(inputPassword);
+    }
+
+
+    //---------------------------------------------------- Observer Pattern --------------------------------------------
 
     /**
      * Adds observers to its litst of UserObservers
@@ -147,19 +167,6 @@ public class AccountFacade implements AccountSubject {
 
     }
 
-    /**
-     * Delegates the check for the changing of accont page's fields to accountEditor
-     */
-    public boolean isAccountPageFieldsCorrect(String username, String name, String email) {
-        return accountEditor.areAccountFieldsCorrect(username, name, email);
-    }
 
-    /**
-     * Delegates the check for password match to accountExistanceManager
-     */
-    public boolean checkPasswordMatch(String inputPassword) {
-        return accountExistenceManager.checkPasswordMatch(inputPassword);
-
-    }
 
 }

@@ -24,7 +24,7 @@ public class AccountExistenceManager {
     /**
      * Method for obtaining/creating a accountExistenceManager object
      */
-    public static AccountExistenceManager getInstance() {
+    static AccountExistenceManager getInstance() {
         if (accountExistenceManager == null) {
             accountExistenceManager = new AccountExistenceManager();
         }
@@ -73,8 +73,8 @@ public class AccountExistenceManager {
      * @param email           is passed in by the createAccount method through accountFacade though signUpPage
      *                        textfields
      */
-    private void assignUserFields(String name, String username,
-                                  String password, String confirmPassword, String email) {
+    void assignUserFields(String name, String username,
+                          String password, String confirmPassword, String email) {
         account.setName(name);
         account.setUsername(username);
         account.setEmailAddress(email);
@@ -96,8 +96,8 @@ public class AccountExistenceManager {
      * @param email           is passed in by the createAccount method through accountFacade though signUpPage
      *                        textfields
      */
-    private int signUpFieldsChecker(String name, String username,
-                                    String password, String confirmPassword, String email) {
+    int signUpFieldsChecker(String name, String username,
+                            String password, String confirmPassword, String email) {
 
         int i = 0;
 
@@ -144,7 +144,7 @@ public class AccountExistenceManager {
         return i;
     }
 
-    boolean checkPassword (String password) {
+    boolean checkPassword(String password) {
         return accountValidityChecker.checkPasswordLength(password);
     }
 
@@ -152,7 +152,6 @@ public class AccountExistenceManager {
      * Deletes the account by setting all the accounts' variables to null
      */
     void deleteAccount() {
-        account.setName(null);
         account.setName(null);
         account.setUsername(null);
         account.setEmailAddress(null);

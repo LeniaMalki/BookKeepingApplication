@@ -1,7 +1,5 @@
 package Model.AccountLogic;
 
-import javafx.scene.control.TextField;
-
 /**
  * Handles all edits on the account, makes use of an accountInstance and is thus an instance itself
  *
@@ -26,7 +24,7 @@ public class AccountEditor {
     /**
      * Method for obtaining the account editor instance.
      */
-    public static AccountEditor getInstance() {
+    static AccountEditor getInstance() {
         if (accountEditor == null) {
             accountEditor = new AccountEditor();
         }
@@ -86,7 +84,6 @@ public class AccountEditor {
         return areFieldsCorrect;
     }
 
-
     /**
      * Getter
      *
@@ -104,7 +101,7 @@ public class AccountEditor {
     void setAccountName(String textField) {
         if (accountValidityChecker.isValidName(textField)) {
             account.setName(textField);
-        } //else textField.setStyle("-fx-text-box-border: #B22222;");
+        }   //else textField.setStyle("-fx-text-box-border: #B22222;");
     }
 
     /**
@@ -122,7 +119,7 @@ public class AccountEditor {
      * @param username is passed in by the accountFacade though whichever controller is in need of the method
      */
     void setAccountUsername(String username) {
-        if (username != null) {
+        if (accountValidityChecker.checkUsername(username)) {
             account.setUsername(username);
         } //else textField.setStyle("-fx-text-box-border: #B22222;");
     }
