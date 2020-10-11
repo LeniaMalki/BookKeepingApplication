@@ -8,7 +8,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
 /**
- * Controller for deleting the account through account page > deleteAccountPopup
+ * Controller for deleting the account through account page of deleteAccountPopup
  *
  * @author Lenia
  */
