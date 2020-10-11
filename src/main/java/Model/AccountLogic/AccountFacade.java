@@ -99,6 +99,10 @@ public class AccountFacade implements AccountSubject {
         return accountEditor.setAccountPassword(password);
     }
 
+    public boolean checkPassword (String password) {
+        return accountExistenceManager.checkPassword(password);
+    }
+
     /**
      * Delegates the creation of an account to the account existence manager
      *
