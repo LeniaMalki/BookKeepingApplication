@@ -17,7 +17,7 @@ public class AccountValidityChecker {
     /**
      * Method for obtaining a validity checker
      */
-    public static AccountValidityChecker getInstance() {
+    static AccountValidityChecker getInstance() {
         if (accountValidityChecker == null) {
             accountValidityChecker = new AccountValidityChecker();
         }
@@ -30,7 +30,7 @@ public class AccountValidityChecker {
      * @param confirmPassword confirmPassword textfield
      * @param signUpPassword  signUpPassword textfield
      */
-    boolean checkSignupPasswordMatch(String signUpPassword, String confirmPassword) {
+     boolean checkSignupPasswordMatch(String signUpPassword, String confirmPassword) {
         return signUpPassword.equals(confirmPassword);
     }
 
@@ -39,7 +39,7 @@ public class AccountValidityChecker {
      *
      * @param password password textfield
      */
-    public boolean checkPasswordLength(String password) {
+     boolean checkPasswordLength(String password) {
 
         return password.length() >= 8;
     }
@@ -49,17 +49,18 @@ public class AccountValidityChecker {
      *
      * @param email email textfield
      */
-    boolean isValidEmail(String email) {
+     boolean isValidEmail(String email) {
         String regex = "^[\\w-_.+]*[\\w-_.]@([\\w]+\\.)+[\\w]+[\\w]$";
         return email.matches(regex);
     }
+
 
     /**
      * Checks if  name is in right format
      *
      * @param name name textfield
      */
-    boolean isValidName(String name) {
+     boolean isValidName(String name) {
 
         int len = name.length();
 
@@ -80,5 +81,8 @@ public class AccountValidityChecker {
         return true;
     }
 
+    boolean checkUsername (String username) {
+         return  (!username.equals("")) ;
+    }
 
 }

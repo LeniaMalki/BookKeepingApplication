@@ -132,8 +132,4 @@ public class AccountPageController implements iPane, AccountObserver {
         headerAnchorPane.toFront();
     }
 
-
-
-
-
 }

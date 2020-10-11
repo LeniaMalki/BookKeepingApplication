@@ -7,7 +7,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.text.Text;
 
 /**
- * Controller changing the account password through account page > changePasswordPopup
+ * Controller changing the account password through account page of changePasswordPopup
  *
  * @author Lenia
  */
@@ -37,7 +37,7 @@ public class ChangePasswordPopUpController {
      * Goes back to account page when confirming change of password
      */
     @FXML
-    void onAction_ConfirmChangePassword_CLICKED() {
+    private void onAction_ConfirmChangePassword_CLICKED() {
 
         //Checks if new password is valid
         if (accountFacade.checkPassword(newPassword.getText())) {
