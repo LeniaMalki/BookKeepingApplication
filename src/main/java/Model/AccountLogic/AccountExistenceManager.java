@@ -144,6 +144,10 @@ public class AccountExistenceManager {
         return i;
     }
 
+    boolean checkPassword (String password) {
+        return accountValidityChecker.checkPasswordLength(password);
+    }
+
     /**
      * Deletes the account by setting all the accounts' variables to null
      */
