@@ -1,4 +1,4 @@
-package Model.EntryLogic;
+package Model.DounutLogic;
 
 import javafx.collections.ObservableList;
 import javafx.geometry.Bounds;
