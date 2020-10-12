@@ -1,6 +1,8 @@
 package Controller.StatisticsController;
 
 import Controller.EntryControllers.EntryListItemController;
+import Controller.Interfaces.RemoveItemObserver;
+import Controller.Interfaces.iPane;
 import Controller.MainControllers.MainController;
 import Controller.MainControllers.PaneFactory;
 import Model.DounutLogic.DounutChart;
@@ -8,7 +10,6 @@ import Model.EntryLogic.Entry;
 import Model.EntryLogic.EntryHandler;
 import Model.EntryLogic.EntrySubject;
 import Model.Interfaces.EntryObserver;
-import Controller.Interfaces.iPane;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,19 +19,16 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Text;
 
-import java.util.List;
-
 /**
  * A controller class for handling the page for detail statistics.
  * It listens to what happens to entries by implementing EntryObserver
  *
  * @author Oscar
  */
-public class StatisticsDetailController implements iPane, EntryObserver {
+public class StatisticsDetailController implements iPane, EntryObserver, RemoveItemObserver {
 
     MainController parent;
     EntryHandler entryHandler = EntryHandler.getInstance();
-    boolean listItemPink = false;
     boolean allEntries;
 
     //__________________________________________________ FXML __________________________________________________________
@@ -66,21 +64,19 @@ public class StatisticsDetailController implements iPane, EntryObserver {
      * A function (when button pressed) removeEntry that iterates through the lists of entries and removes the entry
      * if its selected.
      */
-    @FXML
-    public void removeEntry(ActionEvent event) {
-        final List<Entry> entries = entryHandler.getEntries();
-        for (Entry entry : entries) {
-            if (entry.getSelected()) {
-                entryHandler.removeEntry(entry);
-                updatePie();
-                if (!allEntries) {
-                    entriesCategory(entry.getCategory());
-                } else {
-                    entriesCategory("");
-                }
+    public void update(Entry entry, EntryListItemController controller){
+        entryHandler.getEntries().remove(entry);
+        flowpaneStat.getChildren().remove(controller);
+        updatePie();
+        for (Entry e: entryHandler.getEntries()) {
+            if (!allEntries) {
+                entriesCategory(e.getCategory());
+            } else {
+                entriesCategory("");
             }
         }
     }
+
 
     /**
      * A function that gets the appropriate text for our different time-spans of statistics
@@ -137,8 +133,9 @@ public class StatisticsDetailController implements iPane, EntryObserver {
     }
 
     private void addToFlowPane(Entry entry) {
-        flowpaneStat.getChildren().add(new EntryListItemController(entry, listItemPink));
-        listItemPink = !listItemPink;
+        EntryListItemController entryListItemController = new EntryListItemController(entry);
+        flowpaneStat.getChildren().add(entryListItemController);
+        entryListItemController.add(this);
     }
 
     @FXML
