@@ -81,25 +81,23 @@ public class BudgetCharPageController implements iPane, EntryObserver {
         EntrySubject.add(this);
     }
 
-    private void updateCharts(Entry entry){
+    private void updateCharts(Entry entry) {
         entryHandler.updateGraph();
         updatingStackedBarChart();
     }
 
 
-    private void updatingStackedBarChart(){
+    private void updatingStackedBarChart() {
         //categoryAxis.setCategories(FXCollections.<String>observableArrayList(Arrays.asList("Food", "Household", "Shopping", "Transport", "Other", "Savings")));
 
         XYChart.Series<String, Number> series1 = new XYChart.Series<>();
         series1.setName("Budget");
-        series1.getData().add(new XYChart.Data<>("Food", updateBudgetValues("Food")));
+        series1.getData().add(new XYChart.Data<>("Food", budget.getFoodCost()));
         series1.getData().add(new XYChart.Data<>("Household", 0));
         series1.getData().add(new XYChart.Data<>("Shopping", 0));
         series1.getData().add(new XYChart.Data<>("Transport", 0));
         series1.getData().add(new XYChart.Data<>("Other", 0));
         series1.getData().add(new XYChart.Data<>("Savings", 0));
-
-
 
 
         XYChart.Series<String, Number> series2 = new XYChart.Series<>();
@@ -125,15 +123,4 @@ public class BudgetCharPageController implements iPane, EntryObserver {
     public void update(Entry entry) {
         updateCharts(entry);
     }
-
-    private int updateBudgetValues(String string){
-        int foodCost= budget.getFoodCost();
-        int householdCost = budget.getHouseholdCost();
-
-        if (string == "Food"){
-            return foodCost;
-        }
-        return householdCost;
-    }
-
 }

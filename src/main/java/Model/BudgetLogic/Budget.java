@@ -14,7 +14,7 @@ public class Budget {
 
     //________________________________________________ Methods _________________________________________________________
 
-    protected Budget(int foodCost, int householdCost, int shoppingCost, int transportCost, int savingsCost, int otherCost, String income) {
+    public Budget(int foodCost, int householdCost, int shoppingCost, int transportCost, int savingsCost, int otherCost, String income) {
         this.foodCost = foodCost;
         this.householdCost = householdCost;
         this.shoppingCost = shoppingCost;
