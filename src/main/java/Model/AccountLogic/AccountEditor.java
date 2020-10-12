@@ -98,10 +98,12 @@ public class AccountEditor {
      *
      * @param textField is passed in by the accountFacade though whichever controller is in need of the method
      */
-    void setAccountName(String textField) {
+     boolean setAccountName(String textField) {
         if (accountValidityChecker.isValidName(textField)) {
             account.setName(textField);
+            return true;
         }   //else textField.setStyle("-fx-text-box-border: #B22222;");
+         else return false;
     }
 
     /**
@@ -118,10 +120,13 @@ public class AccountEditor {
      *
      * @param username is passed in by the accountFacade though whichever controller is in need of the method
      */
-    void setAccountUsername(String username) {
+    boolean setAccountUsername(String username) {
         if (accountValidityChecker.checkUsername(username)) {
             account.setUsername(username);
-        } //else textField.setStyle("-fx-text-box-border: #B22222;");
+            return true;
+        } return  false;
+
+        //else textField.setStyle("-fx-text-box-border: #B22222;");
     }
 
     /**
@@ -138,12 +143,14 @@ public class AccountEditor {
      *
      * @param email is passed in by the accountFacade though whichever controller is in need of the method
      */
-    void setAccountEmail(String email) {
+   boolean  setAccountEmail(String email) {
         if (accountValidityChecker.isValidEmail(email)) {
             account.setEmailAddress(email);
-        } //else textField.setStyle("-fx-text-box-border: #B22222;");
+            return true;
 
-    }
+        } //else textField.setStyle("-fx-text-box-border: #B22222;");
+       return  false;
+   }
 
     /**
      * Getter
