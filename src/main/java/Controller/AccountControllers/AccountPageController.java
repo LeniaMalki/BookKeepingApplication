@@ -102,14 +102,17 @@ public class AccountPageController implements iPane, AccountObserver {
      */
     @FXML
     private void onActionSubmitChangesButton() {
-        if (accountFacade.getAccountUsername().equals(usernameSetting.getText()) && accountFacade.getAccountName().equals(nameSetting.getText()) && accountFacade.getAccountEmail().equals(emailSetting.getText())) {
+        int changesMade = accountFacade.changeAccountPageFields(usernameSetting.getText(), nameSetting.getText(), emailSetting.getText());
+
+        if (changesMade == 0) {
             textMessage.setText("No changes made.");
-        } else if (accountFacade.isAccountPageFieldsCorrect(usernameSetting.getText(), nameSetting.getText(), emailSetting.getText())) {
+        }
+        if (changesMade>0) {
             accountFacade.setAccountUsername(usernameSetting.getText());
             accountFacade.setAccountName(nameSetting.getText());
             accountFacade.setAccountEmail(emailSetting.getText());
             textMessage.setText("Changes saved!");
-        } else {
+        } if (changesMade == 3){
             textMessage.setText("Incorrect input(s)!");
         }
     }
