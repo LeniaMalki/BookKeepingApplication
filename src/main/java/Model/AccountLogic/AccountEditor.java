@@ -1,7 +1,5 @@
 package Model.AccountLogic;
 
-import javafx.scene.control.TextField;
-
 /**
  * Handles all edits on the account, makes use of an accountInstance and is thus an instance itself
  *
@@ -26,7 +24,7 @@ public class AccountEditor {
     /**
      * Method for obtaining the account editor instance.
      */
-    public static AccountEditor getInstance() {
+    static AccountEditor getInstance() {
         if (accountEditor == null) {
             accountEditor = new AccountEditor();
         }
@@ -37,13 +35,13 @@ public class AccountEditor {
     /**
      * Sets a new password for the account iff the password is valid though check by accountValidityChecker
      *
-     * @param textField is passed in by the accountFacade though whichever controller is in need of the method
+     * @param password is passed in by the accountFacade though whichever controller is in need of the method
      */
-    boolean setAccountPassword(TextField textField) {
-        if (accountValidityChecker.checkPasswordLength(textField.getText())) {
-            account.setPassword(textField.getText());
+    boolean setAccountPassword(String password) {
+        if (accountValidityChecker.checkPasswordLength(password)) {
+            account.setPassword(password);
             return true;
-        } else textField.setStyle("-fx-text-box-border: #B22222;");
+        } //else textField.setStyle("-fx-text-box-border: #B22222;");
         return false;
     }
 
@@ -54,27 +52,33 @@ public class AccountEditor {
      * @param name     is passed in by the accountFacade though whichever controller is in need of the method
      * @param email    is passed in by the accountFacade though whichever controller is in need of the method
      */
-    boolean areAccountFieldsCorrect(TextField username, TextField name, TextField email) {
+    boolean areAccountFieldsCorrect(String username, String name, String email) {
 
         boolean areFieldsCorrect = true;
 
         //Username
-        if (username.getText().equals("")) {
-            username.setStyle("-fx-text-box-border: #B22222;"); //RED
+        if (username.equals("")) {
+            //username.setStyle("-fx-text-box-border: #B22222;"); //RED
+            System.out.println("Incorrect username");
             areFieldsCorrect = false;
-        } else username.setStyle("-fx-text-box-border: #008000;");
+        } //else username.setStyle("-fx-text-box-border: #008000;"); //Green
 
         //Name
-        if (!accountValidityChecker.isValidName(name.getText())) {
-            name.setStyle("-fx-text-box-border: #B22222;"); //RED
+        if (!accountValidityChecker.isValidName(name)) {
+            //name.setStyle("-fx-text-box-border: #B22222;"); //RED
+
+            System.out.println("Incorrect name");
+
             areFieldsCorrect = false;
-        } else name.setStyle("-fx-text-box-border: #008000;");
+        } //else name.setStyle("-fx-text-box-border: #008000;");
 
         //Email
-        if (!accountValidityChecker.isValidEmail(email.getText())) {
-            email.setStyle("-fx-text-box-border: #B22222;"); //RED
+        if (!accountValidityChecker.isValidEmail(email)) {
+            System.out.println("Incorrect email");
+
+            //email.setStyle("-fx-text-box-border: #B22222;"); //RED
             areFieldsCorrect = false;
-        } else email.setStyle("-fx-text-box-border: #008000;");
+        } //else email.setStyle("-fx-text-box-border: #008000;");
 
 
         return areFieldsCorrect;
@@ -94,10 +98,10 @@ public class AccountEditor {
      *
      * @param textField is passed in by the accountFacade though whichever controller is in need of the method
      */
-    void setAccountName(TextField textField) {
-        if (accountValidityChecker.isValidName(textField.getText())) {
-            account.setName(textField.getText());
-        } else textField.setStyle("-fx-text-box-border: #B22222;");
+    void setAccountName(String textField) {
+        if (accountValidityChecker.isValidName(textField)) {
+            account.setName(textField);
+        }   //else textField.setStyle("-fx-text-box-border: #B22222;");
     }
 
     /**
@@ -112,12 +116,12 @@ public class AccountEditor {
     /**
      * Sets a new account username for the account iff the password is valid though check by accountValidityChecker
      *
-     * @param textField is passed in by the accountFacade though whichever controller is in need of the method
+     * @param username is passed in by the accountFacade though whichever controller is in need of the method
      */
-    void setAccountUsername(TextField textField) {
-        if (textField.getText() != null) {
-            account.setUsername(textField.getText());
-        } else textField.setStyle("-fx-text-box-border: #B22222;");
+    void setAccountUsername(String username) {
+        if (accountValidityChecker.checkUsername(username)) {
+            account.setUsername(username);
+        } //else textField.setStyle("-fx-text-box-border: #B22222;");
     }
 
     /**
@@ -132,12 +136,12 @@ public class AccountEditor {
     /**
      * Sets a new account email for the account iff the password is valid though check by accountValidityChecker
      *
-     * @param textField is passed in by the accountFacade though whichever controller is in need of the method
+     * @param email is passed in by the accountFacade though whichever controller is in need of the method
      */
-    void setAccountEmail(TextField textField) {
-        if (accountValidityChecker.isValidEmail(textField.getText())) {
-            account.setEmailAddress(textField.getText());
-        } else textField.setStyle("-fx-text-box-border: #B22222;");
+    void setAccountEmail(String email) {
+        if (accountValidityChecker.isValidEmail(email)) {
+            account.setEmailAddress(email);
+        } //else textField.setStyle("-fx-text-box-border: #B22222;");
 
     }
 

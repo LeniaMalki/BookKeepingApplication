@@ -74,12 +74,7 @@
                 <Image url="@../../Images/Account.PNG" />
             </image>
         </ImageView>
-        <ImageView fitHeight="30.0" fitWidth="28.0" layoutX="1360.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../../Images/downArrowGreen.PNG" />
-            </image>
-        </ImageView>
-        <Hyperlink fx:id="accountPageButton" layoutX="1198.0" layoutY="21.0" onAction="#clickHeader" prefHeight="65.0" prefWidth="146.0" text="Name">
+        <Hyperlink fx:id="accountPageButton" layoutX="1198.0" layoutY="21.0" onAction="#clickHeader" prefHeight="65.0" prefWidth="146.0" text="Profile">
             <font>
                 <Font size="35.0" />
             </font>

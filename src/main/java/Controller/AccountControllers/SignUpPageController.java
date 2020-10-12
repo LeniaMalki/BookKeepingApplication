@@ -52,11 +52,11 @@ public class SignUpPageController {
     private void handleCreateAccountAction() {
         if (!isAllFieldsEntered()) {
             fieldsMissingText.setFill(Color.RED);
-        } else if (!(accountFacade.createAccount(signUpName, signUpUsername, signUpPassword, signUpConfirmPassword,
-                                                 signUpEmail) == null)) {
+        } else if (!(accountFacade.createAccount((signUpName.getText()), signUpUsername.getText(), signUpPassword.getText(), signUpConfirmPassword.getText(),
+                                                 signUpEmail.getText()) == null)) {
             accountFacade.notifyListeners();
-
             clearTextFields();
+
         } else fieldsMissingText.setFill(Color.WHITE);
 
     }
