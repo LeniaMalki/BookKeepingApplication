@@ -3,7 +3,7 @@ package Controller.StatisticsController;
 import Controller.Interfaces.iPane;
 import Controller.MainControllers.MainController;
 import Controller.MainControllers.PaneFactory;
-import Model.EntryLogic.DounutChart;
+import Model.DounutLogic.DounutChart;
 import Model.EntryLogic.Entry;
 import Model.EntryLogic.EntryHandler;
 import Model.EntryLogic.EntrySubject;
