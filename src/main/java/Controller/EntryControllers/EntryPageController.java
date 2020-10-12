@@ -1,11 +1,12 @@
 package Controller.EntryControllers;
 
+import Controller.Interfaces.RemoveItemObserver;
+import Controller.Interfaces.iPane;
 import Controller.MainControllers.MainController;
 import Controller.MainControllers.PaneFactory;
 import Model.EntryLogic.Entry;
 import Model.Interfaces.SavingsObserver;
 import Model.Interfaces.SavingsSubject;
-import Controller.Interfaces.iPane;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -22,7 +23,7 @@ import java.util.ArrayList;
  * @author Artin
  */
 
-public class EntryPageController implements iPane, SavingsObserver {
+public class EntryPageController implements iPane, SavingsObserver, RemoveItemObserver {
 
     private final ArrayList<Button> entryButtonTypeCluster = new ArrayList<>();
     private final ArrayList<Entry> entryList = new ArrayList<>();
@@ -111,11 +112,13 @@ public class EntryPageController implements iPane, SavingsObserver {
     private void addEntry() {
         Entry entry = new Entry(Double.parseDouble(costTextField.getText()), nameTextField.getText(), categoryComboBox.getValue(), currentActiveEntryButton.getText());
         entryList.add(entry);
-        entryFlowPlane.getChildren().add(new EntryListItemController(entry, listItemPink));
+        EntryListItemController itemController=new EntryListItemController(entry);
+        entryFlowPlane.getChildren().add(itemController);
         listItemPink = !listItemPink;
         costTextField.clear();
         nameTextField.clear();
         categoryComboBox.valueProperty().set("Category");
+        itemController.add(this);
     }
 
 
@@ -155,5 +158,12 @@ public class EntryPageController implements iPane, SavingsObserver {
             categoryComboBox.getItems().removeAll(savingCategory);
             categoryComboBox.getItems().addAll(expenceCategory);
         }
+    }
+
+
+    @Override
+    public void update(Entry entry, EntryListItemController controller) {
+        entryList.remove(entry);
+        entryFlowPlane.getChildren().remove(controller);
     }
 }

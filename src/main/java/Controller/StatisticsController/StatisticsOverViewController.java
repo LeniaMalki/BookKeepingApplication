@@ -133,4 +133,5 @@ public class StatisticsOverViewController implements iPane, EntryObserver {
         updateStatistics(entry);
 
     }
+
 }
