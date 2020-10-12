@@ -7,12 +7,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
 
-public class HeaderController implements iPane, AccountObserver {
+public class HeaderController implements iPane {
 
     //________________________________________________ VARIABLES _______________________________________________________
-
     MainController parent;
-    AccountFacade accountFacade = AccountFacade.getInstance();
 
     //________________________________________________ FXML ____________________________________________________________
 
@@ -53,13 +51,8 @@ public class HeaderController implements iPane, AccountObserver {
     @Override
     public void initPane(MainController parent) {
         this.parent = parent;
-        accountFacade.add(this);
     }
 
-    @Override
-    public void update() {
-        accountPageButton.setText(accountFacade.getAccountName());
-    }
 }
 
 

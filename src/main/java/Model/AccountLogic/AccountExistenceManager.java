@@ -1,7 +1,5 @@
 package Model.AccountLogic;
 
-import javafx.scene.control.TextField;
-
 /**
  * Class which manages the creation and deletion of an account
  *
@@ -9,12 +7,11 @@ import javafx.scene.control.TextField;
  */
 public class AccountExistenceManager {
 
+    private static final AccountValidityChecker accountValidityChecker = AccountValidityChecker.getInstance();
     //________________________________________________ Variables _______________________________________________________
-    private static  AccountExistenceManager accountExistenceManager;
-
+    private static AccountExistenceManager accountExistenceManager;
     private final Account account = Account.getInstance();
 
-    private static final AccountValidityChecker accountValidityChecker = AccountValidityChecker.getInstance();
 
     //________________________________________________ Methods _________________________________________________________
 
@@ -27,7 +24,7 @@ public class AccountExistenceManager {
     /**
      * Method for obtaining/creating a accountExistenceManager object
      */
-    public static AccountExistenceManager getInstance() {
+    static AccountExistenceManager getInstance() {
         if (accountExistenceManager == null) {
             accountExistenceManager = new AccountExistenceManager();
         }
@@ -37,25 +34,25 @@ public class AccountExistenceManager {
     /**
      * Handles the creation of an account
      *
-     * @param signUpName            is passed in by the accountFacade though whichever controller is in need of the
-     *                              method
-     * @param signUpUsername        is passed in by the accountFacade though whichever controller is in need of the
-     *                              method
-     * @param signUpPassword        is passed in by the accountFacade though whichever controller is in need of the
-     *                              method
-     * @param signUpConfirmPassword is passed in by the accountFacade though whichever controller is in need of the
-     *                              method
-     * @param signUpEmail           is passed in by the accountFacade though whichever controller is in need of the
-     *                              method
+     * @param name            is passed in by the accountFacade though whichever controller is in need of the
+     *                        method
+     * @param username        is passed in by the accountFacade though whichever controller is in need of the
+     *                        method
+     * @param password        is passed in by the accountFacade though whichever controller is in need of the
+     *                        method
+     * @param confirmPassword is passed in by the accountFacade though whichever controller is in need of the
+     *                        method
+     * @param email           is passed in by the accountFacade though whichever controller is in need of the
+     *                        method
      */
-    Account createAccount(TextField signUpName, TextField signUpUsername,
-                          TextField signUpPassword, TextField signUpConfirmPassword, TextField signUpEmail) {
+    Account createAccount(String name, String username,
+                          String password, String confirmPassword, String email) {
 
-        if (signUpFieldsChecker(signUpName, signUpUsername,
-                                signUpPassword, signUpConfirmPassword, signUpEmail) == 0) {
+        if (signUpFieldsChecker(name, username,
+                                password, confirmPassword, email) == 0) {
 
-            assignUserFields(signUpName, signUpUsername,
-                             signUpPassword, signUpConfirmPassword, signUpEmail);
+            assignUserFields(name, username,
+                             password, confirmPassword, email);
             return account;
         }
 
@@ -65,79 +62,96 @@ public class AccountExistenceManager {
     /**
      * Sets the variables of the account instance. Used in method createAccount if all fields are valid
      *
-     * @param signUpName            is passed in by the createAccount method through accountFacade though signUpPage
-     *                              textfields
-     * @param signUpUsername        is passed in by the createAccount method through accountFacade though signUpPage
-     *                              textfields
-     * @param signUpPassword        is passed in by the createAccount method through accountFacade though signUpPage
-     *                              textfields
-     * @param signUpConfirmPassword is passed in by the createAccount method through accountFacade though signUpPage
-     *                              textfields
-     * @param signUpEmail           is passed in by the createAccount method through accountFacade though signUpPage
-     *                              textfields
+     * @param name            is passed in by the createAccount method through accountFacade though signUpPage
+     *                        textfields
+     * @param username        is passed in by the createAccount method through accountFacade though signUpPage
+     *                        textfields
+     * @param password        is passed in by the createAccount method through accountFacade though signUpPage
+     *                        textfields
+     * @param confirmPassword is passed in by the createAccount method through accountFacade though signUpPage
+     *                        textfields
+     * @param email           is passed in by the createAccount method through accountFacade though signUpPage
+     *                        textfields
      */
-    private void assignUserFields(TextField signUpName, TextField signUpUsername,
-                                  TextField signUpPassword, TextField signUpConfirmPassword, TextField signUpEmail) {
-        account.setName(signUpName.getText());
-        account.setUsername(signUpUsername.getText());
-        account.setEmailAddress(signUpEmail.getText());
-        account.setPassword(signUpPassword.getText());
-        account.setConfirmPassword(signUpConfirmPassword.getText());
-
+    void assignUserFields(String name, String username,
+                          String password, String confirmPassword, String email) {
+        account.setName(name);
+        account.setUsername(username);
+        account.setEmailAddress(email);
+        account.setPassword(password);
+        account.setConfirmPassword(confirmPassword);
     }
 
     /**
      * Check whether the inputs for the account variables are valid by delegation t accountValidityChecker
      *
-     * @param signUpName            is passed in by the createAccount method through accountFacade though signUpPage
-     *                              textfields
-     * @param signUpUsername        is passed in by the createAccount method through accountFacade though signUpPage
-     *                              textfields
-     * @param signUpPassword        is passed in by the createAccount method through accountFacade though signUpPage
-     *                              textfields
-     * @param signUpConfirmPassword is passed in by the createAccount method through accountFacade though signUpPage
-     *                              textfields
-     * @param signUpEmail           is passed in by the createAccount method through accountFacade though signUpPage
-     *                              textfields
+     * @param name            is passed in by the createAccount method through accountFacade though signUpPage
+     *                        textfields
+     * @param username        is passed in by the createAccount method through accountFacade though signUpPage
+     *                        textfields
+     * @param password        is passed in by the createAccount method through accountFacade though signUpPage
+     *                        textfields
+     * @param confirmPassword is passed in by the createAccount method through accountFacade though signUpPage
+     *                        textfields
+     * @param email           is passed in by the createAccount method through accountFacade though signUpPage
+     *                        textfields
      */
-    private int signUpFieldsChecker(TextField signUpName, TextField signUpUsername,
-                                    TextField signUpPassword, TextField signUpConfirmPassword, TextField signUpEmail) {
+    int signUpFieldsChecker(String name, String username,
+                            String password, String confirmPassword, String email) {
 
         int i = 0;
 
-        if (!accountValidityChecker.isValidName(signUpName.getText())) {
-            signUpName.setStyle("-fx-text-box-border: #FF0000;");
+        if (!accountValidityChecker.isValidName(name)) {
+            System.out.println("Invalid name");
+            //signUpName.setStyle("-fx-text-box-border: #FF0000;");
             i++;
-        } else signUpName.setStyle("-fx-text-box-border: #008000;");
+        }
+        //else signUpName.setStyle("-fx-text-box-border: #008000;");
+        if (!accountValidityChecker.isValidEmail(email)) {
+            System.out.println("Invalid email");
 
-        if (!accountValidityChecker.isValidEmail(signUpEmail.getText())) {
-            signUpEmail.setStyle("-fx-text-box-border: #FF0000;");
+            //signUpEmail.setStyle("-fx-text-box-border: #FF0000;");
+            //textFields.set(1, "false");
             i++;
-        } else signUpEmail.setStyle("-fx-text-box-border: #008000;");
+        }
+        //else signUpEmail.setStyle("-fx-text-box-border: #008000;");
+        if (username.equals("")) {
+            System.out.println("Invalid username");
 
-        if (signUpUsername.getText().equals("")) {
-            signUpUsername.setStyle("-fx-text-box-border: #FF0000;");
+            // signUpUsername.setStyle("-fx-text-box-border: #FF0000;");
             i++;
-        } else signUpUsername.setStyle("-fx-text-box-border: #008000;");
+        }
+        //else signUpUsername.setStyle("-fx-text-box-border: #008000;");
 
-        if (!accountValidityChecker.checkPasswordLength(signUpPassword.getText())) {
-            signUpPassword.setStyle("-fx-text-box-border: #FF0000;");
-            i++;
-        } else signUpPassword.setStyle("-fx-text-box-border: #008000;");
+        if (!accountValidityChecker.checkPasswordLength(password)) {
+            System.out.println("Invalid password");
 
-        if (!accountValidityChecker.checkSignupPasswordMatch(signUpPassword.getText(),
-                                                             signUpConfirmPassword.getText())) {
-            signUpConfirmPassword.setStyle("-fx-text-box-border: #B22222;");
+            //signUpPassword.setStyle("-fx-text-box-border: #FF0000;");
             i++;
-        } else signUpConfirmPassword.setStyle("-fx-text-box-border: #008000;");
+        }
+        //else signUpPassword.setStyle("-fx-text-box-border: #008000;");
+
+        if (!accountValidityChecker.checkSignupPasswordMatch(password,
+                                                             confirmPassword)) {
+            System.out.println("Invalid password match");
+
+            //signUpConfirmPassword.setStyle("-fx-text-box-border: #B22222;");
+            i++;
+        }
+        //else signUpConfirmPassword.setStyle("-fx-text-box-border: #008000;");
+        System.out.println("All fields valid");
+
         return i;
+    }
+
+    boolean checkPassword(String password) {
+        return accountValidityChecker.checkPasswordLength(password);
     }
 
     /**
      * Deletes the account by setting all the accounts' variables to null
      */
     void deleteAccount() {
-        account.setName(null);
         account.setName(null);
         account.setUsername(null);
         account.setEmailAddress(null);
