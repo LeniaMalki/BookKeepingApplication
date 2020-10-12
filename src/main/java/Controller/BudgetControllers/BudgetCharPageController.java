@@ -31,7 +31,7 @@ public class BudgetCharPageController implements iPane, EntryObserver {
     //________________________________________________ VARIABLES _______________________________________________________
 
     MainController parent;
-    Budget budget;
+    Budget budget = new Budget(0,0,0,0,0,0,"0");
     EntryHandler entryHandler = EntryHandler.getInstance();
 
     //__________________________________________________ FXML __________________________________________________________
@@ -59,6 +59,7 @@ public class BudgetCharPageController implements iPane, EntryObserver {
         budget.setTransportCost(0);
         budget.setOtherCost(0);
         budget.setSavingsCost(0);
+
     }
 
     @FXML
@@ -123,4 +124,5 @@ public class BudgetCharPageController implements iPane, EntryObserver {
     public void update(Entry entry) {
         updateCharts(entry);
     }
+
 }
