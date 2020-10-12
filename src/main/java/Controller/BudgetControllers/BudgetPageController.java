@@ -162,6 +162,8 @@ public class BudgetPageController implements iPane {
         radioMenuItem.setSelected(true);
         previousBudgetButton.getItems().add(radioMenuItem);
         i++;
+
+        previousBudgetComboBox.getItems().add("Budget" + i);
     }
 
     /**
@@ -179,6 +181,7 @@ public class BudgetPageController implements iPane {
         budget.setSavingsCost((int) savingsSlider.getValue());
         budget.setOtherCost((int) otherSlider.getValue());
         budget.setIncome(enterIncomeTextField.getText());
+        updatingMoneyLeft();
     }
 
     /**
