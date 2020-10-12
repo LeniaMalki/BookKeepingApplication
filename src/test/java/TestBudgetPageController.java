@@ -3,7 +3,7 @@ import javafx.scene.control.Slider;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class BudgetPageControllerTest {
+public class TestBudgetPageController {
 
 Budget budget;
 Slider slider;
