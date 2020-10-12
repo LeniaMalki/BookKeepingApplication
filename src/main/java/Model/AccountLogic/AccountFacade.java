@@ -14,9 +14,9 @@ import java.util.List;
  */
 public class AccountFacade implements AccountSubject {
     private static AccountFacade accountFacade;
+    private final List<AccountObserver> UserObservers = new ArrayList<>();
     AccountExistenceManager accountExistenceManager = AccountExistenceManager.getInstance();
     AccountEditor accountEditor = AccountEditor.getInstance();
-    private final List<AccountObserver> UserObservers = new ArrayList<>();
 
     /**
      * Private constructor
@@ -26,6 +26,7 @@ public class AccountFacade implements AccountSubject {
 
 
     //---------------------------------------------------- GETTERS -----------------------------------------------------
+
     /**
      * Method for obtaining the account facade instance.
      */
@@ -44,6 +45,15 @@ public class AccountFacade implements AccountSubject {
     }
 
     /**
+     * Sets account name through delegation to accountEditor
+     *
+     * @param name is passed in by the controller in use of the method
+     */
+    public boolean setAccountName(String name) {
+        return accountEditor.setAccountName(name);
+    }
+
+    /**
      * Gets account username through delegation to accountEditor
      *
      * @return returns account username
@@ -51,6 +61,17 @@ public class AccountFacade implements AccountSubject {
     public String getAccountUsername() {
         return accountEditor.getAccountUsername();
 
+    }
+
+    //---------------------------------------------------- SETTERS -----------------------------------------------------
+
+    /**
+     * Sets account usernamename through delegation to accountEditor
+     *
+     * @param username is passed in by the controller in use of the method
+     */
+    public boolean setAccountUsername(String username) {
+        return accountEditor.setAccountUsername(username);
     }
 
     /**
@@ -63,33 +84,13 @@ public class AccountFacade implements AccountSubject {
 
     }
 
-    //---------------------------------------------------- SETTERS -----------------------------------------------------
-
-    /**
-     * Sets account name through delegation to accountEditor
-     *
-     * @param name is passed in by the controller in use of the method
-     */
-    public void setAccountName(String name) {
-        accountEditor.setAccountName(name);
-    }
-
-    /**
-     * Sets account usernamename through delegation to accountEditor
-     *
-     * @param username is passed in by the controller in use of the method
-     */
-    public void setAccountUsername(String username) {
-        accountEditor.setAccountUsername(username);
-    }
-
     /**
      * Sets account email through delegation to accountEditor
      *
      * @param email is passed in by the controller in use of the method
      */
-    public void setAccountEmail(String email) {
-        accountEditor.setAccountEmail(email);
+    public boolean setAccountEmail(String email) {
+        return accountEditor.setAccountEmail(email);
     }
 
     /**
@@ -103,7 +104,7 @@ public class AccountFacade implements AccountSubject {
 
     //---------------------------------------------------- METHODS -----------------------------------------------------
 
-    public boolean checkPassword (String password) {
+    public boolean checkPassword(String password) {
         return accountExistenceManager.checkPassword(password);
     }
 
@@ -145,6 +146,37 @@ public class AccountFacade implements AccountSubject {
         return accountExistenceManager.checkPasswordMatch(inputPassword);
     }
 
+    public int changeAccountPageFields(String username, String name, String email) {
+
+        ArrayList<String> newInputs = new ArrayList<>();
+        newInputs.add(username);
+        newInputs.add(name);
+        newInputs.add(email);
+
+        ArrayList<String> oldInputs = new ArrayList<>();
+        oldInputs.add(getAccountUsername());
+        oldInputs.add(getAccountName());
+        oldInputs.add(getAccountEmail());
+
+        int changes = 3;
+
+        for (int i = 0; i <= oldInputs.size() - 1; i++) {
+
+            if (newInputs.get(i).equals("")) {
+                return 3;
+            } else if (newInputs.get(i).equals(oldInputs.get(i))) {
+                changes--;
+            }
+        }
+
+        //Returns 0 if no changes made
+        if (changes == 0) {
+            return 0;
+        } else if (changes > 0 && isAccountPageFieldsCorrect(username, name, email)) {
+            return 1;
+        } else return 3;
+
+    }
 
     //---------------------------------------------------- Observer Pattern --------------------------------------------
 
@@ -166,7 +198,6 @@ public class AccountFacade implements AccountSubject {
         }
 
     }
-
 
 
 }
