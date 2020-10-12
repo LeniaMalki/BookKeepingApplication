@@ -102,14 +102,28 @@ public class EntryPageController implements iPane, SavingsObserver, RemoveItemOb
         btn.getStyleClass().remove("inactiveEntryButton");
         btn.getStyleClass().add("activeEntryButton");
         currentActiveEntryButton = btn;
+        incomeButtonAction(btn);
         checkCategoryBox(btn);
     }
 
+    private void incomeButtonAction(Button btn){
+        if (btn==incomebutton){
+            categoryComboBox.setVisible(false);
+            costTextField.setLayoutY(282);
+        }
+        else{
+            categoryComboBox.setVisible(true);
+            costTextField.setLayoutY(391);
+        }
+    }
     /**
      * Adds a new entry when the user has put in the right parameters and added
      */
     @FXML
     private void addEntry() {
+        if (currentActiveEntryButton== incomebutton){
+            categoryComboBox.setValue("Income");
+        }
         Entry entry = new Entry(Double.parseDouble(costTextField.getText()), nameTextField.getText(), categoryComboBox.getValue(), currentActiveEntryButton.getText());
         entryList.add(entry);
         EntryListItemController itemController=new EntryListItemController(entry);
@@ -151,6 +165,7 @@ public class EntryPageController implements iPane, SavingsObserver, RemoveItemOb
      * @param b is the button that is active
      */
     private void checkCategoryBox(Button b) {
+        categoryComboBox.getItems().clear();
         if (b == savingButton) {
             categoryComboBox.getItems().removeAll(expenceCategory);
             categoryComboBox.getItems().addAll(savingCategory);
