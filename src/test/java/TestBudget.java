@@ -117,15 +117,4 @@ public class TestBudget {
             budget.setIncome(zero2);
             assertEquals(budget.getIncome(),zero2);
         }
-
-
-
-
-
-    //Sets accounts' name to an valid input through AccountEditor's method setAccountName(String textField)
-    //which in turn gets passed down to AccountValidityChecker's isValidName();
-
-
-    //Sets accounts' name to an invalid input --> will not pass
-
 }
