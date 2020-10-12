@@ -14,14 +14,17 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="accountSettings" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AccountPageController">
+<AnchorPane fx:id="accountSettings" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AccountControllers.AccountPageController">
     <children>
         <AnchorPane fx:id="popUpPosition" layoutX="358.0" layoutY="180.0" prefHeight="662.0" prefWidth="900.0">
             <effect>
                 <DropShadow />
             </effect>
         </AnchorPane>
-        <AnchorPane fx:id="back" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+        <AnchorPane fx:id="back" layoutX="10.0" layoutY="10.0" onMouseClicked="#hidePopUp" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></AnchorPane>
         <AnchorPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <AnchorPane fx:id="headerAnchorPane" minHeight="-Infinity" prefHeight="106.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
@@ -35,12 +38,12 @@
                         <Font size="40.0" />
                     </font>
                 </Text>
-                <Text fill="#615f5f" layoutX="143.0" layoutY="558.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-BoldRound" text="Name">
+                <Text fill="#615f5f" layoutX="145.0" layoutY="526.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-BoldRound" text="Name">
                     <font>
                         <Font size="40.0" />
                     </font>
                 </Text>
-                <Text fill="#615f5f" layoutX="136.0" layoutY="754.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-BoldRound" text="Email">
+                <Text fill="#615f5f" layoutX="145.0" layoutY="685.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-BoldRound" text="Email">
                     <font>
                         <Font size="40.0" />
                     </font>
@@ -65,19 +68,19 @@
                         <Font size="48.0" />
                     </font>
                 </Text>
-                <TextField fx:id="usernameSetting" layoutX="145.0" layoutY="397.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="74.0" prefWidth="522.0" promptText="anders123">
+                <TextField fx:id="usernameSetting" layoutX="145.0" layoutY="375.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="522.0" promptText="anders123">
                     <font>
-                        <Font size="35.0" />
+                        <Font size="25.0" />
                     </font>
                 </TextField>
-                <TextField fx:id="nameSetting" layoutX="141.0" layoutY="577.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="74.0" prefWidth="522.0" promptText="Anders">
+                <TextField fx:id="nameSetting" layoutX="145.0" layoutY="544.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="522.0" promptText="Anders">
                     <font>
-                        <Font size="35.0" />
+                        <Font size="25.0" />
                     </font>
                 </TextField>
-                <TextField fx:id="emailSetting" layoutX="141.0" layoutY="767.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="74.0" prefWidth="522.0" promptText="anders123@hotmail.com">
+                <TextField fx:id="emailSetting" layoutX="145.0" layoutY="719.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="522.0" promptText="anders123@hotmail.com">
                     <font>
-                        <Font size="35.0" />
+                        <Font size="25.0" />
                     </font>
                 </TextField>
                 <Text fill="#615f5f" layoutX="900.0" layoutY="866.2314453125" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-LightRound" text="English">
@@ -85,7 +88,7 @@
                         <Font size="35.0" />
                     </font>
                 </Text>
-                <Hyperlink fx:id="changePasswordLink" layoutX="900.0" layoutY="403.0" onAction="#openChangePasswordPop" stylesheets="@../../cssFolder/accountPage.css" text="Change Password" textFill="#f66a80" underline="true">
+                <Hyperlink fx:id="changePasswordLink" layoutX="900.0" layoutY="357.0" onAction="#openChangePasswordPop" stylesheets="@../../cssFolder/accountPage.css" text="Change Password" textFill="#f66a80" underline="true">
                     <font>
                         <Font size="35.0" />
                     </font>
@@ -97,7 +100,7 @@
                         <String fx:value="accountPageHyperLink" />
                     </styleClass>
                 </Hyperlink>
-                <Hyperlink fx:id="deleteAccountLink" layoutX="900.0" layoutY="602.0" onAction="#openDeleteAccountPop" stylesheets="@../../cssFolder/accountPage.css" text="Delete account" textFill="#f66a80" underline="true">
+                <Hyperlink fx:id="deleteAccountLink" layoutX="900.0" layoutY="547.0" onAction="#openDeleteAccountPop" stylesheets="@../../cssFolder/accountPage.css" text="Delete account" textFill="#f66a80" underline="true">
                     <font>
                         <Font size="35.0" />
                     </font>
@@ -114,7 +117,7 @@
                         <Image url="@../../Images/kugghjul.png" />
                     </image>
                 </ImageView>
-            <Button fx:id="submitChangesButton" alignment="CENTER" layoutX="254.0" layoutY="908.0" mnemonicParsing="false" onAction="#onActionSubmitChangesButton" text="Submit Changes">
+            <Button fx:id="submitChangesButton" alignment="CENTER" layoutX="145.0" layoutY="900.0" mnemonicParsing="false" onAction="#onActionSubmitChangesButton" text="Submit Changes">
                <font>
                   <Font size="36.0" />
                </font>
@@ -122,6 +125,19 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
+            <Button fx:id="signOutButton" defaultButton="true" layoutX="1131.0" layoutY="118.0" mnemonicParsing="false" onAction="#signOutAction" prefHeight="71.0" prefWidth="238.0" style="-fx-background-color: white;" text="Sign out" textFill="RED" underline="true">
+               <font>
+                  <Font size="32.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Text fx:id="textMessage" fill="RED" layoutX="145.0" layoutY="863.0" strokeType="OUTSIDE" strokeWidth="0.0">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Text>
             </children>
         </AnchorPane>
     </children>
