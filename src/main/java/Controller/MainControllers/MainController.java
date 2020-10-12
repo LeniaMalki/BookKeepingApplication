@@ -18,7 +18,6 @@ public class MainController {
     private AnchorPane firstPage;
     private AnchorPane entryPage;
     private AnchorPane statisticsOverviewPage;
-    private AnchorPane budgetOverviewPage;
     private AnchorPane budgetPage;
     private AnchorPane budgetCharPage;
     private AnchorPane accountPage;
@@ -79,29 +78,29 @@ public class MainController {
         showPage(budgetCharPage);
     }
 
-    public void showStatisticsDetailPage(String text) {     //TODO PUBLIC????
+    public void showStatisticsDetailPage(String text) {
         detailStatisticsController.setLabelPieChart(text);
         showPage(detailStatistics);
     }
 
-    public void showAccountPage() {     //TODO PUBLIC????
+    public void showAccountPage() {
         showPage(accountPage);
     }
 
     public void showEntryPage() {
-        showPage(entryPage);            //TODO PUBLIC????
+        showPage(entryPage);
     }
 
-    public void showBudgetPage() {      //TODO PUBLIC????
+    public void showBudgetPage() {
         showPage(budgetPage);
     }
 
     public void showLogInPage() {
-        showPage(logInPage);            //TODO PUBLIC????
+        showPage(logInPage);
     }
 
     public void showFirstPage() {
-        showPage(firstPage);            //TODO PUBLIC????
+        showPage(firstPage);
     }
 
     //____________________________________________ GETTERS / SETTERS ___________________________________________________
