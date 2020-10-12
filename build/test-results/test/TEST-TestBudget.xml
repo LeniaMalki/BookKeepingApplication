@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="TestBudget" tests="7" skipped="0" failures="0" errors="0" timestamp="2020-10-12T11:06:34" hostname="Viktorias-MacBook-Pro.local" time="0.026">
+<testsuite name="TestBudget" tests="7" skipped="0" failures="0" errors="0" timestamp="2020-10-12T11:18:30" hostname="Viktorias-MacBook-Pro.local" time="0.045">
   <properties/>
-  <testcase name="testCreationOfTransportCost()" classname="TestBudget" time="0.016"/>
+  <testcase name="testCreationOfTransportCost()" classname="TestBudget" time="0.03"/>
   <testcase name="testCreationOfFoodCost()" classname="TestBudget" time="0.0"/>
   <testcase name="testCreationOfSavingsCost()" classname="TestBudget" time="0.001"/>
   <testcase name="testCreationOfShoppingCost()" classname="TestBudget" time="0.0"/>
-  <testcase name="testCreationOfIncome()" classname="TestBudget" time="0.002"/>
-  <testcase name="testCreationOfOtherCost()" classname="TestBudget" time="0.0"/>
-  <testcase name="testCreationOfHouseholdCost()" classname="TestBudget" time="0.001"/>
+  <testcase name="testCreationOfIncome()" classname="TestBudget" time="0.004"/>
+  <testcase name="testCreationOfOtherCost()" classname="TestBudget" time="0.001"/>
+  <testcase name="testCreationOfHouseholdCost()" classname="TestBudget" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
