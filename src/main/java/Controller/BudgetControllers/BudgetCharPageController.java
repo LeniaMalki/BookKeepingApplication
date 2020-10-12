@@ -92,7 +92,7 @@ public class BudgetCharPageController implements iPane, EntryObserver {
 
         XYChart.Series<String, Number> series1 = new XYChart.Series<>();
         series1.setName("Budget");
-        series1.getData().add(new XYChart.Data<>("Food", budget.getFoodCost()));
+        series1.getData().add(new XYChart.Data<>("Food", 0));
         series1.getData().add(new XYChart.Data<>("Household", 0));
         series1.getData().add(new XYChart.Data<>("Shopping", 0));
         series1.getData().add(new XYChart.Data<>("Transport", 0));
