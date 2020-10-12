@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="header" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="106.0" prefWidth="1440.0" styleClass="header-Shadow" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.HeaderController">
+<AnchorPane fx:id="header" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="106.0" prefWidth="1440.0" styleClass="header-Shadow" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainControllers.HeaderController">
     <children>
         <Hyperlink fx:id="logo" layoutX="14.0" layoutY="-7.0" onAction="#clickHeader" prefHeight="126.0" prefWidth="209.0" text="Locali" textFill="#a8d8d3">
             <font>
@@ -74,12 +74,7 @@
                 <Image url="@../../Images/Account.PNG" />
             </image>
         </ImageView>
-        <ImageView fitHeight="30.0" fitWidth="28.0" layoutX="1360.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../../Images/downArrowGreen.PNG" />
-            </image>
-        </ImageView>
-        <Hyperlink fx:id="accountPageButton" layoutX="1198.0" layoutY="21.0" onAction="#clickHeader" prefHeight="65.0" prefWidth="146.0" text="Name">
+        <Hyperlink fx:id="accountPageButton" layoutX="1198.0" layoutY="21.0" onAction="#clickHeader" prefHeight="65.0" prefWidth="146.0" text="Profile">
             <font>
                 <Font size="35.0" />
             </font>
