@@ -172,8 +172,6 @@ public class StatisticsDetailController implements iPane, EntryObserver, RemoveI
 
     @Override
     public void update(String category, String type, double Value) {
-        //TODO whatever this is intended to do? @Artin
-
     }
 
     @Override
