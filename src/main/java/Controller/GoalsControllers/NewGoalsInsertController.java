@@ -2,10 +2,9 @@ package Controller.GoalsControllers;
 
 import Model.EntryLogic.Entry;
 import Model.EntryLogic.EntrySubject;
-import Model.Interfaces.EntryObserver;
-import Model.Interfaces.iIconSelector;
 import Model.GoalsLogic.SavingGoal;
 import Model.GoalsLogic.SavingsOverview;
+import Model.Interfaces.EntryObserver;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ProgressBar;
@@ -16,7 +15,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
-import java.io.File;
 import java.io.IOException;
 
 public class NewGoalsInsertController extends AnchorPane implements EntryObserver {
@@ -48,8 +46,6 @@ public class NewGoalsInsertController extends AnchorPane implements EntryObserve
     @FXML
     private ImageView savingsImage;
 
-    iIconSelector iconSelector;
-
     SavingsOverview savingsOverview;
 
 
@@ -71,7 +67,6 @@ public class NewGoalsInsertController extends AnchorPane implements EntryObserve
     @FXML
     public void addNewGoal(MouseEvent mouseEvent) {
 
-        savingsImage.setImage(new Image(new File("/../resources/Images/piggyBank.png").toURI().toString()));
         try {
             savingNameText.setText(nameOfSavingTextField.getText());
             registerSavingGoal(Double.parseDouble(savingAmountTextField.getText()), savingNameText.getText(), savingsImage.getImage());
@@ -86,11 +81,6 @@ public class NewGoalsInsertController extends AnchorPane implements EntryObserve
         }
 
 
-    }
-
-    @FXML
-    public void newIconButtonClicked(MouseEvent mouseEvent) {
-        iconSelector.selectIconForSavings();
     }
 
     private void registerSavingGoal(double goal, String name, Image image) {
