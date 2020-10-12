@@ -9,10 +9,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class TestBudget {
 
         Budget budget;
+        int foodCost = 100;
+        int zero = 0;
 
         @BeforeEach
         public void createNewEntry(){
-            budget = new Budget(100,100,100,100, 100, 100, "100");
+            budget = new Budget(foodCost,100,100,100, 100, 100, "100");
         }
         @Test
         public void testCreationOfFoodCost(){
@@ -43,4 +45,7 @@ public class TestBudget {
             Assertions.assertEquals(budget.getIncome(), "100");
         }
 
+
+        @Test
+        public void 
 }
