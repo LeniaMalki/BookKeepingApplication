@@ -107,6 +107,7 @@ public class LogInPageController implements iPane, AccountObserver {
     @Override
     public void update() {
         hidePopUp();
+        message.setText("");
     }
 
     private void clearLogInFields() {
