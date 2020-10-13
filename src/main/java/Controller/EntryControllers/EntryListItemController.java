@@ -35,7 +35,6 @@ public class EntryListItemController extends AnchorPane implements RemoveItemSub
     /**
      * Creates a new insert for a list and sets the test that is suppose to go in it
      * @param entry is a entry submitted by the user and is used to set the name/cost/category of the listItem
-     * @param pinkColor check if the list item should be pink or not
      */
     public EntryListItemController(Entry entry) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/openjfx/entryPageScrollPaneInsert.fxml"));

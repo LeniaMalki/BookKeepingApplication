@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="TestEntryHandler" tests="4" skipped="0" failures="0" errors="0" timestamp="2020-10-13T07:01:47" hostname="LAPTOP-475KJ11C" time="0.01">
+  <properties/>
+  <testcase name="testAddingEntryToList()" classname="TestEntryHandler" time="0.002"/>
+  <testcase name="testRemovingEntryToList()" classname="TestEntryHandler" time="0.001"/>
+  <testcase name="updateGraphTest()" classname="TestEntryHandler" time="0.001"/>
+  <testcase name="testGetInstance()" classname="TestEntryHandler" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
