@@ -4,26 +4,21 @@ import Controller.MainControllers.MainController;
 import Model.AccountLogic.AccountFacade;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
 /**
  * Controller for deleting the account through account page of deleteAccountPopup
- *
  * @author Lenia
  */
 public class DeleteAccountPopUpController {
 
-    //________________________________________________ VARIABLES _______________________________________________________
-
     private final AccountFacade accountFacade = AccountFacade.getInstance();
+    //________________________________________________ VARIABLES _______________________________________________________
     @FXML
-    public AnchorPane delAccPopUp;
-    MainController parent;
+    private PasswordField password;
     @FXML
-    private PasswordField enterPasswordToDelete;
-    @FXML
-    private Text passwordIncorrectMessage;
+    private Text textMessage;
+    private MainController parent;
 
     //________________________________________________ Methods _________________________________________________________
 
@@ -38,15 +33,12 @@ public class DeleteAccountPopUpController {
      * Handles the mouse action of deleting and account by delegation to AccountFacade's methods for deletion
      */
     @FXML
-    private void deleteAccountConfirm() {
+    private void onConfirmDeleteClicked() {
 
-        if (accountFacade.checkPasswordMatch(enterPasswordToDelete.getText())) {
+        if (accountFacade.doesPasswordMatchWithAccount(password.getText())) {
             accountFacade.deleteAccount();
             parent.showLogInPage();
         } else
-            passwordIncorrectMessage.setText("Password is incorrect! Try again.");
-
-
+            textMessage.setText("Password is incorrect! Try again.");
     }
-
 }
