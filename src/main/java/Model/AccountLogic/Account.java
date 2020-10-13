@@ -14,7 +14,7 @@ public class Account {
     private String username;
     private String emailAddress;
     private String password;
-    private String confirmPassword;
+    //private String confirmPassword;
 
 
     //________________________________________________ Methods _________________________________________________________
@@ -35,12 +35,7 @@ public class Account {
         return accountInstance;
     }
 
-    /**
-     * Setter
-     */
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
-    }
+    //________________________________________________ Getters/Setters _________________________________________________
 
     /**
      * Getter
