@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
@@ -8,8 +7,6 @@
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -33,39 +30,29 @@
                         <Font size="48.0" />
                     </font>
                 </Text>
-                <Text disable="true" fill="#615f5f" layoutX="145.0" layoutY="340.9140625" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-BoldRound" text="Username">
+                <Text disable="true" fill="#615f5f" layoutX="145.0" layoutY="340.9140625" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
                     <font>
-                        <Font size="40.0" />
+                        <Font name="Lucida Sans Unicode" size="40.0" />
                     </font>
                 </Text>
-                <Text fill="#615f5f" layoutX="145.0" layoutY="526.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-BoldRound" text="Name">
+                <Text fill="#615f5f" layoutX="145.0" layoutY="526.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="First name">
                     <font>
-                        <Font size="40.0" />
+                        <Font name="Lucida Sans Unicode" size="40.0" />
                     </font>
                 </Text>
-                <Text fill="#615f5f" layoutX="145.0" layoutY="685.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-BoldRound" text="Email">
+                <Text fill="#615f5f" layoutX="145.0" layoutY="685.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
                     <font>
-                        <Font size="40.0" />
+                        <Font name="Lucida Sans Unicode" size="40.0" />
                     </font>
                 </Text>
-                <Text fill="#615f5f" layoutX="900.0" layoutY="340.9140625" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-BoldRound" text="Password">
+                <Text fill="#615f5f" layoutX="900.0" layoutY="340.9140625" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
                     <font>
-                        <Font size="40.0" />
+                        <Font name="Lucida Sans Unicode" size="40.0" />
                     </font>
                 </Text>
-                <Text fill="#615f5f" layoutX="900.0" layoutY="533.9140625" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-BoldRound" text="Account">
+                <Text fill="#615f5f" layoutX="900.0" layoutY="533.9140625" strokeType="OUTSIDE" strokeWidth="0.0" text="Account">
                     <font>
-                        <Font size="40.0" />
-                    </font>
-                </Text>
-                <Text fill="#615f5f" layoutX="900.0" layoutY="810.8359375" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-LightRound" text="Language">
-                    <font>
-                        <Font size="40.0" />
-                    </font>
-                </Text>
-                <Text fill="#615f5f" layoutX="900.0" layoutY="729.296875" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-BoldRound" text="Other">
-                    <font>
-                        <Font size="48.0" />
+                        <Font name="Lucida Sans Unicode" size="40.0" />
                     </font>
                 </Text>
                 <TextField fx:id="username" layoutX="145.0" layoutY="375.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="522.0" promptText="anders123">
@@ -83,49 +70,31 @@
                         <Font size="25.0" />
                     </font>
                 </TextField>
-                <Text fill="#615f5f" layoutX="900.0" layoutY="866.2314453125" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-LightRound" text="English">
-                    <font>
-                        <Font size="35.0" />
-                    </font>
-                </Text>
                 <Hyperlink fx:id="changePasswordLink" layoutX="900.0" layoutY="357.0" onAction="#openChangePasswordPop" stylesheets="@../../cssFolder/accountPage.css" text="Change Password" textFill="#f66a80" underline="true">
                     <font>
-                        <Font size="35.0" />
+                        <Font name="Lucida Sans Unicode" size="24.0" />
                     </font>
                     <padding>
                         <Insets left="1.0" />
                     </padding>
-                    <styleClass>
-                        <String fx:value="Enrique-LightRound" />
-                        <String fx:value="accountPageHyperLink" />
-                    </styleClass>
                 </Hyperlink>
                 <Hyperlink fx:id="deleteAccountLink" layoutX="900.0" layoutY="547.0" onAction="#openDeleteAccountPop" stylesheets="@../../cssFolder/accountPage.css" text="Delete account" textFill="#f66a80" underline="true">
                     <font>
-                        <Font size="35.0" />
+                        <Font name="Lucida Sans Unicode" size="24.0" />
                     </font>
                     <padding>
                         <Insets left="1.0" />
                     </padding>
-                    <styleClass>
-                        <String fx:value="Enrique-LightRound" />
-                        <String fx:value="accountPageHyperLink" />
-                    </styleClass>
                 </Hyperlink>
-                <ImageView fx:id="changeLanguage" fitHeight="50.0" fitWidth="50.0" layoutX="1121.0" layoutY="865.0" pickOnBounds="true">
-                    <image>
-                        <Image url="@../../Images/kugghjul.png" />
-                    </image>
-                </ImageView>
             <Button fx:id="submitChangesButton" alignment="CENTER" layoutX="145.0" layoutY="900.0" mnemonicParsing="false" onAction="#onSubmitChangesClicked" text="Submit Changes">
                <font>
-                  <Font size="36.0" />
+                  <Font name="Lucida Sans Unicode" size="24.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="signOutButton" defaultButton="true" layoutX="1131.0" layoutY="118.0" mnemonicParsing="false" onAction="#onSignOutClicked" prefHeight="71.0" prefWidth="238.0" style="-fx-background-color: white;" text="Sign out" textFill="RED" underline="true">
+            <Button fx:id="signOutButton" defaultButton="true" layoutX="1155.0" layoutY="120.0" mnemonicParsing="false" onAction="#onSignOutClicked" prefHeight="71.0" prefWidth="238.0" style="-fx-background-color: #f66a80;" text="Sign out" textFill="WHITE">
                <font>
                   <Font size="32.0" />
                </font>
