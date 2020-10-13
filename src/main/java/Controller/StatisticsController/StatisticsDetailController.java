@@ -66,12 +66,12 @@ public class StatisticsDetailController implements iPane, EntryObserver, RemoveI
     public void update(Entry entry, EntryListItemController controller){
         entryHandler.getEntries().remove(entry);
         flowpaneStat.getChildren().remove(controller);
-        updatePie();
+        updatePieChart();
         for (Entry e: entryHandler.getEntries()) {
             if (!allEntries) {
-                entriesCategory(e.getCategory());
+                entriesCheckCategory(e.getCategory());
             } else {
-                entriesCategory("");
+                entriesCheckCategory("");
             }
         }
     }
@@ -94,14 +94,14 @@ public class StatisticsDetailController implements iPane, EntryObserver, RemoveI
      * @param entry an Entry that is added to the FlowPane of entries. U
      */
     private void updateStatistics(Entry entry) {
-        addToFlowPane(entry);
-        updatePie();
+        addEntryToFlowPane(entry);
+        updatePieChart();
 
     }
     /**
      * A function that creates/updates a PieChart by the use of an EntryHandler that has access to entries.
      */
-    private void updatePie() {
+    private void updatePieChart() {
         entryHandler.updateGraph();
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
                 new PieChart.Data("Food", entryHandler.getFoodAmount()),
@@ -121,17 +121,17 @@ public class StatisticsDetailController implements iPane, EntryObserver, RemoveI
      *
      * @param category a string that represents the category of a certain entry.
      */
-    private void entriesCategory(String category) {
+    private void entriesCheckCategory(String category) {
         flowpaneStat.getChildren().clear();
         for (Entry entry : entryHandler.getEntries()) {
             if (category.equals("") || entry.getCategory().equals(category)) {
-                addToFlowPane(entry);
+                addEntryToFlowPane(entry);
             }
         }
         allEntries = category.equals("");
     }
 
-    private void addToFlowPane(Entry entry) {
+    private void addEntryToFlowPane(Entry entry) {
         EntryListItemController entryListItemController = new EntryListItemController(entry);
         flowpaneStat.getChildren().add(entryListItemController);
         entryListItemController.add(this);
@@ -139,33 +139,33 @@ public class StatisticsDetailController implements iPane, EntryObserver, RemoveI
 
     @FXML
     private void food(ActionEvent event) {
-        entriesCategory("Food");
+        entriesCheckCategory("Food");
     }
 
     @FXML
     private void transport(ActionEvent event) {
-        entriesCategory("Transportation");
+        entriesCheckCategory("Transportation");
     }
 
     @FXML
     private void other(ActionEvent event) {
-        entriesCategory("Other");
+        entriesCheckCategory("Other");
 
     }
 
     @FXML
     private void shopping(ActionEvent event) {
-        entriesCategory("Shopping");
+        entriesCheckCategory("Shopping");
     }
 
     @FXML
     private void household(ActionEvent event) {
-        entriesCategory("Household");
+        entriesCheckCategory("Household");
     }
 
     @FXML
     private void allEntries(ActionEvent event) {
-        entriesCategory("");
+        entriesCheckCategory("");
     }
 
 
