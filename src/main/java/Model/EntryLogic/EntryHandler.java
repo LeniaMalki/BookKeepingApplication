@@ -59,7 +59,7 @@ public class EntryHandler implements EntryObserver {
      * A function that sets all values to 0 and then iterates through the
      * list of entries and adds their values up in different categories
      */
-    public void updateGraph() {
+    public void updateTotalCategoryValues() {
         foodAmount = 0;
         transportationAmount = 0;
         householdAmount = 0;

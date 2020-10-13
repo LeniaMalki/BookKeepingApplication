@@ -70,7 +70,7 @@ public class StatisticsOverViewController implements iPane, EntryObserver {
     //__________ THIS PART IS NOT IMPLEMENTED YET, JUST SOME HARD CODED EXAMPLES TO ILLUSTRATE IN OUR PROGRAM __________
 
     private void updateStatisticsPiechart(Entry entry) {
-        entryHandler.updateGraph();
+        entryHandler.updateTotalCategoryValues();
         updateDailyStatistics();
         updateWeeklyStatistics();
         updateMonthlyStatistics();

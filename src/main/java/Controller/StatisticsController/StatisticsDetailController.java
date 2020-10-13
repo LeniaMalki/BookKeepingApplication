@@ -102,7 +102,7 @@ public class StatisticsDetailController implements iPane, EntryObserver, RemoveI
      * A function that creates/updates a PieChart by the use of an EntryHandler that has access to entries.
      */
     private void updatePieChart() {
-        entryHandler.updateGraph();
+        entryHandler.updateTotalCategoryValues();
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
                 new PieChart.Data("Food", entryHandler.getFoodAmount()),
                 new PieChart.Data("Transportation", entryHandler.getTransportationAmount()),
