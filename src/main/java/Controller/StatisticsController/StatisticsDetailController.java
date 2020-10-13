@@ -49,7 +49,8 @@ public class StatisticsDetailController implements iPane, EntryObserver, RemoveI
     //_________________________________________________ METHODS ________________________________________________________
 
     /**
-     *
+     * Initializes the pane when the program starts also adds the header
+     * @param parent is the main controller
      */
     @Override
     public void initPane(MainController parent) {
