@@ -5,7 +5,6 @@ import Controller.Interfaces.RemoveItemObserver;
 import Controller.Interfaces.iPane;
 import Controller.MainControllers.MainController;
 import Controller.MainControllers.PaneFactory;
-import Model.DounutLogic.*;
 import Model.EntryLogic.Entry;
 import Model.EntryLogic.EntryHandler;
 import Model.EntryLogic.EntrySubject;
@@ -45,7 +44,7 @@ public class StatisticsDetailController implements iPane, EntryObserver, RemoveI
     @FXML
     private AnchorPane chartPane;
 
-    DounutChart chart;
+    PieChart chart;
 
     //_________________________________________________ METHODS ________________________________________________________
 
@@ -111,7 +110,7 @@ public class StatisticsDetailController implements iPane, EntryObserver, RemoveI
                 new PieChart.Data("Shopping", entryHandler.getShoppingAmount()),
                 new PieChart.Data("Other", entryHandler.getOtherAmount()));
         if (chart == null) {
-            chart = new DounutChart(pieChartData);
+            chart = new PieChart(pieChartData);
             chartPane.getChildren().add(chart);
         } else chart.setData(pieChartData);
     }
