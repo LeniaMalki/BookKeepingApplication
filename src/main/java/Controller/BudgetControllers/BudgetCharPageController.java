@@ -104,7 +104,7 @@ public class BudgetCharPageController implements iPane, EntryObserver, BudgetObs
      */
 
     private void updateCharts(Entry entry) {
-        entryHandler.updateGraph();
+        entryHandler.updateTotalCategoryValues();
         updatingStackedBarChart();
     }
 

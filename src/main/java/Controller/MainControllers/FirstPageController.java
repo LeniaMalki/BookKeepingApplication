@@ -89,7 +89,7 @@ public class FirstPageController implements iPane, EntryObserver, BudgetObserver
 
     private void changeProgress(){
         if(budget!=null){
-        entryHandler.updateGraph();
+        entryHandler.updateTotalCategoryValues();
         foodBar.setProgress(entryHandler.getFoodAmount() / budget.getFoodCost());
         householdBar.setProgress(entryHandler.getHouseholdAmount() / budget.getHouseholdCost());
         shoppingBar.setProgress(entryHandler.getShoppingAmount() / budget.getShoppingCost());
