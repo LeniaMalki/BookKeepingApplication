@@ -85,8 +85,6 @@ public class LogInPageController implements iPane, AccountObserver {
         } else if (logInHandler.logIn(usernameField.getText(), logInField.getText())) {
             message.setText("");
             clearLogInFields();
-            //usernameField.setStyle("-fx-text-box-border: #ffffff");
-            //logInField.setStyle("-fx-text-box-border: #ffffff");
             parent.showFirstPage();
         }
     }
