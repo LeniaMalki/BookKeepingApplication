@@ -51,7 +51,7 @@ public class EntryHandler implements EntryObserver {
      *
      * @param e , an entry with a specific category
      */
-    public void removeEntry(Entry e){
+    public void removeEntry(Entry e) {
         entries.remove(e);
     }
 

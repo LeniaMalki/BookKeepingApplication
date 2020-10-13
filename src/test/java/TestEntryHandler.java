@@ -12,18 +12,21 @@ public class TestEntryHandler {
     EntryHandler entryHandler = EntryHandler.getInstance();
 
     @BeforeEach
+    //Before each test we set up different entries that we can use
     public void setUp() {
-        shopping = new Entry(20,"Jeans","Shopping","Expense");
-        transport = new Entry(10,"Uber","Transportation","Expense");
-        food = new Entry(10,"McDonalds","Food","Expense");
+        shopping = new Entry(20, "Jeans", "Shopping", "Expense");
+        transport = new Entry(10, "Uber", "Transportation", "Expense");
+        food = new Entry(10, "McDonalds", "Food", "Expense");
     }
 
     @AfterEach
+    //After each test we clear the list of entries
     public void tearDownAfterEach() {
         entryHandler.getEntries().clear();
     }
 
     @Test
+    //Test that checks if we succeed with adding entries to the list
     public void testAddingEntryToList() {
         entryHandler.addEntry(shopping);
         entryHandler.addEntry(food);
@@ -31,6 +34,7 @@ public class TestEntryHandler {
     }
 
     @Test
+    //Test that checks if we succeed with removing entries from the list
     public void testRemovingEntryToList() {
         entryHandler.addEntry(transport);
         entryHandler.addEntry(shopping);
@@ -39,12 +43,14 @@ public class TestEntryHandler {
     }
 
     @Test
+    //Test that checks the entryHandlers instance
     public void testGetInstance() {
         EntryHandler entryHandlerNew = EntryHandler.getInstance();
         Assertions.assertEquals(entryHandler, entryHandlerNew);
     }
+
     @Test
-    public void updateGraphTest(){
+    public void updateGraphTest() {
         //entryHandler adds the entries to the list of entries and updates values
         entryHandler.addEntry(shopping);
         entryHandler.addEntry(transport);
@@ -55,7 +61,9 @@ public class TestEntryHandler {
         entryHandler.removeEntry(transport);
         entryHandler.updateGraph();
         //Checks if the sum of the category of Shopping is now 10 & if all amounts together are 20
-        Assertions.assertEquals(entryHandler.getShoppingAmount()+entryHandler.getFoodAmount()+entryHandler.getTransportationAmount(),30);
+        Assertions.assertEquals(entryHandler.getShoppingAmount() +
+                entryHandler.getFoodAmount() +
+                entryHandler.getTransportationAmount(), 30);
 
 
     }
