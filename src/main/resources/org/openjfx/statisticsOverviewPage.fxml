@@ -69,5 +69,10 @@
             <AnchorPane fx:id="monthlyAnchor" prefHeight="200.0" prefWidth="470.0" />
          </children>
       </HBox>
+      <Text layoutX="370.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: F66A80;" text="NOTE: Dates have not been implemented yet.">
+         <font>
+            <Font size="37.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

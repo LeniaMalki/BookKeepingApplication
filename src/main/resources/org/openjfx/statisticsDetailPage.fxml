@@ -19,20 +19,20 @@
                 <String fx:value="whiteBackground" />
             </styleClass>
             <content>
-                <FlowPane fx:id="flowpaneStat" prefHeight="515.0" prefWidth="759.0" />
+                <FlowPane fx:id="flowpaneStat" prefHeight="515.0" prefWidth="759.0" style="-fx-background-color: #FFFFFF;" />
             </content>
         </ScrollPane>
-        <Text fill="#5f6368" layoutX="749.0" layoutY="370.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-BoldRound" text="Article">
+        <Text fill="#5f6368" layoutX="649.0" layoutY="370.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-BoldRound" text="Article">
             <font>
                 <Font size="24.0" />
             </font>
         </Text>
-        <Text fill="#5f6368" layoutX="976.0" layoutY="370.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-BoldRound" text="Category">
+        <Text fill="#5f6368" layoutX="876.0" layoutY="370.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-BoldRound" text="Category">
             <font>
                 <Font size="24.0" />
             </font>
         </Text>
-        <Text fill="#5f6368" layoutX="1258.0" layoutY="370.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-BoldRound" text="Cost">
+        <Text fill="#5f6368" layoutX="1158.0" layoutY="370.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-BoldRound" text="Cost">
             <font>
                 <Font size="24.0" />
             </font>
