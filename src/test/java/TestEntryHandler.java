@@ -55,11 +55,11 @@ public class TestEntryHandler {
         entryHandler.addEntry(shopping);
         entryHandler.addEntry(transport);
         entryHandler.addEntry(food);
-        entryHandler.updateGraph();
+        entryHandler.updateTotalCategoryValues();
 
         //Removes one entry and updates values
         entryHandler.removeEntry(transport);
-        entryHandler.updateGraph();
+        entryHandler.updateTotalCategoryValues();
         //Checks if the sum of the category of Shopping is now 10 & if all amounts together are 20
         Assertions.assertEquals(entryHandler.getShoppingAmount() +
                 entryHandler.getFoodAmount() +
