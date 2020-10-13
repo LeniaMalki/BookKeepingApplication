@@ -1,9 +1,8 @@
 package Controller.GoalsControllers;
 
+import Controller.Interfaces.iPane;
 import Controller.MainControllers.MainController;
 import Controller.MainControllers.PaneFactory;
-import Model.Interfaces.iIconSelector;
-import Controller.Interfaces.iPane;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
@@ -14,7 +13,7 @@ import javafx.scene.layout.FlowPane;
  * @author Artin
  */
 
-public class GoalsPageController implements iPane, iIconSelector {
+public class GoalsPageController implements iPane {
 
     MainController parent;
 
@@ -65,8 +64,14 @@ public class GoalsPageController implements iPane, iIconSelector {
     /**
      * used to select an icon for the saving
      */
-    @Override
-    public void selectIconForSavings() {
-    }
 
+    @FXML
+    private void budgetPage(){
+        parent.showBudgetPage();
+
+    }
+    @FXML
+    private void entryPage(){
+        parent.showEntryPage();
+    }
 }

@@ -1,7 +1,8 @@
 package Controller.EntryControllers;
 
+import Controller.Interfaces.RemoveItemObserver;
+import Controller.Interfaces.RemoveItemSubject;
 import Model.EntryLogic.Entry;
-import Model.EntryLogic.EntryHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.input.MouseEvent;
@@ -9,12 +10,14 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 /**
  * Controller for a new entry as a listItem
  *
  * @author Artin
  */
-public class EntryListItemController extends AnchorPane {
+public class EntryListItemController extends AnchorPane implements RemoveItemSubject {
 
     @FXML
     Text articleName;
@@ -26,15 +29,14 @@ public class EntryListItemController extends AnchorPane {
     Text costName;
 
     Entry actualEntry;
-    EntryHandler entryHandler;
+    ArrayList<RemoveItemObserver> observers = new ArrayList<>();
 
 
     /**
      * Creates a new insert for a list and sets the test that is suppose to go in it
      * @param entry is a entry submitted by the user and is used to set the name/cost/category of the listItem
-     * @param pinkColor check if the list item should be pink or not
      */
-    public EntryListItemController(Entry entry, boolean pinkColor) {
+    public EntryListItemController(Entry entry) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/openjfx/entryPageScrollPaneInsert.fxml"));
         fxmlLoader.setController(this);
         fxmlLoader.setRoot(this);
@@ -47,9 +49,7 @@ public class EntryListItemController extends AnchorPane {
         costName.setText(String.valueOf(entry.getAmount()));
         articleName.setText(entry.getName());
         actualEntry = entry;
-        if (pinkColor) {
-            this.getStyleClass().add("pinkInsert");
-        }
+
     }
 
     /**
@@ -61,4 +61,22 @@ public class EntryListItemController extends AnchorPane {
         actualEntry.setSelected(!actualEntry.getSelected());
     }
 
+    /**
+     * if the trashcan is clicked the observerpattern will notify the observers
+     */
+    @FXML
+    private void onTrashCanClick(){
+        notifyListeners();
+    }
+
+    @Override
+    public void add(RemoveItemObserver o) {
+        observers.add(o);
+    }
+    @Override
+    public void notifyListeners() {
+    for(RemoveItemObserver o : observers){
+        o.update(actualEntry, this);
+    }
+    }
 }

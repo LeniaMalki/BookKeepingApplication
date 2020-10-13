@@ -38,7 +38,7 @@ public class PaneFactory {
             FXMLLoader fxmlLoader = new FXMLLoader(PaneFactory.class.getClassLoader().getResource(path));
             AnchorPane anchorPane = fxmlLoader.load();
             T controller = fxmlLoader.getController();
-            pane = new Pane<T>(anchorPane, controller);
+            pane = new Pane<>(anchorPane, controller);
         } catch (IOException exception) {
             exception.printStackTrace();
         }
@@ -48,14 +48,14 @@ public class PaneFactory {
     /**
      * Down below are similar functions that loads in different panes using fxml files
      */
-    public static Parent initMain() {   //TODO PUBLIC????
+    public static Parent initMain() {
         Pane<MainController> pane = loadInPane("org/openjfx/mainAnchor.fxml");
         PaneFactory.parent = pane.controller;
         pane.controller.init();
         return pane.anchorPane;
     }
 
-    public static AnchorPane initHeader() {  //TODO PUBLIC????
+    public static AnchorPane initHeader() {
         Pane<HeaderController> pane = loadInPane("org/openjfx/header.fxml");
         pane.controller.initPane(parent);
         return pane.anchorPane;

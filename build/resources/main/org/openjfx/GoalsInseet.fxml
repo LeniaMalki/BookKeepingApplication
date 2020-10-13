@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<fx:root fx:id="mainAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="810.0" styleClass="SelectedBox" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="mainAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="810.0" styleClass="whiteBackground" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane fx:id="savingsAnchorPane" layoutX="143.0" prefHeight="120.0" prefWidth="667.0" styleClass="whiteBackground">
          <children>
@@ -33,7 +33,10 @@
       </AnchorPane>
       <AnchorPane layoutX="14.0" layoutY="13.0" prefHeight="95.0" prefWidth="95.0" styleClass="notSelectedBox">
          <children>
-            <ImageView fx:id="savingsImage" fitHeight="94.0" fitWidth="95.0" pickOnBounds="true" preserveRatio="true" styleClass="notSelectedBox" />
+            <ImageView fx:id="savingsImage" fitHeight="94.0" fitWidth="95.0" pickOnBounds="true" preserveRatio="true" styleClass="notSelectedBox">
+               <image>
+                  <Image url="@../../Images/piggyBank.png" />
+               </image></ImageView>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="savingsAnchorPane1" layoutX="143.0" prefHeight="120.0" prefWidth="667.0" styleClass="whiteBackground">
@@ -62,6 +65,6 @@
       <URL value="@../../cssFolder/Goals.css" />
    </stylesheets>
    <effect>
-      <DropShadow offsetX="-5.0" spread="0.1" />
+      <DropShadow height="9.14" offsetX="-5.0" radius="1.7850000000000001" spread="0.3" width="0.0" />
    </effect>
 </fx:root>

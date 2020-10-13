@@ -3,7 +3,6 @@ package Controller.StatisticsController;
 import Controller.Interfaces.iPane;
 import Controller.MainControllers.MainController;
 import Controller.MainControllers.PaneFactory;
-import Model.DounutLogic.DounutChart;
 import Model.EntryLogic.Entry;
 import Model.EntryLogic.EntryHandler;
 import Model.EntryLogic.EntrySubject;
@@ -27,9 +26,9 @@ public class StatisticsOverViewController implements iPane, EntryObserver {
 
     MainController parent;
     EntryHandler entryHandler = EntryHandler.getInstance();
-    DounutChart chart1;
-    DounutChart chart2;
-    DounutChart chart3;
+    PieChart chart1;
+    PieChart chart2;
+    PieChart chart3;
     //__________________________________________________ FXML __________________________________________________________
 
     @FXML
@@ -48,7 +47,7 @@ public class StatisticsOverViewController implements iPane, EntryObserver {
 
     @FXML
     void toDailyStatistics(ActionEvent event) {
-        detailedStatistics("Daily");  //TODO DIVERSIFY FOR WEEKLY / DAILY / MONTHLY, TEXT AND PIECHART NEEDS TO
+        detailedStatistics("Daily");
     }
     @FXML
     void toWeeklyStatistics(ActionEvent event) {
@@ -70,8 +69,8 @@ public class StatisticsOverViewController implements iPane, EntryObserver {
 
     //__________ THIS PART IS NOT IMPLEMENTED YET, JUST SOME HARD CODED EXAMPLES TO ILLUSTRATE IN OUR PROGRAM __________
 
-    private void updateStatistics(Entry entry) {
-        entryHandler.updateGraph();
+    private void updateStatisticsPiechart(Entry entry) {
+        entryHandler.updateTotalCategoryValues();
         updateDailyStatistics();
         updateWeeklyStatistics();
         updateMonthlyStatistics();
@@ -84,7 +83,7 @@ public class StatisticsOverViewController implements iPane, EntryObserver {
                 new PieChart.Data("Shopping", entryHandler.getShoppingAmount()),
                 new PieChart.Data("Other", entryHandler.getOtherAmount()));
         if (chart1 == null) {
-            chart1 = new DounutChart(pieChartData1);
+            chart1 = new PieChart(pieChartData1);
             dailyAnchor.getChildren().add(chart1);
         } else chart1.setData(pieChartData1);
     }
@@ -97,7 +96,7 @@ public class StatisticsOverViewController implements iPane, EntryObserver {
                 new PieChart.Data("Shopping", entryHandler.getShoppingAmount()+10),
                 new PieChart.Data("Other", entryHandler.getOtherAmount()+222));
         if (chart2 == null) {
-            chart2 = new DounutChart(pieChartData2);
+            chart2 = new PieChart(pieChartData2);
             weeklyAnchor.getChildren().add(chart2);
         } else chart2.setData(pieChartData2);
     }
@@ -110,7 +109,7 @@ public class StatisticsOverViewController implements iPane, EntryObserver {
                 new PieChart.Data("Shopping", entryHandler.getShoppingAmount()+20),
                 new PieChart.Data("Other", entryHandler.getOtherAmount()+100));
         if (chart3 == null) {
-            chart3 = new DounutChart(pieChartData3);
+            chart3 = new PieChart(pieChartData3);
             monthlyAnchor.getChildren().add(chart3);
         } else chart3.setData(pieChartData3);
     }
@@ -130,7 +129,8 @@ public class StatisticsOverViewController implements iPane, EntryObserver {
 
     @Override
     public void update(Entry entry) {
-        updateStatistics(entry);
+        updateStatisticsPiechart(entry);
 
     }
+
 }

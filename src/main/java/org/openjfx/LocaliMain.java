@@ -23,8 +23,6 @@ public class LocaliMain extends Application {
         launch(args);
 
 
-
-
     }
 
 }
