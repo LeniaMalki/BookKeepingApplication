@@ -2,7 +2,6 @@ package Model.AccountLogic;
 
 /**
  * Handles all edits on the account, makes use of an accountInstance and is thus an instance itself
- *
  * @author Lenia
  */
 public class AccountEditor {
@@ -33,60 +32,34 @@ public class AccountEditor {
     }
 
     /**
-     * Sets a new password for the account iff the password is valid though check by accountValidityChecker
-     *
-     * @param password is passed in by the accountFacade though whichever controller is in need of the method
+     * Sets all account values to the given parameters
+     * @param name obtained from controller's textField.
+     * @param username obtained from controller's textField.
+     * @param password obtained from controller's textField.
+     * @param email obtained from controller's textField.
      */
-    boolean setAccountPassword(String password) {
-        if (accountValidityChecker.checkPasswordLength(password)) {
-            account.setPassword(password);
-            return true;
-        } //else textField.setStyle("-fx-text-box-border: #B22222;");
-        return false;
+    void setAllAccountValues(String name, String username,
+                             String password, String email) {
+
+        account.setName(name);
+        account.setUsername(username);
+        account.setEmailAddress(email);
+        account.setPassword(password);
     }
 
     /**
-     * Check whether all account page fields are valid though check by accountValidityChecker
-     *
-     * @param username is passed in by the accountFacade though whichever controller is in need of the method
-     * @param name     is passed in by the accountFacade though whichever controller is in need of the method
-     * @param email    is passed in by the accountFacade though whichever controller is in need of the method
+     * Sets all account's variables to null
      */
-    boolean areAccountFieldsCorrect(String username, String name, String email) {
-
-        boolean areFieldsCorrect = true;
-
-        //Username
-        if (username.equals("")) {
-            //username.setStyle("-fx-text-box-border: #B22222;"); //RED
-            System.out.println("Incorrect username");
-            areFieldsCorrect = false;
-        } //else username.setStyle("-fx-text-box-border: #008000;"); //Green
-
-        //Name
-        if (!accountValidityChecker.isValidName(name)) {
-            //name.setStyle("-fx-text-box-border: #B22222;"); //RED
-
-            System.out.println("Incorrect name");
-
-            areFieldsCorrect = false;
-        } //else name.setStyle("-fx-text-box-border: #008000;");
-
-        //Email
-        if (!accountValidityChecker.isValidEmail(email)) {
-            System.out.println("Incorrect email");
-
-            //email.setStyle("-fx-text-box-border: #B22222;"); //RED
-            areFieldsCorrect = false;
-        } //else email.setStyle("-fx-text-box-border: #008000;");
-
-
-        return areFieldsCorrect;
+    void nullAllAccountValues() {
+        account.setName(null);
+        account.setUsername(null);
+        account.setEmailAddress(null);
+        account.setPassword(null);
     }
 
+    //________________________________________________ Getters/setters _________________________________________________
     /**
      * Getter
-     *
      * @return returns the value of the account instance's name
      */
     String getAccountName() {
@@ -95,20 +68,16 @@ public class AccountEditor {
 
     /**
      * Sets a new account name for the account iff the password is valid though check by accountValidityChecker
-     *
      * @param textField is passed in by the accountFacade though whichever controller is in need of the method
      */
-     boolean setAccountName(String textField) {
+    void setAccountName(String textField) {
         if (accountValidityChecker.isValidName(textField)) {
             account.setName(textField);
-            return true;
-        }   //else textField.setStyle("-fx-text-box-border: #B22222;");
-         else return false;
+        }
     }
 
     /**
      * Getter
-     *
      * @return returns the value of the account instance's username
      */
     String getAccountUsername() {
@@ -117,21 +86,16 @@ public class AccountEditor {
 
     /**
      * Sets a new account username for the account iff the password is valid though check by accountValidityChecker
-     *
      * @param username is passed in by the accountFacade though whichever controller is in need of the method
      */
-    boolean setAccountUsername(String username) {
-        if (accountValidityChecker.checkUsername(username)) {
+    void setAccountUsername(String username) {
+        if (accountValidityChecker.isValidUsername(username)) {
             account.setUsername(username);
-            return true;
-        } return  false;
-
-        //else textField.setStyle("-fx-text-box-border: #B22222;");
+        }
     }
 
     /**
      * Getter
-     *
      * @return returns the value of the account instance's email
      */
     String getAccountEmail() {
@@ -140,24 +104,32 @@ public class AccountEditor {
 
     /**
      * Sets a new account email for the account iff the password is valid though check by accountValidityChecker
-     *
      * @param email is passed in by the accountFacade though whichever controller is in need of the method
      */
-   boolean  setAccountEmail(String email) {
+    void setAccountEmail(String email) {
         if (accountValidityChecker.isValidEmail(email)) {
             account.setEmailAddress(email);
-            return true;
+
 
         } //else textField.setStyle("-fx-text-box-border: #B22222;");
-       return  false;
-   }
+
+    }
 
     /**
      * Getter
-     *
      * @return returns the value of the account instance's password
      */
     String getAccountPassword() {
         return account.getPassword();
+    }
+
+    /**
+     * Sets a new password for the account iff the password is valid though check by accountValidityChecker
+     * @param password is passed in by the accountFacade though whichever controller is in need of the method
+     */
+    void setAccountPassword(String password) {
+        if (accountValidityChecker.isValidPasswordLength(password)) {
+            account.setPassword(password);
+        } //else textField.setStyle("-fx-text-box-border: #B22222;");
     }
 }

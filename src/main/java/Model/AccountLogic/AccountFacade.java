@@ -7,23 +7,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This is a facade which delegates work to AccountExistenceManager and AccountEditor in order to create, delete
- * and change the variables of an account.
- *
+ * This is a facade which delegates work to AccountExistenceManager and AccountEditor in order to create, delete and
+ * change the variables of an account.
  * @author Lenia
  */
 public class AccountFacade implements AccountSubject {
     private static AccountFacade accountFacade;
     private final List<AccountObserver> UserObservers = new ArrayList<>();
-    AccountExistenceManager accountExistenceManager = AccountExistenceManager.getInstance();
-    AccountEditor accountEditor = AccountEditor.getInstance();
+    private final AccountExistenceManager accountExistenceManager = AccountExistenceManager.getInstance();
+    private final AccountEditor accountEditor = AccountEditor.getInstance();
+    private final AccountValidityChecker accountValidityChecker = AccountValidityChecker.getInstance();
 
     /**
      * Private constructor
      */
     private AccountFacade() {
     }
-
 
     //---------------------------------------------------- GETTERS -----------------------------------------------------
 
@@ -45,17 +44,7 @@ public class AccountFacade implements AccountSubject {
     }
 
     /**
-     * Sets account name through delegation to accountEditor
-     *
-     * @param name is passed in by the controller in use of the method
-     */
-    public boolean setAccountName(String name) {
-        return accountEditor.setAccountName(name);
-    }
-
-    /**
      * Gets account username through delegation to accountEditor
-     *
      * @return returns account username
      */
     public String getAccountUsername() {
@@ -63,20 +52,8 @@ public class AccountFacade implements AccountSubject {
 
     }
 
-    //---------------------------------------------------- SETTERS -----------------------------------------------------
-
-    /**
-     * Sets account usernamename through delegation to accountEditor
-     *
-     * @param username is passed in by the controller in use of the method
-     */
-    public boolean setAccountUsername(String username) {
-        return accountEditor.setAccountUsername(username);
-    }
-
     /**
      * Gets account email through delegation to accountEditor
-     *
      * @return returns account email
      */
     public String getAccountEmail() {
@@ -84,42 +61,27 @@ public class AccountFacade implements AccountSubject {
 
     }
 
-    /**
-     * Sets account email through delegation to accountEditor
-     *
-     * @param email is passed in by the controller in use of the method
-     */
-    public boolean setAccountEmail(String email) {
-        return accountEditor.setAccountEmail(email);
-    }
+    //---------------------------------------------------- METHODS -----------------------------------------------------
 
     /**
      * Sets account password through delegation to accountEditor
-     *
      * @param password is passed in by the controller in use of the method
      */
-    public void setAccountPassword(String password) {
+    public void updateAccountPassword(String password) {
         accountEditor.setAccountPassword(password);
-    }
-
-    //---------------------------------------------------- METHODS -----------------------------------------------------
-
-    public boolean checkPassword(String password) {
-        return accountExistenceManager.checkPassword(password);
     }
 
     /**
      * Delegates the creation of an account to the account existence manager
-     *
-     * @param signUpName            is passed in by the getText() method of corresponding textField in controller signUp
-     * @param signUpUsername        is passed in by the getText() method of corresponding textField in controller signUp
-     * @param signUpPassword        is passed in by the getText() method of corresponding textField in controller signUp
+     * @param signUpName is passed in by the getText() method of corresponding textField in controller signUp
+     * @param signUpUsername is passed in by the getText() method of corresponding textField in controller signUp
+     * @param signUpPassword is passed in by the getText() method of corresponding textField in controller signUp
      * @param signUpConfirmPassword is passed in by the getText() method of corresponding textField in controller
-     *                              signUp
-     * @param signUpEmail           is passed in by the getText() method of corresponding textField in controller signUp
+     * signUp
+     * @param signUpEmail is passed in by the getText() method of corresponding textField in controller signUp
      * @return returns a created account
      */
-    public Account createAccount(String signUpName, String signUpUsername,
+    public boolean createAccount(String signUpName, String signUpUsername,
                                  String signUpPassword, String signUpConfirmPassword, String signUpEmail) {
         return accountExistenceManager.createAccount(signUpName, signUpUsername,
                                                      signUpPassword, signUpConfirmPassword, signUpEmail);
@@ -133,30 +95,46 @@ public class AccountFacade implements AccountSubject {
     }
 
     /**
-     * Delegates the check for the changing of accont page's fields to accountEditor
+     * Works as a last check before setting new account values.
+     * @param username obtained from controllers textField
+     * @param name obtained from controllers textField
+     * @param email obtained from controllers textField
+     * @return returns a corresponding int depending on the matching case
      */
-    public boolean isAccountPageFieldsCorrect(String username, String name, String email) {
-        return accountEditor.areAccountFieldsCorrect(username, name, email);
+    public int handleAccountChanges(String username, String name, String email) {
+
+        int changes = countProfilePageChanges(username, name, email);
+
+        //Returns 0 if no changes made
+        if (changes == 0) {
+            return 0;
+        } else if (changes > 0 && accountValidityChecker.areAllProfilePageValuesCorrect(username, name, email)) {
+            return 1;
+        } else return 3;
+
     }
 
     /**
-     * Delegates the check for password match to accountExistanceManager
+     * Counts/checks if any changes has been made to the textFields of the profile page
+     * @param username obtained from ProfilePageController
+     * @param name obtained from ProfilePageController
+     * @param email obtained from ProfilePageController
+     * @return returns the number of changes made to profile page, empty values are not considered as a change
      */
-    public boolean checkPasswordMatch(String inputPassword) {
-        return accountExistenceManager.checkPasswordMatch(inputPassword);
-    }
+    private int countProfilePageChanges(String username, String name, String email) {
+        ArrayList<String> newInputs = new ArrayList<>() {
+            {
+                add(username);
+                add(name);
+                add(email);
+            }
+        };
+        ArrayList<String> oldInputs = new ArrayList<>() {{
+            add(getAccountUsername());
+            add(getAccountName());
+            add(getAccountEmail());
 
-    public int changeAccountPageFields(String username, String name, String email) {
-
-        ArrayList<String> newInputs = new ArrayList<>();
-        newInputs.add(username);
-        newInputs.add(name);
-        newInputs.add(email);
-
-        ArrayList<String> oldInputs = new ArrayList<>();
-        oldInputs.add(getAccountUsername());
-        oldInputs.add(getAccountName());
-        oldInputs.add(getAccountEmail());
+        }};
 
         int changes = 3;
 
@@ -168,16 +146,37 @@ public class AccountFacade implements AccountSubject {
                 changes--;
             }
         }
-
-        //Returns 0 if no changes made
-        if (changes == 0) {
-            return 0;
-        } else if (changes > 0 && isAccountPageFieldsCorrect(username, name, email)) {
-            return 1;
-        } else return 3;
-
+        return changes;
     }
 
+    /**
+     * Assigns values to the account page textFields
+     * @param username obtained from textField on account page
+     * @param name obtained from textField on account page
+     * @param email obtained from textField on account page
+     */
+    public void updateAccountFields(String username, String name, String email) {
+        accountEditor.setAccountUsername(username);
+        accountEditor.setAccountName(name);
+        accountEditor.setAccountEmail(email);
+    }
+
+    /**
+     * Check whether the the input password matches that of the account in order to delete the account
+     * @param password is passed in  through accountFacade though deleteAccountPopup textField
+     */
+    public boolean doesPasswordMatchWithAccount(String password) {
+        return password.equals(accountEditor.getAccountPassword());
+    }
+
+    /**
+     * Checks whether input password is valid through delegation to accountValidityChecker
+     * @param password obtained from textField
+     * @return true if true returned from accountValidityChecker
+     */
+    public boolean isValidPasswordFormat(String password) {
+        return accountValidityChecker.isValidPasswordLength(password);
+    }
     //---------------------------------------------------- Observer Pattern --------------------------------------------
 
     /**
@@ -198,6 +197,4 @@ public class AccountFacade implements AccountSubject {
         }
 
     }
-
-
 }
