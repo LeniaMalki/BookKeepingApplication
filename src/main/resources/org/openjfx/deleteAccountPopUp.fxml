@@ -31,7 +31,7 @@
             </font>
         </Text>
         <Button fx:id="deleteAccountButton" defaultButton="true" layoutX="360.0" layoutY="372.0" mnemonicParsing="false"
-                onAction="#deleteAccountConfirm" prefHeight="32.0" prefWidth="179.0"
+                onAction="#onConfirmDeleteClicked" prefHeight="32.0" prefWidth="179.0"
                 style="-fx-background-color: F66A80; -fx-background-radius: 10;" text="Delete account" textFill="WHITE">
             <font>
                 <Font size="18.0"/>
@@ -44,13 +44,13 @@
                 <Cursor fx:constant="HAND"/>
             </cursor>
         </Button>
-        <PasswordField fx:id="enterPasswordToDelete" layoutX="280.0" layoutY="284.0" prefHeight="50.0" prefWidth="340.0"
+        <PasswordField fx:id="password" layoutX="280.0" layoutY="284.0" prefHeight="50.0" prefWidth="340.0"
                        promptText="***********">
             <font>
                 <Font size="15.0"/>
             </font>
         </PasswordField>
-        <Text fx:id="passwordIncorrectMessage" fill="RED" layoutX="321.0" layoutY="449.0" strokeType="OUTSIDE"
+        <Text fx:id="textMessage" fill="RED" layoutX="321.0" layoutY="449.0" strokeType="OUTSIDE"
               strokeWidth="0.0">
             <font>
                 <Font size="18.0"/>

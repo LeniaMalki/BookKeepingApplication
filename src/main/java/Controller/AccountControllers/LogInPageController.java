@@ -110,6 +110,9 @@ public class LogInPageController implements iPane, AccountObserver {
         message.setText("");
     }
 
+    /**
+     * Clears all textFields on Login page pop up
+     */
     private void clearLogInFields() {
         this.usernameField.clear();
         this.logInField.clear();
