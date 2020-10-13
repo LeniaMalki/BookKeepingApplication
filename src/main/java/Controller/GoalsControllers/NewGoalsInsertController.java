@@ -11,7 +11,6 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
@@ -51,6 +50,11 @@ public class NewGoalsInsertController extends AnchorPane implements EntryObserve
 
     private double amoutSaved = 0;
 
+    /**
+     * Creates and instantiates a pane that is a goals insert
+     * Adds the pane as an observer to Entry
+     */
+
     public NewGoalsInsertController() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/openjfx/GoalsInseet.fxml"));
         fxmlLoader.setController(this);
@@ -64,8 +68,11 @@ public class NewGoalsInsertController extends AnchorPane implements EntryObserve
         EntrySubject.add(this);
     }
 
+    /**
+     * Adds new a new goal object when you ckick on the make new goals button
+     */
     @FXML
-    public void addNewGoal(MouseEvent mouseEvent) {
+    public void addNewGoal() {
 
         try {
             savingNameText.setText(nameOfSavingTextField.getText());
@@ -83,6 +90,12 @@ public class NewGoalsInsertController extends AnchorPane implements EntryObserve
 
     }
 
+    /**
+     * registers a new goal
+     * @param goal the goal you want to reach
+     * @param name name of the goal
+     * @param image the image you want to set
+     */
     private void registerSavingGoal(double goal, String name, Image image) {
         SavingGoal savingGoal = new SavingGoal(goal, name, image);
     }
@@ -103,11 +116,15 @@ public class NewGoalsInsertController extends AnchorPane implements EntryObserve
 
     }
 
-
+    /**
+     * updates the label that states the money saved
+     */
     private void updateSavingLabel() {
         savingGoalText.setText(amoutSaved + " of " + savingAmountTextField.getText() + " saved");
     }
-
+    /**
+     * updates the progressbar with the percentage of the goal reached
+     */
     private void updateProgressBar() {
         amoutSavedProgressBar.setProgress(amoutSaved / Double.parseDouble(savingAmountTextField.getText()));
 

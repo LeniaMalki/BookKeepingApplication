@@ -42,6 +42,7 @@ public class Entry extends EntrySubject {
         }
     }
 
+    //--------------------------------------- Getter/Setter---------------------------------------
     public double getAmount() {
         return amount;
     }

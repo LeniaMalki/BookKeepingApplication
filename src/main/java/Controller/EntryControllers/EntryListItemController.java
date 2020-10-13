@@ -61,6 +61,9 @@ public class EntryListItemController extends AnchorPane implements RemoveItemSub
         actualEntry.setSelected(!actualEntry.getSelected());
     }
 
+    /**
+     * if the trashcan is clicked the observerpattern will notify the observers
+     */
     @FXML
     private void onTrashCanClick(){
         notifyListeners();
