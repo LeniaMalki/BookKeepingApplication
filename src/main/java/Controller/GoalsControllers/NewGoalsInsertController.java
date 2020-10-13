@@ -2,21 +2,18 @@ package Controller.GoalsControllers;
 
 import Model.EntryLogic.Entry;
 import Model.EntryLogic.EntrySubject;
-import Model.Interfaces.EntryObserver;
-import Model.Interfaces.iIconSelector;
 import Model.GoalsLogic.SavingGoal;
 import Model.GoalsLogic.SavingsOverview;
+import Model.Interfaces.EntryObserver;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
-import java.io.File;
 import java.io.IOException;
 
 public class NewGoalsInsertController extends AnchorPane implements EntryObserver {
@@ -48,12 +45,15 @@ public class NewGoalsInsertController extends AnchorPane implements EntryObserve
     @FXML
     private ImageView savingsImage;
 
-    iIconSelector iconSelector;
-
     SavingsOverview savingsOverview;
 
 
     private double amoutSaved = 0;
+
+    /**
+     * Creates and instantiates a pane that is a goals insert
+     * Adds the pane as an observer to Entry
+     */
 
     public NewGoalsInsertController() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/openjfx/GoalsInseet.fxml"));
@@ -68,10 +68,12 @@ public class NewGoalsInsertController extends AnchorPane implements EntryObserve
         EntrySubject.add(this);
     }
 
+    /**
+     * Adds new a new goal object when you ckick on the make new goals button
+     */
     @FXML
-    public void addNewGoal(MouseEvent mouseEvent) {
+    public void addNewGoal() {
 
-        savingsImage.setImage(new Image(new File("/../resources/Images/piggyBank.png").toURI().toString()));
         try {
             savingNameText.setText(nameOfSavingTextField.getText());
             registerSavingGoal(Double.parseDouble(savingAmountTextField.getText()), savingNameText.getText(), savingsImage.getImage());
@@ -88,11 +90,12 @@ public class NewGoalsInsertController extends AnchorPane implements EntryObserve
 
     }
 
-    @FXML
-    public void newIconButtonClicked(MouseEvent mouseEvent) {
-        iconSelector.selectIconForSavings();
-    }
-
+    /**
+     * registers a new goal
+     * @param goal the goal you want to reach
+     * @param name name of the goal
+     * @param image the image you want to set
+     */
     private void registerSavingGoal(double goal, String name, Image image) {
         SavingGoal savingGoal = new SavingGoal(goal, name, image);
     }
@@ -113,11 +116,15 @@ public class NewGoalsInsertController extends AnchorPane implements EntryObserve
 
     }
 
-
+    /**
+     * updates the label that states the money saved
+     */
     private void updateSavingLabel() {
         savingGoalText.setText(amoutSaved + " of " + savingAmountTextField.getText() + " saved");
     }
-
+    /**
+     * updates the progressbar with the percentage of the goal reached
+     */
     private void updateProgressBar() {
         amoutSavedProgressBar.setProgress(amoutSaved / Double.parseDouble(savingAmountTextField.getText()));
 

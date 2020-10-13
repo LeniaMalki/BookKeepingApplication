@@ -25,17 +25,23 @@ public class SavingGoal {
         this.savingGoal = savingGoal;
         this.savingName = savingName;
         if (image == null) {
-            this.image = new Image("../resources/Images/piggyBank.png");
-        } else this.image = image;
+            //this can be implemented if you want to choose your own pictures
+            //this.image = new Image();
+        }
+      //  } else this.image = image;
         register.addSavingsGoal(savingName, this);
     }
+
 
     /**
      * Money is added to the end savings goal.
      * @param money the amount of money that is added to the saving goal
      */
-    void addMoneyToSaving(double money) {
+    public void addMoneyToSaving(double money) {
         savingGoalReached = +money;
     }
 
+    public double getSavingGoalReached() {
+        return savingGoalReached;
+    }
 }
