@@ -48,7 +48,7 @@ public class StatisticsOverViewController implements iPane, EntryObserver {
 
     @FXML
     void toDailyStatistics(ActionEvent event) {
-        detailedStatistics("Daily");  //TODO DIVERSIFY FOR WEEKLY / DAILY / MONTHLY, TEXT AND PIECHART NEEDS TO
+        detailedStatistics("Daily");
     }
     @FXML
     void toWeeklyStatistics(ActionEvent event) {
