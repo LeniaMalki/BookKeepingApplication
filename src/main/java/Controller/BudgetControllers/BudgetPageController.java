@@ -24,9 +24,10 @@ public class BudgetPageController implements iPane {
     //________________________________________________ VARIABLES _______________________________________________________
 
     MainController parent;
-    Budget budget;
-    private int [] previousBudgets = {32000, 5000, 3000, 3500, 1500, 2000, 17000};
-
+    private ArrayList<Budget> budgetList = new ArrayList<Budget>();
+    int i = 1;
+    int selected = 0;
+    int prevSelected = -1;
     //__________________________________________________ FXML __________________________________________________________
 
     @FXML
@@ -86,7 +87,7 @@ public class BudgetPageController implements iPane {
     //_________________________________________________ METHODS ________________________________________________________
 
     /**
-     * Initialisation method with a change listener
+     * Initializes the pane when the program starts also adds the header with a change listner
      *
      * @param parent the main controller
      */
@@ -95,6 +96,13 @@ public class BudgetPageController implements iPane {
     public void initPane(MainController parent) {
         this.parent = parent;
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
+       // foodSlider.setValue(0);
+       // householdSlider.setValue(0);
+      //  shoppingSlider.setValue(0);
+      //  transportSlider.setValue(0);
+      //  otherSlider.setValue(0);
+      //  savingsSlider.setValue(0);
+     //   enterIncomeTextField.setText("0");
 
 
         //transportAmountLabel.setText(String.valueOf(Math.round(Float.parseFloat(transportSlider.getValue() + ""))));
@@ -112,7 +120,9 @@ public class BudgetPageController implements iPane {
                 savingsSlider.setValue(newValue.intValue());*/
 
                 int income = 0;
+                selected = 0;
                 income = Integer.parseInt(enterIncomeTextField.getText());
+
 
                 foodProgressBar.setProgress(foodSlider.getValue() / income);
                 householdProgressBar.setProgress(householdSlider.getValue() / income);
@@ -123,12 +133,15 @@ public class BudgetPageController implements iPane {
             }
         };
 
+
+
         foodSlider.valueProperty().addListener(changeListener);
         householdSlider.valueProperty().addListener(changeListener);
         shoppingSlider.valueProperty().addListener(changeListener);
         transportSlider.valueProperty().addListener(changeListener);
         otherSlider.valueProperty().addListener(changeListener);
         savingsSlider.valueProperty().addListener(changeListener);
+
 
         foodSlider.setStyle("-fx-control-inner-background: null");
         foodProgressBar.setStyle("-fx-accent: #F66A80");
@@ -154,24 +167,64 @@ public class BudgetPageController implements iPane {
 
 //TODO-- FIX THIS METHOD -----------------------------------------------------------------------------------
 
-    private void addingMenuItem() {
-        int i = 1;
-        RadioMenuItem radioMenuItem = new RadioMenuItem("Budget" + i);
+    /**
+     * Adds a new budget to the list
+     * @param i the current budgetnumber
+     */
+    private void addingMenuItem(int i) {
+        /*RadioMenuItem radioMenuItem = new RadioMenuItem("Budget" + i);
         ToggleGroup toggleGroup = new ToggleGroup();
         radioMenuItem.setToggleGroup(toggleGroup);
         radioMenuItem.setSelected(true);
         previousBudgetButton.getItems().add(radioMenuItem);
-        i++;
+        i++;*/
+
+        previousBudgetComboBox.getItems().add("Budget " + i);
+        budgetList.add(new Budget((int) foodSlider.getValue(),(int) householdSlider.getValue(),(int) shoppingSlider.getValue(),(int) transportSlider.getValue(),(int) savingsSlider.getValue(),(int) otherSlider.getValue(), enterIncomeTextField.getText()));
+         
     }
 
     /**
+     * Handles selection of the ComboBox for the previous budgets
+     */
+    @FXML
+    private void comboSelector() {
+
+        // selected index in ComboBox
+        selected = previousBudgetComboBox.getSelectionModel().getSelectedIndex();
+
+        // set all sliders and fields to right value
+        enterIncomeTextField.setText(budgetList.get(selected).getIncome());
+        String i = this.budgetList.get(selected).getIncome();
+        int inc = Integer.parseInt(i);
+
+        foodSlider.setValue(budgetList.get(selected).getFoodCost());
+        householdSlider.setValue(budgetList.get(selected).getHouseholdCost());
+        shoppingSlider.setValue(budgetList.get(selected).getShoppingCost());
+        savingsSlider.setValue(budgetList.get(selected).getSavingsCost());
+        transportSlider.setValue(budgetList.get(selected).getTransportCost());
+        otherSlider.setValue(budgetList.get(selected).getOtherCost());
+        
+        
+    }
+
+   private void updateComboItems() {
+        budgetList.remove(prevSelected);
+        budgetList.add(prevSelected, new Budget((int) foodSlider.getValue(),(int) householdSlider.getValue(),(int) shoppingSlider.getValue(),(int) transportSlider.getValue(),(int) savingsSlider.getValue(),(int) otherSlider.getValue(), enterIncomeTextField.getText()));
+        prevSelected = -1;
+
+
+            //  prevSelected = selected;
+    }       //  selected = -1;
+    
+
+    /**
      * Saves all the values
-     *
-     * @param event if something is pressed an ActionEvent is fired and tells the system what happened
      */
 
     @FXML
-    private void onSaveButtonPressed(ActionEvent event) throws IOException {
+    private void onSaveButtonPressed(){
+        Budget budget = new Budget(0,0,0,0,0,0,"0");
         budget.setFoodCost((int) foodSlider.getValue());
         budget.setHouseholdCost((int) householdSlider.getValue());
         budget.setShoppingCost((int) shoppingSlider.getValue());
@@ -179,6 +232,20 @@ public class BudgetPageController implements iPane {
         budget.setSavingsCost((int) savingsSlider.getValue());
         budget.setOtherCost((int) otherSlider.getValue());
         budget.setIncome(enterIncomeTextField.getText());
+        updatingMoneyLeft();
+        budgetList.add(budget);
+        if(selected != -1) {
+            addingMenuItem(i);
+            i++;
+            selected = -1;
+        }
+        budget.notifyBudgetListeners();
+       // budgetCharPageController.updateGostGraph(budget);
+        //else {
+           // updateComboItems();
+       // }
+
+        
     }
 
     /**
@@ -187,8 +254,8 @@ public class BudgetPageController implements iPane {
 
     @FXML
     private void setMaxOnSlider(){
-        int income = 0;
-        income = Integer.parseInt(enterIncomeTextField.getText());
+       // int income = 0;
+        int income = Integer.parseInt(enterIncomeTextField.getText());
 
         foodSlider.setMax(income);
         householdSlider.setMax(income);
@@ -230,23 +297,23 @@ public class BudgetPageController implements iPane {
         }
     }
 
-    private void previousBudgetPressed(){
-            int i = 0;
-            enterIncomeTextField.setText(String.valueOf(previousBudgets[i]));
-            i++;
-            foodSlider.setValue(previousBudgets[i]);
-            i++;
-            householdSlider.setValue(previousBudgets[i]);
-            i++;
-            shoppingSlider.setValue(previousBudgets[i]);
-            i++;
-            transportSlider.setValue(previousBudgets[i]);
-            i++;
-            otherSlider.setValue(previousBudgets[i]);
-            i++;
-            savingsSlider.setValue(previousBudgets[i]);
+   /* private void previousBudgetPressed(){*/
+   /*         int i = 0;*/
+   /*         enterIncomeTextField.setText(String.valueOf(previousBudgets[i]));*/
+   /*         i++;*/
+   /*         foodSlider.setValue(previousBudgets[i]);*/
+   /*         i++;*/
+   /*         householdSlider.setValue(previousBudgets[i]);*/
+   /*         i++;*/
+   /*         shoppingSlider.setValue(previousBudgets[i]);*/
+   /*         i++;*/
+   /*         transportSlider.setValue(previousBudgets[i]);*/
+   /*         i++;*/
+   /*         otherSlider.setValue(previousBudgets[i]);*/
+   /*         i++;*/
+   /*         savingsSlider.setValue(previousBudgets[i]);*/
 
-    }
+  //  }
 
 
 }

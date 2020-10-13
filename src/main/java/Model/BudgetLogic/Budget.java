@@ -1,6 +1,8 @@
 package Model.BudgetLogic;
 
-public class Budget {
+import Model.Interfaces.BudgetObserver;
+
+public class Budget extends BudgetSubject{
 
     //________________________________________________ Variables  ______________________________________________________
 
@@ -14,7 +16,7 @@ public class Budget {
 
     //________________________________________________ Methods _________________________________________________________
 
-    protected Budget(int foodCost, int householdCost, int shoppingCost, int transportCost, int savingsCost, int otherCost, String income) {
+    public Budget(int foodCost, int householdCost, int shoppingCost, int transportCost, int savingsCost, int otherCost, String income) {
         this.foodCost = foodCost;
         this.householdCost = householdCost;
         this.shoppingCost = shoppingCost;
@@ -83,4 +85,11 @@ public class Budget {
         this.income = income;
     }
 
+    @Override
+    public void notifyBudgetListeners() {
+        for (BudgetObserver o: observers){
+            o.update(this);
+
+        }
+    }
 }
