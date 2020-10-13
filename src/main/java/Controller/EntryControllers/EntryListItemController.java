@@ -5,7 +5,6 @@ import Controller.Interfaces.RemoveItemSubject;
 import Model.EntryLogic.Entry;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
@@ -57,7 +56,7 @@ public class EntryListItemController extends AnchorPane implements RemoveItemSub
      * When selected, the value turns to true.
      */
     @FXML
-    private void selectEntry(MouseEvent event) {
+    private void selectEntry() {
         actualEntry.setSelected(!actualEntry.getSelected());
     }
 
@@ -73,6 +72,7 @@ public class EntryListItemController extends AnchorPane implements RemoveItemSub
     public void add(RemoveItemObserver o) {
         observers.add(o);
     }
+
     @Override
     public void notifyListeners() {
     for(RemoveItemObserver o : observers){
