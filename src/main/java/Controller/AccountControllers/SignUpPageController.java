@@ -5,12 +5,12 @@ import Model.AccountLogic.AccountFacade;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+
+import java.util.ArrayList;
 
 /**
  * Controller for signUp pop up through logInPage
- *
  * @author Lenia
  */
 
@@ -20,7 +20,7 @@ public class SignUpPageController {
 
     private final AccountFacade accountFacade = AccountFacade.getInstance();
     MainController parent;
-
+    ArrayList<TextField> textFields = new ArrayList<>() {};
     @FXML
     private TextField signUpName;
     @FXML
@@ -31,17 +31,20 @@ public class SignUpPageController {
     private PasswordField signUpConfirmPassword;
     @FXML
     private TextField signUpEmail;
-    @FXML
-    private Text fieldsMissingText;
-
     //________________________________________________ Methods _________________________________________________________
+    @FXML
+    private Text textMessage;
 
     /**
      * initialized this pane
      */
     public void initPane(MainController parent) {
         this.parent = parent;
-
+        textFields.add(signUpName);
+        textFields.add(signUpUsername);
+        textFields.add(signUpPassword);
+        textFields.add(signUpConfirmPassword);
+        textFields.add(signUpEmail);
     }
 
     /**
@@ -49,23 +52,40 @@ public class SignUpPageController {
      * through the AccountFacade
      */
     @FXML
-    private void handleCreateAccountAction() {
-        if (!isAllFieldsEntered()) {
-            fieldsMissingText.setFill(Color.RED);
-        } else if (!(accountFacade.createAccount((signUpName.getText()), signUpUsername.getText(), signUpPassword.getText(), signUpConfirmPassword.getText(),
-                                                 signUpEmail.getText()) == null)) {
+    private void onCreateAccountClicked() {
+        if (areInputsMissing()) {
+            textMessage.setText("Missing inputs!");
+
+        } else if ((accountFacade.createAccount((signUpName.getText()), signUpUsername.getText(),
+                                                signUpPassword.getText(), signUpConfirmPassword.getText(),
+                                                signUpEmail.getText()))) {
             accountFacade.notifyListeners();
             clearTextFields();
-
-        } else fieldsMissingText.setFill(Color.WHITE);
-
+            textMessage.setText("");
+        } else textMessage.setText("Invalid input(s)!");
     }
 
     /**
      * Checks whether all fields of the sign up page are entered and none is left blank
      */
-    private boolean isAllFieldsEntered() {
-        return (!signUpName.getText().equals("") && !signUpUsername.getText().equals("") && !signUpEmail.getText().equals("") && !signUpPassword.getText().equals("") && !signUpConfirmPassword.getText().equals(""));
+    private boolean areInputsMissing() {
+        ArrayList<String> textFieldStrings = new ArrayList<>() {
+            {
+                add(signUpName.getText());
+                add(signUpUsername.getText());
+                add(signUpEmail.getText());
+                add(signUpPassword.getText());
+                add(signUpConfirmPassword.getText());
+            }
+        };
+
+
+        for (String textFieldInput : textFieldStrings) {
+            if (textFieldInput.equals("")) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -73,23 +93,11 @@ public class SignUpPageController {
      */
     private void clearTextFields() {
 
-        signUpName.clear();
-        signUpName.setStyle("-fx-text-box-border: #FFFFFF;");
-
-        signUpUsername.clear();
-        signUpUsername.setStyle("-fx-text-box-border: #FFFFFF;");
-
-        signUpEmail.clear();
-        signUpEmail.setStyle("-fx-text-box-border: #FFFFFF;");
-
-        signUpPassword.clear();
-        signUpPassword.setStyle("-fx-text-box-border: #FFFFFF;");
-
-        signUpConfirmPassword.clear();
-        signUpConfirmPassword.setStyle("-fx-text-box-border: #FFFFFF;");
+        for (TextField t : textFields) {
+            t.clear();
+            t.setStyle("-fx-text-box-border: #FFFFFF;");
+        }
     }
-
-
 }
 
 

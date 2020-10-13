@@ -17,6 +17,7 @@ public class ChangePasswordPopUpController {
     //________________________________________________ VARIABLES _______________________________________________________
 
     private final AccountFacade accountFacade = AccountFacade.getInstance();
+
     MainController parent;
     @FXML
     private PasswordField newPassword;
@@ -37,14 +38,14 @@ public class ChangePasswordPopUpController {
      * Goes back to account page when confirming change of password
      */
     @FXML
-    private void onAction_ConfirmChangePassword_CLICKED() {
+    private void onChangePasswordClicked() {
 
         //Checks if new password is valid
-        if (accountFacade.checkPassword(newPassword.getText())) {
+        if (accountFacade.isValidPasswordFormat(newPassword.getText())) {
 
             //Checks if confirmPassword matches with new
             if (newPassword.getText().equals(confirmPassword.getText())) {
-                accountFacade.setAccountPassword(newPassword.getText());
+                accountFacade.updateAccountPassword(newPassword.getText());
                 textMessage.setText("Changes saved! ");
             }
             else textMessage.setText("Password  does not match.");
