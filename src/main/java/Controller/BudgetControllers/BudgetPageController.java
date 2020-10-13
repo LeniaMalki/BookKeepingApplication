@@ -24,13 +24,10 @@ public class BudgetPageController implements iPane {
     //________________________________________________ VARIABLES _______________________________________________________
 
     MainController parent;
-    Budget budget = new Budget(0,0,0,0,0,0,"0");
     private ArrayList<Budget> budgetList = new ArrayList<Budget>();
-   // private int [] previousBudgets = {32000, 5000, 3000, 3500, 1500, 2000, 17000};
     int i = 1;
     int selected = 0;
     int prevSelected = -1;
-
     //__________________________________________________ FXML __________________________________________________________
 
     @FXML
@@ -90,7 +87,7 @@ public class BudgetPageController implements iPane {
     //_________________________________________________ METHODS ________________________________________________________
 
     /**
-     * Initialisation method with a change listener
+     * Initializes the pane when the program starts also adds the header with a change listner
      *
      * @param parent the main controller
      */
@@ -99,7 +96,6 @@ public class BudgetPageController implements iPane {
     public void initPane(MainController parent) {
         this.parent = parent;
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
-
        // foodSlider.setValue(0);
        // householdSlider.setValue(0);
       //  shoppingSlider.setValue(0);
@@ -224,12 +220,11 @@ public class BudgetPageController implements iPane {
 
     /**
      * Saves all the values
-     *
-     * @param event if something is pressed an ActionEvent is fired and tells the system what happened
      */
 
     @FXML
-    private void onSaveButtonPressed(ActionEvent event) throws IOException {
+    private void onSaveButtonPressed(){
+        Budget budget = new Budget(0,0,0,0,0,0,"0");
         budget.setFoodCost((int) foodSlider.getValue());
         budget.setHouseholdCost((int) householdSlider.getValue());
         budget.setShoppingCost((int) shoppingSlider.getValue());
@@ -238,12 +233,14 @@ public class BudgetPageController implements iPane {
         budget.setOtherCost((int) otherSlider.getValue());
         budget.setIncome(enterIncomeTextField.getText());
         updatingMoneyLeft();
-
+        budgetList.add(budget);
         if(selected != -1) {
             addingMenuItem(i);
             i++;
             selected = -1;
         }
+        budget.notifyBudgetListeners();
+       // budgetCharPageController.updateGostGraph(budget);
         //else {
            // updateComboItems();
        // }

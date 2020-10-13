@@ -1,6 +1,8 @@
 package Model.BudgetLogic;
 
-public class Budget {
+import Model.Interfaces.BudgetObserver;
+
+public class Budget extends BudgetSubject{
 
     //________________________________________________ Variables  ______________________________________________________
 
@@ -83,4 +85,11 @@ public class Budget {
         this.income = income;
     }
 
+    @Override
+    public void notifyBudgetListeners() {
+        for (BudgetObserver o: observers){
+            o.update(this);
+
+        }
+    }
 }
