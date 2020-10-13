@@ -106,6 +106,10 @@ public class EntryPageController implements iPane, SavingsObserver, RemoveItemOb
         checkCategoryBox(btn);
     }
 
+    /**
+     * checks if the income button is clicked and hides the category bar if it is
+     * @param btn the button that is clicked
+     */
     private void incomeButtonAction(Button btn){
         if (btn==incomebutton){
             categoryComboBox.setVisible(false);
