@@ -55,7 +55,7 @@
                     </font>
                 </Text>
                 <ProgressBar fx:id="foodBar" layoutX="90.0" layoutY="67.0" prefHeight="10.0" prefWidth="283.0" progress="0.0" />
-                <Label alignment="CENTER" layoutX="209.0" layoutY="21.0" prefHeight="27.0" prefWidth="185.0" styleClass="Enrique-BoldRound" text="230kr of 500kr " textFill="#615f5f">
+                <Label fx:id="foodLabel" alignment="CENTER" layoutX="209.0" layoutY="21.0" prefHeight="27.0" prefWidth="185.0" styleClass="Enrique-BoldRound" text="230kr of 500kr " textFill="#615f5f">
                     <font>
                         <Font size="20.0" />
                     </font>
@@ -76,7 +76,7 @@
                     </font>
                 </Text>
                 <ProgressBar fx:id="householdBar" layoutX="90.0" layoutY="67.0" prefHeight="10.0" prefWidth="283.0" progress="0.0" />
-                <Label alignment="CENTER" layoutX="213.0" layoutY="21.0" prefHeight="27.0" prefWidth="167.0" styleClass="Enrique-BoldRound" text="230kr of 500kr " textFill="#615f5f">
+                <Label fx:id="householdLabel" alignment="CENTER" layoutX="213.0" layoutY="21.0" prefHeight="27.0" prefWidth="167.0" styleClass="Enrique-BoldRound" text="230kr of 500kr " textFill="#615f5f">
                     <font>
                         <Font size="20.0" />
                     </font>
@@ -97,7 +97,7 @@
                     </font>
                 </Text>
                 <ProgressBar fx:id="shoppingBar" layoutX="90.0" layoutY="67.0" prefHeight="10.0" prefWidth="283.0" progress="0.0" />
-                <Label alignment="CENTER" layoutX="209.0" layoutY="21.0" prefHeight="27.0" prefWidth="185.0" styleClass="Enrique-BoldRound" text="230kr of 500kr " textFill="#615f5f">
+                <Label fx:id="shoppingLabel" alignment="CENTER" layoutX="209.0" layoutY="21.0" prefHeight="27.0" prefWidth="185.0" styleClass="Enrique-BoldRound" text="230kr of 500kr " textFill="#615f5f">
                     <font>
                         <Font size="20.0" />
                     </font>
@@ -118,7 +118,7 @@
                     </font>
                 </Text>
                 <ProgressBar fx:id="transportBar" layoutX="90.0" layoutY="67.0" prefHeight="10.0" prefWidth="283.0" progress="0.0" />
-                <Label alignment="CENTER" layoutX="209.0" layoutY="21.0" prefHeight="27.0" prefWidth="185.0" styleClass="Enrique-BoldRound" text="230kr of 500kr " textFill="#615f5f">
+                <Label fx:id="transportLabel" alignment="CENTER" layoutX="209.0" layoutY="21.0" prefHeight="27.0" prefWidth="185.0" styleClass="Enrique-BoldRound" text="230kr of 500kr " textFill="#615f5f">
                     <font>
                         <Font size="20.0" />
                     </font>
@@ -138,8 +138,8 @@
                         <Font size="24.0" />
                     </font>
                 </Text>
-                <ProgressBar fx:id="barOther" layoutX="90.0" layoutY="67.0" prefHeight="10.0" prefWidth="283.0" progress="0.0" />
-                <Label alignment="CENTER" layoutX="209.0" layoutY="21.0" prefHeight="27.0" prefWidth="185.0" styleClass="Enrique-BoldRound" text="230kr of 500kr " textFill="#615f5f">
+                <ProgressBar fx:id="otherbar" layoutX="90.0" layoutY="67.0" prefHeight="10.0" prefWidth="283.0" progress="0.0" />
+                <Label fx:id="otherLabel" alignment="CENTER" layoutX="209.0" layoutY="21.0" prefHeight="27.0" prefWidth="185.0" styleClass="Enrique-BoldRound" text="230kr of 500kr " textFill="#615f5f">
                     <font>
                         <Font size="20.0" />
                     </font>

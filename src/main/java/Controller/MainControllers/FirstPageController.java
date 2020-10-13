@@ -1,6 +1,5 @@
 package Controller.MainControllers;
 
-
 import Controller.Interfaces.iPane;
 import Model.BudgetLogic.Budget;
 import Model.BudgetLogic.BudgetSubject;
@@ -12,26 +11,27 @@ import Model.Interfaces.EntryObserver;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
 public class FirstPageController implements iPane, EntryObserver, BudgetObserver {
+
+
+
     MainController parent;
-    Budget budget ;
+    Budget budget;
     EntryHandler entryHandler = EntryHandler.getInstance();
 
 
     @FXML
     private Button newEntryButton;
-
     @FXML
     private Button newBudgetButton;
-
     @FXML
     private AnchorPane headerAnchorPane;
-
     @FXML
     private ProgressBar foodBar;
     @FXML
@@ -41,10 +41,18 @@ public class FirstPageController implements iPane, EntryObserver, BudgetObserver
     @FXML
     private ProgressBar transportBar;
     @FXML
-    private ProgressBar barOther;
+    private ProgressBar otherbar;
 
-
-
+    @FXML
+    private Label foodLabel;
+    @FXML
+    private Label householdLabel;
+    @FXML
+    private Label shoppingLabel;
+    @FXML
+    private Label transportLabel;
+    @FXML
+    private Label otherLabel;
 
 
 
@@ -65,39 +73,33 @@ public class FirstPageController implements iPane, EntryObserver, BudgetObserver
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
         BudgetSubject.add(this);
         EntrySubject.add(this);
-    }
-
-    private void loadingProgressBar(Entry entry){
-        entryHandler.updateGraph();
-        foodBar.setProgress(entryHandler.getFoodAmount());
-        householdBar.setProgress(entryHandler.getHouseholdAmount());
-        shoppingBar.setProgress(entryHandler.getShoppingAmount());
-        transportBar.setProgress(entryHandler.getTransportationAmount());
-        //barOther.setProgress(entryHandler.getOtherAmount());
+        budget= new Budget(0,0,0,0,0,0,"0");
+        updateAllBudgets();
     }
 
 
     private void updateAllBudgets(){
 
-        //Todo set budget to label
-
-
+        foodLabel.setText((int) entryHandler.getFoodAmount()+" kr of " + budget.getFoodCost() + " kr");
+        householdLabel.setText((int) entryHandler.getHouseholdAmount()+" kr of " + budget.getHouseholdCost() + " kr");
+        shoppingLabel.setText((int) entryHandler.getShoppingAmount()+" kr of " + budget.getShoppingCost() + " kr");
+        transportLabel.setText((int) entryHandler.getTransportationAmount()+" kr of " + budget.getTransportCost() + " kr");
+        otherLabel.setText((int) entryHandler.getOtherAmount()+" kr of " + budget.getOtherCost() + " kr");
     }
+
     private void changeProgress(){
-        //Todo update progressbar and text
         if(budget!=null){
         entryHandler.updateGraph();
         foodBar.setProgress(entryHandler.getFoodAmount() / budget.getFoodCost());
         householdBar.setProgress(entryHandler.getHouseholdAmount() / budget.getHouseholdCost());
         shoppingBar.setProgress(entryHandler.getShoppingAmount() / budget.getShoppingCost());
         transportBar.setProgress(entryHandler.getTransportationAmount() / budget.getTransportCost());
-        barOther.setProgress(entryHandler.getOtherAmount() / budget.getOtherCost());
-
+        otherbar.setProgress(entryHandler.getOtherAmount() / budget.getOtherCost());
         updateAllBudgets();}
     }
+
     @Override
     public void update(String category, String type, double Value) {
-
     }
 
     @Override
@@ -109,6 +111,5 @@ public class FirstPageController implements iPane, EntryObserver, BudgetObserver
     public void update(Budget b) {
         budget=b;
         updateAllBudgets();
-
     }
 }
