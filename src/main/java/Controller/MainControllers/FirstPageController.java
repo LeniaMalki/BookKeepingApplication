@@ -19,11 +19,13 @@ import java.io.IOException;
 
 public class FirstPageController implements iPane, EntryObserver, BudgetObserver {
 
+    //________________________________________________ VARIABLES _______________________________________________________
 
     MainController parent;
     Budget budget;
     EntryHandler entryHandler = EntryHandler.getInstance();
 
+    //__________________________________________________ FXML __________________________________________________________
 
     @FXML
     private Button newEntryButton;
@@ -53,6 +55,7 @@ public class FirstPageController implements iPane, EntryObserver, BudgetObserver
     @FXML
     private Label otherLabel;
 
+    //_________________________________________________ METHODS ________________________________________________________
 
     @FXML
     private void loadEntryPage(ActionEvent event) throws IOException {
