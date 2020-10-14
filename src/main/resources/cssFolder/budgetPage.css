@@ -1,0 +1,11 @@
+.chart {
+   -fx-padding: 10px;
+   -fx-background-color: white;
+}
+.chart-plot-background {
+   -fx-background-color: transparent;
+}
+
+.default-color0.chart-bar { -fx-bar-fill: #F66A80 }
+.default-color1.chart-bar { -fx-bar-fill: #a8d8d3}
+

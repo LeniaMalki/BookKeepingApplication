@@ -4,7 +4,6 @@ import Controller.Interfaces.iPane;
 import Controller.MainControllers.MainController;
 import Controller.MainControllers.PaneFactory;
 import Model.BudgetLogic.Budget;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
@@ -14,8 +13,6 @@ import javafx.beans.value.ObservableValue;
 
 import javafx.util.converter.NumberStringConverter;
 
-import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 
@@ -30,8 +27,6 @@ public class BudgetPageController implements iPane {
     int prevSelected = -1;
     //__________________________________________________ FXML __________________________________________________________
 
-    @FXML
-    private MenuButton previousBudgetButton;
     @FXML
     private TextField enterIncomeTextField;
     @FXML
@@ -96,13 +91,7 @@ public class BudgetPageController implements iPane {
     public void initPane(MainController parent) {
         this.parent = parent;
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
-       // foodSlider.setValue(0);
-       // householdSlider.setValue(0);
-      //  shoppingSlider.setValue(0);
-      //  transportSlider.setValue(0);
-      //  otherSlider.setValue(0);
-      //  savingsSlider.setValue(0);
-     //   enterIncomeTextField.setText("0");
+
 
 
         //transportAmountLabel.setText(String.valueOf(Math.round(Float.parseFloat(transportSlider.getValue() + ""))));
@@ -232,6 +221,7 @@ public class BudgetPageController implements iPane {
         budget.setSavingsCost((int) savingsSlider.getValue());
         budget.setOtherCost((int) otherSlider.getValue());
         budget.setIncome(enterIncomeTextField.getText());
+
         updatingMoneyLeft();
         budgetList.add(budget);
         if(selected != -1) {
@@ -240,12 +230,8 @@ public class BudgetPageController implements iPane {
             selected = -1;
         }
         budget.notifyBudgetListeners();
-       // budgetCharPageController.updateGostGraph(budget);
-        //else {
-           // updateComboItems();
-       // }
+        parent.showBudgetCharPage();
 
-        
     }
 
     /**
@@ -296,25 +282,6 @@ public class BudgetPageController implements iPane {
             moneyLeft.setStyle("-fx-text-fill: red");
         }
     }
-
-   /* private void previousBudgetPressed(){*/
-   /*         int i = 0;*/
-   /*         enterIncomeTextField.setText(String.valueOf(previousBudgets[i]));*/
-   /*         i++;*/
-   /*         foodSlider.setValue(previousBudgets[i]);*/
-   /*         i++;*/
-   /*         householdSlider.setValue(previousBudgets[i]);*/
-   /*         i++;*/
-   /*         shoppingSlider.setValue(previousBudgets[i]);*/
-   /*         i++;*/
-   /*         transportSlider.setValue(previousBudgets[i]);*/
-   /*         i++;*/
-   /*         otherSlider.setValue(previousBudgets[i]);*/
-   /*         i++;*/
-   /*         savingsSlider.setValue(previousBudgets[i]);*/
-
-  //  }
-
 
 }
 
