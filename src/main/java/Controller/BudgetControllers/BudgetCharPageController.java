@@ -50,7 +50,6 @@ public class BudgetCharPageController implements iPane, EntryObserver, BudgetObs
     private CategoryAxis xAxis;
 
 
-
     //_________________________________________________ METHODS ________________________________________________________
 
     /**
@@ -62,7 +61,7 @@ public class BudgetCharPageController implements iPane, EntryObserver, BudgetObs
     @FXML
     private void addNewBudgetButton(ActionEvent event) throws IOException {
         parent.showBudgetPage();
-        budget.setIncome("0");
+        budget.setIncome(null);
         budget.setFoodCost(0);
         budget.setHouseholdCost(0);
         budget.setShoppingCost(0);
@@ -70,7 +69,6 @@ public class BudgetCharPageController implements iPane, EntryObserver, BudgetObs
         budget.setOtherCost(0);
         budget.setSavingsCost(0);
         budget.notifyBudgetListeners();
-
     }
 
     /**
@@ -128,8 +126,6 @@ public class BudgetCharPageController implements iPane, EntryObserver, BudgetObs
         series2.getData().add(new XYChart.Data<>("Shopping", entryHandler.getShoppingAmount()));
         series2.getData().add(new XYChart.Data<>("Transport", entryHandler.getTransportationAmount()));
         series2.getData().add(new XYChart.Data<>("Other", entryHandler.getOtherAmount()));
-
-        //stackedBarChart.getData().addAll(series2);
         barChart.getData().addAll(series2);
 
     }
@@ -149,7 +145,6 @@ public class BudgetCharPageController implements iPane, EntryObserver, BudgetObs
 
     @Override
     public void update(String category, String type, double Value) {
-
     }
 
     @Override
