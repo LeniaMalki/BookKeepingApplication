@@ -10,6 +10,7 @@ import Model.EntryLogic.EntryHandler;
 import Model.EntryLogic.EntrySubject;
 import Model.Interfaces.BudgetObserver;
 import Model.Interfaces.EntryObserver;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
@@ -18,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 import javafx.scene.chart.XYChart;
 
@@ -44,6 +46,9 @@ public class BudgetCharPageController implements iPane, EntryObserver, BudgetObs
     private CategoryAxis categoryAxis;
     @FXML
     AnchorPane rootAnchorPane;
+    @FXML
+    private CategoryAxis xAxis;
+
 
 
     //_________________________________________________ METHODS ________________________________________________________
@@ -64,6 +69,7 @@ public class BudgetCharPageController implements iPane, EntryObserver, BudgetObs
         budget.setTransportCost(0);
         budget.setOtherCost(0);
         budget.setSavingsCost(0);
+        budget.notifyBudgetListeners();
 
     }
 
@@ -95,6 +101,7 @@ public class BudgetCharPageController implements iPane, EntryObserver, BudgetObs
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
         EntrySubject.add(this);
         BudgetSubject.add(this);
+        xAxis.setCategories(FXCollections.<String>observableArrayList(Arrays.asList("Food", "Household", "Shopping", "Transport", "Other", "Savings")));
 
     }
 
