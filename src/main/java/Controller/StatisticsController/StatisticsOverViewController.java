@@ -49,10 +49,12 @@ public class StatisticsOverViewController implements iPane, EntryObserver {
     void toDailyStatistics(ActionEvent event) {
         detailedStatistics("Daily");
     }
+
     @FXML
     void toWeeklyStatistics(ActionEvent event) {
         detailedStatistics("Weekly");
     }
+
     @FXML
     void toMonthlyStatistics(ActionEvent event) {
         detailedStatistics("Monthly");
@@ -69,13 +71,18 @@ public class StatisticsOverViewController implements iPane, EntryObserver {
 
     //__________ THIS PART IS NOT IMPLEMENTED YET, JUST SOME HARD CODED EXAMPLES TO ILLUSTRATE IN OUR PROGRAM __________
 
+    /**
+     * When implemented: should update category values and then call upon pieCharts to be updated according to daily
+     * (entries today), weekly (entries the past 7 days) and monthly (the past 30 months) time-span.
+     */
     private void updateStatisticsPiechart(Entry entry) {
         entryHandler.updateTotalCategoryValues();
         updateDailyStatistics();
         updateWeeklyStatistics();
         updateMonthlyStatistics();
     }
-    private void updateDailyStatistics(){
+
+    private void updateDailyStatistics() {
         ObservableList<PieChart.Data> pieChartData1 = FXCollections.observableArrayList(
                 new PieChart.Data("Food", entryHandler.getFoodAmount()),
                 new PieChart.Data("Transportation", entryHandler.getTransportationAmount()),
@@ -88,26 +95,26 @@ public class StatisticsOverViewController implements iPane, EntryObserver {
         } else chart1.setData(pieChartData1);
     }
 
-    private void updateWeeklyStatistics(){
+    private void updateWeeklyStatistics() {
         ObservableList<PieChart.Data> pieChartData2 = FXCollections.observableArrayList(
-                new PieChart.Data("Food", entryHandler.getFoodAmount()+205),
-                new PieChart.Data("Transportation", entryHandler.getTransportationAmount()+200),
-                new PieChart.Data("Household", entryHandler.getHouseholdAmount()+50),
-                new PieChart.Data("Shopping", entryHandler.getShoppingAmount()+10),
-                new PieChart.Data("Other", entryHandler.getOtherAmount()+222));
+                new PieChart.Data("Food", entryHandler.getFoodAmount() + 205),
+                new PieChart.Data("Transportation", entryHandler.getTransportationAmount() + 200),
+                new PieChart.Data("Household", entryHandler.getHouseholdAmount() + 50),
+                new PieChart.Data("Shopping", entryHandler.getShoppingAmount() + 10),
+                new PieChart.Data("Other", entryHandler.getOtherAmount() + 222));
         if (chart2 == null) {
             chart2 = new PieChart(pieChartData2);
             weeklyAnchor.getChildren().add(chart2);
         } else chart2.setData(pieChartData2);
     }
 
-    private void updateMonthlyStatistics(){
+    private void updateMonthlyStatistics() {
         ObservableList<PieChart.Data> pieChartData3 = FXCollections.observableArrayList(
-                new PieChart.Data("Food", entryHandler.getFoodAmount()+115),
-                new PieChart.Data("Transportation", entryHandler.getTransportationAmount()+10),
-                new PieChart.Data("Household", entryHandler.getHouseholdAmount()+50),
-                new PieChart.Data("Shopping", entryHandler.getShoppingAmount()+20),
-                new PieChart.Data("Other", entryHandler.getOtherAmount()+100));
+                new PieChart.Data("Food", entryHandler.getFoodAmount() + 115),
+                new PieChart.Data("Transportation", entryHandler.getTransportationAmount() + 10),
+                new PieChart.Data("Household", entryHandler.getHouseholdAmount() + 50),
+                new PieChart.Data("Shopping", entryHandler.getShoppingAmount() + 20),
+                new PieChart.Data("Other", entryHandler.getOtherAmount() + 100));
         if (chart3 == null) {
             chart3 = new PieChart(pieChartData3);
             monthlyAnchor.getChildren().add(chart3);
@@ -115,6 +122,10 @@ public class StatisticsOverViewController implements iPane, EntryObserver {
     }
     //__________________________________________________________________________________________________________________
 
+    /**
+     * Initializes the pane when the program starts also adds the header
+     * @param parent is the main controller
+     */
     @Override
     public void initPane(MainController parent) {
         this.parent = parent;

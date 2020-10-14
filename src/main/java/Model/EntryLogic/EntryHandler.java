@@ -26,6 +26,9 @@ public class EntryHandler implements EntryObserver {
 
     //_________________________________________________ METHODS ________________________________________________________
 
+    /**
+     * private constructor so that there will only be one object that oversees all the entries
+     */
     private EntryHandler() {
         EntrySubject.add(this);
     }
