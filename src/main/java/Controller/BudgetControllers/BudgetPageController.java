@@ -182,13 +182,8 @@ public class BudgetPageController implements iPane, BudgetObserver {
 
     @FXML
     private void comboSelector() {
-        // selected index in ComboBox
         selected = previousBudgetComboBox.getSelectionModel().getSelectedIndex();
-
         budget.setIncome((budgetList.get(selected).getIncome()));
-        //String i = this.budgetList.get(selected).getIncome();
-        //int inc = Integer.parseInt(i);
-
         budget.setFoodCost(budgetList.get(selected).getFoodCost());
         budget.setHouseholdCost(budgetList.get(selected).getHouseholdCost());
         budget.setShoppingCost(budgetList.get(selected).getShoppingCost());
@@ -199,21 +194,6 @@ public class BudgetPageController implements iPane, BudgetObserver {
         budget.notifyBudgetListeners();
         setMaxOnSlider();
         updateProgress();
-
-        //budget.setFoodCost((int) foodSlider.getValue());
-
-        // set all sliders and fields to right value
-        /*enterIncomeTextField.setText(budgetList.get(selected).getIncome());
-        String i = this.budgetList.get(selected).getIncome();
-        int inc = Integer.parseInt(i);
-
-        foodSlider.setValue(budgetList.get(selected).getFoodCost());
-        householdSlider.setValue(budgetList.get(selected).getHouseholdCost());
-        shoppingSlider.setValue(budgetList.get(selected).getShoppingCost());
-        savingsSlider.setValue(budgetList.get(selected).getSavingsCost());
-        transportSlider.setValue(budgetList.get(selected).getTransportCost());
-        otherSlider.setValue(budgetList.get(selected).getOtherCost());
-        budget.setFoodCost((int) foodSlider.getValue());*/
     }
 
     /**
@@ -231,12 +211,12 @@ public class BudgetPageController implements iPane, BudgetObserver {
         budget.setIncome(enterIncomeTextField.getText());
 
         updatingMoneyLeft();
-        //budgetList.add(budget);
         if(selected != -1) {
             addingMenuItem(i);
             i++;
             selected = -1;
         }
+        totalMoney.setText("0");
         budget.notifyBudgetListeners();
         parent.showBudgetCharPage();
     }
