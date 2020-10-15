@@ -6,6 +6,7 @@ import Controller.MainControllers.PaneFactory;
 import Model.BudgetLogic.Budget;
 import Model.BudgetLogic.BudgetSubject;
 import Model.Interfaces.BudgetObserver;
+import javafx.beans.InvalidationListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
@@ -26,7 +27,7 @@ public class BudgetPageController implements iPane, BudgetObserver {
     private ArrayList<Budget> budgetList = new ArrayList<Budget>();
     int i = 1;
     int selected = 0;
-    int prevSelected = -1;
+    //int prevSelected = -1;
     Budget budget;
     //__________________________________________________ FXML __________________________________________________________
 
@@ -95,11 +96,11 @@ public class BudgetPageController implements iPane, BudgetObserver {
         this.parent = parent;
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
         BudgetSubject.add(this);
-        budget = new Budget(0, 0, 0, 0, 0, 0, null);
-        updateAllValues();
         listeningToChanges();
         connectingTextFieldsAndSliders();
         stylingSlidersAndProgressBars();
+        budget = new Budget(0, 0, 0, 0, 0, 0, null);
+        updateAllValues();
     }
 
     /**
@@ -112,17 +113,16 @@ public class BudgetPageController implements iPane, BudgetObserver {
             public void changed(ObservableValue<? extends Number> observable,
                                 Number oldValue, Number newValue) {
 
-                int income = 0;
                 selected = 0;
+                int income = 0;
                 income = Integer.parseInt(enterIncomeTextField.getText());
-
-                foodProgressBar.setProgress(foodSlider.getValue() / income);
-                householdProgressBar.setProgress(householdSlider.getValue() / income);
-                shoppingProgressBar.setProgress(shoppingSlider.getValue() / income);
-                transportProgressBar.setProgress(transportSlider.getValue() / income);
-                otherProgressBar.setProgress(otherSlider.getValue() / income);
-                savingsProgressBar.setProgress(savingsSlider.getValue() / income);
-            }
+                    foodProgressBar.setProgress(foodSlider.getValue() / income);
+                    householdProgressBar.setProgress(householdSlider.getValue() / income);
+                    shoppingProgressBar.setProgress(shoppingSlider.getValue() / income);
+                    transportProgressBar.setProgress(transportSlider.getValue() / income);
+                    otherProgressBar.setProgress(otherSlider.getValue() / income);
+                    savingsProgressBar.setProgress(savingsSlider.getValue() / income);
+                }
         };
 
         foodSlider.valueProperty().addListener(changeListener);
@@ -138,10 +138,10 @@ public class BudgetPageController implements iPane, BudgetObserver {
      */
 
     private void connectingTextFieldsAndSliders(){
-        transportTextField.textProperty().bindBidirectional(transportSlider.valueProperty(), new NumberStringConverter());
         foodTextField.textProperty().bindBidirectional(foodSlider.valueProperty(), new NumberStringConverter());
         householdTextField.textProperty().bindBidirectional(householdSlider.valueProperty(), new NumberStringConverter());
         shoppingTextField.textProperty().bindBidirectional(shoppingSlider.valueProperty(), new NumberStringConverter());
+        transportTextField.textProperty().bindBidirectional(transportSlider.valueProperty(), new NumberStringConverter());
         otherTextField.textProperty().bindBidirectional(otherSlider.valueProperty(), new NumberStringConverter());
         savingsTextField.textProperty().bindBidirectional(savingsSlider.valueProperty(), new NumberStringConverter());
     }
@@ -182,12 +182,28 @@ public class BudgetPageController implements iPane, BudgetObserver {
 
     @FXML
     private void comboSelector() {
-
         // selected index in ComboBox
         selected = previousBudgetComboBox.getSelectionModel().getSelectedIndex();
 
+        budget.setIncome((budgetList.get(selected).getIncome()));
+        //String i = this.budgetList.get(selected).getIncome();
+        //int inc = Integer.parseInt(i);
+
+        budget.setFoodCost(budgetList.get(selected).getFoodCost());
+        budget.setHouseholdCost(budgetList.get(selected).getHouseholdCost());
+        budget.setShoppingCost(budgetList.get(selected).getShoppingCost());
+        budget.setTransportCost(budgetList.get(selected).getTransportCost());
+        budget.setSavingsCost(budgetList.get(selected).getSavingsCost());
+        budget.setOtherCost(budgetList.get(selected).getOtherCost());
+
+        budget.notifyBudgetListeners();
+        setMaxOnSlider();
+        updateProgress();
+
+        //budget.setFoodCost((int) foodSlider.getValue());
+
         // set all sliders and fields to right value
-        enterIncomeTextField.setText(budgetList.get(selected).getIncome());
+        /*enterIncomeTextField.setText(budgetList.get(selected).getIncome());
         String i = this.budgetList.get(selected).getIncome();
         int inc = Integer.parseInt(i);
 
@@ -197,6 +213,7 @@ public class BudgetPageController implements iPane, BudgetObserver {
         savingsSlider.setValue(budgetList.get(selected).getSavingsCost());
         transportSlider.setValue(budgetList.get(selected).getTransportCost());
         otherSlider.setValue(budgetList.get(selected).getOtherCost());
+        budget.setFoodCost((int) foodSlider.getValue());*/
     }
 
     /**
@@ -214,7 +231,7 @@ public class BudgetPageController implements iPane, BudgetObserver {
         budget.setIncome(enterIncomeTextField.getText());
 
         updatingMoneyLeft();
-        budgetList.add(budget);
+        //budgetList.add(budget);
         if(selected != -1) {
             addingMenuItem(i);
             i++;
@@ -231,12 +248,19 @@ public class BudgetPageController implements iPane, BudgetObserver {
     @FXML
     private void setMaxOnSlider(){
         int income = Integer.parseInt(enterIncomeTextField.getText());
-        foodSlider.setMax(income);
-        householdSlider.setMax(income);
-        shoppingSlider.setMax(income);
-        transportSlider.setMax(income);
-        savingsSlider.setMax(income);
-        otherSlider.setMax(income);
+            foodSlider.setMax(income);
+            householdSlider.setMax(income);
+            shoppingSlider.setMax(income);
+            transportSlider.setMax(income);
+            savingsSlider.setMax(income);
+            otherSlider.setMax(income);
+        foodProgressBar.setProgress(foodSlider.getValue() / income);
+        householdProgressBar.setProgress(householdSlider.getValue() / income);
+        shoppingProgressBar.setProgress(shoppingSlider.getValue() / income);
+        transportProgressBar.setProgress(transportSlider.getValue() / income);
+        otherProgressBar.setProgress(otherSlider.getValue() / income);
+        savingsProgressBar.setProgress(savingsSlider.getValue() / income);
+
     }
 
     /**
@@ -271,6 +295,16 @@ public class BudgetPageController implements iPane, BudgetObserver {
         }
     }
 
+    private void updateProgress(){
+        int income = Integer.parseInt(enterIncomeTextField.getText());
+        foodProgressBar.setProgress(foodSlider.getValue() / income);
+        householdProgressBar.setProgress(householdSlider.getValue() / income);
+        shoppingProgressBar.setProgress(shoppingSlider.getValue() / income);
+        transportProgressBar.setProgress(transportSlider.getValue() / income);
+        otherProgressBar.setProgress(otherSlider.getValue() / income);
+        savingsProgressBar.setProgress(savingsSlider.getValue() / income);
+    }
+
     /**
      * Updates the sliders and textFields
      */
@@ -283,6 +317,7 @@ public class BudgetPageController implements iPane, BudgetObserver {
         otherSlider.setValue(budget.getOtherCost());
         savingsSlider.setValue(budget.getSavingsCost());
         enterIncomeTextField.setText(budget.getIncome());
+        //listeningToChanges();
     }
 
     @Override
