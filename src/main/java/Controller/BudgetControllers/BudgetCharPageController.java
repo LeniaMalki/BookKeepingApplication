@@ -140,7 +140,6 @@ public class BudgetCharPageController implements iPane, EntryObserver, BudgetObs
         series1.getData().add(new XYChart.Data<>("Savings", budget.getSavingsCost()));
         barChart.getData().setAll(series1);
 
-
     }
 
     @Override
