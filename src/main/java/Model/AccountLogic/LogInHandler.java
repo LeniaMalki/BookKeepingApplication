@@ -6,14 +6,14 @@ package Model.AccountLogic;
  * @author Lenia
  */
 public abstract class LogInHandler {
-    Account account = Account.getInstance();
+    private final AccountFacade accountFacade = AccountFacade.getInstance();
 
     /**
      * checks whether the usernames matches
      * @param accountName is the variables obtained from logInTextField on logIn controller
      */
     private boolean checkLoginAccountName(String accountName) {
-        return account.getUsername().equals(accountName);
+        return accountFacade.getAccountUsername().equals(accountName);
     }
 
     /**
@@ -21,7 +21,7 @@ public abstract class LogInHandler {
      * @param password is the variables obtained from logInTextField on logIn controller
      */
     private boolean checkLoginPassword(String password) {
-        return account.getPassword().equals(password);
+         return accountFacade.doesPasswordMatchWithAccount(password);
     }
 
     /**
@@ -32,15 +32,11 @@ public abstract class LogInHandler {
 
         boolean isLogInCorrect = true;
         if (!checkLoginAccountName(accountName)) {
-            System.out.println("Incorrect accountName");
-            //accountName.setStyle("-fx-text-box-border: #B22222;"); //RED
             isLogInCorrect = false;
-        } //else accountName.setStyle("-fx-text-box-border: #008000;");
+        }
         if (!checkLoginPassword(password)) {
-            //password.setStyle("-fx-text-box-border: #B22222;"); //RED
-            System.out.println("Incorrect password");
             isLogInCorrect = false;
-        } //else password.setStyle("-fx-text-box-border: #008000;");
+        }
 
 
         return isLogInCorrect;
