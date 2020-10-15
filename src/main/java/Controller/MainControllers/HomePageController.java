@@ -17,7 +17,7 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
-public class FirstPageController implements iPane, EntryObserver, BudgetObserver {
+public class HomePageController implements iPane, EntryObserver, BudgetObserver {
 
     //________________________________________________ VARIABLES _______________________________________________________
 

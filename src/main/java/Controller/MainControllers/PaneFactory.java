@@ -68,7 +68,7 @@ public class PaneFactory {
     }
 
     static AnchorPane initFirstPane() {
-        Pane<FirstPageController> pane = loadInPane("org/openjfx/firstPage.fxml");
+        Pane<HomePageController> pane = loadInPane("org/openjfx/firstPage.fxml");
         pane.controller.initPane(parent);
         return pane.anchorPane;
     }

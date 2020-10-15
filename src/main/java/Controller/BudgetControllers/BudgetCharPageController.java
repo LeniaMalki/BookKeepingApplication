@@ -31,21 +31,14 @@ public class BudgetCharPageController implements iPane, EntryObserver, BudgetObs
     Budget budget = new Budget(2,3,2,5,2,1,"25");
     EntryHandler entryHandler = EntryHandler.getInstance();
     XYChart.Series<String, Number> series2 = new XYChart.Series<>();
-    XYChart.Series<String, Integer> series1 = new XYChart.Series<String, Integer>();
 
 
     //__________________________________________________ FXML __________________________________________________________
 
     @FXML
-    private Button editBudgetButton;
-    @FXML
-    private Button addNewBudgetButton;
-    @FXML
     private AnchorPane headerAnchorPane;
     @FXML
     public BarChart barChart;
-    @FXML
-    private CategoryAxis categoryAxis;
     @FXML
     AnchorPane rootAnchorPane;
     @FXML
@@ -130,6 +123,7 @@ public class BudgetCharPageController implements iPane, EntryObserver, BudgetObs
 
     }
     public void updateGostGraph(Budget budget){
+        XYChart.Series<String, Integer> series1 = new XYChart.Series<String, Integer>();
         series1.setName("Budget");
         series1.getData().add(new XYChart.Data<>("Food", budget.getFoodCost()));
         series1.getData().add(new XYChart.Data<>("Household", budget.getHouseholdCost()));

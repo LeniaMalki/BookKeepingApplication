@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainControllers.FirstPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainControllers.HomePageController">
     <children>
         <AnchorPane fx:id="headerAnchorPane" layoutX="100.0" layoutY="100.0" prefHeight="106.0" prefWidth="1440.0" styleClass="header-Shadow" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
         <AnchorPane layoutX="33.0" layoutY="112.0" prefHeight="361.0" prefWidth="1440.0" style="-fx-background-color: #a8d8d3;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="112.0">
@@ -54,7 +54,7 @@
                         <Font size="24.0" />
                     </font>
                 </Text>
-                <ProgressBar fx:id="foodBar" layoutX="90.0" layoutY="67.0" prefHeight="10.0" prefWidth="283.0" styleClass="progress-bar" progress="0.0" />
+                <ProgressBar fx:id="foodBar" layoutX="90.0" layoutY="67.0" prefHeight="10.0" prefWidth="283.0" progress="0.0" styleClass="progress-bar" />
                 <Label fx:id="foodLabel" alignment="CENTER" layoutX="209.0" layoutY="21.0" prefHeight="27.0" prefWidth="185.0" styleClass="Enrique-BoldRound" text="230kr of 500kr " textFill="#615f5f">
                     <font>
                         <Font size="20.0" />
@@ -75,7 +75,7 @@
                         <Font size="24.0" />
                     </font>
                 </Text>
-                <ProgressBar fx:id="householdBar" layoutX="90.0" layoutY="67.0" prefHeight="10.0" prefWidth="283.0" styleClass="progress-bar" progress="0.0" />
+                <ProgressBar fx:id="householdBar" layoutX="90.0" layoutY="67.0" prefHeight="10.0" prefWidth="283.0" progress="0.0" styleClass="progress-bar" />
                 <Label fx:id="householdLabel" alignment="CENTER" layoutX="213.0" layoutY="21.0" prefHeight="27.0" prefWidth="167.0" styleClass="Enrique-BoldRound" text="230kr of 500kr " textFill="#615f5f">
                     <font>
                         <Font size="20.0" />
@@ -96,7 +96,7 @@
                         <Font size="24.0" />
                     </font>
                 </Text>
-                <ProgressBar fx:id="shoppingBar" layoutX="90.0" layoutY="67.0" prefHeight="10.0" prefWidth="283.0" styleClass="progress-bar" progress="0.0" />
+                <ProgressBar fx:id="shoppingBar" layoutX="90.0" layoutY="67.0" prefHeight="10.0" prefWidth="283.0" progress="0.0" styleClass="progress-bar" />
                 <Label fx:id="shoppingLabel" alignment="CENTER" layoutX="209.0" layoutY="21.0" prefHeight="27.0" prefWidth="185.0" styleClass="Enrique-BoldRound" text="230kr of 500kr " textFill="#615f5f">
                     <font>
                         <Font size="20.0" />
@@ -117,7 +117,7 @@
                         <Font size="24.0" />
                     </font>
                 </Text>
-                <ProgressBar fx:id="transportBar" layoutX="90.0" layoutY="67.0" prefHeight="10.0" prefWidth="283.0" styleClass="progress-bar" progress="0.0" />
+                <ProgressBar fx:id="transportBar" layoutX="90.0" layoutY="67.0" prefHeight="10.0" prefWidth="283.0" progress="0.0" styleClass="progress-bar" />
                 <Label fx:id="transportLabel" alignment="CENTER" layoutX="209.0" layoutY="21.0" prefHeight="27.0" prefWidth="185.0" styleClass="Enrique-BoldRound" text="230kr of 500kr " textFill="#615f5f">
                     <font>
                         <Font size="20.0" />
@@ -138,7 +138,7 @@
                         <Font size="24.0" />
                     </font>
                 </Text>
-                <ProgressBar fx:id="otherbar" layoutX="90.0" layoutY="67.0" prefHeight="10.0" prefWidth="283.0" styleClass="progress-bar" progress="0.0" />
+                <ProgressBar fx:id="otherbar" layoutX="90.0" layoutY="67.0" prefHeight="10.0" prefWidth="283.0" progress="0.0" styleClass="progress-bar" />
                 <Label fx:id="otherLabel" alignment="CENTER" layoutX="209.0" layoutY="21.0" prefHeight="27.0" prefWidth="185.0" styleClass="Enrique-BoldRound" text="230kr of 500kr " textFill="#615f5f">
                     <font>
                         <Font size="20.0" />
@@ -170,5 +170,6 @@
         <URL value="@../../cssFolder/fontSizes.css" />
         <URL value="@../../cssFolder/Header.css" />
         <URL value="@../../cssFolder/linkActions.css" />
+      <URL value="@../../cssFolder/Goals.css" />
     </stylesheets>
 </AnchorPane>
