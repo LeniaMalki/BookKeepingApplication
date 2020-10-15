@@ -30,6 +30,8 @@ public class BudgetCharPageController implements iPane, EntryObserver, BudgetObs
     MainController parent;
     Budget budget = new Budget(2,3,2,5,2,1,"25");
     EntryHandler entryHandler = EntryHandler.getInstance();
+    XYChart.Series<String, Number> series2 = new XYChart.Series<>();
+    XYChart.Series<String, Integer> series1 = new XYChart.Series<String, Integer>();
 
 
     //__________________________________________________ FXML __________________________________________________________
@@ -99,7 +101,7 @@ public class BudgetCharPageController implements iPane, EntryObserver, BudgetObs
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
         EntrySubject.add(this);
         BudgetSubject.add(this);
-        xAxis.setCategories(FXCollections.<String>observableArrayList(Arrays.asList("Food", "Household", "Shopping", "Transport", "Other", "Savings")));
+        xAxis.setCategories(FXCollections.<String>observableArrayList(Arrays.asList("Food", "Household", "Shopping", "Transport", "Other", "General Saving")));
 
     }
 
@@ -117,27 +119,24 @@ public class BudgetCharPageController implements iPane, EntryObserver, BudgetObs
      * Creates/updates a Stacked bar chart by the use of an EntryHandler that has access to entries.
      */
     private void updatingStackedBarChart() {
-        //categoryAxis.setCategories(FXCollections.<String>observableArrayList(Arrays.asList("Food", "Household", "Shopping", "Transport", "Other", "Savings")));
-
-        XYChart.Series<String, Number> series2 = new XYChart.Series<>();
         series2.setName("Expenses");
         series2.getData().add(new XYChart.Data<>("Food", entryHandler.getFoodAmount()));
         series2.getData().add(new XYChart.Data<>("Household", entryHandler.getHouseholdAmount()));
         series2.getData().add(new XYChart.Data<>("Shopping", entryHandler.getShoppingAmount()));
         series2.getData().add(new XYChart.Data<>("Transport", entryHandler.getTransportationAmount()));
         series2.getData().add(new XYChart.Data<>("Other", entryHandler.getOtherAmount()));
+        series2.getData().add(new XYChart.Data<>("General Saving", entryHandler.getGeneralSaving()));
         barChart.getData().addAll(series2);
 
     }
     public void updateGostGraph(Budget budget){
-        XYChart.Series<String, Integer> series1 = new XYChart.Series<String, Integer>();
         series1.setName("Budget");
         series1.getData().add(new XYChart.Data<>("Food", budget.getFoodCost()));
         series1.getData().add(new XYChart.Data<>("Household", budget.getHouseholdCost()));
         series1.getData().add(new XYChart.Data<>("Shopping", budget.getShoppingCost()));
         series1.getData().add(new XYChart.Data<>("Transport", budget.getTransportCost()));
         series1.getData().add(new XYChart.Data<>("Other", budget.getOtherCost()));
-        series1.getData().add(new XYChart.Data<>("Savings", budget.getSavingsCost()));
+        series1.getData().add(new XYChart.Data<>("General Saving", budget.getSavingsCost()));
         barChart.getData().setAll(series1);
 
     }

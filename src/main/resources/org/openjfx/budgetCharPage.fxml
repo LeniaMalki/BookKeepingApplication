@@ -33,7 +33,7 @@
                   <String fx:value="textField" />
                </styleClass>
             </Button>
-            <BarChart fx:id="barChart" layoutX="33.0" layoutY="134.0" prefHeight="538.0" prefWidth="1112.0">
+            <BarChart fx:id="barChart" layoutX="28.0" layoutY="143.0" prefHeight="688.0" prefWidth="1375.0">
               <xAxis>
                 <CategoryAxis side="BOTTOM" fx:id="xAxis" />
               </xAxis>
