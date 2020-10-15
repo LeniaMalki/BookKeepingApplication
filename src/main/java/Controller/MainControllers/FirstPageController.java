@@ -19,12 +19,13 @@ import java.io.IOException;
 
 public class FirstPageController implements iPane, EntryObserver, BudgetObserver {
 
-
+    //________________________________________________ VARIABLES _______________________________________________________
 
     MainController parent;
     Budget budget;
     EntryHandler entryHandler = EntryHandler.getInstance();
 
+    //__________________________________________________ FXML __________________________________________________________
 
     @FXML
     private Button newEntryButton;
@@ -54,7 +55,7 @@ public class FirstPageController implements iPane, EntryObserver, BudgetObserver
     @FXML
     private Label otherLabel;
 
-
+    //_________________________________________________ METHODS ________________________________________________________
 
     @FXML
     private void loadEntryPage(ActionEvent event) throws IOException {
@@ -73,29 +74,30 @@ public class FirstPageController implements iPane, EntryObserver, BudgetObserver
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
         BudgetSubject.add(this);
         EntrySubject.add(this);
-        budget= new Budget(0,0,0,0,0,0,"0");
+        budget = new Budget(0, 0, 0, 0, 0, 0, "0");
         updateAllBudgets();
     }
 
 
-    private void updateAllBudgets(){
+    private void updateAllBudgets() {
 
-        foodLabel.setText((int) entryHandler.getFoodAmount()+" kr of " + budget.getFoodCost() + " kr");
-        householdLabel.setText((int) entryHandler.getHouseholdAmount()+" kr of " + budget.getHouseholdCost() + " kr");
-        shoppingLabel.setText((int) entryHandler.getShoppingAmount()+" kr of " + budget.getShoppingCost() + " kr");
-        transportLabel.setText((int) entryHandler.getTransportationAmount()+" kr of " + budget.getTransportCost() + " kr");
-        otherLabel.setText((int) entryHandler.getOtherAmount()+" kr of " + budget.getOtherCost() + " kr");
+        foodLabel.setText((int) entryHandler.getFoodAmount() + " kr of " + budget.getFoodCost() + " kr");
+        householdLabel.setText((int) entryHandler.getHouseholdAmount() + " kr of " + budget.getHouseholdCost() + " kr");
+        shoppingLabel.setText((int) entryHandler.getShoppingAmount() + " kr of " + budget.getShoppingCost() + " kr");
+        transportLabel.setText((int) entryHandler.getTransportationAmount() + " kr of " + budget.getTransportCost() + " kr");
+        otherLabel.setText((int) entryHandler.getOtherAmount() + " kr of " + budget.getOtherCost() + " kr");
     }
 
-    private void changeProgress(){
-        if(budget!=null){
-        entryHandler.updateTotalCategoryValues();
-        foodBar.setProgress(entryHandler.getFoodAmount() / budget.getFoodCost());
-        householdBar.setProgress(entryHandler.getHouseholdAmount() / budget.getHouseholdCost());
-        shoppingBar.setProgress(entryHandler.getShoppingAmount() / budget.getShoppingCost());
-        transportBar.setProgress(entryHandler.getTransportationAmount() / budget.getTransportCost());
-        otherbar.setProgress(entryHandler.getOtherAmount() / budget.getOtherCost());
-        updateAllBudgets();}
+    private void changeProgress() {
+        if (budget != null) {
+            entryHandler.updateTotalCategoryValues();
+            foodBar.setProgress(entryHandler.getFoodAmount() / budget.getFoodCost());
+            householdBar.setProgress(entryHandler.getHouseholdAmount() / budget.getHouseholdCost());
+            shoppingBar.setProgress(entryHandler.getShoppingAmount() / budget.getShoppingCost());
+            transportBar.setProgress(entryHandler.getTransportationAmount() / budget.getTransportCost());
+            otherbar.setProgress(entryHandler.getOtherAmount() / budget.getOtherCost());
+            updateAllBudgets();
+        }
     }
 
     @Override
@@ -109,7 +111,7 @@ public class FirstPageController implements iPane, EntryObserver, BudgetObserver
 
     @Override
     public void update(Budget b) {
-        budget=b;
+        budget = b;
         updateAllBudgets();
     }
 }
