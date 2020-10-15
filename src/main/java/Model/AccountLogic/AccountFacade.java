@@ -12,10 +12,11 @@ import java.util.List;
  * @author Lenia
  */
 public class AccountFacade implements AccountSubject {
+    private final AccountEditor accountEditor = AccountEditor.getInstance();
+
     private static AccountFacade accountFacade;
     private final List<AccountObserver> UserObservers = new ArrayList<>();
     private final AccountExistenceManager accountExistenceManager = AccountExistenceManager.getInstance();
-    private final AccountEditor accountEditor = AccountEditor.getInstance();
     private final AccountValidityChecker accountValidityChecker = AccountValidityChecker.getInstance();
 
     /**

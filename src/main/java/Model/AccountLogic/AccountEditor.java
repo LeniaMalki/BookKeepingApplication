@@ -5,11 +5,12 @@ package Model.AccountLogic;
  * @author Lenia
  */
 public class AccountEditor {
-    //________________________________________________ Variables _______________________________________________________
     private static AccountEditor accountEditor;
 
-    private final Account account = Account.getInstance();
 
+    //________________________________________________ Variables _______________________________________________________
+
+    private final Account account = Account.getInstance();
     private final AccountValidityChecker accountValidityChecker = AccountValidityChecker.getInstance();
 
     //________________________________________________ Methods _________________________________________________________
