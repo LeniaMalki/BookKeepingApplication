@@ -5,18 +5,28 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TestEntryHandler {
-    Entry shopping;
+    Entry shopping1;
+    Entry shopping2;
     Entry transport;
     Entry food;
+    Entry household;
+    Entry other;
     EntryHandler entryHandler = EntryHandler.getInstance();
 
     @BeforeEach
     //Before each test we set up different entries that we can use
     public void setUp() {
-        shopping = new Entry(20, "Jeans", "Shopping", "Expense");
+        shopping1 = new Entry(20, "Jeans", "Shopping", "Expense");
+        shopping2 = new Entry(40, "T-shirt", "Shopping", "Expense");
         transport = new Entry(10, "Uber", "Transportation", "Expense");
         food = new Entry(10, "McDonalds", "Food", "Expense");
+        household = new Entry(30, "Rent", "Household", "Expense");
+        other = new Entry(50, "Cat", "Other", "Expense");
+
     }
 
     @AfterEach
@@ -28,16 +38,17 @@ public class TestEntryHandler {
     @Test
     //Test that checks if we succeed with adding entries to the list
     public void testAddingEntryToList() {
-        entryHandler.addEntry(shopping);
+        entryHandler.addEntry(shopping1);
         entryHandler.addEntry(food);
-        Assertions.assertTrue(entryHandler.getEntries().get(0) == shopping && entryHandler.getEntries().get(1) == food);
+        Assertions.assertTrue(entryHandler.getEntries().get(0) == shopping1 &&
+                                       entryHandler.getEntries().get(1) == food);
     }
 
     @Test
     //Test that checks if we succeed with removing entries from the list
     public void testRemovingEntryToList() {
         entryHandler.addEntry(transport);
-        entryHandler.addEntry(shopping);
+        entryHandler.addEntry(shopping1);
         entryHandler.removeEntry(transport);
         Assertions.assertEquals(entryHandler.getEntries().size(), 1);
     }
@@ -52,7 +63,8 @@ public class TestEntryHandler {
     @Test
     public void updateGraphTest() {
         //entryHandler adds the entries to the list of entries and updates values
-        entryHandler.addEntry(shopping);
+        entryHandler.addEntry(shopping1);
+        entryHandler.addEntry(shopping2);
         entryHandler.addEntry(transport);
         entryHandler.addEntry(food);
         entryHandler.updateTotalCategoryValues();
@@ -63,8 +75,50 @@ public class TestEntryHandler {
         //Checks if the sum of the category of Shopping is now 10 & if all amounts together are 20
         Assertions.assertEquals(entryHandler.getShoppingAmount() +
                 entryHandler.getFoodAmount() +
-                entryHandler.getTransportationAmount(), 30);
+                entryHandler.getTransportationAmount(), 70);
 
 
+    }
+    //-------------------------------------------GETTERS--------------------------------------------------------------//
+
+    @Test
+    //Test that checks the getter for all entries with category "Food"
+    public void testGetFoodAmount() {
+        entryHandler.addEntry(food);
+        entryHandler.updateTotalCategoryValues();
+        Assertions.assertEquals(entryHandler.getFoodAmount(), 10);
+    }
+
+    @Test
+    //Test that checks the getter for all entries with category "Transportation"
+    public void testGetTransportationAmount() {
+        entryHandler.addEntry(transport);
+        entryHandler.updateTotalCategoryValues();
+        Assertions.assertEquals(entryHandler.getTransportationAmount(), 10);
+    }
+
+    @Test
+    //Test that checks the getter for all entries with category "Household"
+    public void testGetHouseholdAmount() {
+        entryHandler.addEntry(household);
+        entryHandler.updateTotalCategoryValues();
+        Assertions.assertEquals(entryHandler.getHouseholdAmount(), 30);
+    }
+
+    @Test
+    //Test that checks the getter for all entries with category "Shopping"
+    public void testGetShoppingAmount() {
+        entryHandler.addEntry(shopping1);
+        entryHandler.addEntry(shopping2);
+        entryHandler.updateTotalCategoryValues();
+        Assertions.assertEquals(entryHandler.getShoppingAmount(), 60);
+    }
+
+    @Test
+    //Test that checks the getter for all entries with category "Other"
+    public void testGetOtherAmount() {
+        entryHandler.addEntry(other);
+        entryHandler.updateTotalCategoryValues();
+        Assertions.assertEquals(entryHandler.getOtherAmount(), 50);
     }
 }

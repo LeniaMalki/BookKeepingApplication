@@ -74,7 +74,7 @@ public class MainController {
         showPage(statisticsOverviewPage);
     }
 
-    void showBudgetCharPage() {
+    public void showBudgetCharPage() {
         showPage(budgetCharPage);
     }
 

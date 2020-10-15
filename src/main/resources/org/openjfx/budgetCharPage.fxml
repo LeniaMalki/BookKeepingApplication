@@ -33,9 +33,9 @@
                   <String fx:value="textField" />
                </styleClass>
             </Button>
-            <BarChart fx:id="barChart" layoutX="33.0" layoutY="134.0">
+            <BarChart fx:id="barChart" layoutX="33.0" layoutY="134.0" prefHeight="538.0" prefWidth="1112.0">
               <xAxis>
-                <CategoryAxis side="BOTTOM" />
+                <CategoryAxis side="BOTTOM" fx:id="xAxis" />
               </xAxis>
               <yAxis>
                 <NumberAxis side="LEFT" />
@@ -48,5 +48,6 @@
       <URL value="@../../cssFolder/font.css" />
       <URL value="@../../cssFolder/Header.css" />
       <URL value="@../../cssFolder/entry.css" />
+      <URL value="@../../cssFolder/budgetPage.css" />
    </stylesheets>
 </AnchorPane>
