@@ -44,17 +44,23 @@ public class StatisticsOverViewController implements iPane, EntryObserver {
     private AnchorPane headerAnchorPane;
 
     //_________________________________________________ METHODS ________________________________________________________
-
+    /**
+     * When ActionEvent happens, call upon method detailStatistics with input "Daily"
+     */
     @FXML
     void toDailyStatistics(ActionEvent event) {
         detailedStatistics("Daily");
     }
-
+    /**
+     * When ActionEvent happens, call upon method detailStatistics with input "Weekly"
+     */
     @FXML
     void toWeeklyStatistics(ActionEvent event) {
         detailedStatistics("Weekly");
     }
-
+    /**
+     * When ActionEvent happens, call upon method detailStatistics with input "Monthly"
+     */
     @FXML
     void toMonthlyStatistics(ActionEvent event) {
         detailedStatistics("Monthly");

@@ -297,7 +297,6 @@ public class BudgetPageController implements iPane, BudgetObserver {
         otherSlider.setValue(budget.getOtherCost());
         savingsSlider.setValue(budget.getSavingsCost());
         enterIncomeTextField.setText(budget.getIncome());
-        //listeningToChanges();
     }
 
     @Override

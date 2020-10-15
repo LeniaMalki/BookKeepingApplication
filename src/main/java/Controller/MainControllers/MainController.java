@@ -65,40 +65,59 @@ public class MainController {
         mainAnchor.getChildren().add(pane);
         mainAnchor.toFront();
     }
-
+    /**
+     * A function that uses the function "showPage" to show us a specific AnchorPane
+     */
     void showGoalsPage() {
         showPage(goalsPage);
     }
-
+    /**
+     * A function that uses the function "showPage" to show us a specific AnchorPane
+     */
     void showStatisticsOverviewPage() {
         showPage(statisticsOverviewPage);
     }
-
+    /**
+     * A function that uses the function "showPage" to show us a specific AnchorPane
+     */
     public void showBudgetCharPage() {
         showPage(budgetCharPage);
     }
-
+    /**
+     * A function that uses the function "showPage" to show us a specific AnchorPane.
+     * Takes in a string and uses a controller to set a label on that specific AnchorPane.
+     */
     public void showStatisticsDetailPage(String text) {
         detailStatisticsController.setLabelPieChart(text);
         showPage(detailStatistics);
     }
-
+    /**
+     * A function that uses the function "showPage" to show us a specific AnchorPane
+     */
     public void showAccountPage() {
         showPage(accountPage);
     }
-
+    /**
+     * A function that uses the function "showPage" to show us a specific AnchorPane
+     */
     public void showEntryPage() {
         showPage(entryPage);
     }
-
+    /**
+     * A function that uses the function "showPage" to show us a specific AnchorPane
+     */
     public void showBudgetPage() {
         showPage(budgetPage);
     }
-
+    /**
+     * A function that uses the function "showPage" to show us a specific AnchorPane
+     */
     public void showLogInPage() {
         showPage(logInPage);
     }
-
+    /**
+     * A function that uses the function "showPage" to show us a specific AnchorPane
+     */
     public void showFirstPage() {
         showPage(firstPage);
     }
