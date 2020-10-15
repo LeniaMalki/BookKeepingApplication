@@ -62,7 +62,6 @@ public class FirstPageController implements iPane, EntryObserver, BudgetObserver
         parent.showEntryPage();
     }
 
-
     @FXML
     private void goToBudgetButton(ActionEvent event) throws IOException {
         parent.showBudgetPage();
@@ -80,7 +79,6 @@ public class FirstPageController implements iPane, EntryObserver, BudgetObserver
 
 
     private void updateAllBudgets() {
-
         foodLabel.setText((int) entryHandler.getFoodAmount() + " kr of " + budget.getFoodCost() + " kr");
         householdLabel.setText((int) entryHandler.getHouseholdAmount() + " kr of " + budget.getHouseholdCost() + " kr");
         shoppingLabel.setText((int) entryHandler.getShoppingAmount() + " kr of " + budget.getShoppingCost() + " kr");
