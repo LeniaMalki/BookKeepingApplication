@@ -17,19 +17,14 @@ import javafx.scene.text.Text;
 
 public class LogInPageController implements iPane, AccountObserver {
 
-    //________________________________________________ VARIABLES _______________________________________________________
-
-    private final AccountFacade accountFacade = AccountFacade.getInstance();
     private final LogInHandler logInHandler = new LogInHandler() {
-        /**
-         * handles the actual login
-         * @param accountName
-         * @param password is the variables obtained from logInTextField on logIn controller
-         */
         public boolean logIn(String accountName, String password) {
             return super.logIn(accountName, password);
         }
     };
+
+    private final AccountFacade accountFacade = AccountFacade.getInstance();
+
     @FXML
     public AnchorPane pos_for_popUp_on_LogInPage;
     @FXML
@@ -90,6 +85,7 @@ public class LogInPageController implements iPane, AccountObserver {
             clearLogInFields();
             parent.showFirstPage();
         }
+        else message.setText("Wrong/missing input(s)! ");
     }
 
     /**

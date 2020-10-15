@@ -21,7 +21,7 @@ public abstract class LogInHandler {
      * @param password is the variables obtained from logInTextField on logIn controller
      */
     private boolean checkLoginPassword(String password) {
-         return accountFacade.doesPasswordMatchWithAccount(password);
+        return accountFacade.doesPasswordMatchWithAccount(password);
     }
 
     /**
@@ -37,10 +37,6 @@ public abstract class LogInHandler {
         if (!checkLoginPassword(password)) {
             isLogInCorrect = false;
         }
-
-
         return isLogInCorrect;
     }
-
-
 }

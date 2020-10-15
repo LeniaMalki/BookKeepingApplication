@@ -7,12 +7,12 @@ package Model.AccountLogic;
  */
 public class AccountExistenceManager {
 
-    private static final AccountValidityChecker accountValidityChecker = AccountValidityChecker.getInstance();
+
     //________________________________________________ Variables _______________________________________________________
     private static AccountExistenceManager accountExistenceManager;
     //private final Account account = Account.getInstance();
     private final AccountEditor accountEditor = AccountEditor.getInstance();
-
+    private static final AccountValidityChecker accountValidityChecker = AccountValidityChecker.getInstance();
 
     //________________________________________________ Methods _________________________________________________________
 

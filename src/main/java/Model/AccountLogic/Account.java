@@ -14,9 +14,6 @@ public class Account {
     private String username;
     private String emailAddress;
     private String password;
-    //private String confirmPassword;
-
-
     //________________________________________________ Methods _________________________________________________________
 
     /**
