@@ -17,6 +17,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 
 import java.util.ArrayList;
+
 /**
  * Controller for the entry page
  *
@@ -64,6 +65,7 @@ public class EntryPageController implements iPane, SavingsObserver, RemoveItemOb
 
     /**
      * Initializes the pane when the program starts also adds the header
+     *
      * @param parent the main controller
      */
     @Override
@@ -76,7 +78,7 @@ public class EntryPageController implements iPane, SavingsObserver, RemoveItemOb
     /**
      * sets the values that need to be added at the start of the program
      */
-    private void setValuesAtStart(){
+    private void setValuesAtStart() {
         entryButtonTypeCluster.add(expencesButton);
         entryButtonTypeCluster.add(savingButton);
         entryButtonTypeCluster.add(incomebutton);
@@ -88,6 +90,7 @@ public class EntryPageController implements iPane, SavingsObserver, RemoveItemOb
 
     /**
      * activates of deactivates the button that is pressed, this is for choosing the entry type
+     *
      * @param event if something is pressed an ActionEvent is fired and tells the system what happened
      */
     @FXML
@@ -108,37 +111,68 @@ public class EntryPageController implements iPane, SavingsObserver, RemoveItemOb
 
     /**
      * checks if the income button is clicked and hides the category bar if it is
+     *
      * @param btn the button that is clicked
      */
-    private void incomeButtonAction(Button btn){
-        if (btn==incomebutton){
+    private void incomeButtonAction(Button btn) {
+        if (btn == incomebutton) {
             categoryComboBox.setVisible(false);
             costTextField.setLayoutY(282);
-        }
-        else{
+        } else {
             categoryComboBox.setVisible(true);
             costTextField.setLayoutY(391);
         }
     }
+
     /**
      * Adds a new entry when the user has put in the right parameters and added
      */
     @FXML
     private void addEntry() {
-        if (currentActiveEntryButton== incomebutton){
+        if (currentActiveEntryButton == incomebutton) {
             categoryComboBox.setValue("Income");
         }
-        Entry entry = new Entry(Double.parseDouble(costTextField.getText()), nameTextField.getText(), categoryComboBox.getValue(), currentActiveEntryButton.getText());
-        entryList.add(entry);
-        EntryListItemController itemController=new EntryListItemController(entry);
-        entryFlowPlane.getChildren().add(itemController);
-        listItemPink = !listItemPink;
-        costTextField.clear();
-        nameTextField.clear();
-        categoryComboBox.valueProperty().set("Category");
-        itemController.add(this);
+        setRedColorIfInvalid(nameTextField,categoryComboBox,costTextField);
+    if (checkIfFieldsAreFilledInCorrectly(nameTextField, categoryComboBox)){
+
+        try {
+            Entry entry = new Entry(Double.parseDouble(costTextField.getText()), nameTextField.getText(), categoryComboBox.getValue(), currentActiveEntryButton.getText());
+            entryList.add(entry);
+            EntryListItemController itemController = new EntryListItemController(entry);
+            entryFlowPlane.getChildren().add(itemController);
+            listItemPink = !listItemPink;
+            costTextField.clear();
+            nameTextField.clear();
+            categoryComboBox.valueProperty().set("Category");
+            itemController.add(this);
+            costTextField.setStyle("-fx-text-box-border: Grey;");
+        } catch (Exception ignored) {
+
+        }
+    }}
+    private void setRedColorIfInvalid(TextField nameTextField, ComboBox<String> categoryComboBox, TextField costTextField){
+        if (nameTextField.getText().equals("")){
+            nameTextField.setStyle("-fx-text-box-border: Red;");
+        }else nameTextField.setStyle("-fx-text-box-border: Grey;");
+        if (categoryComboBox.getValue()=="" || categoryComboBox.getValue()=="Category" || categoryComboBox.getValue() == null){
+            categoryComboBox.setStyle(" -fx-border-color: Red;");
+        }else categoryComboBox.setStyle("-fx-text-box-border: Grey;");
+        if (!costTextField.getText().matches("\\d+")){
+            costTextField.setStyle(" -fx-border-color: Red;");
+        }else costTextField.setStyle(" -fx-border-color: Gray;");
     }
 
+    private boolean checkIfFieldsAreFilledInCorrectly(TextField nameTextField, ComboBox<String> categoryComboBox){
+       return checkIfCategoryIsFilledIn(categoryComboBox) && checkIfNameIsFilledIn(nameTextField);
+    }
+
+        private boolean checkIfNameIsFilledIn(TextField nameTextField) {
+        return !nameTextField.getText().equals("");
+    }
+
+    private boolean checkIfCategoryIsFilledIn(ComboBox<String> categoryComboBox) {
+        return categoryComboBox.getValue() != "" && categoryComboBox.getValue() != "Category";
+    }
 
     /**
      * Confirms all the entries that the user has added, as an extra step to make sure that everything is right
@@ -154,6 +188,7 @@ public class EntryPageController implements iPane, SavingsObserver, RemoveItemOb
 
     /**
      * informs the object that a change has happened in a class that it observes
+     *
      * @param s a string has been sent with the change
      */
     @Override
@@ -166,6 +201,7 @@ public class EntryPageController implements iPane, SavingsObserver, RemoveItemOb
 
     /**
      * Checks what category box is selected and fills it with the right info
+     *
      * @param b is the button that is active
      */
     private void checkCategoryBox(Button b) {
@@ -186,3 +222,4 @@ public class EntryPageController implements iPane, SavingsObserver, RemoveItemOb
         entryFlowPlane.getChildren().remove(controller);
     }
 }
+
