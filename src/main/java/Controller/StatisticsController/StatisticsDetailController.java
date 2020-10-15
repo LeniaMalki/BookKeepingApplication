@@ -131,39 +131,54 @@ public class StatisticsDetailController implements iPane, EntryObserver, RemoveI
         }
         allEntries = category.equals("");
     }
-
+    /**
+     * A function that adds an entry to a FlowPane
+     * @param entry is a an entry that we add to our EntryListItemController.
+     */
     private void addEntryToFlowPane(Entry entry) {
         EntryListItemController entryListItemController = new EntryListItemController(entry);
         flowpaneStat.getChildren().add(entryListItemController);
         entryListItemController.add(this);
     }
 
+    /**
+     * When ActionEvent happens, call upon method entriesCheckCategory with input "Daily"
+     */
     @FXML
     private void food(ActionEvent event) {
         entriesCheckCategory("Food");
     }
-
+    /**
+     * When ActionEvent happens, call upon method entriesCheckCategory with input "Transportation"
+     */
     @FXML
     private void transport(ActionEvent event) {
         entriesCheckCategory("Transportation");
     }
-
+    /**
+     * When ActionEvent happens, call upon method entriesCheckCategory with input "Other"
+     */
     @FXML
     private void other(ActionEvent event) {
         entriesCheckCategory("Other");
-
     }
-
+    /**
+     * When ActionEvent happens, call upon method entriesCheckCategory with input "Shopping"
+     */
     @FXML
     private void shopping(ActionEvent event) {
         entriesCheckCategory("Shopping");
     }
-
+    /**
+     * When ActionEvent happens, call upon method entriesCheckCategory with input "Household"
+     */
     @FXML
     private void household(ActionEvent event) {
         entriesCheckCategory("Household");
     }
-
+    /**
+     * When ActionEvent happens, call upon method entriesCheckCategory with input ""
+     */
     @FXML
     private void allEntries(ActionEvent event) {
         entriesCheckCategory("");

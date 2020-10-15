@@ -61,7 +61,7 @@ public class EntryListItemController extends AnchorPane implements RemoveItemSub
     }
 
     /**
-     * if the trashcan is clicked the observerpattern will notify the observers
+     * if the trashcan is clicked the Observer pattern will notify the observers
      */
     @FXML
     private void onTrashCanClick(){
