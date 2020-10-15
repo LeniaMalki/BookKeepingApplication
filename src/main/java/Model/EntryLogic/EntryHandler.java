@@ -22,6 +22,7 @@ public class EntryHandler implements EntryObserver {
     static double householdAmount;
     static double shoppingAmount;
     static double otherAmount;
+    static double generalSaving;
     private final List<Entry> entries = new ArrayList<>();
 
     //_________________________________________________ METHODS ________________________________________________________
@@ -68,6 +69,7 @@ public class EntryHandler implements EntryObserver {
         householdAmount = 0;
         shoppingAmount = 0;
         otherAmount = 0;
+        generalSaving = 0;
         for (Entry entry : entries) {
             if (entry.getCategory().equals("Food")) {
                 foodAmount += entry.getAmount();
@@ -83,6 +85,9 @@ public class EntryHandler implements EntryObserver {
             }
             if (entry.getCategory().equals("Other")) {
                 otherAmount += entry.getAmount();
+            }
+            if (entry.getCategory().equals("General Saving")) {
+                generalSaving += entry.getAmount();
             }
         }
     }
@@ -119,7 +124,12 @@ public class EntryHandler implements EntryObserver {
         return otherAmount;
     }
 
+    public double getGeneralSaving() {
+        return generalSaving;
+    }
+
     public List<Entry> getEntries() {
         return entries;
     }
+
 }
