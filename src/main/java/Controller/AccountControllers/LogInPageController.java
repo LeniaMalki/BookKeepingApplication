@@ -12,7 +12,6 @@ import javafx.scene.text.Text;
 
 /**
  * Controller for login on login page
- *
  * @author Lenia
  */
 
@@ -21,6 +20,16 @@ public class LogInPageController implements iPane, AccountObserver {
     //________________________________________________ VARIABLES _______________________________________________________
 
     private final AccountFacade accountFacade = AccountFacade.getInstance();
+    private final LogInHandler logInHandler = new LogInHandler() {
+        /**
+         * handles the actual login
+         * @param accountName
+         * @param password is the variables obtained from logInTextField on logIn controller
+         */
+        public boolean logIn(String accountName, String password) {
+            return super.logIn(accountName, password);
+        }
+    };
     @FXML
     public AnchorPane pos_for_popUp_on_LogInPage;
     @FXML
@@ -47,8 +56,8 @@ public class LogInPageController implements iPane, AccountObserver {
     }
 
     /**
-     * Handles the mouse action of opening up the signup pop up. The pop up is disabled if an account already exists
-     * by checking if there instance of account has a name assigned to it.
+     * Handles the mouse action of opening up the signup pop up. The pop up is disabled if an account already exists by
+     * checking if there instance of account has a name assigned to it.
      */
     @FXML
     private void signUpButton() {
@@ -73,13 +82,7 @@ public class LogInPageController implements iPane, AccountObserver {
      */
     @FXML
     private void onLoginClicked() {
-        parent.showFirstPage();
-        LogInHandler logInHandler = new LogInHandler() {
-            @Override
-            public boolean logIn(String usernameField, String logInField) {
-                return super.logIn(usernameField, logInField);
-            }
-        };
+
 
         if (accountFacade.getAccountName() == null) {
             message.setText("No user registered!");
