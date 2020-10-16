@@ -7,13 +7,11 @@ import Model.GoalsLogic.SavingsOverview;
 import Model.Interfaces.EntryObserver;
 import View.GoalsView.GoalsInsertView;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
-public class NewGoalsInsertController extends AnchorPane implements EntryObserver {
-    private GoalsInsertView insertView=new GoalsInsertView();
+public class NewGoalsInsertController implements EntryObserver {
+    private GoalsInsertView insertView = new GoalsInsertView();
 
     SavingsOverview savingsOverview;
 
@@ -34,26 +32,31 @@ public class NewGoalsInsertController extends AnchorPane implements EntryObserve
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+        setAllViewListeners();
         savingsOverview = SavingsOverview.getInstance();
         EntrySubject.add(this);
 
     }
-    private void setAllViewLiseners() {
-    insertView.okButton.setOnAction(e-> addNewGoal());
+
+    private void setAllViewListeners() {
+        insertView.okButton.setOnAction(e -> addNewGoal());
 
     }
 
+    public GoalsInsertView getView() {
+        return insertView;
+    }
 
-        /**
-         * Adds new a new goal object when you ckick on the make new goals button
-         */
+
+    /**
+     * Adds new a new goal object when you ckick on the make new goals button
+     */
 
 
     public void addNewGoal() {
-
         try {
             insertView.setName(insertView.nameOfSavingTextField.getText());
-            registerSavingGoal(Double.parseDouble(insertView.savingAmountTextField.getText()),insertView.savingNameText.getText(),insertView. savingsImage.getImage());
+            registerSavingGoal(Double.parseDouble(insertView.savingAmountTextField.getText()), insertView.savingNameText.getText());
             insertView.savingsAnchorPane1.getChildren().clear();
             insertView.savingsAnchorPane1.setVisible(false);
             updateSavingLabel();
@@ -61,7 +64,7 @@ public class NewGoalsInsertController extends AnchorPane implements EntryObserve
         } catch (Exception e) {
             System.out.println(e);
         } finally {
-           insertView.setRedField();
+            insertView.setRedField();
         }
 
 
@@ -69,12 +72,12 @@ public class NewGoalsInsertController extends AnchorPane implements EntryObserve
 
     /**
      * registers a new goal
-     * @param goal the goal you want to reach
-     * @param name name of the goal
-     * @param image the image you want to set
+     *
+     * @param goal  the goal you want to reach
+     * @param name  name of the goal
      */
-    private void registerSavingGoal(double goal, String name, Image image) {
-        SavingGoal savingGoal = new SavingGoal(goal, name, image);
+    private void registerSavingGoal(double goal, String name) {
+        SavingGoal savingGoal = new SavingGoal(goal, name);
     }
 
 
@@ -97,13 +100,14 @@ public class NewGoalsInsertController extends AnchorPane implements EntryObserve
      * updates the label that states the money saved
      */
     private void updateSavingLabel() {
-        insertView.   savingGoalText.setText(amoutSaved + " of " +insertView. savingAmountTextField.getText() + " saved");
+        insertView.updateSavingsLabel(amoutSaved, insertView.savingAmountTextField.getText());
     }
+
     /**
      * updates the progressbar with the percentage of the goal reached
      */
     private void updateProgressBar() {
-        insertView.   amoutSavedProgressBar.setProgress(amoutSaved / Double.parseDouble(insertView.savingAmountTextField.getText()));
+        insertView.amoutSavedProgressBar.setProgress(amoutSaved / Double.parseDouble(insertView.savingAmountTextField.getText()));
 
     }
 }

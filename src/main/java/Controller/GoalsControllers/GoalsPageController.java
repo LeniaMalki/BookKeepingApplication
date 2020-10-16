@@ -12,11 +12,11 @@ public class GoalsPageController {
 
 private GoalsView goalsView= GoalsView.getInstance();
 public GoalsPageController(){
-
+    setAllViewListeners();
 }
 
 
-   private void setAllViewLiseners(){
+   private void setAllViewListeners(){
        goalsView.seeBudgetButton.setOnAction(event -> openBudget());
        goalsView.goToEntryButton.setOnAction(event -> openEntry());
        goalsView.addNewSavingGoalButton.setOnAction(event -> addGoal());
@@ -44,7 +44,8 @@ public GoalsPageController(){
      */
 
     private void addGoal() {
-        goalsView.goalFlowPane.getChildren().add(new NewGoalsInsertController());
+        NewGoalsInsertController goalsInsertController=new NewGoalsInsertController();
+        goalsView.goalFlowPane.getChildren().add(goalsInsertController.getView());
     }
 
 

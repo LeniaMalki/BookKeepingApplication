@@ -70,15 +70,20 @@ public class EntryView implements iPane {
         entryView.costTextField.setLayoutY(391);
     }
 
-    public void setRedColorIfInvalid(TextField nameTextField, ComboBox<String> categoryComboBox, TextField costTextField) {
-        if (nameTextField.getText().equals("")) {
-            nameTextField.setStyle("-fx-text-box-border: Red;");
-        } else nameTextField.setStyle("-fx-text-box-border: Grey;");
-        if (categoryComboBox.getValue() == "" || categoryComboBox.getValue() == "Category" || categoryComboBox.getValue() == null) {
-            categoryComboBox.setStyle(" -fx-border-color: Red;");
-        } else categoryComboBox.setStyle("-fx-text-box-border: Grey;");
-        if (!costTextField.getText().matches("\\d+")) {
-            costTextField.setStyle(" -fx-border-color: Red;");
-        } else costTextField.setStyle(" -fx-border-color: Gray;");
+    public void setRedColor(TextField textField) {
+        textField.setStyle(" -fx-border-color: Red;");
+    }
+
+    public void setGreyColor(TextField textField) {
+        textField.setStyle(" -fx-border-color: Grey;");
+    }
+
+    public void setRedColor(ComboBox<String> categoryComboBox) {
+        categoryComboBox.setStyle(" -fx-border-color: Red;");
+
+    }
+
+    public void setGreyColor(ComboBox<String> categoryComboBox) {
+        categoryComboBox.setStyle(" -fx-border-color: Grey;");
     }
 }
