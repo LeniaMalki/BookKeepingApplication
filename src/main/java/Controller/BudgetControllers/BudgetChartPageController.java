@@ -1,8 +1,5 @@
 package Controller.BudgetControllers;
 
-import Controller.Interfaces.iPane;
-import Controller.MainControllers.MainController;
-import Controller.MainControllers.PaneFactory;
 import Model.BudgetLogic.Budget;
 import Model.BudgetLogic.BudgetSubject;
 import Model.EntryLogic.Entry;
@@ -10,52 +7,48 @@ import Model.EntryLogic.EntryHandler;
 import Model.EntryLogic.EntrySubject;
 import Model.Interfaces.BudgetObserver;
 import Model.Interfaces.EntryObserver;
+import View.BudgetView.BudgetChartView;
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.chart.BarChart;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
-
 import java.io.IOException;
 import java.util.Arrays;
-
 import javafx.scene.chart.XYChart;
 
-public class BudgetCharPageController implements iPane, EntryObserver, BudgetObserver {
+/**
+ * Controller for the budget chart
+ *
+ * @author viktoriawelzel
+ */
+public class BudgetChartPageController implements EntryObserver, BudgetObserver {
 
     //________________________________________________ VARIABLES _______________________________________________________
 
-    MainController parent;
     Budget budget = new Budget(2,3,2,5,2,1,"25");
     EntryHandler entryHandler = EntryHandler.getInstance();
     XYChart.Series<String, Number> series2 = new XYChart.Series<>();
-
-
-    //__________________________________________________ FXML __________________________________________________________
-
-    @FXML
-    private AnchorPane headerAnchorPane;
-    @FXML
-    public BarChart barChart;
-    @FXML
-    AnchorPane rootAnchorPane;
-    @FXML
-    private CategoryAxis xAxis;
-
+    BudgetChartView budgetChartView = BudgetChartView.getInstance();
 
     //_________________________________________________ METHODS ________________________________________________________
 
+    public BudgetChartPageController(){
+        setAllViewListners();
+        EntrySubject.add(this);
+        BudgetSubject.add(this);
+        budgetChartView.xAxis.setCategories(FXCollections.<String>observableArrayList(Arrays.asList("Food", "Household", "Shopping", "Transport", "Other", "General Saving")));
+    }
+
+    private void setAllViewListners (){
+        budgetChartView.addNewBudgetButton.setOnAction(a -> addNewBudgetButton());
+        budgetChartView.editBudgetButton.setOnAction(a -> editBudgetButton());
+    }
+
     /**
      * Sets the values that need to be added at the start of the program when pressing on the addNewBudget button
-     * @param event if something is pressed an ActionEvent is fired and tells the system what happened
+     * //@param event if something is pressed an ActionEvent is fired and tells the system what happened
      * @throws IOException
      */
 
-    @FXML
-    private void addNewBudgetButton(ActionEvent event) throws IOException {
-        parent.showBudgetPage();
+    private void addNewBudgetButton() {
+        budgetChartView.showBudgetPage();
         budget.setIncome(null);
         budget.setFoodCost(0);
         budget.setHouseholdCost(0);
@@ -68,13 +61,12 @@ public class BudgetCharPageController implements iPane, EntryObserver, BudgetObs
 
     /**
      * Gets the values that need to be added at the start of the program when pressing on the editBudgetButton button
-     * @param event if something is pressed an ActionEvent is fired and tells the system what happened
+     * //@param event if something is pressed an ActionEvent is fired and tells the system what happened
      * @throws IOException
      */
 
-    @FXML
-    private void editBudgetButton(ActionEvent event) throws IOException {
-        parent.showBudgetPage();
+    private void editBudgetButton() {
+        budgetChartView.showBudgetPage();
         budget.getIncome();
         budget.getFoodCost();
         budget.getHouseholdCost();
@@ -82,20 +74,6 @@ public class BudgetCharPageController implements iPane, EntryObserver, BudgetObs
         budget.getTransportCost();
         budget.getOtherCost();
         budget.getSavingsCost();
-    }
-
-    /**
-     * Initializes the pane when the program starts also adds the header
-     * @param parent the main controller
-     */
-    @Override
-    public void initPane(MainController parent) {
-        this.parent = parent;
-        headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
-        EntrySubject.add(this);
-        BudgetSubject.add(this);
-        xAxis.setCategories(FXCollections.<String>observableArrayList(Arrays.asList("Food", "Household", "Shopping", "Transport", "Other", "General Saving")));
-
     }
 
     /**
@@ -119,9 +97,14 @@ public class BudgetCharPageController implements iPane, EntryObserver, BudgetObs
         series2.getData().add(new XYChart.Data<>("Transport", entryHandler.getTransportationAmount()));
         series2.getData().add(new XYChart.Data<>("Other", entryHandler.getOtherAmount()));
         series2.getData().add(new XYChart.Data<>("General Saving", entryHandler.getGeneralSaving()));
-        barChart.getData().addAll(series2);
+        budgetChartView.barChart.getData().addAll(series2);
 
     }
+
+    /**
+     * Creates/updates a Stacked bar chart with the budget values.
+     */
+
     public void updateGostGraph(Budget budget){
         XYChart.Series<String, Integer> series1 = new XYChart.Series<String, Integer>();
         series1.setName("Budget");
@@ -131,8 +114,7 @@ public class BudgetCharPageController implements iPane, EntryObserver, BudgetObs
         series1.getData().add(new XYChart.Data<>("Transport", budget.getTransportCost()));
         series1.getData().add(new XYChart.Data<>("Other", budget.getOtherCost()));
         series1.getData().add(new XYChart.Data<>("General Saving", budget.getSavingsCost()));
-        barChart.getData().setAll(series1);
-
+        budgetChartView.barChart.getData().setAll(series1);
     }
 
     @Override
