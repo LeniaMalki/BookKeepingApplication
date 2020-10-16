@@ -1,12 +1,14 @@
 package Controller.MainControllers;
 
 import Controller.AccountControllers.*;
-import Controller.BudgetControllers.BudgetCharPageController;
+import Controller.BudgetControllers.BudgetChartPageController;
 import Controller.BudgetControllers.BudgetPageController;
 import Controller.EntryControllers.EntryPageController;
 import Controller.GoalsControllers.GoalsPageController;
 import Controller.StatisticsController.StatisticsDetailController;
 import Controller.StatisticsController.StatisticsOverViewController;
+import View.BudgetView.BudgetChartView;
+import View.BudgetView.BudgetView;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
@@ -81,8 +83,9 @@ public class PaneFactory {
 
 
     static AnchorPane initBudgetPane() {
-        Pane<BudgetPageController> pane = loadInPane("org/openjfx/budgetPage.fxml");
+        Pane<BudgetView> pane = loadInPane("org/openjfx/budgetPage.fxml");
         pane.controller.initPane(parent);
+        BudgetPageController budgetPageController = new BudgetPageController();
         return pane.anchorPane;
     }
 
@@ -93,8 +96,9 @@ public class PaneFactory {
     }
 
     static AnchorPane initBudgetCharPane() {
-        Pane<BudgetCharPageController> pane = loadInPane("org/openjfx/budgetCharPage.fxml");
+        Pane<BudgetChartView> pane = loadInPane("org/openjfx/budgetCharPage.fxml");
         pane.controller.initPane(parent);
+        BudgetChartPageController budgetCharPageController = new BudgetChartPageController();
         return pane.anchorPane;
     }
 
