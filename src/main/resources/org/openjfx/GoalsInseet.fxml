@@ -2,6 +2,7 @@
 
 <?import java.lang.String?>
 <?import java.net.URL?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
@@ -51,11 +52,15 @@
                   <Font name="System Bold" size="22.0" />
                </font>
             </TextField>
-            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="613.0" layoutY="40.0" onMouseClicked="#addNewGoal" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../Images/baseline_check_circle_outline_black_48dp.png" />
-               </image>
-            </ImageView>
+            <Button fx:id="okButton" layoutX="605.0" layoutY="36.0" mnemonicParsing="false" style="-fx-background-color: transperant;">
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#addNewGoal" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Images/baseline_check_circle_outline_black_48dp.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </AnchorPane>
    </children>

@@ -3,10 +3,8 @@ package Controller.EntryControllers;
 import Controller.Interfaces.RemoveItemObserver;
 import Controller.Interfaces.RemoveItemSubject;
 import Model.EntryLogic.Entry;
-import javafx.fxml.FXML;
+import View.EntryView.EntryListItemView;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,56 +14,35 @@ import java.util.ArrayList;
  *
  * @author Artin
  */
-public class EntryListItemController extends AnchorPane implements RemoveItemSubject {
+public class EntryListItemController implements RemoveItemSubject {
 
-    @FXML
-    Text articleName;
-
-    @FXML
-    Text categoryName;
-
-    @FXML
-    Text costName;
-
+    EntryListItemView entryListItemView = new EntryListItemView();
     Entry actualEntry;
     ArrayList<RemoveItemObserver> observers = new ArrayList<>();
 
 
     /**
      * Creates a new insert for a list and sets the test that is suppose to go in it
+     *
      * @param entry is a entry submitted by the user and is used to set the name/cost/category of the listItem
      */
     public EntryListItemController(Entry entry) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/openjfx/entryPageScrollPaneInsert.fxml"));
-        fxmlLoader.setController(this);
-        fxmlLoader.setRoot(this);
+        fxmlLoader.setController(entryListItemView);
+        fxmlLoader.setRoot(entryListItemView);
         try {
             fxmlLoader.load();
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
-        categoryName.setText(entry.getCategory());
-        costName.setText(String.valueOf(entry.getAmount()));
-        articleName.setText(entry.getName());
+        setAllViewLiseners();
+        entryListItemView.setFields(entry.getCategory(), entry.getAmount(), entry.getName());
         actualEntry = entry;
-
     }
 
-    /**
-     * A mouse event that updates the boolean parameter of the entry. All entries are created with boolean false.
-     * When selected, the value turns to true.
-     */
-    @FXML
-    private void selectEntry() {
-        actualEntry.setSelected(!actualEntry.getSelected());
-    }
+    private void setAllViewLiseners() {
+        entryListItemView.trashcan.setOnAction(event -> notifyListeners());
 
-    /**
-     * if the trashcan is clicked the Observer pattern will notify the observers
-     */
-    @FXML
-    private void onTrashCanClick(){
-        notifyListeners();
     }
 
     @Override
@@ -75,8 +52,12 @@ public class EntryListItemController extends AnchorPane implements RemoveItemSub
 
     @Override
     public void notifyListeners() {
-    for(RemoveItemObserver o : observers){
-        o.update(actualEntry, this);
+        for (RemoveItemObserver o : observers) {
+            o.update(actualEntry, entryListItemView);
+        }
     }
+
+    public EntryListItemView getView() {
+        return entryListItemView;
     }
 }
