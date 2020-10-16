@@ -78,7 +78,6 @@ public class LogInPageController implements iPane, AccountObserver {
     @FXML
     private void onLoginClicked() {
 
-        parent.showFirstPage();
         if (accountFacade.getAccountName() == null) {
             message.setText("No user registered!");
         } else if (logInHandler.logIn(usernameField.getText(), logInField.getText())) {
