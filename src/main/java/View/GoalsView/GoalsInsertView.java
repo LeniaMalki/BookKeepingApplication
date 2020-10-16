@@ -4,11 +4,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
-public class GoalsInsertView {
+public class GoalsInsertView extends AnchorPane{
     @FXML
     public AnchorPane savingsAnchorPane;
 
@@ -31,11 +30,6 @@ public class GoalsInsertView {
     public ProgressBar amoutSavedProgressBar;
 
     @FXML
-    public AnchorPane infoAnchorPane;
-
-    @FXML
-    public ImageView savingsImage;
-    @FXML
     public Button okButton;
 
     public void setName(String text) {
@@ -44,5 +38,9 @@ public class GoalsInsertView {
 
     public void setRedField() {
         savingAmountTextField.setStyle("-fx-text-box-border: Red;");
+    }
+
+    public void updateSavingsLabel(double amoutSaved, String text) {
+        savingGoalText.setText(amoutSaved + " of " + text + " saved");
     }
 }

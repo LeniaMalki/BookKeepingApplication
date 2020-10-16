@@ -109,9 +109,9 @@ public class EntryPageController implements SavingsObserver, RemoveItemObserver 
         if (currentActiveEntryButton == entryView.incomebutton) {
             entryView.categoryComboBox.setValue("Income");
         }
-        entryView.setRedColorIfInvalid(entryView.nameTextField, entryView.categoryComboBox, entryView.costTextField);
-        if (checkIfFieldsAreFilledInCorrectly(entryView.nameTextField, entryView.categoryComboBox)) {
+        setColorRedIfInvalid(entryView.nameTextField, entryView.categoryComboBox, entryView.costTextField);
 
+        if (checkIfFieldsAreFilledInCorrectly(entryView.nameTextField, entryView.categoryComboBox, entryView.costTextField)) {
             try {
                 Entry entry = new Entry(Double.parseDouble(entryView.costTextField.getText()), entryView.nameTextField.getText(), entryView.categoryComboBox.getValue(), currentActiveEntryButton.getText());
                 entryList.add(entry);
@@ -127,8 +127,27 @@ public class EntryPageController implements SavingsObserver, RemoveItemObserver 
         }
     }
 
-    private boolean checkIfFieldsAreFilledInCorrectly(TextField nameTextField, ComboBox<String> categoryComboBox) {
-        return checkIfCategoryIsFilledIn(categoryComboBox) && checkIfNameIsFilledIn(nameTextField);
+    private void setColorRedIfInvalid(TextField nameTextField, ComboBox<String> categoryComboBox, TextField costTextField) {
+
+        if (!checkIfNameIsFilledIn(nameTextField)){
+            entryView.setRedColor(nameTextField);
+        }else entryView.setGreyColor(nameTextField);
+
+        if (checkIfCategoryIsFilledIn(categoryComboBox)){
+            entryView.setRedColor(categoryComboBox);
+        }else entryView.setGreyColor(categoryComboBox);
+
+        if (checkIfCostIsInCorrect(costTextField)){
+            entryView.setRedColor(costTextField);
+        }else entryView.setGreyColor(costTextField);
+    }
+
+    private boolean checkIfFieldsAreFilledInCorrectly(TextField nameTextField, ComboBox<String> categoryComboBox, TextField costTextField) {
+        return !checkIfCategoryIsFilledIn(categoryComboBox) && checkIfNameIsFilledIn(nameTextField) && !checkIfCostIsInCorrect(costTextField);
+    }
+
+    private boolean checkIfCostIsInCorrect(TextField costTextField) {
+        return !costTextField.getText().matches("\\d+");
     }
 
     private boolean checkIfNameIsFilledIn(TextField nameTextField) {
@@ -136,7 +155,8 @@ public class EntryPageController implements SavingsObserver, RemoveItemObserver 
     }
 
     private boolean checkIfCategoryIsFilledIn(ComboBox<String> categoryComboBox) {
-        return categoryComboBox.getValue() != "" && categoryComboBox.getValue() != "Category";
+        System.out.println(categoryComboBox.getValue());
+        return (categoryComboBox.getValue()=="" || categoryComboBox.getValue()=="Category" || categoryComboBox.getValue() == null);
     }
 
     /**
