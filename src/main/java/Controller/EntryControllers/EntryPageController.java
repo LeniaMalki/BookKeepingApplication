@@ -1,20 +1,16 @@
 package Controller.EntryControllers;
 
 import Controller.Interfaces.RemoveItemObserver;
-import Controller.Interfaces.iPane;
-import Controller.MainControllers.MainController;
-import Controller.MainControllers.PaneFactory;
 import Model.EntryLogic.Entry;
 import Model.Interfaces.SavingsObserver;
 import Model.Interfaces.SavingsSubject;
+import View.EntryView.EntryListItemView;
+import View.EntryView.EntryView;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.FlowPane;
 
 import java.util.ArrayList;
 
@@ -24,36 +20,33 @@ import java.util.ArrayList;
  * @author Artin
  */
 
-public class EntryPageController implements iPane, SavingsObserver, RemoveItemObserver {
-
+public class EntryPageController implements SavingsObserver, RemoveItemObserver {
     private final ArrayList<Button> entryButtonTypeCluster = new ArrayList<>();
     private final ArrayList<Entry> entryList = new ArrayList<>();
-    MainController parent;
     private boolean listItemPink = false;
 
     private Button currentActiveEntryButton;
-    @FXML
-    private Button expencesButton;
-    @FXML
-    private Button incomebutton;
-    @FXML
-    private Button savingButton;
-    @FXML
-    private TextField nameTextField;
-    @FXML
-    private ComboBox<String> categoryComboBox;
-    @FXML
-    private TextField costTextField;
-    @FXML
-    private ScrollPane entryPageScrollPane;
-    @FXML
-    private FlowPane entryFlowPlane;
-    @FXML
-    private AnchorPane headerAnchorPane;
+    EntryView entryView = EntryView.getInstance();
+
+    public EntryPageController() {
+        setAllViewLiseners();
+        setValuesAtStart();
+    }
+
+
+    private void setAllViewLiseners() {
+        entryView.expencesButton.setOnAction(this::activateEntryTypeButton);
+        entryView.incomebutton.setOnAction(this::activateEntryTypeButton);
+        entryView.savingButton.setOnAction(this::activateEntryTypeButton);
+        entryView.addButton.setOnAction(e -> addEntry());
+        entryView.submitButton.setOnAction(e -> submitEntries());
+    }
+
+
     private ArrayList<String> savingCategory = new ArrayList<>() {{
         add("General Saving");
     }};
-    private ArrayList<String> expenceCategory = new ArrayList<>() {{
+    private final ArrayList<String> expenceCategory = new ArrayList<>() {{
         add("Food");
         add("Household");
         add("Shopping");
@@ -62,29 +55,16 @@ public class EntryPageController implements iPane, SavingsObserver, RemoveItemOb
 
     }};
 
-
-    /**
-     * Initializes the pane when the program starts also adds the header
-     *
-     * @param parent the main controller
-     */
-    @Override
-    public void initPane(MainController parent) {
-        this.parent = parent;
-        headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
-        setValuesAtStart();
-    }
-
     /**
      * sets the values that need to be added at the start of the program
      */
     private void setValuesAtStart() {
-        entryButtonTypeCluster.add(expencesButton);
-        entryButtonTypeCluster.add(savingButton);
-        entryButtonTypeCluster.add(incomebutton);
-        categoryComboBox.getItems().addAll(expenceCategory);
-        currentActiveEntryButton = expencesButton;
-        entryPageScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        entryButtonTypeCluster.add(entryView.expencesButton);
+        entryButtonTypeCluster.add(entryView.savingButton);
+        entryButtonTypeCluster.add(entryView.incomebutton);
+        entryView.categoryComboBox.getItems().addAll(expenceCategory);
+        currentActiveEntryButton = entryView.expencesButton;
+        entryView.entryPageScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         SavingsSubject.observers.add(this);
     }
 
@@ -93,7 +73,6 @@ public class EntryPageController implements iPane, SavingsObserver, RemoveItemOb
      *
      * @param event if something is pressed an ActionEvent is fired and tells the system what happened
      */
-    @FXML
     private void activateEntryTypeButton(ActionEvent event) {
         Button btn = (Button) event.getSource();
         for (Button b : entryButtonTypeCluster) {
@@ -115,58 +94,44 @@ public class EntryPageController implements iPane, SavingsObserver, RemoveItemOb
      * @param btn the button that is clicked
      */
     private void incomeButtonAction(Button btn) {
-        if (btn == incomebutton) {
-            categoryComboBox.setVisible(false);
-            costTextField.setLayoutY(282);
+        if (btn == entryView.incomebutton) {
+            entryView.hideIncomeCategory();
+
         } else {
-            categoryComboBox.setVisible(true);
-            costTextField.setLayoutY(391);
+            entryView.showCategory();
         }
     }
 
     /**
      * Adds a new entry when the user has put in the right parameters and added
      */
-    @FXML
     private void addEntry() {
-        if (currentActiveEntryButton == incomebutton) {
-            categoryComboBox.setValue("Income");
+        if (currentActiveEntryButton == entryView.incomebutton) {
+            entryView.categoryComboBox.setValue("Income");
         }
-        setRedColorIfInvalid(nameTextField,categoryComboBox,costTextField);
-    if (checkIfFieldsAreFilledInCorrectly(nameTextField, categoryComboBox)){
+        entryView.setRedColorIfInvalid(entryView.nameTextField, entryView.categoryComboBox, entryView.costTextField);
+        if (checkIfFieldsAreFilledInCorrectly(entryView.nameTextField, entryView.categoryComboBox)) {
 
-        try {
-            Entry entry = new Entry(Double.parseDouble(costTextField.getText()), nameTextField.getText(), categoryComboBox.getValue(), currentActiveEntryButton.getText());
-            entryList.add(entry);
-            EntryListItemController itemController = new EntryListItemController(entry);
-            entryFlowPlane.getChildren().add(itemController);
-            listItemPink = !listItemPink;
-            costTextField.clear();
-            nameTextField.clear();
-            categoryComboBox.valueProperty().set("Category");
-            itemController.add(this);
-            costTextField.setStyle("-fx-text-box-border: Grey;");
-        } catch (Exception ignored) {
-
+            try {
+                Entry entry = new Entry(Double.parseDouble(entryView.costTextField.getText()), entryView.nameTextField.getText(), entryView.categoryComboBox.getValue(), currentActiveEntryButton.getText());
+                entryList.add(entry);
+                EntryListItemController itemController = new EntryListItemController(entry);
+                entryView.entryFlowPlane.getChildren().add(itemController.getView());
+                listItemPink = !listItemPink;
+                entryView.costTextField.clear();
+                entryView.nameTextField.clear();
+                entryView.categoryComboBox.valueProperty().set("Category");
+                itemController.add(this);
+            } catch (Exception ignored) {
+            }
         }
-    }}
-    private void setRedColorIfInvalid(TextField nameTextField, ComboBox<String> categoryComboBox, TextField costTextField){
-        if (nameTextField.getText().equals("")){
-            nameTextField.setStyle("-fx-text-box-border: Red;");
-        }else nameTextField.setStyle("-fx-text-box-border: Grey;");
-        if (categoryComboBox.getValue()=="" || categoryComboBox.getValue()=="Category" || categoryComboBox.getValue() == null){
-            categoryComboBox.setStyle(" -fx-border-color: Red;");
-        }else categoryComboBox.setStyle("-fx-text-box-border: Grey;");
-        if (!costTextField.getText().matches("\\d+")){
-            costTextField.setStyle(" -fx-border-color: Red;");
-        }else costTextField.setStyle(" -fx-border-color: Gray;");
     }
 
-    private boolean checkIfFieldsAreFilledInCorrectly(TextField nameTextField, ComboBox<String> categoryComboBox){
-       return checkIfCategoryIsFilledIn(categoryComboBox) && checkIfNameIsFilledIn(nameTextField);
+    private boolean checkIfFieldsAreFilledInCorrectly(TextField nameTextField, ComboBox<String> categoryComboBox) {
+        return checkIfCategoryIsFilledIn(categoryComboBox) && checkIfNameIsFilledIn(nameTextField);
     }
 
-        private boolean checkIfNameIsFilledIn(TextField nameTextField) {
+    private boolean checkIfNameIsFilledIn(TextField nameTextField) {
         return !nameTextField.getText().equals("");
     }
 
@@ -177,12 +142,11 @@ public class EntryPageController implements iPane, SavingsObserver, RemoveItemOb
     /**
      * Confirms all the entries that the user has added, as an extra step to make sure that everything is right
      */
-    @FXML
     private void submitEntries() {
         for (Entry entry : entryList) {
             entry.notifyEntryListeners();
         }
-        entryFlowPlane.getChildren().clear();
+        entryView.entryFlowPlane.getChildren().clear();
         entryList.clear();
     }
 
@@ -194,8 +158,8 @@ public class EntryPageController implements iPane, SavingsObserver, RemoveItemOb
     @Override
     public void update(String s) {
         savingCategory.add(s);
-        if (currentActiveEntryButton == savingButton) {
-            categoryComboBox.getItems().add(s);
+        if (currentActiveEntryButton == entryView.savingButton) {
+            entryView.categoryComboBox.getItems().add(s);
         }
     }
 
@@ -205,21 +169,20 @@ public class EntryPageController implements iPane, SavingsObserver, RemoveItemOb
      * @param b is the button that is active
      */
     private void checkCategoryBox(Button b) {
-        categoryComboBox.getItems().clear();
-        if (b == savingButton) {
-            categoryComboBox.getItems().removeAll(expenceCategory);
-            categoryComboBox.getItems().addAll(savingCategory);
+        entryView.categoryComboBox.getItems().clear();
+        if (b == entryView.savingButton) {
+            entryView.categoryComboBox.getItems().removeAll(expenceCategory);
+            entryView.categoryComboBox.getItems().addAll(savingCategory);
         } else {
-            categoryComboBox.getItems().removeAll(savingCategory);
-            categoryComboBox.getItems().addAll(expenceCategory);
+            entryView.categoryComboBox.getItems().removeAll(savingCategory);
+            entryView.categoryComboBox.getItems().addAll(expenceCategory);
         }
     }
 
-
     @Override
-    public void update(Entry entry, EntryListItemController controller) {
+    public void update(Entry entry, EntryListItemView controller) {
         entryList.remove(entry);
-        entryFlowPlane.getChildren().remove(controller);
+        entryView.entryFlowPlane.getChildren().remove(controller);
     }
 }
 
