@@ -1,10 +1,8 @@
 package Controller.AccountControllers;
 
-import Controller.MainControllers.MainController;
 import Model.AccountLogic.AccountFacade;
+import View.AccountView.DeleteAccountView;
 import javafx.fxml.FXML;
-import javafx.scene.control.PasswordField;
-import javafx.scene.text.Text;
 
 /**
  * Controller for deleting the account through account page of deleteAccountPopup
@@ -13,32 +11,28 @@ import javafx.scene.text.Text;
 public class DeleteAccountPopUpController {
 
     private final AccountFacade accountFacade = AccountFacade.getInstance();
-    //________________________________________________ VARIABLES _______________________________________________________
-    @FXML
-    private PasswordField password;
-    @FXML
-    private Text textMessage;
-    private MainController parent;
+    private final DeleteAccountView deleteAccountView = DeleteAccountView.getInstance();
 
-    //________________________________________________ Methods _________________________________________________________
+    public DeleteAccountPopUpController() {
+        setAllViewListeners();
+    }
 
-    /**
-     * initialized this pane
-     */
-    public void initPane(MainController parent) {
-        this.parent = parent;
+    private void setAllViewListeners() {
+        deleteAccountView.deleteAccountButton.setOnAction(e -> onConfirmDeleteClicked());
     }
 
     /**
      * Handles the mouse action of deleting and account by delegation to AccountFacade's methods for deletion
      */
-    @FXML
     private void onConfirmDeleteClicked() {
+        System.out.println("startDel");
 
-        if (accountFacade.doesPasswordMatchWithAccount(password.getText())) {
+        if (accountFacade.doesPasswordMatchWithAccount(deleteAccountView.password.getText())) {
             accountFacade.deleteAccount();
-            parent.showLogInPage();
-        } else
-            textMessage.setText("Password is incorrect! Try again.");
+            deleteAccountView.parent.showLogInPage();
+            System.out.println("correct but not :) ");
+        }
+        else deleteAccountView.setMessage();
+        System.out.println("erorr");
     }
 }

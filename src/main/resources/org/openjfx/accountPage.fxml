@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="accountSettings" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AccountControllers.ProfilePageController">
+<AnchorPane fx:id="accountSettings" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.AccountView.ProfilePageView">
     <children>
         <AnchorPane fx:id="popUpPosition" layoutX="358.0" layoutY="180.0" prefHeight="662.0" prefWidth="900.0">
             <effect>
@@ -70,7 +70,7 @@
                         <Font size="25.0" />
                     </font>
                 </TextField>
-                <Hyperlink fx:id="changePasswordLink" layoutX="900.0" layoutY="357.0" onAction="#openChangePasswordPop" stylesheets="@../../cssFolder/accountPage.css" text="Change Password" textFill="#f66a80" underline="true">
+                <Hyperlink fx:id="changePasswordLink" layoutX="900.0" layoutY="357.0" stylesheets="@../../cssFolder/accountPage.css" text="Change Password" textFill="#f66a80" underline="true">
                     <font>
                         <Font name="Lucida Sans Unicode" size="24.0" />
                     </font>
@@ -78,7 +78,7 @@
                         <Insets left="1.0" />
                     </padding>
                 </Hyperlink>
-                <Hyperlink fx:id="deleteAccountLink" layoutX="900.0" layoutY="547.0" onAction="#openDeleteAccountPop" stylesheets="@../../cssFolder/accountPage.css" text="Delete account" textFill="#f66a80" underline="true">
+                <Hyperlink fx:id="deleteAccountLink" layoutX="900.0" layoutY="547.0" stylesheets="@../../cssFolder/accountPage.css" text="Delete account" textFill="#f66a80" underline="true">
                     <font>
                         <Font name="Lucida Sans Unicode" size="24.0" />
                     </font>
@@ -86,7 +86,7 @@
                         <Insets left="1.0" />
                     </padding>
                 </Hyperlink>
-            <Button fx:id="submitChangesButton" alignment="CENTER" layoutX="145.0" layoutY="900.0" mnemonicParsing="false" onAction="#onSubmitChangesClicked" text="Submit Changes">
+            <Button fx:id="submitChangesButton" alignment="CENTER" layoutX="145.0" layoutY="900.0" mnemonicParsing="false" text="Submit Changes">
                <font>
                   <Font name="Lucida Sans Unicode" size="24.0" />
                </font>
@@ -94,7 +94,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="signOutButton" defaultButton="true" layoutX="1155.0" layoutY="120.0" mnemonicParsing="false" onAction="#onSignOutClicked" prefHeight="71.0" prefWidth="238.0" style="-fx-background-color: #f66a80;" text="Sign out" textFill="WHITE">
+            <Button fx:id="signOutButton" defaultButton="true" layoutX="1155.0" layoutY="120.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="238.0" style="-fx-background-color: #f66a80;" text="Sign out" textFill="WHITE">
                <font>
                   <Font size="32.0" />
                </font>

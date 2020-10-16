@@ -1,3 +1,10 @@
 Documentation
 
+Lenia Malki's commits are not all showing but commits include all of the following:
+- the entirety of package "AccountControllers"
+- the entirety of package "AccountLogic"
+- "AccountObserver" and "AccountSubject"
+- the entirety of "accountPage.fxml" , "changePasswordPopUp.fxml" , "deleteAccountPopUp.fxml", "logInPage.fxml" and "signUpPopUp.fxml"
+- some of "firstPage.fxml"
+
 https://drive.google.com/drive/folders/1JGjvolG8dT6nSruXtQL15i9NhhoyVZXO?usp=sharing
