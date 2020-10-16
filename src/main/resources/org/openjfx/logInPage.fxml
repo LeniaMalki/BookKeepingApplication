@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="logInPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AccountControllers.LogInPageController">
+<AnchorPane fx:id="logInPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.AccountView.LogInView">
     <children>
       <AnchorPane fx:id="back" onMouseClicked="#hidePopUp" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <cursor>
@@ -80,7 +80,7 @@
                       <Font name="Lucida Sans Unicode" size="14.0" />
                   </font>
               </Hyperlink>
-              <Button fx:id="logInButton" alignment="CENTER" defaultButton="true" layoutX="942.0" layoutY="723.0" mnemonicParsing="false" onAction="#onLoginClicked" prefHeight="64.0" prefWidth="447.15" style="-fx-background-color: #a8d8d3; -fx-background-radius: 38;" styleClass="linkFillWhite" stylesheets="@../../cssFolder/linkActions.css" text="Login" textFill="WHITE">
+              <Button fx:id="logInButton" alignment="CENTER" defaultButton="true" layoutX="942.0" layoutY="723.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="447.15" style="-fx-background-color: #a8d8d3; -fx-background-radius: 38;" styleClass="linkFillWhite" stylesheets="@../../cssFolder/linkActions.css" text="Login" textFill="WHITE">
                   <font>
                       <Font name="Lucida Sans Unicode" size="35.0" />
                   </font>
@@ -88,12 +88,12 @@
                       <Insets />
                   </opaqueInsets>
               </Button>
-              <Hyperlink fx:id="signUpLink" layoutX="1124.0" layoutY="828.0" onAction="#signUpButton" text="Sign Up" textAlignment="CENTER" textFill="#928c8c" underline="true">
+              <Hyperlink fx:id="signUpLink" layoutX="1124.0" layoutY="828.0" text="Sign Up" textAlignment="CENTER" textFill="#928c8c" underline="true">
                   <font>
                       <Font name="Lucida Sans Unicode" size="26.0" />
                   </font>
               </Hyperlink>
-            <Text fx:id="message" boundsType="LOGICAL_VERTICAL_CENTER" fill="RED" layoutX="1010.0" layoutY="373.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="299.916259765625">
+            <Text fx:id="testMessage" boundsType="LOGICAL_VERTICAL_CENTER" fill="RED" layoutX="1010.0" layoutY="373.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="299.916259765625">
                <font>
                   <Font name="Book Antiqua" size="27.0" />
                </font>
