@@ -8,6 +8,8 @@ import Controller.GoalsControllers.GoalsPageController;
 import Controller.StatisticsController.StatisticsDetailController;
 import Controller.StatisticsController.StatisticsOverViewController;
 import View.AccountView.*;
+import View.EntryView.EntryView;
+import View.GoalsView.GoalsView;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
@@ -103,8 +105,9 @@ public class PaneFactory {
     }
 
     static AnchorPane initEntryPane() {
-        Pane<EntryPageController> pane = loadInPane("org/openjfx/entryPage.fxml");
+        Pane<EntryView> pane = loadInPane("org/openjfx/entryPage.fxml");
         pane.controller.initPane(parent);
+        EntryPageController pageController=new EntryPageController();
         return pane.anchorPane;
     }
 
@@ -115,8 +118,9 @@ public class PaneFactory {
     }
 
     static AnchorPane initGoalsPane() {
-        Pane<GoalsPageController> pane = loadInPane("org/openjfx/goalsPage.fxml");
+        Pane<GoalsView> pane = loadInPane("org/openjfx/goalsPage.fxml");
         pane.controller.initPane(parent);
+        GoalsPageController pageController=new GoalsPageController();
         return pane.anchorPane;
     }
 

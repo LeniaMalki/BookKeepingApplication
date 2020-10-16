@@ -52,7 +52,6 @@ public class LogInPageController implements AccountObserver {
      * by the account facade and logInHandler.
      */
     private void onLoginClicked() {
-
         if (accountFacade.getAccountName() == null) {
             logInView.setMessage("No user registered!");
         } else if (logInHandler.logIn(logInView.usernameField.getText(), logInView.logInField.getText())) {

@@ -9,6 +9,7 @@ import Model.EntryLogic.Entry;
 import Model.EntryLogic.EntryHandler;
 import Model.EntryLogic.EntrySubject;
 import Model.Interfaces.EntryObserver;
+import View.EntryView.EntryListItemView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -64,7 +65,7 @@ public class StatisticsDetailController implements iPane, EntryObserver, RemoveI
      * A function (when button pressed) removeEntry that iterates through the lists of entries and removes the entry
      * if its selected.
      */
-    public void update(Entry entry, EntryListItemController controller){
+    public void update(Entry entry, EntryListItemView controller){
         entryHandler.getEntries().remove(entry);
         flowpaneStat.getChildren().remove(controller);
         updatePieChart();
@@ -137,9 +138,10 @@ public class StatisticsDetailController implements iPane, EntryObserver, RemoveI
      */
     private void addEntryToFlowPane(Entry entry) {
         EntryListItemController entryListItemController = new EntryListItemController(entry);
-        flowpaneStat.getChildren().add(entryListItemController);
+        flowpaneStat.getChildren().add(entryListItemController.getView());
         entryListItemController.add(this);
     }
+
 
     /**
      * When ActionEvent happens, call upon method entriesCheckCategory with input "Daily"
