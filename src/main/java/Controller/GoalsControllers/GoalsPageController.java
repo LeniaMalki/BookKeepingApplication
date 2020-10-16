@@ -1,11 +1,6 @@
 package Controller.GoalsControllers;
 
-import Controller.Interfaces.iPane;
-import Controller.MainControllers.MainController;
-import Controller.MainControllers.PaneFactory;
-import javafx.fxml.FXML;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.FlowPane;
+import View.GoalsView.GoalsView;
 
 /**
  * Controller for the Savings page
@@ -13,42 +8,34 @@ import javafx.scene.layout.FlowPane;
  * @author Artin
  */
 
-public class GoalsPageController implements iPane {
+public class GoalsPageController {
 
-    MainController parent;
+private GoalsView goalsView= GoalsView.getInstance();
+public GoalsPageController(){
+    setAllViewListeners();
+}
 
-    @FXML
-    FlowPane goalFlowPane;
-    @FXML
-    private AnchorPane headerAnchorPane;
 
-    /**
-     * Stats the page when the program is started, also sets header.
-     * @param parent is a main controller
-     */
-    @Override
-    public void initPane(MainController parent) {
-        this.parent = parent;
-        headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
-        goalFlowPane.setVgap(10);
-
+   private void setAllViewListeners(){
+       goalsView.seeBudgetButton.setOnAction(event -> openBudget());
+       goalsView.goToEntryButton.setOnAction(event -> openEntry());
+       goalsView.addNewSavingGoalButton.setOnAction(event -> addGoal());
     }
+
 
     /**
      * open the budget page
      */
 
-    @FXML
     private void openBudget() {
-        parent.showBudgetPage();
+        goalsView.showBudgetPage();
     }
 
     /**
      * open entry page
      */
-    @FXML
     private void openEntry() {
-        parent.showEntryPage();
+       goalsView.showEntryPage();
     }
 
 
@@ -56,22 +43,10 @@ public class GoalsPageController implements iPane {
      * adds a new goal
      */
 
-    @FXML
     private void addGoal() {
-        goalFlowPane.getChildren().add(new NewGoalsInsertController());
+        NewGoalsInsertController goalsInsertController=new NewGoalsInsertController();
+        goalsView.goalFlowPane.getChildren().add(goalsInsertController.getView());
     }
 
-    /**
-     * used to select an icon for the saving
-     */
 
-    @FXML
-    private void budgetPage(){
-        parent.showBudgetPage();
-
-    }
-    @FXML
-    private void entryPage(){
-        parent.showEntryPage();
-    }
 }
