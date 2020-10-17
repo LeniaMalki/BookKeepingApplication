@@ -37,12 +37,6 @@ public class AccountFacade implements AccountSubject {
         }
         return accountFacade;
     }
-    /**
-     * sends an email to the user with their password
-     */
-    public void sendPasswordToEmail() {
-            sendMail.sendEmail(getAccountEmail(),getaccountPassword());
-    }
 
     /**
      * Getter
@@ -86,7 +80,18 @@ public class AccountFacade implements AccountSubject {
     public void updateAccountPassword(String password) {
         accountEditor.setAccountPassword(password);
     }
-
+    /**
+     * sends an email to the user with their password
+     */
+    public void sendPasswordToEmail() {
+        sendMail.sendEmail(getAccountEmail(),getaccountPassword(),"ForgetPassword");
+    }
+    /**
+     * sends a welcome email
+     */
+    public void sendSignUpEmail() {
+        sendMail.sendEmail(getAccountEmail(),getaccountPassword(),"SignUp");
+    }
     /**
      * Delegates the creation of an account to the account existence manager
      * @param signUpName is passed in by the getText() method of corresponding textField in controller signUp
@@ -213,5 +218,4 @@ public class AccountFacade implements AccountSubject {
         }
 
     }
-
 }
