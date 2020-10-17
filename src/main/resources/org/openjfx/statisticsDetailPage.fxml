@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" styleClass="whiteBackground" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.StatisticsController.StatisticsDetailController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" styleClass="whiteBackground" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.StatisticsView.StatisticsDetailView">
     <children>
         <AnchorPane fx:id="headerAnchorPane" layoutX="-2.0" layoutY="-7.0" prefHeight="106.0" prefWidth="1440.0" styleClass="header-Shadow" />
         <ScrollPane fx:id="statisticsScrollPane" layoutX="625.0" layoutY="392.0" prefHeight="519.0" prefWidth="762.0" style="-fx-background-color: FFFFFF;">
@@ -38,7 +38,7 @@
             </font>
         </Text>
         <Line endX="580.0" layoutX="818.0" layoutY="380.0" startX="-190.0" stroke="#0000004d" strokeWidth="2.0" />
-        <Button fx:id="statisticsButtonFood" layoutX="612.0" layoutY="250.0" mnemonicParsing="false" onAction="#food" prefHeight="25.0" prefWidth="162.0" text="Food" textAlignment="CENTER">
+        <Button fx:id="statisticsButtonFood" layoutX="612.0" layoutY="250.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="162.0" text="Food" textAlignment="CENTER">
             <styleClass>
                 <String fx:value="inactiveEntryButton" />
                 <String fx:value="scroll-bar" />
@@ -47,7 +47,7 @@
                 <String fx:value="droSshadow" />
             </styleClass>
         </Button>
-        <Button fx:id="statisticsButtonHousehold" layoutX="775.0" layoutY="250.0" mnemonicParsing="false" onAction="#household" prefHeight="25.0" prefWidth="162.0" text="Household" textAlignment="CENTER">
+        <Button fx:id="statisticsButtonHousehold" layoutX="775.0" layoutY="250.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="162.0" text="Household" textAlignment="CENTER">
             <styleClass>
                 <String fx:value="inactiveEntryButton" />
                 <String fx:value="Enrique-BoldRound" />
@@ -55,7 +55,7 @@
                 <String fx:value="droSshadow" />
             </styleClass>
         </Button>
-        <Button fx:id="statisticsButtonOther" layoutX="1250.0" layoutY="250.0" mnemonicParsing="false" onAction="#other" prefHeight="25.0" prefWidth="162.0" text="Other" textAlignment="CENTER">
+        <Button fx:id="statisticsButtonOther" layoutX="1250.0" layoutY="250.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="162.0" text="Other" textAlignment="CENTER">
             <styleClass>
                 <String fx:value="inactiveEntryButton" />
                 <String fx:value="Enrique-BoldRound" />
@@ -63,7 +63,7 @@
                 <String fx:value="droSshadow" />
             </styleClass>
         </Button>
-        <Button fx:id="statisticsButtonShopping" layoutX="939.0" layoutY="250.0" mnemonicParsing="false" onAction="#shopping" prefHeight="25.0" prefWidth="162.0" text="Shopping" textAlignment="CENTER">
+        <Button fx:id="statisticsButtonShopping" layoutX="939.0" layoutY="250.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="162.0" text="Shopping" textAlignment="CENTER">
             <styleClass>
                 <String fx:value="inactiveEntryButton" />
                 <String fx:value="Enrique-BoldRound" />
@@ -71,7 +71,7 @@
                 <String fx:value="droSshadow" />
             </styleClass>
         </Button>
-        <Button fx:id="statisticsButtonTransport" layoutX="1100.0" layoutY="250.0" mnemonicParsing="false" onAction="#transport" prefHeight="25.0" prefWidth="150.0" text="Transport" textAlignment="CENTER">
+        <Button fx:id="statisticsButtonTransport" layoutX="1100.0" layoutY="250.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Transport" textAlignment="CENTER">
             <styleClass>
                 <String fx:value="inactiveEntryButton" />
                 <String fx:value="Enrique-BoldRound" />
@@ -85,7 +85,7 @@
             </font>
         </Text>
         <AnchorPane fx:id="chartPane" layoutX="32.0" layoutY="430.0" prefHeight="555.0" prefWidth="580.0" />
-        <Button layoutX="939.0" layoutY="182.0" mnemonicParsing="false" onAction="#allEntries" prefHeight="25.0" prefWidth="162.0" text="All Entries" textAlignment="CENTER">
+        <Button fx:id="statisticsButtonAllEntries" layoutX="939.0" layoutY="182.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="162.0" text="All Entries" textAlignment="CENTER">
             <styleClass>
                 <String fx:value="inactiveEntryButton" />
                 <String fx:value="Enrique-BoldRound" />

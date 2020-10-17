@@ -12,11 +12,14 @@ import View.EntryView.EntryView;
 import View.GoalsView.GoalsView;
 import View.BudgetView.BudgetChartView;
 import View.BudgetView.BudgetView;
+import View.StatisticsView.StatisticsDetailView;
+import View.StatisticsView.StatisticsOverviewView;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
+import java.util.Optional;
 
 
 /**
@@ -111,27 +114,29 @@ public class PaneFactory {
     static AnchorPane initEntryPane() {
         Pane<EntryView> pane = loadInPane("org/openjfx/entryPage.fxml");
         pane.controller.initPane(parent);
-        EntryPageController pageController=new EntryPageController();
-        return pane.anchorPane;
-    }
-
-    static AnchorPane initStatisticsOverviewPane() {
-        Pane<StatisticsOverViewController> pane = loadInPane("org/openjfx/statisticsOverviewPage.fxml");
-        pane.controller.initPane(parent);
+        EntryPageController pageController = new EntryPageController();
         return pane.anchorPane;
     }
 
     static AnchorPane initGoalsPane() {
         Pane<GoalsView> pane = loadInPane("org/openjfx/goalsPage.fxml");
         pane.controller.initPane(parent);
-        GoalsPageController pageController=new GoalsPageController();
+        GoalsPageController pageController = new GoalsPageController();
         return pane.anchorPane;
     }
 
-    static Pane<StatisticsDetailController> initStatisticsDetailPane() {
-        Pane<StatisticsDetailController> pane = loadInPane("org/openjfx/statisticsDetailPage.fxml");
+    static AnchorPane initStatisticsDetailPane() {
+        Pane<StatisticsDetailView> pane = loadInPane("org/openjfx/statisticsDetailPage.fxml");
+        StatisticsDetailController statisticsDetailController = new StatisticsDetailController();
         pane.controller.initPane(parent);
-        return pane;
+        return pane.anchorPane;
+    }
+
+    static AnchorPane initStatisticsOverviewPane() {
+        Pane<StatisticsOverviewView> pane = loadInPane("org/openjfx/statisticsOverviewPage.fxml");
+        pane.controller.initPane(parent);
+        StatisticsOverViewController statisticsOverViewController = new StatisticsOverViewController();
+        return pane.anchorPane;
     }
 
     static AnchorPane initDelAccPopup() {

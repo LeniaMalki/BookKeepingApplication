@@ -17,7 +17,6 @@ public class MainController {
     private AnchorPane logInPage;
     private AnchorPane firstPage;
     private AnchorPane entryPage;
-    private AnchorPane statisticsOverviewPage;
     private AnchorPane budgetPage;
     private AnchorPane budgetCharPage;
     private AnchorPane accountPage;
@@ -26,7 +25,8 @@ public class MainController {
     private AnchorPane deleteAccountPopUp;
     private AnchorPane changePasswordPopUp;
     private AnchorPane detailStatistics;
-    private StatisticsDetailController detailStatisticsController;
+    private AnchorPane overviewStatistics;
+
 
     //________________________________________________ FXML ____________________________________________________________
     @FXML
@@ -47,11 +47,9 @@ public class MainController {
         goalsPage = PaneFactory.initGoalsPane();
         budgetCharPage = PaneFactory.initBudgetCharPane();
         budgetPage = PaneFactory.initBudgetPane();
-        statisticsOverviewPage = PaneFactory.initStatisticsOverviewPane();
         changePasswordPopUp = PaneFactory.initChangePasswordPopUp();
-        PaneFactory.Pane<StatisticsDetailController> detailPane = PaneFactory.initStatisticsDetailPane();
-        detailStatistics = detailPane.anchorPane;
-        detailStatisticsController = detailPane.controller;
+        overviewStatistics = PaneFactory.initStatisticsOverviewPane();
+        detailStatistics = PaneFactory.initStatisticsDetailPane();
         showPage(logInPage);
     }
 
@@ -75,7 +73,7 @@ public class MainController {
      * A function that uses the function "showPage" to show us a specific AnchorPane
      */
     void showStatisticsOverviewPage() {
-        showPage(statisticsOverviewPage);
+        showPage(overviewStatistics);
     }
     /**
      * A function that uses the function "showPage" to show us a specific AnchorPane
@@ -87,9 +85,13 @@ public class MainController {
      * A function that uses the function "showPage" to show us a specific AnchorPane.
      * Takes in a string and uses a controller to set a label on that specific AnchorPane.
      */
+
+
     public void showStatisticsDetailPage(String text) {
-        detailStatisticsController.setLabelPieChart(text);
+        StatisticsDetailController statisticsDetailController =  new StatisticsDetailController();
+        statisticsDetailController.setLabelPieChart(text);
         showPage(detailStatistics);
+
     }
     /**
      * A function that uses the function "showPage" to show us a specific AnchorPane
