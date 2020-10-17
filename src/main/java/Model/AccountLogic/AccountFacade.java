@@ -18,6 +18,7 @@ public class AccountFacade implements AccountSubject {
     private final List<AccountObserver> UserObservers = new ArrayList<>();
     private final AccountExistenceManager accountExistenceManager = AccountExistenceManager.getInstance();
     private final AccountValidityChecker accountValidityChecker = AccountValidityChecker.getInstance();
+    private final SendMail sendMail=new SendMail();
 
     /**
      * Private constructor
@@ -35,6 +36,12 @@ public class AccountFacade implements AccountSubject {
             accountFacade = new AccountFacade();
         }
         return accountFacade;
+    }
+    /**
+     * sends an email to the user with their password
+     */
+    public void sendPasswordToEmail() {
+            sendMail.sendEmail(getAccountEmail(),getaccountPassword());
     }
 
     /**
