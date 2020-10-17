@@ -87,12 +87,6 @@ public class AccountFacade implements AccountSubject {
         sendMail.sendEmail(getAccountEmail(),getaccountPassword(),"ForgetPassword");
     }
     /**
-     * sends a welcome email
-     */
-    public void sendSignUpEmail() {
-        sendMail.sendEmail(getAccountEmail(),getaccountPassword(),"SignUp");
-    }
-    /**
      * Delegates the creation of an account to the account existence manager
      * @param signUpName is passed in by the getText() method of corresponding textField in controller signUp
      * @param signUpUsername is passed in by the getText() method of corresponding textField in controller signUp
