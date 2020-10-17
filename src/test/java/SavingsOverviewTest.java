@@ -9,7 +9,7 @@ class SavingsOverviewTest {
 
     @BeforeAll
     static void addSavingGoalTest(){
-        SavingGoal goal = new SavingGoal(1000,"testSaving", null);
+        SavingGoal goal = new SavingGoal(1000,"testSaving");
         savingsOverview.addSavingsGoal("testGoal",goal );
 
     }
