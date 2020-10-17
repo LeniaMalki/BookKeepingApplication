@@ -1,5 +1,7 @@
 package Controller.StatisticsController;
 
+import Controller.Interfaces.RemoveItemObserver;
+import Controller.Interfaces.RemoveItemSubject;
 import Controller.Interfaces.iPane;
 import Controller.MainControllers.MainController;
 import Controller.MainControllers.PaneFactory;
@@ -7,6 +9,8 @@ import Model.EntryLogic.Entry;
 import Model.EntryLogic.EntryHandler;
 import Model.EntryLogic.EntrySubject;
 import Model.Interfaces.EntryObserver;
+import View.EntryView.EntryListItemView;
+import View.StatisticsView.StatisticsOverviewView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,51 +24,32 @@ import javafx.scene.layout.AnchorPane;
  *
  * @author Oscar
  */
-public class StatisticsOverViewController implements iPane, EntryObserver {
+public class StatisticsOverViewController implements EntryObserver, RemoveItemObserver {
 
     //________________________________________________ VARIABLES _______________________________________________________
-
-    MainController parent;
+    private StatisticsOverviewView statisticsOverviewView = StatisticsOverviewView.getInstance();
     EntryHandler entryHandler = EntryHandler.getInstance();
+
+    public StatisticsOverViewController() {
+        setAllViewListeners();
+        EntrySubject.add(this);
+    }
+
     PieChart chart1;
     PieChart chart2;
     PieChart chart3;
     //__________________________________________________ FXML __________________________________________________________
 
-    @FXML
-    private AnchorPane dailyAnchor;
-
-    @FXML
-    private AnchorPane weeklyAnchor;
-
-    @FXML
-    private AnchorPane monthlyAnchor;
-
-    @FXML
-    private AnchorPane headerAnchorPane;
 
     //_________________________________________________ METHODS ________________________________________________________
-    /**
-     * When ActionEvent happens, call upon method detailStatistics with input "Daily"
-     */
-    @FXML
-    void toDailyStatistics(ActionEvent event) {
-        detailedStatistics("Daily");
+
+    private void setAllViewListeners() {
+        statisticsOverviewView.toDailyStatistics.setOnAction(event -> detailedStatistics("Daily"));
+        statisticsOverviewView.toWeeklyStatistics.setOnAction(event -> detailedStatistics("Weekly"));
+        statisticsOverviewView.toMonthlyStatistics.setOnAction(event -> detailedStatistics("Monthly"));
+
     }
-    /**
-     * When ActionEvent happens, call upon method detailStatistics with input "Weekly"
-     */
-    @FXML
-    void toWeeklyStatistics(ActionEvent event) {
-        detailedStatistics("Weekly");
-    }
-    /**
-     * When ActionEvent happens, call upon method detailStatistics with input "Monthly"
-     */
-    @FXML
-    void toMonthlyStatistics(ActionEvent event) {
-        detailedStatistics("Monthly");
-    }
+
 
     /**
      * A function that shows different texts on the detailStatisticsPage depending on which button you press
@@ -72,7 +57,7 @@ public class StatisticsOverViewController implements iPane, EntryObserver {
      * @param text that is either "Daily", "Monthly" or "Weekly"
      */
     private void detailedStatistics(String text) {
-        parent.showStatisticsDetailPage(text);
+            statisticsOverviewView.showDetailStatisticsPage(text);
     }
 
     //__________ THIS PART IS NOT IMPLEMENTED YET, JUST SOME HARD CODED EXAMPLES TO ILLUSTRATE IN OUR PROGRAM __________
@@ -97,7 +82,7 @@ public class StatisticsOverViewController implements iPane, EntryObserver {
                 new PieChart.Data("Other", entryHandler.getOtherAmount()));
         if (chart1 == null) {
             chart1 = new PieChart(pieChartData1);
-            dailyAnchor.getChildren().add(chart1);
+            statisticsOverviewView.dailyAnchor.getChildren().add(chart1);
         } else chart1.setData(pieChartData1);
     }
 
@@ -110,7 +95,7 @@ public class StatisticsOverViewController implements iPane, EntryObserver {
                 new PieChart.Data("Other", entryHandler.getOtherAmount() + 222));
         if (chart2 == null) {
             chart2 = new PieChart(pieChartData2);
-            weeklyAnchor.getChildren().add(chart2);
+            statisticsOverviewView.weeklyAnchor.getChildren().add(chart2);
         } else chart2.setData(pieChartData2);
     }
 
@@ -123,21 +108,11 @@ public class StatisticsOverViewController implements iPane, EntryObserver {
                 new PieChart.Data("Other", entryHandler.getOtherAmount() + 100));
         if (chart3 == null) {
             chart3 = new PieChart(pieChartData3);
-            monthlyAnchor.getChildren().add(chart3);
+            statisticsOverviewView.monthlyAnchor.getChildren().add(chart3);
         } else chart3.setData(pieChartData3);
     }
     //__________________________________________________________________________________________________________________
 
-    /**
-     * Initializes the pane when the program starts also adds the header
-     * @param parent is the main controller
-     */
-    @Override
-    public void initPane(MainController parent) {
-        this.parent = parent;
-        EntrySubject.add(this);
-        headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
-    }
 
     @Override
     public void update(String category, String type, double Value) {
@@ -150,4 +125,8 @@ public class StatisticsOverViewController implements iPane, EntryObserver {
 
     }
 
+    @Override
+    public void update(Entry entry, EntryListItemView controller) {
+        updateStatisticsPiechart(entry);
+    }
 }
