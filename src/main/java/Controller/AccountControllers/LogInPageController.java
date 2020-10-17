@@ -2,6 +2,7 @@ package Controller.AccountControllers;
 
 import Model.AccountLogic.AccountFacade;
 import Model.AccountLogic.LogInHandler;
+import Model.AccountLogic.SendMail;
 import Model.Interfaces.AccountObserver;
 import View.AccountView.LogInView;
 
@@ -34,6 +35,18 @@ public class LogInPageController implements AccountObserver {
     private void setAllViewListeners() {
         logInView.signUpLink.setOnAction(e -> signUpButton());
         logInView.logInButton.setOnAction(event -> onLoginClicked());
+        logInView.forgotPassword.setOnAction(event -> sendPasswordToEmail());
+    }
+
+    /**
+     * sends an email to the user with their password
+     */
+    private void sendPasswordToEmail() {
+        SendMail sendMail =new SendMail();
+        if (accountFacade.getAccountEmail()!=null){
+        sendMail.sendEmail(accountFacade.getAccountEmail(),accountFacade.getaccountPassword());
+            logInView.setMessage("Email with password sent");}
+        else logInView.setMessage("No user registered!");
     }
 
     /**
