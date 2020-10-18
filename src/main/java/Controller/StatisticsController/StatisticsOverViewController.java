@@ -1,10 +1,6 @@
 package Controller.StatisticsController;
 
 import Controller.Interfaces.RemoveItemObserver;
-import Controller.Interfaces.RemoveItemSubject;
-import Controller.Interfaces.iPane;
-import Controller.MainControllers.MainController;
-import Controller.MainControllers.PaneFactory;
 import Model.EntryLogic.Entry;
 import Model.EntryLogic.EntryHandler;
 import Model.EntryLogic.EntrySubject;
@@ -13,10 +9,7 @@ import View.EntryView.EntryListItemView;
 import View.StatisticsView.StatisticsOverviewView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
-import javafx.scene.layout.AnchorPane;
 
 /**
  * A controller that handles the overview statistics page
@@ -27,21 +20,16 @@ import javafx.scene.layout.AnchorPane;
 public class StatisticsOverViewController implements EntryObserver, RemoveItemObserver {
 
     //________________________________________________ VARIABLES _______________________________________________________
+
     private StatisticsOverviewView statisticsOverviewView = StatisticsOverviewView.getInstance();
     EntryHandler entryHandler = EntryHandler.getInstance();
+
+    //_________________________________________________ METHODS ________________________________________________________
 
     public StatisticsOverViewController() {
         setAllViewListeners();
         EntrySubject.add(this);
     }
-
-    PieChart chart1;
-    PieChart chart2;
-    PieChart chart3;
-    //__________________________________________________ FXML __________________________________________________________
-
-
-    //_________________________________________________ METHODS ________________________________________________________
 
     private void setAllViewListeners() {
         statisticsOverviewView.toDailyStatistics.setOnAction(event -> detailedStatistics("Daily"));
@@ -80,10 +68,10 @@ public class StatisticsOverViewController implements EntryObserver, RemoveItemOb
                 new PieChart.Data("Household", entryHandler.getHouseholdAmount()),
                 new PieChart.Data("Shopping", entryHandler.getShoppingAmount()),
                 new PieChart.Data("Other", entryHandler.getOtherAmount()));
-        if (chart1 == null) {
-            chart1 = new PieChart(pieChartData1);
-            statisticsOverviewView.dailyAnchor.getChildren().add(chart1);
-        } else chart1.setData(pieChartData1);
+        if (statisticsOverviewView.chart1 == null) {
+            statisticsOverviewView.chart1 = new PieChart(pieChartData1);
+            statisticsOverviewView.dailyAnchor.getChildren().add(statisticsOverviewView.chart1);
+        } else statisticsOverviewView.chart1.setData(pieChartData1);
     }
 
     private void updateWeeklyStatistics() {
@@ -93,10 +81,10 @@ public class StatisticsOverViewController implements EntryObserver, RemoveItemOb
                 new PieChart.Data("Household", entryHandler.getHouseholdAmount() + 50),
                 new PieChart.Data("Shopping", entryHandler.getShoppingAmount() + 10),
                 new PieChart.Data("Other", entryHandler.getOtherAmount() + 222));
-        if (chart2 == null) {
-            chart2 = new PieChart(pieChartData2);
-            statisticsOverviewView.weeklyAnchor.getChildren().add(chart2);
-        } else chart2.setData(pieChartData2);
+        if (statisticsOverviewView.chart2 == null) {
+            statisticsOverviewView.chart2 = new PieChart(pieChartData2);
+            statisticsOverviewView.weeklyAnchor.getChildren().add(statisticsOverviewView.chart2);
+        } else statisticsOverviewView.chart2.setData(pieChartData2);
     }
 
     private void updateMonthlyStatistics() {
@@ -106,10 +94,10 @@ public class StatisticsOverViewController implements EntryObserver, RemoveItemOb
                 new PieChart.Data("Household", entryHandler.getHouseholdAmount() + 50),
                 new PieChart.Data("Shopping", entryHandler.getShoppingAmount() + 20),
                 new PieChart.Data("Other", entryHandler.getOtherAmount() + 100));
-        if (chart3 == null) {
-            chart3 = new PieChart(pieChartData3);
-            statisticsOverviewView.monthlyAnchor.getChildren().add(chart3);
-        } else chart3.setData(pieChartData3);
+        if (statisticsOverviewView.chart3 == null) {
+            statisticsOverviewView.chart3 = new PieChart(pieChartData3);
+            statisticsOverviewView.monthlyAnchor.getChildren().add(statisticsOverviewView.chart3);
+        } else statisticsOverviewView.chart3.setData(pieChartData3);
     }
     //__________________________________________________________________________________________________________________
 

@@ -30,6 +30,8 @@ public class LogInView implements iPane {
     public Hyperlink signUpLink;
     @FXML
     public Button logInButton;
+    @FXML
+    public Hyperlink forgotPassword;
 
     public static LogInView getInstance() {
         if (logInView == null) {

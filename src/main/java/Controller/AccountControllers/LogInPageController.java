@@ -7,6 +7,7 @@ import View.AccountView.LogInView;
 
 /**
  * Controller for login on login page
+ *
  * @author Lenia
  */
 
@@ -30,10 +31,20 @@ public class LogInPageController implements AccountObserver {
     }
 
 
-
     private void setAllViewListeners() {
         logInView.signUpLink.setOnAction(e -> signUpButton());
         logInView.logInButton.setOnAction(event -> onLoginClicked());
+        logInView.forgotPassword.setOnAction(event -> sendForgottenPasswordToEmail());
+    }
+
+    /**
+     * sends an email to the user with their password if the user exists
+     */
+    private void sendForgottenPasswordToEmail() {
+        if (accountFacade.getAccountEmail() != null) {
+            accountFacade.sendPasswordToEmail();
+            logInView.setMessage("Email with password sent");
+        } else logInView.setMessage("No user registered!");
     }
 
     /**
@@ -43,7 +54,7 @@ public class LogInPageController implements AccountObserver {
     private void signUpButton() {
         if (accountFacade.getAccountName() == null) {
             logInView.showSignUpPopUp();
-        } else logInView.setMessage("An account already exists! ");
+        } else logInView.setMessage("An account already exists!");
 
     }
 
@@ -58,7 +69,7 @@ public class LogInPageController implements AccountObserver {
             logInView.setMessage("");
             logInView.clearLogInFields();
             logInView.parent.showFirstPage();
-        } else logInView.setMessage("Wrong/missing input(s)! ");
+        } else logInView.setMessage("Wrong/missing input(s)!");
     }
 
     /**

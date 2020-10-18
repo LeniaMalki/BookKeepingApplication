@@ -14,6 +14,9 @@ import javafx.scene.text.Text;
 import java.util.Optional;
 
 public class StatisticsDetailView implements iPane {
+
+    //________________________________________________ VARIABLES _______________________________________________________
+
     static StatisticsDetailView statisticsDetailView;
     private MainController parent;
 
@@ -49,6 +52,7 @@ public class StatisticsDetailView implements iPane {
 
     public PieChart chart;
 
+    //_________________________________________________ METHODS ________________________________________________________
 
 
     public StatisticsDetailView(){

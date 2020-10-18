@@ -114,14 +114,14 @@ public class PaneFactory {
     static AnchorPane initEntryPane() {
         Pane<EntryView> pane = loadInPane("org/openjfx/entryPage.fxml");
         pane.controller.initPane(parent);
-        EntryPageController pageController=new EntryPageController();
+        EntryPageController pageController = new EntryPageController();
         return pane.anchorPane;
     }
 
     static AnchorPane initGoalsPane() {
         Pane<GoalsView> pane = loadInPane("org/openjfx/goalsPage.fxml");
         pane.controller.initPane(parent);
-        GoalsPageController pageController=new GoalsPageController();
+        GoalsPageController pageController = new GoalsPageController();
         return pane.anchorPane;
     }
 

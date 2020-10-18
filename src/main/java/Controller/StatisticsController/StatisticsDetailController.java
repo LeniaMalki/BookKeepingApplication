@@ -21,16 +21,19 @@ import javafx.scene.chart.PieChart;
  * @author Oscar
  */
 public class StatisticsDetailController implements  EntryObserver, RemoveItemObserver {
+
+    //________________________________________________ VARIABLES _______________________________________________________
+
     EntryHandler entryHandler = EntryHandler.getInstance();
     boolean allEntries;
     private StatisticsDetailView statisticsDetailView = StatisticsDetailView.getInstance();
+
+    //_________________________________________________ METHODS ________________________________________________________
+
     public StatisticsDetailController(){
         setAllViewListeners();
         EntrySubject.add(this);
     }
-
-
-    //_________________________________________________ METHODS ________________________________________________________
 
     private void setAllViewListeners(){
         statisticsDetailView.statisticsButtonAllEntries.setOnAction(a -> entriesCheckCategory(""));

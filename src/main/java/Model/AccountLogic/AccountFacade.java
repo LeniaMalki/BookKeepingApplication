@@ -18,6 +18,7 @@ public class AccountFacade implements AccountSubject {
     private final List<AccountObserver> UserObservers = new ArrayList<>();
     private final AccountExistenceManager accountExistenceManager = AccountExistenceManager.getInstance();
     private final AccountValidityChecker accountValidityChecker = AccountValidityChecker.getInstance();
+    private final SendMail sendMail=new SendMail();
 
     /**
      * Private constructor
@@ -54,6 +55,14 @@ public class AccountFacade implements AccountSubject {
     }
 
     /**
+     * Gets account password through delegation to accountEditor
+     * @return returns account password
+     */
+    public String getaccountPassword() {
+        return accountEditor.getAccountPassword();
+    }
+
+    /**
      * Gets account email through delegation to accountEditor
      * @return returns account email
      */
@@ -71,7 +80,12 @@ public class AccountFacade implements AccountSubject {
     public void updateAccountPassword(String password) {
         accountEditor.setAccountPassword(password);
     }
-
+    /**
+     * sends an email to the user with their password
+     */
+    public void sendPasswordToEmail() {
+        sendMail.sendEmail(getAccountEmail(),getaccountPassword(),"ForgetPassword");
+    }
     /**
      * Delegates the creation of an account to the account existence manager
      * @param signUpName is passed in by the getText() method of corresponding textField in controller signUp
