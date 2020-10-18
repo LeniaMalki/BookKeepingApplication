@@ -43,7 +43,7 @@ public class LogInPageController implements AccountObserver {
     private void sendForgottenPasswordToEmail() {
         if (accountFacade.getAccountEmail() != null) {
             accountFacade.sendPasswordToEmail();
-            logInView.setMessage("Email with password sent");
+            logInView.setMessage("An email with your password has been sent to you!");
         } else logInView.setMessage("No user registered!");
     }
 
