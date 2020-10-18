@@ -1,4 +1,4 @@
-package Controller.AccountControllers;
+package Controller.AccountControllers;//NOPMD
 
 import Model.AccountLogic.AccountFacade;
 import Model.Interfaces.ControllerInterface;
@@ -14,10 +14,12 @@ public class DeleteAccountPopUpController implements ControllerInterface {
     private final DeleteAccountView deleteAccountView = DeleteAccountView.getInstance();
 
     public DeleteAccountPopUpController() {
-        setAllViewListeners();
+        setAllViewListeners();//NOPMD
     }
+
     @Override
     public void setAllViewListeners() {
+
         deleteAccountView.deleteAccountButton.setOnAction(e -> onConfirmDeleteClicked());
     }
 
@@ -25,14 +27,12 @@ public class DeleteAccountPopUpController implements ControllerInterface {
      * Handles the mouse action of deleting and account by delegation to AccountFacade's methods for deletion
      */
     private void onConfirmDeleteClicked() {
-        System.out.println("startDel");
-
         if (accountFacade.doesPasswordMatchWithAccount(deleteAccountView.password.getText())) {
             accountFacade.deleteAccount();
             deleteAccountView.parent.showLogInPage();
-            System.out.println("correct but not :) ");
+        } else {
+            deleteAccountView.setMessage();
         }
-        else deleteAccountView.setMessage();
-        System.out.println("erorr");
+
     }
 }

@@ -1,11 +1,11 @@
-package Model.AccountLogic;
+package Model.AccountLogic;//NOPMD
 
 /**
  * The concept of an account; designed through singleton pattern.
  *
  * @author Lenia
  */
-public class Account {
+public final class Account {
 
     //________________________________________________ Variables  ______________________________________________________
     private static Account accountInstance;
@@ -44,7 +44,7 @@ public class Account {
     /**
      * Setter
      */
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
@@ -58,7 +58,7 @@ public class Account {
     /**
      * Setter
      */
-    public void setUsername(String username) {
+    public void setUsername(final String username) {
         this.username = username;
     }
 
@@ -72,7 +72,7 @@ public class Account {
     /**
      * Setter
      */
-    public void setEmailAddress(String emailAddress) {
+    public void setEmailAddress(final String emailAddress) {
         this.emailAddress = emailAddress;
     }
 
@@ -86,7 +86,7 @@ public class Account {
     /**
      * Setter
      */
-    public void setPassword(String password) {
+    public void setPassword(final String password) {
         this.password = password;
     }
 

@@ -9,13 +9,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SignUpView implements iPane {
 
     public static SignUpView signUpView;
-
-    MainController parent;
-    ArrayList<TextField> textFields = new ArrayList<>() {};
     @FXML
     public TextField signUpName;
     @FXML
@@ -30,6 +28,8 @@ public class SignUpView implements iPane {
     public Text textMessage;
     @FXML
     public Button createAccount;
+    MainController parent;
+    List<TextField> textFields = new ArrayList<>() {};
 
     public SignUpView() {
         signUpView = this;
@@ -43,7 +43,7 @@ public class SignUpView implements iPane {
     }
 
     @Override
-    public void initPane(MainController parent) {
+    public void initPane(final MainController parent) {
         this.parent = parent;
 
         textFields.add(signUpName);
@@ -54,7 +54,7 @@ public class SignUpView implements iPane {
 
     }
 
-    public void setMessage(String message) {
+    public void setMessage(final String message) {
         textMessage.setText(message);
 
     }
@@ -64,7 +64,7 @@ public class SignUpView implements iPane {
      */
     public void clearTextFields() {
 
-        for (TextField t : textFields) {
+        for (final TextField t : textFields) {
             t.clear();
             t.setStyle("-fx-text-box-border: #FFFFFF;");
         }

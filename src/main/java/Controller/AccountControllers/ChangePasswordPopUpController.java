@@ -1,4 +1,4 @@
-package Controller.AccountControllers;
+package Controller.AccountControllers;//NOPMD
 
 import Model.AccountLogic.AccountFacade;
 import Model.Interfaces.ControllerInterface;
@@ -14,7 +14,7 @@ public class ChangePasswordPopUpController implements ControllerInterface {
     //________________________________________________ VARIABLES _______________________________________________________
 
     private final AccountFacade accountFacade = AccountFacade.getInstance();
-    private final ChangePasswordView changePasswordView = ChangePasswordView.getInstance();
+    private final ChangePasswordView changePasswordView = ChangePasswordView.getInstance();//NOPMD
 
 
     //________________________________________________ Methods _________________________________________________________
@@ -38,8 +38,12 @@ public class ChangePasswordPopUpController implements ControllerInterface {
 
                 accountFacade.updateAccountPassword(changePasswordView.newPassword.getText());
                 changePasswordView.setMessage("correct");
-            } else changePasswordView.setMessage("noMatch");
-        } else changePasswordView.setMessage("invalid");
+            } else {
+                changePasswordView.setMessage("noMatch");
+            }
+        } else {
+            changePasswordView.setMessage("invalid");
+        }
     }
 
     @Override

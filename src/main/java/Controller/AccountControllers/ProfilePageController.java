@@ -1,4 +1,4 @@
-package Controller.AccountControllers;
+package Controller.AccountControllers;//NOPMD
 
 import Model.AccountLogic.AccountFacade;
 import Model.Interfaces.AccountObserver;
@@ -22,6 +22,7 @@ public class ProfilePageController implements AccountObserver, ControllerInterfa
         setAllViewListeners();
 
     }
+
     @Override
     public void setAllViewListeners() {
         profilePageView.submitChangesButton.setOnAction(e -> onSubmitChangesClicked());
@@ -47,9 +48,9 @@ public class ProfilePageController implements AccountObserver, ControllerInterfa
      */
     private void onSubmitChangesClicked() {
 
-        int changesMade = accountFacade.handleAccountChanges(profilePageView.username.getText(),
-                                                             profilePageView.name.getText(),
-                                                             profilePageView.email.getText());
+        final int changesMade = accountFacade.handleAccountChanges(profilePageView.username.getText(),
+                                                                   profilePageView.name.getText(),
+                                                                   profilePageView.email.getText());
 
         if (changesMade == 0) {
             profilePageView.setMessage("No changes made");
@@ -81,6 +82,7 @@ public class ProfilePageController implements AccountObserver, ControllerInterfa
         profilePageView.openChangePasswordPop();
 
     }
+
     /**
      * Handles the action when sign out is clicked
      */
