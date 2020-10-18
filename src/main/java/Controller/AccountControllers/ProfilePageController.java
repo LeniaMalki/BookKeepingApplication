@@ -2,13 +2,14 @@ package Controller.AccountControllers;
 
 import Model.AccountLogic.AccountFacade;
 import Model.Interfaces.AccountObserver;
+import Model.Interfaces.ControllerInterface;
 import View.AccountView.ProfilePageView;
 
 /**
  * Controller for a handling the image view of the Account Page
  * @author Lenia
  */
-public class ProfilePageController implements AccountObserver {
+public class ProfilePageController implements AccountObserver, ControllerInterface {
     //________________________________________________ VARIABLES _______________________________________________________
 
     private final AccountFacade accountFacade = AccountFacade.getInstance();
@@ -21,8 +22,8 @@ public class ProfilePageController implements AccountObserver {
         setAllViewListeners();
 
     }
-
-    private void setAllViewListeners() {
+    @Override
+    public void setAllViewListeners() {
         profilePageView.submitChangesButton.setOnAction(e -> onSubmitChangesClicked());
         profilePageView.changePasswordLink.setOnAction(e -> openChangePasswordPop());
         profilePageView.signOutButton.setOnAction(e -> signOut());

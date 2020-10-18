@@ -1,6 +1,7 @@
 package Controller.AccountControllers;
 
 import Model.AccountLogic.AccountFacade;
+import Model.Interfaces.ControllerInterface;
 import View.AccountView.ChangePasswordView;
 
 /**
@@ -9,7 +10,7 @@ import View.AccountView.ChangePasswordView;
  */
 
 
-public class ChangePasswordPopUpController {
+public class ChangePasswordPopUpController implements ControllerInterface {
     //________________________________________________ VARIABLES _______________________________________________________
 
     private final AccountFacade accountFacade = AccountFacade.getInstance();
@@ -22,9 +23,6 @@ public class ChangePasswordPopUpController {
         setAllViewListeners();
     }
 
-    private void setAllViewListeners() {
-        changePasswordView.confirmChangeButton.setOnAction(e -> onChangePasswordClicked());
-    }
 
     /**
      * Goes back to account page when confirming change of password
@@ -42,5 +40,10 @@ public class ChangePasswordPopUpController {
                 changePasswordView.setMessage("correct");
             } else changePasswordView.setMessage("noMatch");
         } else changePasswordView.setMessage("invalid");
+    }
+
+    @Override
+    public void setAllViewListeners() {
+        changePasswordView.confirmChangeButton.setOnAction(e -> onChangePasswordClicked());
     }
 }

@@ -1,9 +1,9 @@
 package Controller.AccountControllers;
 
 import Model.AccountLogic.AccountFacade;
+import Model.Interfaces.ControllerInterface;
 import View.AccountView.SignUpView;
-import javafx.event.Event;
-import javafx.fxml.FXML;
+
 
 import java.util.ArrayList;
 
@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author Lenia
  */
 
-public class SignUpPageController {
+public class SignUpPageController implements ControllerInterface {
 
     //________________________________________________ VARIABLES _______________________________________________________
 
@@ -22,8 +22,8 @@ public class SignUpPageController {
     //________________________________________________ Methods _________________________________________________________
 
 
-
-    private void setAllViewListeners() {
+    @Override
+    public void setAllViewListeners() {
         signUpView.createAccount.setOnAction(event -> onCreateAccountClicked());
     }
 

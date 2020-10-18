@@ -3,6 +3,7 @@ package Controller.AccountControllers;
 import Model.AccountLogic.AccountFacade;
 import Model.AccountLogic.LogInHandler;
 import Model.Interfaces.AccountObserver;
+import Model.Interfaces.ControllerInterface;
 import View.AccountView.LogInView;
 
 /**
@@ -11,7 +12,7 @@ import View.AccountView.LogInView;
  * @author Lenia
  */
 
-public class LogInPageController implements AccountObserver {
+public class LogInPageController implements AccountObserver, ControllerInterface {
 
     private final LogInHandler logInHandler = new LogInHandler() {
         public boolean logIn(String accountName, String password) {
@@ -30,8 +31,8 @@ public class LogInPageController implements AccountObserver {
         setAllViewListeners();
     }
 
-
-    private void setAllViewListeners() {
+    @Override
+    public void setAllViewListeners() {
         logInView.signUpLink.setOnAction(e -> signUpButton());
         logInView.logInButton.setOnAction(event -> onLoginClicked());
         logInView.forgotPassword.setOnAction(event -> sendForgottenPasswordToEmail());
