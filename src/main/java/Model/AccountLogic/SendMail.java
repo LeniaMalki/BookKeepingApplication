@@ -65,6 +65,7 @@ public class SendMail {
         // Used to debug SMTP issues
         session.setDebug(true);
         try {
+            StringBuilder stringBuilder= new StringBuilder();
             // Create a default MimeMessage object.
             Message message = new MimeMessage(session);
             // Set From: header field of the header.
@@ -76,26 +77,18 @@ public class SendMail {
             message.setSubject("Locali Team");
             // Create the message part
             BodyPart messageBodyPart = new MimeBodyPart();
-            // Now set the actual messages
-            messageBodyPart.setText(messageChooser.get(typeOfMessage));
-            // Create a multipar message
-            Multipart multipart = new MimeMultipart();
-            // Set text message part1
-            multipart.addBodyPart(messageBodyPart);
+            stringBuilder.append(messageChooser.get(typeOfMessage));
+
 
             if (typeOfMessage.equals("ForgetPassword")) {
-                messageBodyPart = new MimeBodyPart();
-                messageBodyPart.setText(passwordMessage);
-                multipart.addBodyPart(messageBodyPart);
+                stringBuilder.append(passwordMessage);
             }
-
-            messageBodyPart = new MimeBodyPart();
-            // Set text message part2
-            messageBodyPart.setText("\n\nBest Regards\nThe Locali Team");
-            multipart.addBodyPart(messageBodyPart);
-
+            stringBuilder.append("\n\nBest Regards\nThe Locali Team");
+            messageBodyPart.setText(stringBuilder.toString());
+            Multipart textBody = new MimeMultipart();
+            textBody.addBodyPart(messageBodyPart);
             // Send the complete message parts
-            message.setContent(multipart);
+            message.setContent(textBody);
             Transport.send(message);
 
         } catch (MessagingException e) {
