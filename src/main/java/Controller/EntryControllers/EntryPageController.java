@@ -23,10 +23,9 @@ import java.util.ArrayList;
 public class EntryPageController implements SavingsObserver, RemoveItemObserver {
     private final ArrayList<Button> entryButtonTypeCluster = new ArrayList<>();
     private final ArrayList<Entry> entryList = new ArrayList<>();
-    private boolean listItemPink = false;
 
     private Button currentActiveEntryButton;
-    EntryView entryView = EntryView.getInstance();
+    private final EntryView entryView = EntryView.getInstance();
 
     public EntryPageController() {
         setAllViewLiseners();
@@ -43,7 +42,7 @@ public class EntryPageController implements SavingsObserver, RemoveItemObserver 
     }
 
 
-    private ArrayList<String> savingCategory = new ArrayList<>() {{
+    private final ArrayList<String> savingCategory = new ArrayList<>() {{
         add("General Saving");
     }};
     private final ArrayList<String> expenceCategory = new ArrayList<>() {{
@@ -73,9 +72,9 @@ public class EntryPageController implements SavingsObserver, RemoveItemObserver 
      *
      * @param event if something is pressed an ActionEvent is fired and tells the system what happened
      */
-    private void activateEntryTypeButton(ActionEvent event) {
-        Button btn = (Button) event.getSource();
-        for (Button b : entryButtonTypeCluster) {
+    private void activateEntryTypeButton( ActionEvent event) {
+        final Button btn = (Button) event.getSource();
+        for (final Button b : entryButtonTypeCluster) {
             b.getStyleClass().remove("activeEntryButton");
             if (!b.getStyleClass().contains("inactiveEntryButton")) {
                 b.getStyleClass().add("inactiveEntryButton");
@@ -113,16 +112,16 @@ public class EntryPageController implements SavingsObserver, RemoveItemObserver 
 
         if (checkIfFieldsAreFilledInCorrectly(entryView.nameTextField, entryView.categoryComboBox, entryView.costTextField)) {
             try {
-                Entry entry = new Entry(Double.parseDouble(entryView.costTextField.getText()), entryView.nameTextField.getText(), entryView.categoryComboBox.getValue(), currentActiveEntryButton.getText());
+                final Entry entry = new Entry(Double.parseDouble(entryView.costTextField.getText()), entryView.nameTextField.getText(), entryView.categoryComboBox.getValue(), currentActiveEntryButton.getText());
                 entryList.add(entry);
-                EntryListItemController itemController = new EntryListItemController(entry);
+                final EntryListItemController itemController = new EntryListItemController(entry);
                 entryView.entryFlowPlane.getChildren().add(itemController.getView());
-                listItemPink = !listItemPink;
                 entryView.costTextField.clear();
                 entryView.nameTextField.clear();
                 entryView.categoryComboBox.valueProperty().set("Category");
                 itemController.add(this);
-            } catch (Exception ignored) {
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }
@@ -131,15 +130,21 @@ public class EntryPageController implements SavingsObserver, RemoveItemObserver 
 
         if (!checkIfNameIsFilledIn(nameTextField)){
             entryView.setRedColor(nameTextField);
-        }else entryView.setGreyColor(nameTextField);
+        }else {
+            entryView.setGreyColor(nameTextField);
+        }
 
         if (checkIfCategoryIsFilledIn(categoryComboBox)){
             entryView.setRedColor(categoryComboBox);
-        }else entryView.setGreyColor(categoryComboBox);
+        }else{
+            entryView.setGreyColor(categoryComboBox);
+        }
 
         if (checkIfCostIsInCorrect(costTextField)){
             entryView.setRedColor(costTextField);
-        }else entryView.setGreyColor(costTextField);
+        }else {
+            entryView.setGreyColor(costTextField);
+        }
     }
 
     private boolean checkIfFieldsAreFilledInCorrectly(TextField nameTextField, ComboBox<String> categoryComboBox, TextField costTextField) {
@@ -155,7 +160,6 @@ public class EntryPageController implements SavingsObserver, RemoveItemObserver 
     }
 
     private boolean checkIfCategoryIsFilledIn(ComboBox<String> categoryComboBox) {
-        System.out.println(categoryComboBox.getValue());
         return (categoryComboBox.getValue()=="" || categoryComboBox.getValue()=="Category" || categoryComboBox.getValue() == null);
     }
 
@@ -163,7 +167,7 @@ public class EntryPageController implements SavingsObserver, RemoveItemObserver 
      * Confirms all the entries that the user has added, as an extra step to make sure that everything is right
      */
     private void submitEntries() {
-        for (Entry entry : entryList) {
+        for (final Entry entry : entryList) {
             entry.notifyEntryListeners();
         }
         entryView.entryFlowPlane.getChildren().clear();
@@ -173,24 +177,24 @@ public class EntryPageController implements SavingsObserver, RemoveItemObserver 
     /**
      * informs the object that a change has happened in a class that it observes
      *
-     * @param s a string has been sent with the change
+     * @param string a string has been sent with the change
      */
     @Override
-    public void update(String s) {
-        savingCategory.add(s);
+    public void update(String string) {
+        savingCategory.add(string);
         if (currentActiveEntryButton == entryView.savingButton) {
-            entryView.categoryComboBox.getItems().add(s);
+            entryView.categoryComboBox.getItems().add(string);
         }
     }
 
     /**
      * Checks what category box is selected and fills it with the right info
      *
-     * @param b is the button that is active
+     * @param button is the button that is active
      */
-    private void checkCategoryBox(Button b) {
+    private void checkCategoryBox(Button button) {
         entryView.categoryComboBox.getItems().clear();
-        if (b == entryView.savingButton) {
+        if (button == entryView.savingButton) {
             entryView.categoryComboBox.getItems().removeAll(expenceCategory);
             entryView.categoryComboBox.getItems().addAll(savingCategory);
         } else {

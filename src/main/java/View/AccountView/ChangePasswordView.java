@@ -1,4 +1,4 @@
-package View.AccountView;
+package View.AccountView;//NOPMD
 
 import Controller.Interfaces.iPane;
 import Controller.MainControllers.MainController;
@@ -10,7 +10,7 @@ import javafx.scene.text.Text;
 
 public class ChangePasswordView implements iPane {
 
-    public static ChangePasswordView changePasswordView;
+    public static ChangePasswordView changePasswordView;//NOPMD
     @FXML
     public PasswordField newPassword;
     @FXML
@@ -18,8 +18,8 @@ public class ChangePasswordView implements iPane {
     @FXML
     public Text textMessage;
     @FXML
-    public Button confirmChangeButton;
-    MainController parent;
+    public Button confirmChangeButton;//NOPMD
+    MainController parent;//NOPMD//NOPMD
 
     public ChangePasswordView() {
         changePasswordView = this;
@@ -33,16 +33,16 @@ public class ChangePasswordView implements iPane {
     }
 
 
-    public void setMessage(String message) {
+    public void setMessage(final String message) {
 
-        if (message.equals("invalid")) {
+        if ("invalid".equals(message)) {
             textMessage.setText("Invalid new password.");
         }
-        if (message.equals("correct")) {
+        if ("correct".equals(message)) {
             textMessage.setText("Changes saved!");
 
         }
-        if (message.equals("noMatch")) {
+        if ("noMatch".equals(message)) {
             textMessage.setText("Password does not match.");
 
         }
@@ -51,7 +51,7 @@ public class ChangePasswordView implements iPane {
 
 
     @Override
-    public void initPane(MainController parent) {
+    public void initPane(final MainController parent) {
         this.parent = parent;
     }
 }

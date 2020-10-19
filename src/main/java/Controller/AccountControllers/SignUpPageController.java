@@ -1,9 +1,8 @@
-package Controller.AccountControllers;
+package Controller.AccountControllers;//NOPMD
 
 import Model.AccountLogic.AccountFacade;
+import Model.Interfaces.ControllerInterface;
 import View.AccountView.SignUpView;
-import javafx.event.Event;
-import javafx.fxml.FXML;
 
 import java.util.ArrayList;
 
@@ -12,24 +11,24 @@ import java.util.ArrayList;
  * @author Lenia
  */
 
-public class SignUpPageController {
+public class SignUpPageController implements ControllerInterface {
 
     //________________________________________________ VARIABLES _______________________________________________________
 
     private final AccountFacade accountFacade = AccountFacade.getInstance();
-    private  final SignUpView signUpView = SignUpView.getInstance();
+    private final SignUpView signUpView = SignUpView.getInstance();
 
     //________________________________________________ Methods _________________________________________________________
 
 
-
-    private void setAllViewListeners() {
-        signUpView.createAccount.setOnAction(event -> onCreateAccountClicked());
-    }
-
     public SignUpPageController() {
         setAllViewListeners();
 
+    }
+
+    @Override
+    public void setAllViewListeners() {
+        signUpView.createAccount.setOnAction(event -> onCreateAccountClicked());
     }
 
     /**
@@ -40,33 +39,33 @@ public class SignUpPageController {
         if (areInputsMissing()) {
             signUpView.setMessage("Missing inputs!");
 
-        } else if ((accountFacade.createAccount((signUpView.signUpName.getText()), signUpView.signUpUsername.getText(),
-                                                signUpView.signUpPassword.getText(),
-                                                signUpView.signUpConfirmPassword.getText(),
-                                                signUpView.signUpEmail.getText()))) {
+        } else if (accountFacade.createAccount(signUpView.signUpName.getText(), signUpView.signUpUsername.getText(),
+                                               signUpView.signUpPassword.getText(),
+                                               signUpView.signUpConfirmPassword.getText(),
+                                               signUpView.signUpEmail.getText())) {
             accountFacade.notifyListeners();
             signUpView.clearTextFields();
             signUpView.setMessage("");
-        } else signUpView.setMessage("Invalid input(s)!");
+        } else {
+            signUpView.setMessage("Invalid input(s)!");
+        }
     }
 
     /**
      * Checks whether all fields of the sign up page are entered and none is left blank
      */
     private boolean areInputsMissing() {
-        ArrayList<String> textFieldStrings = new ArrayList<>() {
-            {
-                add(signUpView.signUpName.getText());
-                add(signUpView.signUpUsername.getText());
-                add(signUpView.signUpEmail.getText());
-                add(signUpView.signUpPassword.getText());
-                add(signUpView.signUpConfirmPassword.getText());
-            }
-        };
+        final ArrayList<String> textFieldStrings = new ArrayList<>();
+
+        textFieldStrings.add(signUpView.signUpName.getText());
+        textFieldStrings.add(signUpView.signUpUsername.getText());
+        textFieldStrings.add(signUpView.signUpEmail.getText());
+        textFieldStrings.add(signUpView.signUpPassword.getText());
+        textFieldStrings.add(signUpView.signUpConfirmPassword.getText());
 
 
-        for (String textFieldInput : textFieldStrings) {
-            if (textFieldInput.equals("")) {
+        for (final String textFieldInput : textFieldStrings) {
+            if ("".equals(textFieldInput)) {
                 return true;
             }
         }

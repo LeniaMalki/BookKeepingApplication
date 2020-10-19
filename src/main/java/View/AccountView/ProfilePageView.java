@@ -49,12 +49,12 @@ public class ProfilePageView implements iPane {
     }
 
     @Override
-    public void initPane(MainController parent) {
+    public void initPane(final MainController parent) {
         this.parent = parent;
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
     }
 
-    public void setMessage(String message) {
+    public void setMessage(final String message) {
         textMessage.setText(message);
 
 

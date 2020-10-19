@@ -8,6 +8,7 @@ import Model.Interfaces.SavingsSubject;
 import Model.Interfaces.iSavingsRegister;
 
 import java.util.HashMap;
+
 /**
  * A class that has a overview of all the savings
  *
@@ -24,7 +25,7 @@ public class SavingsOverview implements iSavingsRegister, SavingsSubject, EntryO
         EntrySubject.add(this);
     }
 
-    public static SavingsOverview getInstance() {
+    synchronized public static SavingsOverview getInstance() {
         if (savingsInstance == null) {
             savingsInstance = new SavingsOverview();
         }
@@ -33,8 +34,9 @@ public class SavingsOverview implements iSavingsRegister, SavingsSubject, EntryO
 
     /**
      * Adds money to a specific goal.
+     *
      * @param category the category that the saving is, basically the name of the saving
-     * @param cost the amout of money that one wants to add to the saving
+     * @param cost     the amout of money that one wants to add to the saving
      */
     public void addToSaving(String category, double cost) {
         savingGoalHashMap.get(category).addMoneyToSaving(cost);
@@ -43,6 +45,7 @@ public class SavingsOverview implements iSavingsRegister, SavingsSubject, EntryO
 
     /**
      * Adds a new saving goal
+     *
      * @param name name of the new saving goal
      * @param goal the amount that is needed to reach the goal
      */
@@ -54,6 +57,7 @@ public class SavingsOverview implements iSavingsRegister, SavingsSubject, EntryO
 
     /**
      * adds a object as a listener to this class, so that when something happens they will be notified
+     *
      * @param o
      */
     @Override
@@ -63,6 +67,7 @@ public class SavingsOverview implements iSavingsRegister, SavingsSubject, EntryO
 
     /**
      * Notifies all observers about a change
+     *
      * @param name name a parameter that being sent to an observer
      */
     @Override
@@ -74,9 +79,10 @@ public class SavingsOverview implements iSavingsRegister, SavingsSubject, EntryO
 
     /**
      * updates the SavingsOverview that some change has happened somewhere else
+     *
      * @param category category of the change
-     * @param type type of the change
-     * @param money the amount of money the change is about
+     * @param type     type of the change
+     * @param money    the amount of money the change is about
      */
     @Override
     public void update(String category, String type, double money) {
@@ -92,6 +98,6 @@ public class SavingsOverview implements iSavingsRegister, SavingsSubject, EntryO
 
 
     public double getAmountSaved(String name) {
-        return savingGoalHashMap.get(name).savingGoalReached;
+        return savingGoalHashMap.get(name).getSavingGoalReached();
     }
 }

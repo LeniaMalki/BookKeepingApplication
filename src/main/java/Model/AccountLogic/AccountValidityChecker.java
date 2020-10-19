@@ -1,11 +1,11 @@
-package Model.AccountLogic;
+package Model.AccountLogic;//NOPMD
 
 /**
  * A class that checks the validity of textField inputs
  * @author Lenia
  */
-public class AccountValidityChecker {
-    private static AccountValidityChecker accountValidityChecker;
+public final class AccountValidityChecker {
+    private static AccountValidityChecker accountValidityChecker;//NOPMD
 
     /**
      * Private constructor
@@ -28,7 +28,7 @@ public class AccountValidityChecker {
      * @param confirmPassword confirmPassword textfield
      * @param signUpPassword signUpPassword textfield
      */
-    boolean doesPasswordMatch(String signUpPassword, String confirmPassword) {
+    boolean doesPasswordMatch(final String signUpPassword, final String confirmPassword) {
         return signUpPassword.equals(confirmPassword);
     }
 
@@ -36,7 +36,7 @@ public class AccountValidityChecker {
      * Checks if  password is at least 8 char long
      * @param password password textfield
      */
-    boolean isValidPasswordLength(String password) {
+    boolean isValidPasswordLength(final String password) {
 
         return password.length() >= 8;
     }
@@ -45,8 +45,8 @@ public class AccountValidityChecker {
      * Checks if  email is in right format
      * @param email email textfield
      */
-    boolean isValidEmail(String email) {
-        String regex = "^[\\w-_.+]*[\\w-_.]@([\\w]+\\.)+[\\w]+[\\w]$";
+    boolean isValidEmail(final String email) {
+        final String regex = "^[\\w-_.+]*[\\w-_.]@([\\w]+\\.)+[\\w]+[\\w]$";
         return email.matches(regex);
     }
 
@@ -54,9 +54,9 @@ public class AccountValidityChecker {
      * Checks if  name is in right format
      * @param name name textfield
      */
-    boolean isValidName(String name) {
+    boolean isValidName(final String name) {
 
-        int len = name.length();
+        final int len = name.length();
 
         if (len == 0) {
             return false;
@@ -65,7 +65,7 @@ public class AccountValidityChecker {
 
                 // checks whether the character is not a letter if it is not a letter ,it will return false
 
-                if ((!Character.isLetter(name.charAt(i)))) {
+                if (!Character.isLetter(name.charAt(i))) {
                     return false;
                 }
 
@@ -80,8 +80,8 @@ public class AccountValidityChecker {
      * @param username passed in by whichever controller in use of method
      * @return true/false
      */
-    boolean isValidUsername(String username) {
-        return (!username.equals(""));
+    boolean isValidUsername(final String username) {
+        return !"".equals(username);
     }
 
     /**
@@ -93,10 +93,10 @@ public class AccountValidityChecker {
      * @param email passed in by whichever controller in use of method
      * @return true/false depending if all account variables are valid or not
      */
-    boolean areAllAccountValuesCorrect(String name, String username,
-                                       String password, String confirmPassword, String email) {
+    boolean areAllAccountValuesCorrect(final String name, final String username,
+                                       final String password, final String confirmPassword, final String email) {
 
-        return ((isValidName(name)) && isValidUsername(username) && isValidPasswordLength(password) && doesPasswordMatch(password, confirmPassword) && isValidEmail(email));
+        return isValidName(name) && isValidUsername(username) && isValidPasswordLength(password) && doesPasswordMatch(password, confirmPassword) && isValidEmail(email);
 
 
     }
@@ -108,8 +108,8 @@ public class AccountValidityChecker {
      * @param email passed in by whichever controller in use of method
      * @return true/false depending if all account variables are valid or not
      */
-    boolean areAllProfilePageValuesCorrect(String username, String name, String email) {
-        return (isValidUsername(username) && isValidName(name) && isValidEmail(email));
+    boolean areAllProfilePageValuesCorrect(final String username, final String name, final String email) {
+        return isValidUsername(username) && isValidName(name) && isValidEmail(email);
 
     }
 }

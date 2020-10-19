@@ -1,4 +1,4 @@
-package View.AccountView;
+package View.AccountView;//NOPMD
 
 import Controller.Interfaces.iPane;
 import Controller.MainControllers.MainController;
@@ -17,7 +17,7 @@ public class DeleteAccountView implements iPane {
     public Text textMessage;
     public MainController parent;
     @FXML
-    public Button deleteAccountButton;
+    public Button deleteAccountButton;//NOPMD
 
 
     public DeleteAccountView() {
@@ -34,7 +34,7 @@ public class DeleteAccountView implements iPane {
     /**
      * initialized this pane
      */
-    public void initPane(MainController parent) {
+    public void initPane(final MainController parent) {
         this.parent = parent;
     }
 

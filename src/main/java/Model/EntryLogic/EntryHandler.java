@@ -17,12 +17,12 @@ public class EntryHandler implements EntryObserver {
     //________________________________________________ VARIABLES _______________________________________________________
 
     private static EntryHandler entryHandler;
-    static double foodAmount;
-    static double transportationAmount;
-    static double householdAmount;
-    static double shoppingAmount;
-    static double otherAmount;
-    static double generalSaving;
+    private static double foodAmount;
+    private static double transportationAmount;
+    private static double householdAmount;
+    private  static double shoppingAmount;
+    private  static double otherAmount;
+    private  static double generalSaving;
     private final List<Entry> entries = new ArrayList<>();
 
     //_________________________________________________ METHODS ________________________________________________________
@@ -34,7 +34,7 @@ public class EntryHandler implements EntryObserver {
         EntrySubject.add(this);
     }
 
-    public static EntryHandler getInstance() {
+    synchronized public static EntryHandler getInstance() {
         if (entryHandler == null) {
             entryHandler = new EntryHandler();
         }
@@ -44,19 +44,19 @@ public class EntryHandler implements EntryObserver {
     /**
      * A function that adds our entry to a list of entries
      *
-     * @param e , an entry with a specific category
+     * @param entry , an entry with a specific category
      */
-    public void addEntry(Entry e) {
-        entries.add(e);
+    public void addEntry(Entry entry) {
+        entries.add(entry);
     }
 
     /**
      * A function that removes our entry to a list of entries
      *
-     * @param e , an entry with a specific category
+     * @param entry , an entry with a specific category
      */
-    public void removeEntry(Entry e) {
-        entries.remove(e);
+    public void removeEntry(Entry entry) {
+        entries.remove(entry);
     }
 
     /**
@@ -70,7 +70,7 @@ public class EntryHandler implements EntryObserver {
         shoppingAmount = 0;
         otherAmount = 0;
         generalSaving = 0;
-        for (Entry entry : entries) {
+        for (final Entry entry : entries) {
             if (entry.getCategory().equals("Food")) {
                 foodAmount += entry.getAmount();
             }

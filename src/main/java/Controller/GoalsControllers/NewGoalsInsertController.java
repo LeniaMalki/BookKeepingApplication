@@ -11,12 +11,9 @@ import javafx.fxml.FXMLLoader;
 import java.io.IOException;
 
 public class NewGoalsInsertController implements EntryObserver {
-    private GoalsInsertView insertView = new GoalsInsertView();
-
+    private final GoalsInsertView insertView = new GoalsInsertView();
     SavingsOverview savingsOverview;
-
-
-    private double amoutSaved = 0;
+    private double amountSaved = 0;
 
     /**
      * Creates and instantiates a pane that is a goals insert
@@ -84,7 +81,7 @@ public class NewGoalsInsertController implements EntryObserver {
     @Override
     public void update(String category, String type, double Value) {
         if (category.equals(insertView.nameOfSavingTextField.getText())) {
-            amoutSaved += savingsOverview.getAmountSaved(category);
+            amountSaved += savingsOverview.getAmountSaved(category);
             updateSavingLabel();
             updateProgressBar();
         }
@@ -100,14 +97,14 @@ public class NewGoalsInsertController implements EntryObserver {
      * updates the label that states the money saved
      */
     private void updateSavingLabel() {
-        insertView.updateSavingsLabel(amoutSaved, insertView.savingAmountTextField.getText());
+        insertView.updateSavingsLabel(amountSaved, insertView.savingAmountTextField.getText());
     }
 
     /**
      * updates the progressbar with the percentage of the goal reached
      */
     private void updateProgressBar() {
-        insertView.amoutSavedProgressBar.setProgress(amoutSaved / Double.parseDouble(insertView.savingAmountTextField.getText()));
+        insertView.amoutSavedProgressBar.setProgress(amountSaved / Double.parseDouble(insertView.savingAmountTextField.getText()));
 
     }
 }

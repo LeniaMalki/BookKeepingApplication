@@ -33,6 +33,10 @@ public class LogInView implements iPane {
     @FXML
     public Hyperlink forgotPassword;
 
+    public LogInView() {
+        logInView = this;
+    }
+
     public static LogInView getInstance() {
         if (logInView == null) {
             logInView = new LogInView();
@@ -40,15 +44,11 @@ public class LogInView implements iPane {
         return logInView;
     }
 
-    public LogInView() {
-        logInView = this;
-    }
-
     /**
      * initialized this pane
      */
     @Override
-    public void initPane(MainController parent) {
+    public void initPane(final MainController parent) {
         this.parent = parent;
     }
 
@@ -65,7 +65,7 @@ public class LogInView implements iPane {
         pos_for_popUp_on_LogInPage.toFront();
     }
 
-    public void setMessage(String message) {
+    public void setMessage(final String message) {
         testMessage.setText(message);
     }
 

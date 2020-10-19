@@ -9,11 +9,10 @@ import Model.Interfaces.EntryObserver;
  */
 
 public class Entry extends EntrySubject {
-    double amount;
-    String name;
-    String category;
-    String typeOfEntry;
-    boolean selected;
+    private final double amount;
+   private final String name;
+  private final String category;
+  private final String typeOfEntry;
 
 
 
@@ -29,14 +28,13 @@ public class Entry extends EntrySubject {
         this.name = name;
         this.category = category;
         this.typeOfEntry = typeOfEntry;
-        this.selected = false;
     }
 
     /**
      * Notifies all the observers of the object
      */
     public void notifyEntryListeners() {
-        for (EntryObserver observer : observers) {
+        for (final EntryObserver observer : observers) {
             observer.update(this);
             observer.update(getCategory(), getTypeOfEntry(), getAmount());
         }
@@ -63,12 +61,5 @@ public class Entry extends EntrySubject {
         return this;
     }
 
-    public boolean getSelected(){
-        return selected;
-    }
-
-    public void setSelected(boolean selected) {
-        this.selected = selected;
-    }
 
 }

@@ -4,6 +4,7 @@ import Controller.Interfaces.RemoveItemObserver;
 import Model.EntryLogic.Entry;
 import Model.EntryLogic.EntryHandler;
 import Model.EntryLogic.EntrySubject;
+import Model.Interfaces.ControllerInterface;
 import Model.Interfaces.EntryObserver;
 import View.EntryView.EntryListItemView;
 import View.StatisticsView.StatisticsOverviewView;
@@ -17,7 +18,7 @@ import javafx.scene.chart.PieChart;
  *
  * @author Oscar
  */
-public class StatisticsOverViewController implements EntryObserver, RemoveItemObserver {
+public class StatisticsOverViewController implements EntryObserver, RemoveItemObserver, ControllerInterface {
 
     //________________________________________________ VARIABLES _______________________________________________________
 
@@ -31,21 +32,13 @@ public class StatisticsOverViewController implements EntryObserver, RemoveItemOb
         EntrySubject.add(this);
     }
 
-    private void setAllViewListeners() {
-        statisticsOverviewView.toDailyStatistics.setOnAction(event -> detailedStatistics("Daily"));
-        statisticsOverviewView.toWeeklyStatistics.setOnAction(event -> detailedStatistics("Weekly"));
-        statisticsOverviewView.toMonthlyStatistics.setOnAction(event -> detailedStatistics("Monthly"));
-
-    }
-
-
     /**
      * A function that shows different texts on the detailStatisticsPage depending on which button you press
      *
      * @param text that is either "Daily", "Monthly" or "Weekly"
      */
     private void detailedStatistics(String text) {
-            statisticsOverviewView.showDetailStatisticsPage(text);
+        statisticsOverviewView.showDetailStatisticsPage(text);
     }
 
     //__________ THIS PART IS NOT IMPLEMENTED YET, JUST SOME HARD CODED EXAMPLES TO ILLUSTRATE IN OUR PROGRAM __________
@@ -99,8 +92,16 @@ public class StatisticsOverViewController implements EntryObserver, RemoveItemOb
             statisticsOverviewView.monthlyAnchor.getChildren().add(statisticsOverviewView.chart3);
         } else statisticsOverviewView.chart3.setData(pieChartData3);
     }
+
     //__________________________________________________________________________________________________________________
 
+    @Override
+    public void setAllViewListeners() {
+        statisticsOverviewView.toDailyStatistics.setOnAction(event -> detailedStatistics("Daily"));
+        statisticsOverviewView.toWeeklyStatistics.setOnAction(event -> detailedStatistics("Weekly"));
+        statisticsOverviewView.toMonthlyStatistics.setOnAction(event -> detailedStatistics("Monthly"));
+
+    }
 
     @Override
     public void update(String category, String type, double Value) {

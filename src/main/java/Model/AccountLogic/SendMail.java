@@ -21,7 +21,7 @@ public class SendMail {
     HashMap<String, String> messageChooser = new HashMap<>() {{
         put("ForgetPassword", "Hello!\n\nWe all forget our password from time to time and that's fine!\nYour password is: ");
         put("SignUp", "Hi!\n\n Welcome to Locali, a place where you can do all of your budgeting and economics locally on " +
-                "your computer. We hope you enjoy the application and if you have any questions you can send our support " +
+                "your computer. We hope you enjoy the application and if you have any questions you can send an email to our support " +
                 "team an email at localiapplication@gmail.com");
     }};
 
@@ -65,6 +65,7 @@ public class SendMail {
         // Used to debug SMTP issues
         session.setDebug(true);
         try {
+            StringBuilder stringBuilder= new StringBuilder();
             // Create a default MimeMessage object.
             Message message = new MimeMessage(session);
             // Set From: header field of the header.
@@ -76,26 +77,18 @@ public class SendMail {
             message.setSubject("Locali Team");
             // Create the message part
             BodyPart messageBodyPart = new MimeBodyPart();
-            // Now set the actual messages
-            messageBodyPart.setText(messageChooser.get(typeOfMessage));
-            // Create a multipar message
-            Multipart multipart = new MimeMultipart();
-            // Set text message part1
-            multipart.addBodyPart(messageBodyPart);
+            stringBuilder.append(messageChooser.get(typeOfMessage));
+
 
             if (typeOfMessage.equals("ForgetPassword")) {
-                messageBodyPart = new MimeBodyPart();
-                messageBodyPart.setText(passwordMessage);
-                multipart.addBodyPart(messageBodyPart);
+                stringBuilder.append(passwordMessage);
             }
-
-            messageBodyPart = new MimeBodyPart();
-            // Set text message part2
-            messageBodyPart.setText("\n\nBest Regards\nThe Locali Team");
-            multipart.addBodyPart(messageBodyPart);
-
+            stringBuilder.append("\n\nBest Regards\nThe Locali Team");
+            messageBodyPart.setText(stringBuilder.toString());
+            Multipart textBody = new MimeMultipart();
+            textBody.addBodyPart(messageBodyPart);
             // Send the complete message parts
-            message.setContent(multipart);
+            message.setContent(textBody);
             Transport.send(message);
 
         } catch (MessagingException e) {

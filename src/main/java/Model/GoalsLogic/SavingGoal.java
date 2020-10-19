@@ -8,9 +8,8 @@ import Model.Interfaces.iSavingsRegister;
  * @author Artin
  */
 public class SavingGoal {
-    iSavingsRegister register = SavingsOverview.getInstance();
-    double savingGoalReached = 0;
-    double savingGoal;
+   private  double savingGoalReached = 0;
+      double savingGoal;
     String savingName;
 
     /**
@@ -22,6 +21,7 @@ public class SavingGoal {
         this.savingGoal = savingGoal;
         this.savingName = savingName;
 
+        iSavingsRegister register = SavingsOverview.getInstance();
         register.addSavingsGoal(savingName, this);
     }
 
@@ -37,4 +37,6 @@ public class SavingGoal {
     public double getSavingGoalReached() {
         return savingGoalReached;
     }
+
 }
+
