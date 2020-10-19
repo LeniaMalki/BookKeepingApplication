@@ -1,20 +1,20 @@
-package Controller.AccountControllers;
+package Controller.AccountControllers;//NOPMD
 
 import Model.AccountLogic.AccountFacade;
 import Model.AccountLogic.LogInHandler;
 import Model.Interfaces.AccountObserver;
+import Model.Interfaces.ControllerInterface;
 import View.AccountView.LogInView;
 
 /**
  * Controller for login on login page
- *
  * @author Lenia
  */
 
-public class LogInPageController implements AccountObserver {
+public class LogInPageController implements AccountObserver, ControllerInterface {
 
     private final LogInHandler logInHandler = new LogInHandler() {
-        public boolean logIn(String accountName, String password) {
+        public boolean logIn(final String accountName, final String password) {
             return super.logIn(accountName, password);
         }
     };
@@ -23,15 +23,16 @@ public class LogInPageController implements AccountObserver {
     private final LogInView logInView = LogInView.getInstance();
 
 
-    //________________________________________________ Methods _________________________________________________________
+    //________________________________________________ Methods
+    // _________________________________________________________//NOPMD
 
     public LogInPageController() {
         accountFacade.add(this);
         setAllViewListeners();
     }
 
-
-    private void setAllViewListeners() {
+    @Override
+    public void setAllViewListeners() {
         logInView.signUpLink.setOnAction(e -> signUpButton());
         logInView.logInButton.setOnAction(event -> onLoginClicked());
         logInView.forgotPassword.setOnAction(event -> sendForgottenPasswordToEmail());
@@ -41,26 +42,32 @@ public class LogInPageController implements AccountObserver {
      * sends an email to the user with their password if the user exists
      */
     private void sendForgottenPasswordToEmail() {
-        if (accountFacade.getAccountEmail() != null) {
+        final String accountEmail = accountFacade.getAccountEmail();
+
+        if (accountEmail == null) {
+            logInView.setMessage("No user registered!");
+        } else {
             accountFacade.sendPasswordToEmail();
             logInView.setMessage("An email with your password has been sent to you!");
-        } else logInView.setMessage("No user registered!");
+        }
     }
 
     /**
-     * Handles the mouse action of opening up the signup pop up. The pop up is disabled if an account already exists by
-     * checking if there instance of account has a name assigned to it.
+     * Handles the mouse action of opening up the signup pop up. The pop up is disabled if an account already exists
+     * by//NOPMD checking if there instance of account has a name assigned to it.
      */
     private void signUpButton() {
         if (accountFacade.getAccountName() == null) {
             logInView.showSignUpPopUp();
-        } else logInView.setMessage("An account already exists!");
+        } else {
+            logInView.setMessage("An account already exists!");
+        }
 
     }
 
     /**
-     * Handles the mouse action of logging in to the first page. The logic of checking log in fields is partly managed
-     * by the account facade and logInHandler.
+     * Handles the mouse action of logging in to the first page. The logic of checking log in fields is partly
+     * managed//NOPMD by the account facade and logInHandler.
      */
     private void onLoginClicked() {
         if (accountFacade.getAccountName() == null) {
@@ -69,7 +76,9 @@ public class LogInPageController implements AccountObserver {
             logInView.setMessage("");
             logInView.clearLogInFields();
             logInView.parent.showFirstPage();
-        } else logInView.setMessage("Wrong/missing input(s)!");
+        } else {
+            logInView.setMessage("Wrong/missing input(s)!");
+        }
     }
 
     /**

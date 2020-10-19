@@ -1,14 +1,15 @@
-package Controller.AccountControllers;
+package Controller.AccountControllers;//NOPMD
 
 import Model.AccountLogic.AccountFacade;
 import Model.Interfaces.AccountObserver;
+import Model.Interfaces.ControllerInterface;
 import View.AccountView.ProfilePageView;
 
 /**
  * Controller for a handling the image view of the Account Page
  * @author Lenia
  */
-public class ProfilePageController implements AccountObserver {
+public class ProfilePageController implements AccountObserver, ControllerInterface {
     //________________________________________________ VARIABLES _______________________________________________________
 
     private final AccountFacade accountFacade = AccountFacade.getInstance();
@@ -22,7 +23,8 @@ public class ProfilePageController implements AccountObserver {
 
     }
 
-    private void setAllViewListeners() {
+    @Override
+    public void setAllViewListeners() {
         profilePageView.submitChangesButton.setOnAction(e -> onSubmitChangesClicked());
         profilePageView.changePasswordLink.setOnAction(e -> openChangePasswordPop());
         profilePageView.signOutButton.setOnAction(e -> signOut());
@@ -46,9 +48,9 @@ public class ProfilePageController implements AccountObserver {
      */
     private void onSubmitChangesClicked() {
 
-        int changesMade = accountFacade.handleAccountChanges(profilePageView.username.getText(),
-                                                             profilePageView.name.getText(),
-                                                             profilePageView.email.getText());
+        final int changesMade = accountFacade.handleAccountChanges(profilePageView.username.getText(),
+                                                                   profilePageView.name.getText(),
+                                                                   profilePageView.email.getText());
 
         if (changesMade == 0) {
             profilePageView.setMessage("No changes made");
@@ -80,6 +82,7 @@ public class ProfilePageController implements AccountObserver {
         profilePageView.openChangePasswordPop();
 
     }
+
     /**
      * Handles the action when sign out is clicked
      */

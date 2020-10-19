@@ -1,17 +1,17 @@
-package Model.AccountLogic;
+package Model.AccountLogic;//NOPMD
 
 /**
  * Handles all edits on the account, makes use of an accountInstance and is thus an instance itself
  * @author Lenia
  */
-public class AccountEditor {
+public final class AccountEditor {
     private static AccountEditor accountEditor;
 
 
     //________________________________________________ Variables _______________________________________________________
 
     private final Account account = Account.getInstance();
-    private final AccountValidityChecker accountValidityChecker = AccountValidityChecker.getInstance();
+    private final AccountValidityChecker accountValidityChecker = AccountValidityChecker.getInstance();//NOPMD
 
     //________________________________________________ Methods _________________________________________________________
 
@@ -39,8 +39,8 @@ public class AccountEditor {
      * @param password obtained from controller's textField.
      * @param email obtained from controller's textField.
      */
-    void setAllAccountValues(String name, String username,
-                             String password, String email) {
+    void setAllAccountValues(final String name, final String username,
+                             final String password, final String email) {
 
         account.setName(name);
         account.setUsername(username);
@@ -71,7 +71,7 @@ public class AccountEditor {
      * Sets a new account name for the account iff the password is valid though check by accountValidityChecker
      * @param textField is passed in by the accountFacade though whichever controller is in need of the method
      */
-    void setAccountName(String textField) {
+    void setAccountName(final String textField) {
         if (accountValidityChecker.isValidName(textField)) {
             account.setName(textField);
         }
@@ -89,7 +89,7 @@ public class AccountEditor {
      * Sets a new account username for the account iff the password is valid though check by accountValidityChecker
      * @param username is passed in by the accountFacade though whichever controller is in need of the method
      */
-    void setAccountUsername(String username) {
+    void setAccountUsername(final String username) {
         if (accountValidityChecker.isValidUsername(username)) {
             account.setUsername(username);
         }
@@ -107,7 +107,7 @@ public class AccountEditor {
      * Sets a new account email for the account iff the password is valid though check by accountValidityChecker
      * @param email is passed in by the accountFacade though whichever controller is in need of the method
      */
-    void setAccountEmail(String email) {
+    void setAccountEmail(final String email) {
         if (accountValidityChecker.isValidEmail(email)) {
             account.setEmailAddress(email);
 
@@ -128,7 +128,7 @@ public class AccountEditor {
      * Sets a new password for the account iff the password is valid though check by accountValidityChecker
      * @param password is passed in by the accountFacade though whichever controller is in need of the method
      */
-    void setAccountPassword(String password) {
+    void setAccountPassword(final String password) {
         if (accountValidityChecker.isValidPasswordLength(password)) {
             account.setPassword(password);
         } //else textField.setStyle("-fx-text-box-border: #B22222;");

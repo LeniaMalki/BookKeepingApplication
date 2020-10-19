@@ -1,18 +1,18 @@
-package Model.AccountLogic;
+package Model.AccountLogic;//NOPMD
 
 /**
  * Class which manages the creation and deletion of an account
  *
  * @author Lenia
  */
-public class AccountExistenceManager {
+public final class AccountExistenceManager {
 
 
     //________________________________________________ Variables _______________________________________________________
-    private static AccountExistenceManager accountExistenceManager;
+    private static AccountExistenceManager accountExistenceManager;//NOPMD
     //private final Account account = Account.getInstance();
-    private final AccountEditor accountEditor = AccountEditor.getInstance();
-    private static final AccountValidityChecker accountValidityChecker = AccountValidityChecker.getInstance();
+    private final AccountEditor accountEditor = AccountEditor.getInstance();//NOPMD
+    private static final AccountValidityChecker accountValidityChecker = AccountValidityChecker.getInstance();//NOPMD
 
     //________________________________________________ Methods _________________________________________________________
 
@@ -25,7 +25,7 @@ public class AccountExistenceManager {
     /**
      * Method for obtaining/creating a accountExistenceManager object
      */
-    static AccountExistenceManager getInstance() {
+    static AccountExistenceManager getInstance() {//NOPMD
         if (accountExistenceManager == null) {
             accountExistenceManager = new AccountExistenceManager();
         }
@@ -46,22 +46,22 @@ public class AccountExistenceManager {
      * @param email           is passed in by the accountFacade though whichever controller is in need of the
      *                        method
      */
-    boolean createAccount(String name, String username, String password, String confirmPassword, String email) {
+    boolean createAccount(final String name, final String username,final  String password,final  String confirmPassword, final String email) {//NOPMD
 
         if (accountValidityChecker.areAllAccountValuesCorrect(name, username, password, confirmPassword, email)) {
 
             accountEditor.setAllAccountValues
                     (name, username,
                      password, email);
-            return true;
+            return true;//NOPMD
         }
-        return false;
+        else {return false;}
     }
 
     /**
      * Deletes the account by setting all the accounts' variables to null
      */
-    void deleteAccount() {
+    void deleteAccount() {//NOPMD
         accountEditor.nullAllAccountValues();
     }
 

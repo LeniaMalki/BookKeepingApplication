@@ -5,13 +5,12 @@ import Controller.Interfaces.RemoveItemObserver;
 import Model.EntryLogic.Entry;
 import Model.EntryLogic.EntryHandler;
 import Model.EntryLogic.EntrySubject;
+import Model.Interfaces.ControllerInterface;
 import Model.Interfaces.EntryObserver;
 import View.EntryView.EntryListItemView;
 import View.StatisticsView.StatisticsDetailView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.chart.PieChart;
 
 /**
@@ -20,7 +19,7 @@ import javafx.scene.chart.PieChart;
  *
  * @author Oscar
  */
-public class StatisticsDetailController implements  EntryObserver, RemoveItemObserver {
+public class StatisticsDetailController implements EntryObserver, RemoveItemObserver, ControllerInterface {
 
     //________________________________________________ VARIABLES _______________________________________________________
 
@@ -30,19 +29,9 @@ public class StatisticsDetailController implements  EntryObserver, RemoveItemObs
 
     //_________________________________________________ METHODS ________________________________________________________
 
-    public StatisticsDetailController(){
+    public StatisticsDetailController() {
         setAllViewListeners();
         EntrySubject.add(this);
-    }
-
-    private void setAllViewListeners(){
-        statisticsDetailView.statisticsButtonAllEntries.setOnAction(a -> entriesCheckCategory(""));
-        statisticsDetailView.statisticsButtonOther.setOnAction(a -> entriesCheckCategory("Other"));
-        statisticsDetailView.statisticsButtonHousehold.setOnAction(a -> entriesCheckCategory("Household"));
-        statisticsDetailView.statisticsButtonTransport.setOnAction(a -> entriesCheckCategory("Transportation"));
-        statisticsDetailView.statisticsButtonShopping.setOnAction(a -> entriesCheckCategory("Shopping"));
-        statisticsDetailView.statisticsButtonFood.setOnAction(a -> entriesCheckCategory("Food"));
-
     }
 
 
@@ -50,11 +39,11 @@ public class StatisticsDetailController implements  EntryObserver, RemoveItemObs
      * A function (when button pressed) removeEntry that iterates through the lists of entries and removes the entry
      * if its selected.
      */
-    public void update(Entry entry, EntryListItemView controller){
+    public void update(Entry entry, EntryListItemView controller) {
         entryHandler.getEntries().remove(entry);
         statisticsDetailView.flowpaneStat.getChildren().remove(controller);
         updatePieChart();
-        for (Entry e: entryHandler.getEntries()) {
+        for (Entry e : entryHandler.getEntries()) {
             if (!allEntries) {
                 entriesCheckCategory(e.getCategory());
             } else {
@@ -72,6 +61,7 @@ public class StatisticsDetailController implements  EntryObserver, RemoveItemObs
     public void setLabelPieChart(String labelPieChart) {
         statisticsDetailView.setLabel(labelPieChart);
     }
+
 
     /**
      * A function that creates/updates a PieChart by the use of an EntryHandler that has access to entries.
@@ -106,14 +96,27 @@ public class StatisticsDetailController implements  EntryObserver, RemoveItemObs
         }
         allEntries = category.equals("");
     }
+
     /**
      * A function that adds an entry to a FlowPane
+     *
      * @param entry is a an entry that we add to our EntryListItemController.
      */
     private void addEntryToFlowPane(Entry entry) {
         EntryListItemController entryListItemController = new EntryListItemController(entry);
         statisticsDetailView.flowpaneStat.getChildren().add(entryListItemController.getView());
         entryListItemController.add(this);
+    }
+
+    @Override
+    public void setAllViewListeners() {
+        statisticsDetailView.statisticsButtonAllEntries.setOnAction(a -> entriesCheckCategory(""));
+        statisticsDetailView.statisticsButtonOther.setOnAction(a -> entriesCheckCategory("Other"));
+        statisticsDetailView.statisticsButtonHousehold.setOnAction(a -> entriesCheckCategory("Household"));
+        statisticsDetailView.statisticsButtonTransport.setOnAction(a -> entriesCheckCategory("Transportation"));
+        statisticsDetailView.statisticsButtonShopping.setOnAction(a -> entriesCheckCategory("Shopping"));
+        statisticsDetailView.statisticsButtonFood.setOnAction(a -> entriesCheckCategory("Food"));
+
     }
 
     @Override
