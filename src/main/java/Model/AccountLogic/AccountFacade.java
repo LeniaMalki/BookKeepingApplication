@@ -58,7 +58,7 @@ public class AccountFacade implements AccountSubject {
      * Gets account password through delegation to accountEditor
      * @return returns account password
      */
-    public String getaccountPassword() {
+    private String getaccountPassword() {
         return accountEditor.getAccountPassword();
     }
 
