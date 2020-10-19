@@ -16,10 +16,10 @@ public abstract class EntrySubject {
 
     /**
      * adds observers to a class that extends this
-     * @param o the observer that subscribes as a listener
+     * @param observer the observer that subscribes as a listener
      */
-    public static void add(EntryObserver o) {
-        observers.add(o);
+    public static void add(EntryObserver observer) {
+        observers.add(observer);
     }
 
     /**

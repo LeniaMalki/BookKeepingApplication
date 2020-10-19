@@ -16,9 +16,9 @@ import java.util.ArrayList;
  */
 public class EntryListItemController implements RemoveItemSubject {
 
-    EntryListItemView entryListItemView = new EntryListItemView();
-    Entry actualEntry;
-    ArrayList<RemoveItemObserver> observers = new ArrayList<>();
+    private final EntryListItemView entryListItemView = new EntryListItemView();
+    private final Entry actualEntry;
+    private final ArrayList<RemoveItemObserver> observers = new ArrayList<>();
 
 
     /**
@@ -26,14 +26,13 @@ public class EntryListItemController implements RemoveItemSubject {
      *
      * @param entry is a entry submitted by the user and is used to set the name/cost/category of the listItem
      */
-    public EntryListItemController(Entry entry) {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/openjfx/entryPageScrollPaneInsert.fxml"));
+    public EntryListItemController(final Entry entry) {
+        final FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/openjfx/entryPageScrollPaneInsert.fxml"));
         fxmlLoader.setController(entryListItemView);
         fxmlLoader.setRoot(entryListItemView);
         try {
             fxmlLoader.load();
         } catch (IOException exception) {
-            throw new RuntimeException(exception);
         }
         setAllViewLiseners();
         entryListItemView.setFields(entry.getCategory(), entry.getAmount(), entry.getName());
@@ -46,13 +45,13 @@ public class EntryListItemController implements RemoveItemSubject {
     }
 
     @Override
-    public void add(RemoveItemObserver o) {
-        observers.add(o);
+    public void add(RemoveItemObserver observer) {
+        observers.add(observer);
     }
 
     @Override
     public void notifyListeners() {
-        for (RemoveItemObserver o : observers) {
+        for (final RemoveItemObserver o : observers) {
             o.update(actualEntry, entryListItemView);
         }
     }

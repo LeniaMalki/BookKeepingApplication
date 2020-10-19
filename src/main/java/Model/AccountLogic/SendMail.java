@@ -21,7 +21,7 @@ public class SendMail {
     HashMap<String, String> messageChooser = new HashMap<>() {{
         put("ForgetPassword", "Hello!\n\nWe all forget our password from time to time and that's fine!\nYour password is: ");
         put("SignUp", "Hi!\n\n Welcome to Locali, a place where you can do all of your budgeting and economics locally on " +
-                "your computer. We hope you enjoy the application and if you have any questions you can send our support " +
+                "your computer. We hope you enjoy the application and if you have any questions you can send an email to our support " +
                 "team an email at localiapplication@gmail.com");
     }};
 

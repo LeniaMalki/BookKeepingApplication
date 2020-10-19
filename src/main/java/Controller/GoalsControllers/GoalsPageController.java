@@ -10,7 +10,7 @@ import View.GoalsView.GoalsView;
 
 public class GoalsPageController {
 
-private GoalsView goalsView= GoalsView.getInstance();
+private final GoalsView goalsView= GoalsView.getInstance();
 public GoalsPageController(){
     setAllViewListeners();
 }
@@ -44,7 +44,7 @@ public GoalsPageController(){
      */
 
     private void addGoal() {
-        NewGoalsInsertController goalsInsertController=new NewGoalsInsertController();
+        final NewGoalsInsertController goalsInsertController=new NewGoalsInsertController();
         goalsView.goalFlowPane.getChildren().add(goalsInsertController.getView());
     }
 
