@@ -2,8 +2,6 @@ package Controller.MainControllers;
 
 import Controller.Interfaces.ControllerInterface;
 import View.MainViews.HeaderView;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 
 public class HeaderController implements ControllerInterface {
 

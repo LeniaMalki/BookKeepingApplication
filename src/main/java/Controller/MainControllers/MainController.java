@@ -9,6 +9,7 @@ import javafx.scene.layout.AnchorPane;
 
 /**
  * The main controller in the program. Shows different pages
+ *
  * @author Oscar
  */
 
@@ -40,6 +41,7 @@ public class MainController {
 
     /**
      * A function that shows us our desired AnchorPane
+     *
      * @param pane an AnchorPane that is one of our visible pages in our program
      */
     public void showPage(AnchorPane pane) {
@@ -95,6 +97,7 @@ public class MainController {
     public void showEntryPage() {
         showPage(mainView.entryPage);
     }
+
     /**
      * A function that uses the function "showPage" to show us a specific AnchorPane
      */

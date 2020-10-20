@@ -1,7 +1,7 @@
 package View.AccountView;
 
-import View.Interfaces.iPane;
 import Controller.MainControllers.MainController;
+import View.Interfaces.iPane;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -35,7 +35,8 @@ public class SignUpView implements iPane {
     @FXML
     public Button createAccount;
     MainController parent;
-    List<TextField> textFields = new ArrayList<>() {};
+    List<TextField> textFields = new ArrayList<>() {
+    };
 
     public SignUpView() {
         signUpView = this;

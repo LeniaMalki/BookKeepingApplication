@@ -5,22 +5,11 @@ import Interfaces.iEntry;
 import Interfaces.iEntryHandler;
 import Model.BudgetLogic.Budget;
 import Model.BudgetLogic.BudgetSubject;
-import Model.EntryLogic.Entry;
-import Service.PaneFactory;
 import Model.EntryLogic.EntryHandler;
 import Model.EntryLogic.EntrySubject;
 import Model.Interfaces.BudgetObserver;
 import Model.Interfaces.EntryObserver;
 import View.MainViews.HomeView;
-import View.Interfaces.iPane;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.layout.AnchorPane;
-
-import java.io.IOException;
 
 public class HomePageController implements EntryObserver, BudgetObserver {
 
@@ -29,7 +18,6 @@ public class HomePageController implements EntryObserver, BudgetObserver {
     iBudget budget;
     iEntryHandler entryHandler = EntryHandler.getInstance();
     private final HomeView homeView = HomeView.getInstance();
-
 
 
     public HomePageController() {
