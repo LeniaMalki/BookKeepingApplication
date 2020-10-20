@@ -2,7 +2,7 @@ package Controller.MainControllers;
 
 
 import Controller.StatisticsController.StatisticsDetailController;
-import Model.PaneFactory;
+import Service.PaneFactory;
 import View.MainViews.MainView;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
@@ -35,14 +35,14 @@ public class MainController {
         mainView.changePasswordPopUp = PaneFactory.initChangePasswordPopUp();
         mainView.overviewStatistics = PaneFactory.initStatisticsOverviewPane();
         mainView.detailStatistics = PaneFactory.initStatisticsDetailPane();
-        showPage(mainView.logInPage);
+        showLogInPage();
     }
 
     /**
      * A function that shows us our desired AnchorPane
      * @param pane an AnchorPane that is one of our visible pages in our program
      */
-    private void showPage(AnchorPane pane) {
+    public void showPage(AnchorPane pane) {
         mainView.mainAnchor.getChildren().clear();
         mainView.mainAnchor.getChildren().add(pane);
         mainView.mainAnchor.toFront();
@@ -95,7 +95,6 @@ public class MainController {
     public void showEntryPage() {
         showPage(mainView.entryPage);
     }
-
     /**
      * A function that uses the function "showPage" to show us a specific AnchorPane
      */

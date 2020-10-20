@@ -1,4 +1,4 @@
-package Model;
+package Service;
 
 import Controller.AccountControllers.*;
 import Controller.BudgetControllers.BudgetChartPageController;
@@ -17,6 +17,7 @@ import View.EntryView.EntryView;
 import View.GoalsView.GoalsView;
 import View.MainViews.HeaderView;
 import View.MainViews.HomeView;
+import View.MainViews.MainView;
 import View.StatisticsView.StatisticsDetailView;
 import View.StatisticsView.StatisticsOverviewView;
 import javafx.fxml.FXMLLoader;
@@ -34,7 +35,7 @@ public class PaneFactory {
 
     //________________________________________________ VARIABLES _______________________________________________________
 
-    private static MainController parent;
+    public static MainController parent;
 
     //___________________________________-_____________ METHODS _______________________________________________________-
 
@@ -59,10 +60,10 @@ public class PaneFactory {
      * Down below are similar functions that loads in different panes using fxml files
      */
     public static Parent initMain() {
-        Pane<MainController> pane = loadInPane("org/openjfx/mainAnchor.fxml");
-        PaneFactory.parent = pane.controller;
-        pane.controller.init();
-        return pane.anchorPane;
+        Pane <MainView> pane = loadInPane("org/openjfx/mainAnchor.fxml");
+        PaneFactory.parent = new MainController();
+        parent.init();
+        return  pane.anchorPane;
     }
 
     public static AnchorPane initHeader() {

@@ -1,7 +1,7 @@
 package View.MainViews;
 
 import Controller.MainControllers.MainController;
-import Model.PaneFactory;
+import Service.PaneFactory;
 import View.Interfaces.iPane;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,7 +14,7 @@ import java.io.IOException;
 
 public class HomeView implements iPane {
 
-    private static HomeView homeView;
+    static HomeView homeView;
     @FXML
     public Button newEntryButton;
     @FXML
@@ -49,6 +49,9 @@ public class HomeView implements iPane {
         }
         return homeView;
 
+    }
+    public HomeView(){
+        homeView = this;
     }
 
     @Override

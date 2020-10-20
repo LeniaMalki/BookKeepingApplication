@@ -17,6 +17,7 @@ import javafx.scene.text.Text;
 public class LogInView implements iPane {
 
     public static LogInView logInView;
+    public MainController parent;
 
     @FXML
     public AnchorPane pos_for_popUp_on_LogInPage;
@@ -24,7 +25,6 @@ public class LogInView implements iPane {
     public AnchorPane back;
     @FXML
     public AnchorPane logInContent;
-    public MainController parent;
     @FXML
     public TextField logInField;
     @FXML

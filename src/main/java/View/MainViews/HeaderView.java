@@ -31,6 +31,10 @@ public class HeaderView implements iPane {
         return headerView;
     }
 
+    public HeaderView(){
+        headerView = this;
+    }
+
     @Override
     public void initPane(MainController parent) {
         this.parent = parent;

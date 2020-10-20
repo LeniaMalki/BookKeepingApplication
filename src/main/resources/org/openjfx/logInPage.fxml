@@ -8,7 +8,6 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.effect.Light.Distant?>
 <?import javafx.scene.effect.Lighting?>
 <?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
@@ -71,7 +70,6 @@
                         <Shadow />
                      </bumpInput>
                      <light>
-                        <Light.Distant azimuth="270.0" elevation="49.19" />
                      </light>
                   </Lighting>
                </effect>
@@ -92,7 +90,6 @@
                         <Shadow />
                      </bumpInput>
                      <light>
-                        <Light.Distant azimuth="270.0" />
                      </light>
                   </Lighting>
                </effect>

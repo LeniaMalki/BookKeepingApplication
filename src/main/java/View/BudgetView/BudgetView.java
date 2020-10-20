@@ -2,7 +2,7 @@ package View.BudgetView;
 
 import View.Interfaces.iPane;
 import Controller.MainControllers.MainController;
-import Model.PaneFactory;
+import Service.PaneFactory;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
@@ -10,7 +10,7 @@ import javafx.scene.layout.AnchorPane;
 public class BudgetView implements iPane {
 
     public MainController parent;
-    private static BudgetView budgetView;
+    static BudgetView budgetView;
 
     public BudgetView(){
         budgetView = this;

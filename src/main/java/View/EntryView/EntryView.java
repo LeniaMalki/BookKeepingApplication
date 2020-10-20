@@ -2,7 +2,7 @@ package View.EntryView;
 
 import View.Interfaces.iPane;
 import Controller.MainControllers.MainController;
-import Model.PaneFactory;
+import Service.PaneFactory;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
