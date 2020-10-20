@@ -1,6 +1,6 @@
 package org.openjfx;
 
-import Controller.MainControllers.PaneFactory;
+import Model.PaneFactory;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;

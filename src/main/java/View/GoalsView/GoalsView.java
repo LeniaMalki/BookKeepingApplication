@@ -2,7 +2,7 @@ package View.GoalsView;
 
 import View.Interfaces.iPane;
 import Controller.MainControllers.MainController;
-import Controller.MainControllers.PaneFactory;
+import Model.PaneFactory;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;

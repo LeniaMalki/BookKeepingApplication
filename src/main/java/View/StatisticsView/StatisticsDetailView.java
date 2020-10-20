@@ -2,7 +2,7 @@ package View.StatisticsView;
 
 import View.Interfaces.iPane;
 import Controller.MainControllers.MainController;
-import Controller.MainControllers.PaneFactory;
+import Model.PaneFactory;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;

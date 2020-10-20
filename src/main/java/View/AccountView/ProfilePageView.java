@@ -2,14 +2,19 @@ package View.AccountView;
 
 import View.Interfaces.iPane;
 import Controller.MainControllers.MainController;
-import Controller.MainControllers.PaneFactory;
+import Model.PaneFactory;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
-
+/**
+ * @author : Lenia Malki
+ * Responsibility: Holds the relevant JavaFX variables of the profile page and  methods directly related to it's view
+ * Used by: ProfilePageController, PaneFactory, accountPage.fxml
+ * Uses: iPane interface, MainController, JavaFX
+ */
 public class ProfilePageView implements iPane {
 
     public static ProfilePageView profilePageView;

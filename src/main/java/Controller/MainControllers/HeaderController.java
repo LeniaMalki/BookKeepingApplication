@@ -1,56 +1,33 @@
 package Controller.MainControllers;
 
-import View.Interfaces.iPane;
+import View.MainViews.HeaderView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Hyperlink;
 
-public class HeaderController implements iPane {
+public class HeaderController {
 
-    //________________________________________________ VARIABLES _______________________________________________________
-    MainController parent;
+    private final HeaderView headerView = HeaderView.getInstance();
 
-    //________________________________________________ FXML ____________________________________________________________
-
-    @FXML
-    private Hyperlink accountPageButton;
-    @FXML
-    private Hyperlink logo;
-    @FXML
-    private Hyperlink homeButton;
-    @FXML
-    private Hyperlink entryButton;
-    @FXML
-    private Hyperlink statisticsButton;
-    @FXML
-    private Hyperlink budgetButton;
-    @FXML
-    private Hyperlink goalButton;
+    public HeaderController() {
+    }
 
     //________________________________________________ Methods _________________________________________________________
-
     @FXML
     private void clickHeader(ActionEvent event) {
-        if (homeButton.equals(event.getTarget()) || logo.equals(event.getTarget())) {
-            parent.showFirstPage();
-        } else if (budgetButton.equals(event.getTarget())) {
-            parent.showBudgetCharPage();
-        } else if (entryButton.equals(event.getTarget())) {
-            parent.showEntryPage();
-        } else if (statisticsButton.equals(event.getTarget())) {
-            parent.showStatisticsOverviewPage();
-        } else if (accountPageButton.equals((event.getTarget()))) {
-            parent.showAccountPage();
-        } else if (goalButton.equals(event.getTarget())) {
-            parent.showGoalsPage();
+        if (headerView.homeButton.equals(event.getTarget()) || headerView.logo.equals(event.getTarget())) {
+            headerView.showFirstPage();
+        } else if (headerView.budgetButton.equals(event.getTarget())) {
+            headerView.showBudgetCharPage();
+        } else if (headerView.entryButton.equals(event.getTarget())) {
+            headerView.showEntryPage();
+        } else if (headerView.statisticsButton.equals(event.getTarget())) {
+            headerView.showStatisticsOverviewPage();
+        } else if (headerView.accountPageButton.equals((event.getTarget()))) {
+            headerView.showAccountPage();
+        } else if (headerView.goalButton.equals(event.getTarget())) {
+            headerView.showGoalsPage();
         }
     }
-
-    @Override
-    public void initPane(MainController parent) {
-        this.parent = parent;
-    }
-
 }
 
 

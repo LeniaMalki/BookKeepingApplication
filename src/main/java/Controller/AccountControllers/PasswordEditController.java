@@ -5,12 +5,12 @@ import Controller.Interfaces.ControllerInterface;
 import View.AccountView.ChangePasswordView;
 
 /**
- * Controller changing the account password through account page of changePasswordPopup
- * @author Lenia
+ * @author : Lenia Malki
+ * Responsibility: Updates and handles the Password through the logic in AccountFacade
+ * Used by: PaneFactory
+ * Uses: ControllerInterface, AccountObserver,  AccountFacade, LogInView, LogInHandler
  */
-
-
-public class ChangePasswordPopUpController implements ControllerInterface {
+public class PasswordEditController implements ControllerInterface {
     //________________________________________________ VARIABLES _______________________________________________________
 
     private final AccountFacade accountFacade = AccountFacade.getInstance();
@@ -19,7 +19,7 @@ public class ChangePasswordPopUpController implements ControllerInterface {
 
     //________________________________________________ Methods _________________________________________________________
 
-    public ChangePasswordPopUpController() {
+    public PasswordEditController() {
         setAllViewListeners();
     }
 
