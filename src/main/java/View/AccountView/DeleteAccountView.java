@@ -6,7 +6,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.text.Text;
-
+/**
+ * @author : Lenia Malki
+ * Responsibility: In charge of displaying the pop up for deleting an account
+ * Used by: DeleteAccountController, PaneFactory, deleteAccountPopUp.fxml
+ * Uses: iPane interface, MainController, JavaFX
+ */
 public class DeleteAccountView implements iPane {
 
     public static DeleteAccountView deleteAccountView;

@@ -8,10 +8,16 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
-
+/**
+ * @author : Lenia Malki
+ * Responsibility: Holds the relevant JavaFX variables of the login and holds methods directly related to view
+ * Used by: LogInController, PaneFactory, logInPage.fxml
+ * Uses: iPane interface, MainController, JavaFX
+ */
 public class LogInView implements iPane {
 
     public static LogInView logInView;
+    public MainController parent;
 
     @FXML
     public AnchorPane pos_for_popUp_on_LogInPage;
@@ -19,7 +25,6 @@ public class LogInView implements iPane {
     public AnchorPane back;
     @FXML
     public AnchorPane logInContent;
-    public MainController parent;
     @FXML
     public TextField logInField;
     @FXML

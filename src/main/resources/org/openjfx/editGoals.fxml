@@ -162,9 +162,4 @@
          </font>
       </Text>
    </children>
-   <stylesheets>
-      <URL value="@Desktop/LocaliApplication/src/main/resources/cssFolder/font.css" />
-      <URL value="@Desktop/LocaliApplication/src/main/resources/cssFolder/Header.css" />
-      <URL value="@Desktop/LocaliApplication/src/main/resources/cssFolder/entry.css" />
-   </stylesheets>
 </AnchorPane>

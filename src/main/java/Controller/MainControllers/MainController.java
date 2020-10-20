@@ -2,140 +2,132 @@ package Controller.MainControllers;
 
 
 import Controller.StatisticsController.StatisticsDetailController;
-import javafx.fxml.FXML;
+import Service.PaneFactory;
+import View.MainViews.MainView;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
+
 /**
  * The main controller in the program. Shows different pages
- *
  * @author Oscar
  */
 
 public class MainController {
 
-    //________________________________________________ VARIABLES _______________________________________________________
-    private AnchorPane logInPage;
-    private AnchorPane firstPage;
-    private AnchorPane entryPage;
-    private AnchorPane budgetPage;
-    private AnchorPane budgetCharPage;
-    private AnchorPane accountPage;
-    private AnchorPane goalsPage;
-    private AnchorPane signUpPopUp;
-    private AnchorPane deleteAccountPopUp;
-    private AnchorPane changePasswordPopUp;
-    private AnchorPane detailStatistics;
-    private AnchorPane overviewStatistics;
-
-
-    //________________________________________________ FXML ____________________________________________________________
-    @FXML
-    private AnchorPane mainAnchor;
+    MainView mainView = MainView.getInstance();
 
     //______________________________________________ METHODS ___________________________________________________________
+
     /**
      * A function that assigns variables with different initialized pages that later can be shown in our program by
      * using the function showPage();
      */
     public void init() {
-        signUpPopUp = PaneFactory.initSignUpPopUp();
-        deleteAccountPopUp = PaneFactory.initDelAccPopup();
-        logInPage = PaneFactory.initLoginPane();
-        firstPage = PaneFactory.initFirstPane();
-        accountPage = PaneFactory.initAccountPane();
-        entryPage = PaneFactory.initEntryPane();
-        goalsPage = PaneFactory.initGoalsPane();
-        budgetCharPage = PaneFactory.initBudgetCharPane();
-        budgetPage = PaneFactory.initBudgetPane();
-        changePasswordPopUp = PaneFactory.initChangePasswordPopUp();
-        overviewStatistics = PaneFactory.initStatisticsOverviewPane();
-        detailStatistics = PaneFactory.initStatisticsDetailPane();
-        showPage(logInPage);
+        mainView.signUpPopUp = PaneFactory.initSignUpPopUp();
+        mainView.deleteAccountPopUp = PaneFactory.initDelAccPopup();
+        mainView.logInPage = PaneFactory.initLoginPane();
+        mainView.firstPage = PaneFactory.initFirstPane();
+        mainView.accountPage = PaneFactory.initAccountPane();
+        mainView.entryPage = PaneFactory.initEntryPane();
+        mainView.goalsPage = PaneFactory.initGoalsPane();
+        mainView.budgetCharPage = PaneFactory.initBudgetCharPane();
+        mainView.budgetPage = PaneFactory.initBudgetPane();
+        mainView.changePasswordPopUp = PaneFactory.initChangePasswordPopUp();
+        mainView.overviewStatistics = PaneFactory.initStatisticsOverviewPane();
+        mainView.detailStatistics = PaneFactory.initStatisticsDetailPane();
+        showLogInPage();
     }
 
     /**
      * A function that shows us our desired AnchorPane
-     *
      * @param pane an AnchorPane that is one of our visible pages in our program
      */
-    private void showPage(AnchorPane pane) {
-        mainAnchor.getChildren().clear();
-        mainAnchor.getChildren().add(pane);
-        mainAnchor.toFront();
+    public void showPage(AnchorPane pane) {
+        mainView.mainAnchor.getChildren().clear();
+        mainView.mainAnchor.getChildren().add(pane);
+        mainView.mainAnchor.toFront();
     }
+
     /**
      * A function that uses the function "showPage" to show us a specific AnchorPane
      */
-    void showGoalsPage() {
-        showPage(goalsPage);
+    public void showGoalsPage() {
+        showPage(mainView.goalsPage);
     }
+
     /**
      * A function that uses the function "showPage" to show us a specific AnchorPane
      */
-    void showStatisticsOverviewPage() {
-        showPage(overviewStatistics);
+    public void showStatisticsOverviewPage() {
+        showPage(mainView.overviewStatistics);
     }
+
     /**
      * A function that uses the function "showPage" to show us a specific AnchorPane
      */
     public void showBudgetCharPage() {
-        showPage(budgetCharPage);
+        showPage(mainView.budgetCharPage);
     }
+
     /**
-     * A function that uses the function "showPage" to show us a specific AnchorPane.
-     * Takes in a string and uses a controller to set a label on that specific AnchorPane.
+     * A function that uses the function "showPage" to show us a specific AnchorPane. Takes in a string and uses a
+     * controller to set a label on that specific AnchorPane.
      */
 
 
     public void showStatisticsDetailPage(String text) {
-        StatisticsDetailController statisticsDetailController =  new StatisticsDetailController();
+        StatisticsDetailController statisticsDetailController = new StatisticsDetailController();
         statisticsDetailController.setLabelPieChart(text);
-        showPage(detailStatistics);
+        showPage(mainView.detailStatistics);
 
     }
+
     /**
      * A function that uses the function "showPage" to show us a specific AnchorPane
      */
     public void showAccountPage() {
-        showPage(accountPage);
+        showPage(mainView.accountPage);
     }
+
     /**
      * A function that uses the function "showPage" to show us a specific AnchorPane
      */
     public void showEntryPage() {
-        showPage(entryPage);
+        showPage(mainView.entryPage);
     }
     /**
      * A function that uses the function "showPage" to show us a specific AnchorPane
      */
     public void showBudgetPage() {
-        showPage(budgetPage);
+        showPage(mainView.budgetPage);
     }
+
     /**
      * A function that uses the function "showPage" to show us a specific AnchorPane
      */
     public void showLogInPage() {
-        showPage(logInPage);
+        showPage(mainView.logInPage);
     }
+
     /**
      * A function that uses the function "showPage" to show us a specific AnchorPane
      */
     public void showFirstPage() {
-        showPage(firstPage);
+        showPage(mainView.firstPage);
     }
 
     //____________________________________________ GETTERS / SETTERS ___________________________________________________
 
     public AnchorPane getSignUpPopUp() {
-        return signUpPopUp;
+        return mainView.signUpPopUp;
     }
 
     public AnchorPane getDeleteAccountPopUp() {
-        return deleteAccountPopUp;
+        return mainView.deleteAccountPopUp;
     }
 
     public Node getChangePasswordPopUp() {
-        return changePasswordPopUp;
+        return mainView.changePasswordPopUp;
     }
 
 

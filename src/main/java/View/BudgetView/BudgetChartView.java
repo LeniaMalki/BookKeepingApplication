@@ -2,7 +2,7 @@ package View.BudgetView;
 
 import View.Interfaces.iPane;
 import Controller.MainControllers.MainController;
-import Controller.MainControllers.PaneFactory;
+import Service.PaneFactory;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
@@ -12,7 +12,7 @@ import javafx.scene.layout.AnchorPane;
 public class BudgetChartView implements iPane {
 
     public MainController parent;
-    private static BudgetChartView budgetChartView;
+    static BudgetChartView budgetChartView;
 
     @Override
     public void initPane(MainController parent) {

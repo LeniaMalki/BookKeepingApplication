@@ -6,10 +6,12 @@ import Interfaces.iEntryHandler;
 import Model.BudgetLogic.Budget;
 import Model.BudgetLogic.BudgetSubject;
 import Model.EntryLogic.Entry;
+import Service.PaneFactory;
 import Model.EntryLogic.EntryHandler;
 import Model.EntryLogic.EntrySubject;
 import Model.Interfaces.BudgetObserver;
 import Model.Interfaces.EntryObserver;
+import View.MainViews.HomeView;
 import View.Interfaces.iPane;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,76 +22,35 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
-public class HomePageController implements iPane, EntryObserver, BudgetObserver {
+public class HomePageController implements EntryObserver, BudgetObserver {
 
     //________________________________________________ VARIABLES _______________________________________________________
 
-    MainController parent;
     iBudget budget;
     iEntryHandler entryHandler = EntryHandler.getInstance();
-
-    //__________________________________________________ FXML __________________________________________________________
-
-    @FXML
-    private Button newEntryButton;
-    @FXML
-    private Button newBudgetButton;
-    @FXML
-    private AnchorPane headerAnchorPane;
-    @FXML
-    private ProgressBar foodBar;
-    @FXML
-    private ProgressBar householdBar;
-    @FXML
-    private ProgressBar shoppingBar;
-    @FXML
-    private ProgressBar transportBar;
-    @FXML
-    private ProgressBar otherbar;
-
-    @FXML
-    private Label foodLabel;
-    @FXML
-    private Label householdLabel;
-    @FXML
-    private Label shoppingLabel;
-    @FXML
-    private Label transportLabel;
-    @FXML
-    private Label otherLabel;
-
-    //_________________________________________________ METHODS ________________________________________________________
-
-    @FXML
-    private void loadEntryPage(ActionEvent event) throws IOException {
-        parent.showEntryPage();
-    }
-
-    @FXML
-    private void goToBudgetButton(ActionEvent event) throws IOException {
-        parent.showBudgetPage();
-    }
+    private final HomeView homeView = HomeView.getInstance();
 
 
-    @Override
-    public void initPane(MainController parent) {
-        this.parent = parent;
-        headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
+
+    public HomePageController() {
         BudgetSubject.add(this);
         EntrySubject.add(this);
         budget = new Budget(0, 0, 0, 0, 0, 0, "0");
         updateAllBudgets();
     }
 
+    //_________________________________________________ METHODS ________________________________________________________
+
+
     /**
      * Updates all the labels according to the entries and budgets.
      */
     private void updateAllBudgets() {
-        foodLabel.setText((int) entryHandler.getFoodAmount() + " kr of " + budget.getFoodCost() + " kr");
-        householdLabel.setText((int) entryHandler.getHouseholdAmount() + " kr of " + budget.getHouseholdCost() + " kr");
-        shoppingLabel.setText((int) entryHandler.getShoppingAmount() + " kr of " + budget.getShoppingCost() + " kr");
-        transportLabel.setText((int) entryHandler.getTransportationAmount() + " kr of " + budget.getTransportCost() + " kr");
-        otherLabel.setText((int) entryHandler.getOtherAmount() + " kr of " + budget.getOtherCost() + " kr");
+        homeView.foodLabel.setText((int) entryHandler.getFoodAmount() + " kr of " + budget.getFoodCost() + " kr");
+        homeView.householdLabel.setText((int) entryHandler.getHouseholdAmount() + " kr of " + budget.getHouseholdCost() + " kr");
+        homeView.shoppingLabel.setText((int) entryHandler.getShoppingAmount() + " kr of " + budget.getShoppingCost() + " kr");
+        homeView.transportLabel.setText((int) entryHandler.getTransportationAmount() + " kr of " + budget.getTransportCost() + " kr");
+        homeView.otherLabel.setText((int) entryHandler.getOtherAmount() + " kr of " + budget.getOtherCost() + " kr");
     }
 
     /**
@@ -99,11 +60,11 @@ public class HomePageController implements iPane, EntryObserver, BudgetObserver 
     private void changeProgress() {
         if (budget != null) {
             entryHandler.updateTotalCategoryValues();
-            foodBar.setProgress(entryHandler.getFoodAmount() / budget.getFoodCost());
-            householdBar.setProgress(entryHandler.getHouseholdAmount() / budget.getHouseholdCost());
-            shoppingBar.setProgress(entryHandler.getShoppingAmount() / budget.getShoppingCost());
-            transportBar.setProgress(entryHandler.getTransportationAmount() / budget.getTransportCost());
-            otherbar.setProgress(entryHandler.getOtherAmount() / budget.getOtherCost());
+            homeView.foodBar.setProgress(entryHandler.getFoodAmount() / budget.getFoodCost());
+            homeView.householdBar.setProgress(entryHandler.getHouseholdAmount() / budget.getHouseholdCost());
+            homeView.shoppingBar.setProgress(entryHandler.getShoppingAmount() / budget.getShoppingCost());
+            homeView.transportBar.setProgress(entryHandler.getTransportationAmount() / budget.getTransportCost());
+            homeView.otherbar.setProgress(entryHandler.getOtherAmount() / budget.getOtherCost());
             updateAllBudgets();
         }
     }

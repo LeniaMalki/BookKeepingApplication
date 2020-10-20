@@ -6,16 +6,17 @@ import Model.AccountLogic.AccountFacade;
 import View.AccountView.DeleteAccountView;
 
 /**
- * Controller for deleting the account through account page of deleteAccountPopup
- *
- * @author Lenia
+ * @author : Lenia Malki
+ * Responsibility: Updates and handles the DeleteAccountView through the logic in AccountFacade
+ * Used by: PaneFactory
+ * Uses: ControllerInterface, AccountFacade, DeleteAccountView
  */
-public class DeleteAccountPopUpController implements ControllerInterface {
+public class DeleteAccountController implements ControllerInterface {
 
     private final iAccountFacade accountFacade = AccountFacade.getInstance();
     private final DeleteAccountView deleteAccountView = DeleteAccountView.getInstance();
 
-    public DeleteAccountPopUpController() {
+    public DeleteAccountController() {
         setAllViewListeners();//NOPMD
     }
 

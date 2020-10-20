@@ -11,6 +11,12 @@ import javafx.scene.text.Text;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author : Lenia Malki Responsibility: Holds the relevant JavaFX variables of signing up and holds methods directly
+ * related to view
+ * Used by: SignUpPageController, PaneFactory, signUpPopUp.fxml
+ * Uses: iPane interface, MainController, JavaFX
+ */
 public class SignUpView implements iPane {
 
     public static SignUpView signUpView;

@@ -1,56 +1,29 @@
 package Controller.MainControllers;
 
-import View.Interfaces.iPane;
+import Controller.Interfaces.ControllerInterface;
+import View.MainViews.HeaderView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Hyperlink;
 
-public class HeaderController implements iPane {
+public class HeaderController implements ControllerInterface {
 
-    //________________________________________________ VARIABLES _______________________________________________________
-    MainController parent;
+    private final HeaderView headerView = HeaderView.getInstance();
 
-    //________________________________________________ FXML ____________________________________________________________
-
-    @FXML
-    private Hyperlink accountPageButton;
-    @FXML
-    private Hyperlink logo;
-    @FXML
-    private Hyperlink homeButton;
-    @FXML
-    private Hyperlink entryButton;
-    @FXML
-    private Hyperlink statisticsButton;
-    @FXML
-    private Hyperlink budgetButton;
-    @FXML
-    private Hyperlink goalButton;
+    public HeaderController() {
+        setAllViewListeners();
+    }
 
     //________________________________________________ Methods _________________________________________________________
 
-    @FXML
-    private void clickHeader(ActionEvent event) {
-        if (homeButton.equals(event.getTarget()) || logo.equals(event.getTarget())) {
-            parent.showFirstPage();
-        } else if (budgetButton.equals(event.getTarget())) {
-            parent.showBudgetCharPage();
-        } else if (entryButton.equals(event.getTarget())) {
-            parent.showEntryPage();
-        } else if (statisticsButton.equals(event.getTarget())) {
-            parent.showStatisticsOverviewPage();
-        } else if (accountPageButton.equals((event.getTarget()))) {
-            parent.showAccountPage();
-        } else if (goalButton.equals(event.getTarget())) {
-            parent.showGoalsPage();
-        }
+    public void setAllViewListeners() {
+        headerView.budgetButton.setOnAction(a->headerView.showBudgetCharPage());
+        headerView.homeButton.setOnAction(a->headerView.showFirstPage());
+        headerView.accountPageButton.setOnAction(a->headerView.showAccountPage());
+        headerView.goalButton.setOnAction(a->headerView.showGoalsPage());
+        headerView.statisticsButton.setOnAction(a->headerView.showStatisticsOverviewPage());
+        headerView.logo.setOnAction(a->headerView.showFirstPage());
+        headerView.entryButton.setOnAction(a->headerView.showEntryPage());
     }
-
-    @Override
-    public void initPane(MainController parent) {
-        this.parent = parent;
-    }
-
 }
 
 

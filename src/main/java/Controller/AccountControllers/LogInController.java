@@ -8,12 +8,12 @@ import Model.Interfaces.AccountObserver;
 import View.AccountView.LogInView;
 
 /**
- * Controller for login on login page
- *
- * @author Lenia
+ * @author : Lenia Malki
+ * Responsibility: Updates and handles the LogInPage through the logic in AccountFacade
+ * Used by: PaneFactory
+ * Uses: ControllerInterface, AccountObserver,  AccountFacade, LogInView, LogInHandler
  */
-
-public class LogInPageController implements AccountObserver, ControllerInterface {
+public class LogInController implements AccountObserver, ControllerInterface {
 
     private final LogInHandler logInHandler = new LogInHandler() {
         public boolean logIn(final String accountName, final String password) {
@@ -28,7 +28,7 @@ public class LogInPageController implements AccountObserver, ControllerInterface
     //________________________________________________ Methods
     // _________________________________________________________//NOPMD
 
-    public LogInPageController() {
+    public LogInController() {
         accountFacade.add(this);
         setAllViewListeners();
     }
