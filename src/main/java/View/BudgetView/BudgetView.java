@@ -19,13 +19,18 @@ public class BudgetView implements iPane {
         budgetView = this;
     }
 
+    /**
+     * Method for obtaining the BudgetView instance.
+     */
     public static BudgetView getInstance(){
         if (budgetView == null){
             budgetView = new BudgetView();
         }
         return budgetView;
     }
-
+    /**
+     * Initializes this pane.
+     */
     @Override
     public void initPane(MainController parent) {
         this.parent = parent;
@@ -35,7 +40,7 @@ public class BudgetView implements iPane {
     }
 
     /**
-     * Sets style of sliders and progress bars
+     * Sets style of sliders and progress bars.
      */
 
     private void stylingSlidersAndProgressBars() {
@@ -52,6 +57,7 @@ public class BudgetView implements iPane {
         savingsSlider.setStyle("-fx-control-inner-background: null");
         savingsProgressBar.setStyle("-fx-accent: #F66A80");
     }
+
 
     public void setSliders(int income){
         foodSlider.setMax(income);
