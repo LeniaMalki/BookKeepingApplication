@@ -1,8 +1,8 @@
 package Controller.GoalsControllers;
 
 import Controller.Interfaces.ControllerInterface;
-import Model.EntryLogic.Entry;
 import Model.EntryLogic.EntrySubject;
+import Model.EntryLogic.iEntry;
 import Model.GoalsLogic.SavingGoal;
 import Model.GoalsLogic.SavingsOverview;
 import Model.Interfaces.EntryObserver;
@@ -32,9 +32,10 @@ public class NewGoalsInsertController implements EntryObserver, ControllerInterf
         }
         setAllViewListeners();
         savingsOverview = SavingsOverview.getInstance();
-        EntrySubject.add(this);
+        EntrySubject.add(this); //TODO denna är beroende på model
 
     }
+
     @Override
     public void setAllViewListeners() {
         insertView.okButton.setOnAction(e -> addNewGoal());
@@ -71,8 +72,8 @@ public class NewGoalsInsertController implements EntryObserver, ControllerInterf
     /**
      * registers a new goal
      *
-     * @param goal  the goal you want to reach
-     * @param name  name of the goal
+     * @param goal the goal you want to reach
+     * @param name name of the goal
      */
     private void registerSavingGoal(double goal, String name) {
         SavingGoal savingGoal = new SavingGoal(goal, name);
@@ -90,7 +91,7 @@ public class NewGoalsInsertController implements EntryObserver, ControllerInterf
     }
 
     @Override
-    public void update(Entry entry) {
+    public void update(iEntry entry) {
 
     }
 

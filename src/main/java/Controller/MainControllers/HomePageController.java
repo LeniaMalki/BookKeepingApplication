@@ -3,7 +3,7 @@ package Controller.MainControllers;
 import View.Interfaces.iPane;
 import Model.BudgetLogic.Budget;
 import Model.BudgetLogic.BudgetSubject;
-import Model.EntryLogic.Entry;
+import Model.EntryLogic.iEntry;
 import Model.EntryLogic.EntryHandler;
 import Model.EntryLogic.EntrySubject;
 import Model.Interfaces.BudgetObserver;
@@ -103,7 +103,7 @@ public class HomePageController implements iPane, EntryObserver, BudgetObserver 
     }
 
     @Override
-    public void update(Entry entry) {
+    public void update(iEntry entry) {
         changeProgress();
     }
 

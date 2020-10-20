@@ -1,7 +1,7 @@
 package Controller.StatisticsController;
 
 import Controller.Interfaces.RemoveItemObserver;
-import Model.EntryLogic.Entry;
+import Interfaces.iEntry;
 import Model.EntryLogic.EntryHandler;
 import Model.EntryLogic.EntrySubject;
 import Controller.Interfaces.ControllerInterface;
@@ -47,7 +47,7 @@ public class StatisticsOverViewController implements EntryObserver, RemoveItemOb
      * When implemented: should update category values and then call upon pieCharts to be updated according to daily
      * (entries today), weekly (entries the past 7 days) and monthly (the past 30 months) time-span.
      */
-    private void updateStatisticsPiechart(final Entry entry) {
+    private void updateStatisticsPiechart(final iEntry entry) {
         entryHandler.updateTotalCategoryValues();
         updateDailyStatistics();
         updateWeeklyStatistics();
@@ -115,13 +115,13 @@ public class StatisticsOverViewController implements EntryObserver, RemoveItemOb
     }
 
     @Override
-    public void update(final Entry entry) {
+    public void update(final Model.EntryLogic.iEntry entry) {
         updateStatisticsPiechart(entry);
 
     }
 
     @Override
-    public void update(final Entry entry, final EntryListItemView controller) {
+    public void update(final iEntry entry, final EntryListItemView controller) {
         updateStatisticsPiechart(entry);
     }
 }

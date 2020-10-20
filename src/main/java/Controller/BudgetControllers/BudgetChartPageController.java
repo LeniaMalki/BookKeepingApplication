@@ -1,9 +1,10 @@
 package Controller.BudgetControllers;
 
 import Controller.Interfaces.ControllerInterface;
+import Interfaces.iEntryHandler;
 import Model.BudgetLogic.Budget;
 import Model.BudgetLogic.BudgetSubject;
-import Model.EntryLogic.Entry;
+import Model.EntryLogic.iEntry;
 import Model.EntryLogic.EntryHandler;
 import Model.EntryLogic.EntrySubject;
 import Model.Interfaces.BudgetObserver;
@@ -24,7 +25,7 @@ public class BudgetChartPageController implements EntryObserver, BudgetObserver,
     //________________________________________________ VARIABLES _______________________________________________________
 
     Budget budget = new Budget(2,3,2,5,2,1,"25");
-    EntryHandler entryHandler = EntryHandler.getInstance();
+    iEntryHandler entryHandler = EntryHandler.getInstance();
     XYChart.Series<String, Number> series2 = new XYChart.Series<>();
     BudgetChartView budgetChartView = BudgetChartView.getInstance();
 
@@ -83,7 +84,7 @@ public class BudgetChartPageController implements EntryObserver, BudgetObserver,
      * @param entry an Entry that is added to the FlowPane of entries.
      */
 
-    private void updateCharts(Entry entry) {
+    private void updateCharts(iEntry entry) {
         entryHandler.updateTotalCategoryValues();
         updatingStackedBarChart();
     }
@@ -124,7 +125,7 @@ public class BudgetChartPageController implements EntryObserver, BudgetObserver,
     }
 
     @Override
-    public void update(Entry entry) {
+    public void update(iEntry entry) {
         updateCharts(entry);
     }
 

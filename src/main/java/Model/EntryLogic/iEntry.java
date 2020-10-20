@@ -8,7 +8,7 @@ import Model.Interfaces.EntryObserver;
  * @author Artin
  */
 
-public class Entry extends EntrySubject {
+public class iEntry extends EntrySubject implements Interfaces.iEntry {
     private final double amount;
    private final String name;
   private final String category;
@@ -23,7 +23,7 @@ public class Entry extends EntrySubject {
      * @param category the category that the entry falls under
      * @param typeOfEntry the type of entry the object is, income, expense or savings
      */
-    public Entry(double cost, String name, String category, String typeOfEntry) {
+    public iEntry(double cost, String name, String category, String typeOfEntry) {
         this.amount = cost;
         this.name = name;
         this.category = category;
@@ -57,7 +57,7 @@ public class Entry extends EntrySubject {
         return typeOfEntry;
     }
 
-    public Entry getEntry() {
+    public iEntry getEntry() {
         return this;
     }
 

@@ -1,8 +1,8 @@
 package Controller.Interfaces;
 
-import Model.EntryLogic.Entry;
+import Interfaces.iEntry;
 import View.EntryView.EntryListItemView;
 
 public interface RemoveItemObserver {
-    void update(Entry entry, EntryListItemView controller);
+    void update(iEntry entry, EntryListItemView controller);
 }

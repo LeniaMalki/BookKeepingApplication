@@ -2,7 +2,7 @@ package Controller.EntryControllers;
 
 import Controller.Interfaces.ControllerInterface;
 import Controller.Interfaces.RemoveItemObserver;
-import Model.EntryLogic.Entry;
+import Interfaces.iEntry;
 import Model.Interfaces.SavingsObserver;
 import Model.Interfaces.SavingsSubject;
 import View.EntryView.EntryListItemView;
@@ -23,7 +23,7 @@ import java.util.ArrayList;
 
 public class EntryPageController implements SavingsObserver, RemoveItemObserver, ControllerInterface {
     private final ArrayList<Button> entryButtonTypeCluster = new ArrayList<>();
-    private final ArrayList<Entry> entryList = new ArrayList<>();
+    private final ArrayList<iEntry> entryList = new ArrayList<>();
 
     private Button currentActiveEntryButton;
     private final EntryView entryView = EntryView.getInstance();
@@ -73,7 +73,7 @@ public class EntryPageController implements SavingsObserver, RemoveItemObserver,
      *
      * @param event if something is pressed an ActionEvent is fired and tells the system what happened
      */
-    private void activateEntryTypeButton( ActionEvent event) {
+    private void activateEntryTypeButton(ActionEvent event) {
         final Button btn = (Button) event.getSource();
         for (final Button b : entryButtonTypeCluster) {
             b.getStyleClass().remove("activeEntryButton");
@@ -113,7 +113,7 @@ public class EntryPageController implements SavingsObserver, RemoveItemObserver,
 
         if (checkIfFieldsAreFilledInCorrectly(entryView.nameTextField, entryView.categoryComboBox, entryView.costTextField)) {
             try {
-                final Entry entry = new Entry(Double.parseDouble(entryView.costTextField.getText()), entryView.nameTextField.getText(), entryView.categoryComboBox.getValue(), currentActiveEntryButton.getText());
+                final iEntry entry = new Model.EntryLogic.iEntry(Double.parseDouble(entryView.costTextField.getText()), entryView.nameTextField.getText(), entryView.categoryComboBox.getValue(), currentActiveEntryButton.getText());
                 entryList.add(entry);
                 final EntryListItemController itemController = new EntryListItemController(entry);
                 entryView.entryFlowPlane.getChildren().add(itemController.getView());
@@ -129,21 +129,21 @@ public class EntryPageController implements SavingsObserver, RemoveItemObserver,
 
     private void setColorRedIfInvalid(TextField nameTextField, ComboBox<String> categoryComboBox, TextField costTextField) {
 
-        if (!checkIfNameIsFilledIn(nameTextField)){
+        if (!checkIfNameIsFilledIn(nameTextField)) {
             entryView.setRedColor(nameTextField);
-        }else {
+        } else {
             entryView.setGreyColor(nameTextField);
         }
 
-        if (checkIfCategoryIsFilledIn(categoryComboBox)){
+        if (checkIfCategoryIsFilledIn(categoryComboBox)) {
             entryView.setRedColor(categoryComboBox);
-        }else{
+        } else {
             entryView.setGreyColor(categoryComboBox);
         }
 
-        if (checkIfCostIsInCorrect(costTextField)){
+        if (checkIfCostIsInCorrect(costTextField)) {
             entryView.setRedColor(costTextField);
-        }else {
+        } else {
             entryView.setGreyColor(costTextField);
         }
     }
@@ -161,14 +161,14 @@ public class EntryPageController implements SavingsObserver, RemoveItemObserver,
     }
 
     private boolean checkIfCategoryIsFilledIn(ComboBox<String> categoryComboBox) {
-        return (categoryComboBox.getValue()=="" || categoryComboBox.getValue()=="Category" || categoryComboBox.getValue() == null);
+        return (categoryComboBox.getValue() == "" || categoryComboBox.getValue() == "Category" || categoryComboBox.getValue() == null);
     }
 
     /**
      * Confirms all the entries that the user has added, as an extra step to make sure that everything is right
      */
     private void submitEntries() {
-        for (final Entry entry : entryList) {
+        for (final iEntry entry : entryList) {
             entry.notifyEntryListeners();
         }
         entryView.entryFlowPlane.getChildren().clear();
@@ -205,7 +205,7 @@ public class EntryPageController implements SavingsObserver, RemoveItemObserver,
     }
 
     @Override
-    public void update(Entry entry, EntryListItemView controller) {
+    public void update(iEntry entry, EntryListItemView controller) {
         entryList.remove(entry);
         entryView.entryFlowPlane.getChildren().remove(controller);
     }

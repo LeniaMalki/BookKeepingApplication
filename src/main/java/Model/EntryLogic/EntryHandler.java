@@ -1,5 +1,6 @@
 package Model.EntryLogic;
 
+import Interfaces.iEntryHandler;
 import Model.Interfaces.EntryObserver;
 
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import java.util.List;
  * @author Oscar
  */
 
-public class EntryHandler implements EntryObserver {
+public class EntryHandler implements EntryObserver, iEntryHandler {
 
     //________________________________________________ VARIABLES _______________________________________________________
 
@@ -23,7 +24,7 @@ public class EntryHandler implements EntryObserver {
     private  static double shoppingAmount;
     private  static double otherAmount;
     private  static double generalSaving;
-    private final List<Entry> entries = new ArrayList<>();
+    private final List<iEntry> entries = new ArrayList<>();
 
     //_________________________________________________ METHODS ________________________________________________________
 
@@ -46,7 +47,7 @@ public class EntryHandler implements EntryObserver {
      *
      * @param entry , an entry with a specific category
      */
-    public void addEntry(Entry entry) {
+    public void addEntry(iEntry entry) {
         entries.add(entry);
     }
 
@@ -55,7 +56,7 @@ public class EntryHandler implements EntryObserver {
      *
      * @param entry , an entry with a specific category
      */
-    public void removeEntry(Entry entry) {
+    public void removeEntry(iEntry entry) {
         entries.remove(entry);
     }
 
@@ -70,7 +71,7 @@ public class EntryHandler implements EntryObserver {
         shoppingAmount = 0;
         otherAmount = 0;
         generalSaving = 0;
-        for (final Entry entry : entries) {
+        for (final iEntry entry : entries) {
             if (entry.getCategory().equals("Food")) {
                 foodAmount += entry.getAmount();
             }
@@ -98,7 +99,7 @@ public class EntryHandler implements EntryObserver {
     }
 
     @Override
-    public void update(Entry entry) {
+    public void update(iEntry entry) {
         addEntry(entry);
     }
 
@@ -128,7 +129,7 @@ public class EntryHandler implements EntryObserver {
         return generalSaving;
     }
 
-    public List<Entry> getEntries() {
+    public List<iEntry> getEntries() {
         return entries;
     }
 

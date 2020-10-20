@@ -1,14 +1,14 @@
-import Model.EntryLogic.Entry;
+import Model.EntryLogic.iEntry;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class TestEntry {
-    Entry entry;
+    iEntry entry;
 
     @BeforeEach
     public void createNewEntry(){
-        entry = new Entry(100,"TestEntry","TestCategory","TestType");
+        entry = new iEntry(100,"TestEntry","TestCategory","TestType");
     }
     @Test
     public void testCreationOfEntryCost(){

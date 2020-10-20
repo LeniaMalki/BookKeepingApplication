@@ -1,6 +1,6 @@
 package Model.GoalsLogic;
 
-import Model.EntryLogic.Entry;
+import Model.EntryLogic.iEntry;
 import Model.EntryLogic.EntrySubject;
 import Model.Interfaces.EntryObserver;
 import Model.Interfaces.SavingsObserver;
@@ -92,7 +92,7 @@ public class SavingsOverview implements iSavingsRegister, SavingsSubject, EntryO
     }
 
     @Override
-    public void update(Entry entry) {
+    public void update(iEntry entry) {
 // TODO have to make it only one update
     }
 

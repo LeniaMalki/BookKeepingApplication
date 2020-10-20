@@ -2,7 +2,7 @@ package Controller.StatisticsController;
 
 import Controller.EntryControllers.EntryListItemController;
 import Controller.Interfaces.RemoveItemObserver;
-import Model.EntryLogic.Entry;
+import Interfaces.iEntry;
 import Model.EntryLogic.EntryHandler;
 import Model.EntryLogic.EntrySubject;
 import Controller.Interfaces.ControllerInterface;
@@ -39,11 +39,11 @@ public class StatisticsDetailController implements EntryObserver, RemoveItemObse
      * A function (when button pressed) removeEntry that iterates through the lists of entries and removes the entry
      * if its selected.
      */
-    public void update(final Entry entry, final EntryListItemView controller) {
+    public void update(final iEntry entry, final EntryListItemView controller) {
         entryHandler.getEntries().remove(entry);
         statisticsDetailView.removeEntryListItemView(controller);
         updatePieChart();
-        for (final Entry e : entryHandler.getEntries()) {
+        for (final iEntry e : entryHandler.getEntries()) {
             if (!allEntries) {
                 entriesCheckCategory(e.getCategory());
             } else {
@@ -91,7 +91,7 @@ public class StatisticsDetailController implements EntryObserver, RemoveItemObse
      */
     private void entriesCheckCategory(final String category) {
         statisticsDetailView.clearPane();
-        for (final Entry entry : entryHandler.getEntries()) {
+        for (final iEntry entry : entryHandler.getEntries()) {
             if (category.equals(entry.getCategory()) || "".equals(category)) {
                 addEntryToFlowPane(entry);
             }
@@ -104,7 +104,7 @@ public class StatisticsDetailController implements EntryObserver, RemoveItemObse
      *
      * @param entry is a an entry that we add to our EntryListItemController.
      */
-    private void addEntryToFlowPane(final Entry entry) {
+    private void addEntryToFlowPane(final iEntry entry) {
         final EntryListItemController entryListItemController = new EntryListItemController(entry);
         statisticsDetailView.addEntryListItemView(entryListItemController);
         entryListItemController.add(this);
@@ -126,7 +126,7 @@ public class StatisticsDetailController implements EntryObserver, RemoveItemObse
     }
 
     @Override
-    public void update(final Entry entry) {
+    public void update(final Model.EntryLogic.iEntry entry) {
         entriesCheckCategory("");
         updatePieChart();
     }
