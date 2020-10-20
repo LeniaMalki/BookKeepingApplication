@@ -1,4 +1,4 @@
-package Controller.MainControllers;
+package Service;
 
 import Controller.AccountControllers.*;
 import Controller.BudgetControllers.BudgetChartPageController;

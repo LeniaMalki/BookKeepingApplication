@@ -6,6 +6,7 @@ import Interfaces.iEntryHandler;
 import Model.BudgetLogic.Budget;
 import Model.BudgetLogic.BudgetSubject;
 import Model.EntryLogic.Entry;
+import Service.PaneFactory;
 import Model.EntryLogic.EntryHandler;
 import Model.EntryLogic.EntrySubject;
 import Model.Interfaces.BudgetObserver;
@@ -25,7 +26,6 @@ public class HomePageController implements EntryObserver, BudgetObserver {
 
     //________________________________________________ VARIABLES _______________________________________________________
 
-    MainController parent;
     iBudget budget;
     iEntryHandler entryHandler = EntryHandler.getInstance();
     private final HomeView homeView = HomeView.getInstance();
@@ -33,39 +33,14 @@ public class HomePageController implements EntryObserver, BudgetObserver {
 
 
     public HomePageController() {
-    @FXML
-    private Label foodLabel;
-    @FXML
-    private Label householdLabel;
-    @FXML
-    private Label shoppingLabel;
-    @FXML
-    private Label transportLabel;
-    @FXML
-    private Label otherLabel;
-
-    //_________________________________________________ METHODS ________________________________________________________
-
-    @FXML
-    private void loadEntryPage(ActionEvent event) throws IOException {
-        parent.showEntryPage();
-    }
-
-    @FXML
-    private void goToBudgetButton(ActionEvent event) throws IOException {
-        parent.showBudgetPage();
-    }
-
-
-    @Override
-    public void initPane(MainController parent) {
-        this.parent = parent;
-        headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
         BudgetSubject.add(this);
         EntrySubject.add(this);
         budget = new Budget(0, 0, 0, 0, 0, 0, "0");
         updateAllBudgets();
     }
+
+    //_________________________________________________ METHODS ________________________________________________________
+
 
     /**
      * Updates all the labels according to the entries and budgets.
