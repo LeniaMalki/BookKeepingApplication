@@ -1,5 +1,6 @@
 package Model.AccountLogic;//NOPMD
 
+import Interfaces.iAccountFacade;
 import Model.Interfaces.AccountObserver;
 import Model.Interfaces.AccountSubject;
 
@@ -11,7 +12,7 @@ import java.util.List;
  * change the variables of an account.
  * @author Lenia
  */
-public final class AccountFacade implements AccountSubject {
+public final class AccountFacade implements AccountSubject, iAccountFacade {
     private static AccountFacade accountFacade;
     private final AccountEditor accountEditor = AccountEditor.getInstance();
     private final List<AccountObserver> accountObservers = new ArrayList<>();

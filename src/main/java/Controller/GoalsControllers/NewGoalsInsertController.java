@@ -1,8 +1,10 @@
 package Controller.GoalsControllers;
 
 import Controller.Interfaces.ControllerInterface;
+import Interfaces.iEntry;
+import Interfaces.iSavingGoal;
+import Interfaces.iSavingsOverview;
 import Model.EntryLogic.EntrySubject;
-import Model.EntryLogic.iEntry;
 import Model.GoalsLogic.SavingGoal;
 import Model.GoalsLogic.SavingsOverview;
 import Model.Interfaces.EntryObserver;
@@ -13,7 +15,7 @@ import java.io.IOException;
 
 public class NewGoalsInsertController implements EntryObserver, ControllerInterface {
     private final GoalsInsertView insertView = new GoalsInsertView();
-    SavingsOverview savingsOverview;
+    iSavingsOverview savingsOverview;
     private double amountSaved = 0;
 
     /**
@@ -76,7 +78,7 @@ public class NewGoalsInsertController implements EntryObserver, ControllerInterf
      * @param name name of the goal
      */
     private void registerSavingGoal(double goal, String name) {
-        SavingGoal savingGoal = new SavingGoal(goal, name);
+        iSavingGoal savingGoal = new SavingGoal(goal, name);
     }
 
 

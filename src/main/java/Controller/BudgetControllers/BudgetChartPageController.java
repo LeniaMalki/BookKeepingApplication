@@ -1,19 +1,22 @@
 package Controller.BudgetControllers;
 
 import Controller.Interfaces.ControllerInterface;
+import Interfaces.iBudget;
+import Interfaces.iEntry;
 import Interfaces.iEntryHandler;
 import Model.BudgetLogic.Budget;
 import Model.BudgetLogic.BudgetSubject;
-import Model.EntryLogic.iEntry;
+import Model.EntryLogic.Entry;
 import Model.EntryLogic.EntryHandler;
 import Model.EntryLogic.EntrySubject;
 import Model.Interfaces.BudgetObserver;
 import Model.Interfaces.EntryObserver;
 import View.BudgetView.BudgetChartView;
 import javafx.collections.FXCollections;
+import javafx.scene.chart.XYChart;
+
 import java.io.IOException;
 import java.util.Arrays;
-import javafx.scene.chart.XYChart;
 
 /**
  * Controller for the budget chart
@@ -25,7 +28,7 @@ public class BudgetChartPageController implements EntryObserver, BudgetObserver,
     //________________________________________________ VARIABLES _______________________________________________________
 
 
-    private final Budget budget = new Budget(2,3,2,5,2,1,"25");
+    private final iBudget budget = new Budget(2,3,2,5,2,1,"25");
     private final iEntryHandler entryHandler = EntryHandler.getInstance();
 
     private final XYChart.Series<String, Number> series2 = new XYChart.Series<>();
@@ -115,7 +118,7 @@ public class BudgetChartPageController implements EntryObserver, BudgetObserver,
      * Creates/updates a Stacked bar chart with the budget values.
      */
 
-    public void updateGostGraph(final Budget budget){
+    public void updateGostGraph(final iBudget budget){
         final XYChart.Series<String, Integer> series1 = new XYChart.Series<>();
         series1.setName("Budget");
         series1.getData().add(new XYChart.Data<>("Food", budget.getFoodCost()));
@@ -138,7 +141,7 @@ public class BudgetChartPageController implements EntryObserver, BudgetObserver,
     }
 
     @Override
-    public void update(final Budget budget) {
+    public void update(final iBudget budget) {
         updateGostGraph(budget);
     }
 }

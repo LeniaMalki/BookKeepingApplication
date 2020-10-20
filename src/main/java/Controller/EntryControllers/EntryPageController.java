@@ -3,6 +3,7 @@ package Controller.EntryControllers;
 import Controller.Interfaces.ControllerInterface;
 import Controller.Interfaces.RemoveItemObserver;
 import Interfaces.iEntry;
+import Model.EntryLogic.Entry;
 import Model.Interfaces.SavingsObserver;
 import Model.Interfaces.SavingsSubject;
 import View.EntryView.EntryListItemView;
@@ -113,7 +114,7 @@ public class EntryPageController implements SavingsObserver, RemoveItemObserver,
 
         if (checkIfFieldsAreFilledInCorrectly(entryView.nameTextField, entryView.categoryComboBox, entryView.costTextField)) {
             try {
-                final iEntry entry = new Model.EntryLogic.iEntry(Double.parseDouble(entryView.costTextField.getText()), entryView.nameTextField.getText(), entryView.categoryComboBox.getValue(), currentActiveEntryButton.getText());
+                final iEntry entry = new Entry(Double.parseDouble(entryView.costTextField.getText()), entryView.nameTextField.getText(), entryView.categoryComboBox.getValue(), currentActiveEntryButton.getText());
                 entryList.add(entry);
                 final EntryListItemController itemController = new EntryListItemController(entry);
                 entryView.entryFlowPlane.getChildren().add(itemController.getView());

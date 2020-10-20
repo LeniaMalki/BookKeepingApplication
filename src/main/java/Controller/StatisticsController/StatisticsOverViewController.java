@@ -2,6 +2,7 @@ package Controller.StatisticsController;
 
 import Controller.Interfaces.RemoveItemObserver;
 import Interfaces.iEntry;
+import Model.EntryLogic.Entry;
 import Model.EntryLogic.EntryHandler;
 import Model.EntryLogic.EntrySubject;
 import Controller.Interfaces.ControllerInterface;
@@ -115,7 +116,7 @@ public class StatisticsOverViewController implements EntryObserver, RemoveItemOb
     }
 
     @Override
-    public void update(final Model.EntryLogic.iEntry entry) {
+    public void update(final iEntry entry) {
         updateStatisticsPiechart(entry);
 
     }

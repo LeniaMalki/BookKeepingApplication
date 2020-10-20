@@ -1,10 +1,12 @@
 package Controller.BudgetControllers;
 
 import Controller.Interfaces.ControllerInterface;
+import Interfaces.iBudget;
 import Model.BudgetLogic.Budget;
 import Model.BudgetLogic.BudgetSubject;
 import Model.Interfaces.BudgetObserver;
 import View.BudgetView.BudgetView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,10 +19,10 @@ public class BudgetPageController implements BudgetObserver, ControllerInterface
 
     //________________________________________________ VARIABLES _______________________________________________________
 
-    private final List<Budget> budgetList = new ArrayList<>();
+    private final List<iBudget> budgetList = new ArrayList<>();
     private int menuItemNumber = 1;
     private int selected = 0;
-    private Budget budget;
+    private iBudget budget;
     private final BudgetView budgetView = BudgetView.getInstance();
     private final BugetSliderController bugetSliderController = new BugetSliderController();
 
@@ -125,10 +127,6 @@ public class BudgetPageController implements BudgetObserver, ControllerInterface
         int income;
         income = Integer.parseInt(budgetView.enterIncomeTextField.getText());
 
-        /*if (budgetView.enterIncomeTextField.equals(null)) {
-            income = 0;
-        } //används aldrig så kan tas bort*/
-
         final int totalSum = (int) (budgetView.foodSlider.getValue() + budgetView.householdSlider.getValue()
                 + budgetView.shoppingSlider.getValue() + budgetView.transportSlider.getValue() + budgetView.otherSlider.getValue() + budgetView.savingsSlider.getValue());
 
@@ -157,11 +155,11 @@ public class BudgetPageController implements BudgetObserver, ControllerInterface
         final int otherBudget = budget.getFoodCost();
         final int savingBudget = budget.getFoodCost();
         final String incomeBudget = budget.getIncome();
-        budgetView.updateSlidersWithBudget(foodBudget,houseHoldBudget,shoppingBudget,transportBudget,otherBudget,savingBudget,incomeBudget);
+        budgetView.updateSlidersWithBudget(foodBudget, houseHoldBudget, shoppingBudget, transportBudget, otherBudget, savingBudget, incomeBudget);
     }
 
     @Override
-    public void update(final Budget budget2) {
+    public void update(final iBudget budget2) {
         budget = budget2;
         updateAllValues();
     }

@@ -1,5 +1,6 @@
 package Model.EntryLogic;
 
+import Interfaces.iEntry;
 import Interfaces.iEntryHandler;
 import Model.Interfaces.EntryObserver;
 
@@ -56,7 +57,7 @@ public class EntryHandler implements EntryObserver, iEntryHandler {
      *
      * @param entry , an entry with a specific category
      */
-    public void removeEntry(iEntry entry) {
+    public void removeEntry(Entry entry) {
         entries.remove(entry);
     }
 

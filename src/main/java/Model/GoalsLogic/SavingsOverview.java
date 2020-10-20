@@ -1,6 +1,9 @@
 package Model.GoalsLogic;
 
-import Model.EntryLogic.iEntry;
+import Interfaces.iEntry;
+import Interfaces.iSavingGoal;
+import Interfaces.iSavingsOverview;
+import Model.EntryLogic.Entry;
 import Model.EntryLogic.EntrySubject;
 import Model.Interfaces.EntryObserver;
 import Model.Interfaces.SavingsObserver;
@@ -14,8 +17,8 @@ import java.util.HashMap;
  *
  * @author Artin
  */
-public class SavingsOverview implements iSavingsRegister, SavingsSubject, EntryObserver {
-    HashMap<String, SavingGoal> savingGoalHashMap = new HashMap<>();
+public class SavingsOverview implements iSavingsRegister, SavingsSubject, EntryObserver, iSavingsOverview {
+    HashMap<String, iSavingGoal> savingGoalHashMap = new HashMap<>();
     private static SavingsOverview savingsInstance;
 
     /**
@@ -50,7 +53,7 @@ public class SavingsOverview implements iSavingsRegister, SavingsSubject, EntryO
      * @param goal the amount that is needed to reach the goal
      */
     @Override
-    public void addSavingsGoal(String name, SavingGoal goal) {
+    public void addSavingsGoal(String name, iSavingGoal goal) {
         savingGoalHashMap.put(name, goal);
         notifyListeners(name);
     }

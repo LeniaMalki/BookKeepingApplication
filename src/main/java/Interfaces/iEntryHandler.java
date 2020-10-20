@@ -1,7 +1,5 @@
 package Interfaces;
 
-import Model.EntryLogic.iEntry;
-
 import java.util.List;
 
 public interface iEntryHandler {
@@ -18,7 +16,8 @@ public interface iEntryHandler {
     double getGeneralSaving();
 
     List<iEntry> getEntries();
-      void updateTotalCategoryValues();
+
+    void updateTotalCategoryValues();
 
 
-     }
+}

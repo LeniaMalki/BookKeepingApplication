@@ -1,13 +1,15 @@
 package Controller.AccountControllers;//NOPMD
 
+import Controller.Interfaces.ControllerInterface;
+import Interfaces.iAccountFacade;
 import Model.AccountLogic.AccountFacade;
 import Model.AccountLogic.LogInHandler;
 import Model.Interfaces.AccountObserver;
-import Controller.Interfaces.ControllerInterface;
 import View.AccountView.LogInView;
 
 /**
  * Controller for login on login page
+ *
  * @author Lenia
  */
 
@@ -19,7 +21,7 @@ public class LogInPageController implements AccountObserver, ControllerInterface
         }
     };
 
-    private final AccountFacade accountFacade = AccountFacade.getInstance();
+    private final iAccountFacade accountFacade = AccountFacade.getInstance();
     private final LogInView logInView = LogInView.getInstance();
 
 
@@ -70,7 +72,6 @@ public class LogInPageController implements AccountObserver, ControllerInterface
      * managed//NOPMD by the account facade and logInHandler.
      */
     private void onLoginClicked() {
-        logInView.parent.showFirstPage();
         if (accountFacade.getAccountName() == null) {
             logInView.setMessage("No user registered!");
         } else if (logInHandler.logIn(logInView.usernameField.getText(), logInView.logInField.getText())) {

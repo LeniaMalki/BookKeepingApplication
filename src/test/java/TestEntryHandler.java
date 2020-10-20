@@ -1,4 +1,4 @@
-import Model.EntryLogic.iEntry;
+import Model.EntryLogic.Entry;
 import Model.EntryLogic.EntryHandler;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -6,23 +6,23 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class TestEntryHandler {
-    iEntry shopping1;
-    iEntry shopping2;
-    iEntry transport;
-    iEntry food;
-    iEntry household;
-    iEntry other;
+    Entry shopping1;
+    Entry shopping2;
+    Entry transport;
+    Entry food;
+    Entry household;
+    Entry other;
     EntryHandler entryHandler = EntryHandler.getInstance();
 
     @BeforeEach
     //Before each test we set up different entries that we can use
     public void setUp() {
-        shopping1 = new iEntry(20, "Jeans", "Shopping", "Expense");
-        shopping2 = new iEntry(40, "T-shirt", "Shopping", "Expense");
-        transport = new iEntry(10, "Uber", "Transportation", "Expense");
-        food = new iEntry(10, "McDonalds", "Food", "Expense");
-        household = new iEntry(30, "Rent", "Household", "Expense");
-        other = new iEntry(50, "Cat", "Other", "Expense");
+        shopping1 = new Entry(20, "Jeans", "Shopping", "Expense");
+        shopping2 = new Entry(40, "T-shirt", "Shopping", "Expense");
+        transport = new Entry(10, "Uber", "Transportation", "Expense");
+        food = new Entry(10, "McDonalds", "Food", "Expense");
+        household = new Entry(30, "Rent", "Household", "Expense");
+        other = new Entry(50, "Cat", "Other", "Expense");
 
     }
 

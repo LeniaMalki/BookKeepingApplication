@@ -1,13 +1,15 @@
 package Controller.AccountControllers;//NOPMD
 
-import Model.AccountLogic.AccountFacade;
 import Controller.Interfaces.ControllerInterface;
+import Interfaces.iAccountFacade;
+import Model.AccountLogic.AccountFacade;
 import View.AccountView.SignUpView;
 
 import java.util.ArrayList;
 
 /**
  * Controller for signUp pop up through logInPage
+ *
  * @author Lenia
  */
 
@@ -15,7 +17,7 @@ public class SignUpPageController implements ControllerInterface {
 
     //________________________________________________ VARIABLES _______________________________________________________
 
-    private final AccountFacade accountFacade = AccountFacade.getInstance();
+    private final iAccountFacade accountFacade = AccountFacade.getInstance();
     private final SignUpView signUpView = SignUpView.getInstance();
 
     //________________________________________________ Methods _________________________________________________________
@@ -40,9 +42,9 @@ public class SignUpPageController implements ControllerInterface {
             signUpView.setMessage("Missing inputs!");
 
         } else if (accountFacade.createAccount(signUpView.signUpName.getText(), signUpView.signUpUsername.getText(),
-                                               signUpView.signUpPassword.getText(),
-                                               signUpView.signUpConfirmPassword.getText(),
-                                               signUpView.signUpEmail.getText())) {
+                signUpView.signUpPassword.getText(),
+                signUpView.signUpConfirmPassword.getText(),
+                signUpView.signUpEmail.getText())) {
             accountFacade.notifyListeners();
             signUpView.clearTextFields();
             signUpView.setMessage("");

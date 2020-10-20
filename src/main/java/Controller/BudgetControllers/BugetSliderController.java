@@ -57,7 +57,7 @@ public class BugetSliderController {
 
     protected void setMaxOnSlider() {
         final int income = Integer.parseInt(budgetView.enterIncomeTextField.getText());
-        budgetView.setSliders((int)income);
+        budgetView.setSliders((int) income);
         updateProgress();
     }
 
@@ -73,7 +73,7 @@ public class BugetSliderController {
         final double transportSlider = budgetView.transportSlider.getValue();
         final double otherSlider = budgetView.otherSlider.getValue();
         final double savingsSlider = budgetView.savingsSlider.getValue();
-        budgetView.setProgressBar(income,foodSlider,houseHoldSlider,shoppingSlider,transportSlider,otherSlider,savingsSlider);
+        budgetView.setProgressBar(income, foodSlider, houseHoldSlider, shoppingSlider, transportSlider, otherSlider, savingsSlider);
     }
 
 }

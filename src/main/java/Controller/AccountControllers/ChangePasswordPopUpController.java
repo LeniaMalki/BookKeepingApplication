@@ -1,7 +1,8 @@
 package Controller.AccountControllers;//NOPMD
 
-import Model.AccountLogic.AccountFacade;
 import Controller.Interfaces.ControllerInterface;
+import Interfaces.iAccountFacade;
+import Model.AccountLogic.AccountFacade;
 import View.AccountView.ChangePasswordView;
 
 /**
@@ -13,7 +14,7 @@ import View.AccountView.ChangePasswordView;
 public class ChangePasswordPopUpController implements ControllerInterface {
     //________________________________________________ VARIABLES _______________________________________________________
 
-    private final AccountFacade accountFacade = AccountFacade.getInstance();
+    private final iAccountFacade accountFacade = AccountFacade.getInstance();
     private final ChangePasswordView changePasswordView = ChangePasswordView.getInstance();//NOPMD
 
 

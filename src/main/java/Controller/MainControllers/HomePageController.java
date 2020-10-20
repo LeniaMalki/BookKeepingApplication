@@ -1,13 +1,16 @@
 package Controller.MainControllers;
 
-import View.Interfaces.iPane;
+import Interfaces.iBudget;
+import Interfaces.iEntry;
+import Interfaces.iEntryHandler;
 import Model.BudgetLogic.Budget;
 import Model.BudgetLogic.BudgetSubject;
-import Model.EntryLogic.iEntry;
+import Model.EntryLogic.Entry;
 import Model.EntryLogic.EntryHandler;
 import Model.EntryLogic.EntrySubject;
 import Model.Interfaces.BudgetObserver;
 import Model.Interfaces.EntryObserver;
+import View.Interfaces.iPane;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -22,8 +25,8 @@ public class HomePageController implements iPane, EntryObserver, BudgetObserver 
     //________________________________________________ VARIABLES _______________________________________________________
 
     MainController parent;
-    Budget budget;
-    EntryHandler entryHandler = EntryHandler.getInstance();
+    iBudget budget;
+    iEntryHandler entryHandler = EntryHandler.getInstance();
 
     //__________________________________________________ FXML __________________________________________________________
 
@@ -115,7 +118,7 @@ public class HomePageController implements iPane, EntryObserver, BudgetObserver 
     }
 
     @Override
-    public void update(Budget b) {
+    public void update(iBudget b) {
         budget = b;
         updateAllBudgets();
     }

@@ -1,5 +1,7 @@
 package Interfaces;
 
+import Model.EntryLogic.Entry;
+
 public interface iEntry {
     double getAmount();
 
@@ -9,7 +11,7 @@ public interface iEntry {
 
     String getTypeOfEntry();
 
-    Model.EntryLogic.iEntry getEntry();
+    Entry getEntry();
 
     void notifyEntryListeners();
 

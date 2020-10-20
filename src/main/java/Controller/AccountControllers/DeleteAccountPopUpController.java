@@ -1,16 +1,18 @@
 package Controller.AccountControllers;//NOPMD
 
-import Model.AccountLogic.AccountFacade;
 import Controller.Interfaces.ControllerInterface;
+import Interfaces.iAccountFacade;
+import Model.AccountLogic.AccountFacade;
 import View.AccountView.DeleteAccountView;
 
 /**
  * Controller for deleting the account through account page of deleteAccountPopup
+ *
  * @author Lenia
  */
 public class DeleteAccountPopUpController implements ControllerInterface {
 
-    private final AccountFacade accountFacade = AccountFacade.getInstance();
+    private final iAccountFacade accountFacade = AccountFacade.getInstance();
     private final DeleteAccountView deleteAccountView = DeleteAccountView.getInstance();
 
     public DeleteAccountPopUpController() {
