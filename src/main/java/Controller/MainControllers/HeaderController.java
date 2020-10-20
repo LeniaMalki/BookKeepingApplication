@@ -1,8 +1,6 @@
 package Controller.MainControllers;
 
-import Model.AccountLogic.AccountFacade;
-import Model.Interfaces.AccountObserver;
-import Controller.Interfaces.iPane;
+import View.Interfaces.iPane;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;

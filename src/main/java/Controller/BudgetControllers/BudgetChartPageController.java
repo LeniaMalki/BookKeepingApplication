@@ -1,5 +1,6 @@
 package Controller.BudgetControllers;
 
+import Controller.Interfaces.ControllerInterface;
 import Model.BudgetLogic.Budget;
 import Model.BudgetLogic.BudgetSubject;
 import Model.EntryLogic.Entry;
@@ -18,7 +19,7 @@ import javafx.scene.chart.XYChart;
  *
  * @author viktoriawelzel
  */
-public class BudgetChartPageController implements EntryObserver, BudgetObserver {
+public class BudgetChartPageController implements EntryObserver, BudgetObserver, ControllerInterface {
 
     //________________________________________________ VARIABLES _______________________________________________________
 
@@ -30,13 +31,14 @@ public class BudgetChartPageController implements EntryObserver, BudgetObserver 
     //_________________________________________________ METHODS ________________________________________________________
 
     public BudgetChartPageController(){
-        setAllViewListners();
+        setAllViewListeners();
         EntrySubject.add(this);
         BudgetSubject.add(this);
         budgetChartView.xAxis.setCategories(FXCollections.<String>observableArrayList(Arrays.asList("Food", "Household", "Shopping", "Transport", "Other", "General Saving")));
     }
 
-    private void setAllViewListners (){
+    @Override
+    public void setAllViewListeners (){
         budgetChartView.addNewBudgetButton.setOnAction(a -> addNewBudgetButton());
         budgetChartView.editBudgetButton.setOnAction(a -> editBudgetButton());
     }

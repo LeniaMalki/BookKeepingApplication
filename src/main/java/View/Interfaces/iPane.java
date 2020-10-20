@@ -1,4 +1,4 @@
-package Controller.Interfaces;
+package View.Interfaces;
 
 import Controller.MainControllers.MainController;
 

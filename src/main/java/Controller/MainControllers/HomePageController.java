@@ -1,6 +1,6 @@
 package Controller.MainControllers;
 
-import Controller.Interfaces.iPane;
+import View.Interfaces.iPane;
 import Model.BudgetLogic.Budget;
 import Model.BudgetLogic.BudgetSubject;
 import Model.EntryLogic.Entry;

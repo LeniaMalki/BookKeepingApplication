@@ -1,7 +1,7 @@
 package Controller.AccountControllers;//NOPMD
 
 import Model.AccountLogic.AccountFacade;
-import Model.Interfaces.ControllerInterface;
+import Controller.Interfaces.ControllerInterface;
 import View.AccountView.SignUpView;
 
 import java.util.ArrayList;

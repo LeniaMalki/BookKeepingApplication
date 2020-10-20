@@ -1,11 +1,8 @@
 package View.BudgetView;
 
-import Controller.BudgetControllers.BudgetPageController;
-import Controller.Interfaces.iPane;
+import View.Interfaces.iPane;
 import Controller.MainControllers.MainController;
 import Controller.MainControllers.PaneFactory;
-import Model.BudgetLogic.Budget;
-import Model.BudgetLogic.BudgetSubject;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;

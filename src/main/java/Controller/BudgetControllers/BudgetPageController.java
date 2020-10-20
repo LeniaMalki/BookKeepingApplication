@@ -1,5 +1,6 @@
 package Controller.BudgetControllers;
 
+import Controller.Interfaces.ControllerInterface;
 import Model.BudgetLogic.Budget;
 import Model.BudgetLogic.BudgetSubject;
 import Model.Interfaces.BudgetObserver;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
  *
  * @author viktoriawelzel
  */
-public class BudgetPageController implements BudgetObserver {
+public class BudgetPageController implements BudgetObserver, ControllerInterface {
 
     //________________________________________________ VARIABLES _______________________________________________________
 
@@ -27,7 +28,7 @@ public class BudgetPageController implements BudgetObserver {
     //_________________________________________________ METHODS ________________________________________________________
 
     public BudgetPageController() {
-        setAllViewListners();
+        setAllViewListeners();
         budget = new Budget(0, 0, 0, 0, 0, 0, null);
         BudgetSubject.add(this);
         listeningToChanges();
@@ -35,7 +36,8 @@ public class BudgetPageController implements BudgetObserver {
         updateAllValues();
     }
 
-    private void setAllViewListners() {
+    @Override
+    public void setAllViewListeners() {
         budgetView.saveButton.setOnAction(a -> onSaveButtonPressed());
         budgetView.enterIncomeTextField.setOnAction(a -> updatingMoneyLeft());
         budgetView.enterIncomeTextField.setOnMouseExited(a -> setMaxOnSlider());

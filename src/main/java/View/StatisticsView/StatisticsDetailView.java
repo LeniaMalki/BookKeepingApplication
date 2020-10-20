@@ -1,17 +1,14 @@
 package View.StatisticsView;
 
-import Controller.Interfaces.iPane;
+import View.Interfaces.iPane;
 import Controller.MainControllers.MainController;
 import Controller.MainControllers.PaneFactory;
-import Controller.StatisticsController.StatisticsDetailController;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Text;
-
-import java.util.Optional;
 
 public class StatisticsDetailView implements iPane {
 

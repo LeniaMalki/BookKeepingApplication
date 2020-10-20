@@ -1,6 +1,6 @@
 package Model.AccountLogic;//NOPMD
 
-import Model.Interfaces.AccountObserver;
+import Controller.Interfaces.AccountObserver;
 import Model.Interfaces.AccountSubject;
 
 import java.util.ArrayList;

@@ -1,6 +1,6 @@
 package View.EntryView;
 
-import Controller.Interfaces.iPane;
+import View.Interfaces.iPane;
 import Controller.MainControllers.MainController;
 import Controller.MainControllers.PaneFactory;
 import javafx.fxml.FXML;

@@ -1,6 +1,6 @@
 package View.AccountView;//NOPMD
 
-import Controller.Interfaces.iPane;
+import View.Interfaces.iPane;
 import Controller.MainControllers.MainController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
