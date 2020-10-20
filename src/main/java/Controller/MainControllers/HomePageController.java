@@ -67,6 +67,7 @@ public class HomePageController implements iPane, EntryObserver, BudgetObserver 
         parent.showBudgetPage();
     }
 
+
     @Override
     public void initPane(MainController parent) {
         this.parent = parent;
@@ -77,7 +78,9 @@ public class HomePageController implements iPane, EntryObserver, BudgetObserver 
         updateAllBudgets();
     }
 
-
+    /**
+     * Updates all the labels according to the entries and budgets.
+     */
     private void updateAllBudgets() {
         foodLabel.setText((int) entryHandler.getFoodAmount() + " kr of " + budget.getFoodCost() + " kr");
         householdLabel.setText((int) entryHandler.getHouseholdAmount() + " kr of " + budget.getHouseholdCost() + " kr");
@@ -85,6 +88,10 @@ public class HomePageController implements iPane, EntryObserver, BudgetObserver 
         transportLabel.setText((int) entryHandler.getTransportationAmount() + " kr of " + budget.getTransportCost() + " kr");
         otherLabel.setText((int) entryHandler.getOtherAmount() + " kr of " + budget.getOtherCost() + " kr");
     }
+
+    /**
+     * Updates the progress bars according to the entries.
+     */
 
     private void changeProgress() {
         if (budget != null) {
