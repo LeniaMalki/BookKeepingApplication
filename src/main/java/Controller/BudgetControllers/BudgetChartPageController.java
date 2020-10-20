@@ -24,12 +24,18 @@ public class BudgetChartPageController implements EntryObserver, BudgetObserver,
 
     //________________________________________________ VARIABLES _______________________________________________________
 
-    Budget budget = new Budget(2,3,2,5,2,1,"25");
-    iEntryHandler entryHandler = EntryHandler.getInstance();
-    XYChart.Series<String, Number> series2 = new XYChart.Series<>();
-    BudgetChartView budgetChartView = BudgetChartView.getInstance();
+
+    private final Budget budget = new Budget(2,3,2,5,2,1,"25");
+    private final iEntryHandler entryHandler = EntryHandler.getInstance();
+
+    private final XYChart.Series<String, Number> series2 = new XYChart.Series<>();
+    private final BudgetChartView budgetChartView = BudgetChartView.getInstance();
 
     //_________________________________________________ METHODS ________________________________________________________
+
+    /**
+     * Controller of the Budget Chart Page.
+     */
 
     public BudgetChartPageController(){
         setAllViewListeners();
@@ -81,10 +87,11 @@ public class BudgetChartPageController implements EntryObserver, BudgetObserver,
 
     /**
      * Adds the entry to the visual list of entries in our program and updates the values of a Stacked bar chart.
-     * @param entry an Entry that is added to the FlowPane of entries.
+     * //@param entry an Entry that is added to the FlowPane of entries.
      */
 
-    private void updateCharts(iEntry entry) {
+
+    private void updateCharts() {
         entryHandler.updateTotalCategoryValues();
         updatingStackedBarChart();
     }
@@ -100,7 +107,7 @@ public class BudgetChartPageController implements EntryObserver, BudgetObserver,
         series2.getData().add(new XYChart.Data<>("Transport", entryHandler.getTransportationAmount()));
         series2.getData().add(new XYChart.Data<>("Other", entryHandler.getOtherAmount()));
         series2.getData().add(new XYChart.Data<>("General Saving", entryHandler.getGeneralSaving()));
-        budgetChartView.barChart.getData().addAll(series2);
+        budgetChartView.barChart.getData().add(series2);
 
     }
 
@@ -108,8 +115,8 @@ public class BudgetChartPageController implements EntryObserver, BudgetObserver,
      * Creates/updates a Stacked bar chart with the budget values.
      */
 
-    public void updateGostGraph(Budget budget){
-        XYChart.Series<String, Integer> series1 = new XYChart.Series<String, Integer>();
+    public void updateGostGraph(final Budget budget){
+        final XYChart.Series<String, Integer> series1 = new XYChart.Series<>();
         series1.setName("Budget");
         series1.getData().add(new XYChart.Data<>("Food", budget.getFoodCost()));
         series1.getData().add(new XYChart.Data<>("Household", budget.getHouseholdCost()));
@@ -121,16 +128,17 @@ public class BudgetChartPageController implements EntryObserver, BudgetObserver,
     }
 
     @Override
-    public void update(String category, String type, double Value) {
+    public void update(final String category, final String type, final double Value) {
     }
 
     @Override
     public void update(iEntry entry) {
-        updateCharts(entry);
+        updateCharts();
+
     }
 
     @Override
-    public void update(Budget b) {
-        updateGostGraph(b);
+    public void update(final Budget budget) {
+        updateGostGraph(budget);
     }
 }
