@@ -65,7 +65,7 @@ public class StatisticsDetailView implements iPane {
         return statisticsDetailView;
     }
 
-    public void setLabel(String text){
+    public void setLabel(final String text){
         labelPieChart.setText(text);
 
     }
@@ -75,12 +75,12 @@ public class StatisticsDetailView implements iPane {
 
     }
 
-    public void removeEntryListItemView(EntryListItemView view){
+    public void removeEntryListItemView(final EntryListItemView view){
         flowpaneStat.getChildren().remove(view);
 
     }
 
-    public void addEntryListItemView(EntryListItemController controller){
+    public void addEntryListItemView(final EntryListItemController controller){
         flowpaneStat.getChildren().add(controller.getView());
 
     }
@@ -91,7 +91,7 @@ public class StatisticsDetailView implements iPane {
     }
 
     @Override
-    public void initPane(MainController parent) {
+    public void initPane(final MainController parent) {
         this.parent=parent;
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
 

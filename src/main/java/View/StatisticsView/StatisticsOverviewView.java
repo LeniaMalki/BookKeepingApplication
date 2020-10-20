@@ -56,12 +56,12 @@ public class StatisticsOverviewView implements iPane {
         return statisticsOverviewView;
     }
 
-    public void showDetailStatisticsPage(String text) {
+    public void showDetailStatisticsPage(final String text) {
         parent.showStatisticsDetailPage(text);
     }
 
     @Override
-    public void initPane(MainController parent) {
+    public void initPane(final MainController parent) {
         this.parent = parent;
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
 
