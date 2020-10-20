@@ -2,6 +2,7 @@ package Model.EntryLogic;
 
 import Interfaces.iEntry;
 import Model.Interfaces.EntryObserver;
+import Model.Interfaces.EntrySubject;
 
 /**
  * A class creates entries that are imputed by the user
@@ -9,7 +10,7 @@ import Model.Interfaces.EntryObserver;
  * @author Artin
  */
 
-public class Entry extends EntrySubject implements iEntry {
+public class Entry  implements iEntry, EntrySubject {
     private final double amount;
    private final String name;
   private final String category;

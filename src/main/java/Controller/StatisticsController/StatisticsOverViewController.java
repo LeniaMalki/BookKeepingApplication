@@ -4,7 +4,7 @@ import Controller.Interfaces.ControllerInterface;
 import Controller.Interfaces.RemoveItemObserver;
 import Interfaces.iEntry;
 import Model.EntryLogic.EntryHandler;
-import Model.EntryLogic.EntrySubject;
+import Model.Interfaces.EntrySubject;
 import Model.Interfaces.EntryObserver;
 import View.EntryView.EntryListItemView;
 import View.StatisticsView.StatisticsOverviewView;

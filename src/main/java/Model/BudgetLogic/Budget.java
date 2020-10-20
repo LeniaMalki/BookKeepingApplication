@@ -2,8 +2,9 @@ package Model.BudgetLogic;
 
 import Interfaces.iBudget;
 import Model.Interfaces.BudgetObserver;
+import Model.Interfaces.BudgetSubject;
 
-public class Budget extends BudgetSubject implements iBudget {
+public class Budget   implements iBudget, BudgetSubject {
 
     //________________________________________________ Variables  ______________________________________________________
 

@@ -4,7 +4,7 @@ import Controller.Interfaces.ControllerInterface;
 import Interfaces.iEntry;
 import Interfaces.iSavingGoal;
 import Interfaces.iSavingsOverview;
-import Model.EntryLogic.EntrySubject;
+import Model.Interfaces.EntrySubject;
 import Model.GoalsLogic.SavingGoal;
 import Model.GoalsLogic.SavingsOverview;
 import Model.Interfaces.EntryObserver;

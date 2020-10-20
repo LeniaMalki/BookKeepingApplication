@@ -3,7 +3,7 @@ package Controller.BudgetControllers;
 import Controller.Interfaces.ControllerInterface;
 import Interfaces.iBudget;
 import Model.BudgetLogic.Budget;
-import Model.BudgetLogic.BudgetSubject;
+import Model.Interfaces.BudgetSubject;
 import Model.Interfaces.BudgetObserver;
 import View.BudgetView.BudgetView;
 

@@ -3,6 +3,7 @@ package Model.EntryLogic;
 import Interfaces.iEntry;
 import Interfaces.iEntryHandler;
 import Model.Interfaces.EntryObserver;
+import Model.Interfaces.EntrySubject;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package Model.EntryLogic;
+package Model.Interfaces;
 
 import Model.Interfaces.EntryObserver;
 
@@ -9,8 +9,8 @@ import java.util.ArrayList;
  *
  * @author Artin
  */
-public abstract class EntrySubject {
-    static ArrayList<EntryObserver> observers = new ArrayList<>();
+public interface EntrySubject {
+     ArrayList<EntryObserver> observers = new ArrayList<>();
 
     //methods to register observers
 
@@ -19,14 +19,14 @@ public abstract class EntrySubject {
      *
      * @param observer the observer that subscribes as a listener
      */
-    public static void add(EntryObserver observer) {
+     static void add(EntryObserver observer) {
         observers.add(observer);
     }
 
     /**
      * Notifies all the observers that subscribe to an object that a change has happened
      */
-    public abstract void notifyEntryListeners();
+      void notifyEntryListeners();
 
 
 }

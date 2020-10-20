@@ -1,12 +1,12 @@
-package Model.BudgetLogic;
+package Model.Interfaces;
 
 import Model.Interfaces.BudgetObserver;
 
 import java.util.ArrayList;
 
-public abstract class BudgetSubject {
+public interface BudgetSubject {
 
-    static ArrayList<BudgetObserver> observers = new ArrayList<>();
+     ArrayList<BudgetObserver> observers = new ArrayList<>();
 
     //methods to register observers
 
@@ -15,14 +15,14 @@ public abstract class BudgetSubject {
      *
      * @param o the observer that subscribes as a listener
      */
-    public static void add(BudgetObserver o) {
+     static void add(BudgetObserver o) {
         observers.add(o);
     }
 
     /**
      * Notifies all the observers that subscribe to an object that a change has happened
      */
-    public abstract void notifyBudgetListeners();
+    void notifyBudgetListeners();
 
 
 }

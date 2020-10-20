@@ -72,6 +72,7 @@ public class LogInController implements AccountObserver, ControllerInterface {
      * managed//NOPMD by the account facade and logInHandler.
      */
     private void onLoginClicked() {
+        logInView.parent.showFirstPage();
         if (accountFacade.getAccountName() == null) {
             logInView.setMessage("No user registered!");
         } else if (logInHandler.logIn(logInView.usernameField.getText(), logInView.logInField.getText())) {
