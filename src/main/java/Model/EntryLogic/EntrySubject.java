@@ -10,12 +10,13 @@ import java.util.ArrayList;
  * @author Artin
  */
 public abstract class EntrySubject {
-    public static ArrayList<EntryObserver> observers = new ArrayList<>();
+    static ArrayList<EntryObserver> observers = new ArrayList<>();
 
     //methods to register observers
 
     /**
      * adds observers to a class that extends this
+     *
      * @param observer the observer that subscribes as a listener
      */
     public static void add(EntryObserver observer) {
