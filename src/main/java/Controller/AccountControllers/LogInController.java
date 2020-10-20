@@ -1,9 +1,10 @@
 package Controller.AccountControllers;//NOPMD
 
+import Controller.Interfaces.ControllerInterface;
+import Interfaces.iAccountFacade;
 import Model.AccountLogic.AccountFacade;
 import Model.AccountLogic.LogInHandler;
-import Controller.Interfaces.AccountObserver;
-import Controller.Interfaces.ControllerInterface;
+import Model.Interfaces.AccountObserver;
 import View.AccountView.LogInView;
 
 /**
@@ -20,7 +21,7 @@ public class LogInController implements AccountObserver, ControllerInterface {
         }
     };
 
-    private final AccountFacade accountFacade = AccountFacade.getInstance();
+    private final iAccountFacade accountFacade = AccountFacade.getInstance();
     private final LogInView logInView = LogInView.getInstance();
 
 

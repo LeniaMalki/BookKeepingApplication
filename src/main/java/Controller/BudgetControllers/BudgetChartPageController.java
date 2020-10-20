@@ -1,6 +1,9 @@
 package Controller.BudgetControllers;
 
 import Controller.Interfaces.ControllerInterface;
+import Interfaces.iBudget;
+import Interfaces.iEntry;
+import Interfaces.iEntryHandler;
 import Model.BudgetLogic.Budget;
 import Model.BudgetLogic.BudgetSubject;
 import Model.EntryLogic.Entry;
@@ -10,9 +13,10 @@ import Model.Interfaces.BudgetObserver;
 import Model.Interfaces.EntryObserver;
 import View.BudgetView.BudgetChartView;
 import javafx.collections.FXCollections;
+import javafx.scene.chart.XYChart;
+
 import java.io.IOException;
 import java.util.Arrays;
-import javafx.scene.chart.XYChart;
 
 /**
  * Controller for the budget chart
@@ -23,12 +27,18 @@ public class BudgetChartPageController implements EntryObserver, BudgetObserver,
 
     //________________________________________________ VARIABLES _______________________________________________________
 
-    Budget budget = new Budget(2,3,2,5,2,1,"25");
-    EntryHandler entryHandler = EntryHandler.getInstance();
-    XYChart.Series<String, Number> series2 = new XYChart.Series<>();
-    BudgetChartView budgetChartView = BudgetChartView.getInstance();
+
+    private final iBudget budget = new Budget(2,3,2,5,2,1,"25");
+    private final iEntryHandler entryHandler = EntryHandler.getInstance();
+
+    private final XYChart.Series<String, Number> series2 = new XYChart.Series<>();
+    private final BudgetChartView budgetChartView = BudgetChartView.getInstance();
 
     //_________________________________________________ METHODS ________________________________________________________
+
+    /**
+     * Controller of the Budget Chart Page.
+     */
 
     public BudgetChartPageController(){
         setAllViewListeners();
@@ -80,10 +90,11 @@ public class BudgetChartPageController implements EntryObserver, BudgetObserver,
 
     /**
      * Adds the entry to the visual list of entries in our program and updates the values of a Stacked bar chart.
-     * @param entry an Entry that is added to the FlowPane of entries.
+     * //@param entry an Entry that is added to the FlowPane of entries.
      */
 
-    private void updateCharts(Entry entry) {
+
+    private void updateCharts() {
         entryHandler.updateTotalCategoryValues();
         updatingStackedBarChart();
     }
@@ -99,7 +110,7 @@ public class BudgetChartPageController implements EntryObserver, BudgetObserver,
         series2.getData().add(new XYChart.Data<>("Transport", entryHandler.getTransportationAmount()));
         series2.getData().add(new XYChart.Data<>("Other", entryHandler.getOtherAmount()));
         series2.getData().add(new XYChart.Data<>("General Saving", entryHandler.getGeneralSaving()));
-        budgetChartView.barChart.getData().addAll(series2);
+        budgetChartView.barChart.getData().add(series2);
 
     }
 
@@ -107,8 +118,8 @@ public class BudgetChartPageController implements EntryObserver, BudgetObserver,
      * Creates/updates a Stacked bar chart with the budget values.
      */
 
-    public void updateGostGraph(Budget budget){
-        XYChart.Series<String, Integer> series1 = new XYChart.Series<String, Integer>();
+    public void updateGostGraph(final iBudget budget){
+        final XYChart.Series<String, Integer> series1 = new XYChart.Series<>();
         series1.setName("Budget");
         series1.getData().add(new XYChart.Data<>("Food", budget.getFoodCost()));
         series1.getData().add(new XYChart.Data<>("Household", budget.getHouseholdCost()));
@@ -120,16 +131,17 @@ public class BudgetChartPageController implements EntryObserver, BudgetObserver,
     }
 
     @Override
-    public void update(String category, String type, double Value) {
+    public void update(final String category, final String type, final double Value) {
     }
 
     @Override
-    public void update(Entry entry) {
-        updateCharts(entry);
+    public void update(iEntry entry) {
+        updateCharts();
+
     }
 
     @Override
-    public void update(Budget b) {
-        updateGostGraph(b);
+    public void update(final iBudget budget) {
+        updateGostGraph(budget);
     }
 }

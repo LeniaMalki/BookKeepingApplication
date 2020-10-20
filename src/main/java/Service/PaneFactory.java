@@ -1,4 +1,4 @@
-package Service;
+package Controller.MainControllers;
 
 import Controller.AccountControllers.*;
 import Controller.BudgetControllers.BudgetChartPageController;
@@ -43,12 +43,12 @@ public class PaneFactory {
      * A generalized function for fetching root and controller from a function
      * @param path a path to desired fx ml
      */
-    private static <T> Pane<T> loadInPane(String path) {
+    private static <T> Pane<T> loadInPane(final String path) {
         Pane<T> pane = null;
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(PaneFactory.class.getClassLoader().getResource(path));
-            AnchorPane anchorPane = fxmlLoader.load();
-            T controller = fxmlLoader.getController();
+            final FXMLLoader fxmlLoader = new FXMLLoader(PaneFactory.class.getClassLoader().getResource(path));
+            final AnchorPane anchorPane = fxmlLoader.load();
+            final T controller = fxmlLoader.getController();
             pane = new Pane<>(anchorPane, controller);
         } catch (IOException exception) {
             exception.printStackTrace();
@@ -90,7 +90,7 @@ public class PaneFactory {
     public static AnchorPane initAccountPane() {
         Pane<ProfilePageView> pane = loadInPane("org/openjfx/accountPage.fxml");
         pane.controller.initPane(parent);
-        ProfilePageController profilePageController = new ProfilePageController();
+        final ProfilePageController profilePageController = new ProfilePageController();
         return pane.anchorPane;
     }
 
@@ -98,35 +98,35 @@ public class PaneFactory {
     public static AnchorPane initBudgetPane() {
         Pane<BudgetView> pane = loadInPane("org/openjfx/budgetPage.fxml");
         pane.controller.initPane(parent);
-        BudgetPageController budgetPageController = new BudgetPageController();
+        final BudgetPageController budgetPageController = new BudgetPageController();
         return pane.anchorPane;
     }
 
     public static AnchorPane initSignUpPopUp() {
         Pane<SignUpView> pane = loadInPane("org/openjfx/signUpPopUp.fxml");
         pane.controller.initPane(parent);
-        SignUpPageController signUpPageController = new SignUpPageController();
+        final SignUpPageController signUpPageController = new SignUpPageController();
         return pane.anchorPane;
     }
 
     public static AnchorPane initBudgetCharPane() {
         Pane<BudgetChartView> pane = loadInPane("org/openjfx/budgetCharPage.fxml");
         pane.controller.initPane(parent);
-        BudgetChartPageController budgetCharPageController = new BudgetChartPageController();
+        final BudgetChartPageController budgetCharPageController = new BudgetChartPageController();
         return pane.anchorPane;
     }
 
     public static AnchorPane initEntryPane() {
         Pane<EntryView> pane = loadInPane("org/openjfx/entryPage.fxml");
         pane.controller.initPane(parent);
-        EntryPageController pageController = new EntryPageController();
+        final EntryPageController pageController = new EntryPageController();
         return pane.anchorPane;
     }
 
     public static AnchorPane initGoalsPane() {
         Pane<GoalsView> pane = loadInPane("org/openjfx/goalsPage.fxml");
         pane.controller.initPane(parent);
-        GoalsPageController pageController = new GoalsPageController();
+        final GoalsPageController pageController = new GoalsPageController();
         return pane.anchorPane;
     }
 
@@ -140,7 +140,7 @@ public class PaneFactory {
     public static AnchorPane initStatisticsOverviewPane() {
         Pane<StatisticsOverviewView> pane = loadInPane("org/openjfx/statisticsOverviewPage.fxml");
         pane.controller.initPane(parent);
-        StatisticsOverViewController statisticsOverViewController = new StatisticsOverViewController();
+        final StatisticsOverViewController statisticsOverViewController = new StatisticsOverViewController();
         return pane.anchorPane;
     }
 
@@ -165,7 +165,7 @@ public class PaneFactory {
         AnchorPane anchorPane;
         T controller;
 
-        Pane(AnchorPane anchorPane, T controller) {
+        Pane(final AnchorPane anchorPane, final T controller) {
             this.anchorPane = anchorPane;
             this.controller = controller;
         }

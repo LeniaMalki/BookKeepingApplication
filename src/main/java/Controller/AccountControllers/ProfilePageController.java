@@ -1,18 +1,20 @@
 package Controller.AccountControllers;//NOPMD
 
-import Model.AccountLogic.AccountFacade;
-import Controller.Interfaces.AccountObserver;
 import Controller.Interfaces.ControllerInterface;
+import Interfaces.iAccountFacade;
+import Model.AccountLogic.AccountFacade;
+import Model.Interfaces.AccountObserver;
 import View.AccountView.ProfilePageView;
 
 /**
  * Controller for a handling the image view of the Account Page
+ *
  * @author Lenia
  */
 public class ProfilePageController implements AccountObserver, ControllerInterface {
     //________________________________________________ VARIABLES _______________________________________________________
 
-    private final AccountFacade accountFacade = AccountFacade.getInstance();
+    private final iAccountFacade accountFacade = AccountFacade.getInstance();
     private final ProfilePageView profilePageView = ProfilePageView.getInstance();
 
     //________________________________________________ Methods _________________________________________________________
@@ -49,15 +51,15 @@ public class ProfilePageController implements AccountObserver, ControllerInterfa
     private void onSubmitChangesClicked() {
 
         final int changesMade = accountFacade.handleAccountChanges(profilePageView.username.getText(),
-                                                                   profilePageView.name.getText(),
-                                                                   profilePageView.email.getText());
+                profilePageView.name.getText(),
+                profilePageView.email.getText());
 
         if (changesMade == 0) {
             profilePageView.setMessage("No changes made");
         }
         if (changesMade > 0) {
             accountFacade.updateAccountFields(profilePageView.username.getText(), profilePageView.name.getText(),
-                                              profilePageView.email.getText());
+                    profilePageView.email.getText());
             profilePageView.setMessage("Changes saved!");
         }
         if (changesMade == 3) {

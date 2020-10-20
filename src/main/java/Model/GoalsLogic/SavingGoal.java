@@ -1,5 +1,6 @@
 package Model.GoalsLogic;
 
+import Interfaces.iSavingGoal;
 import Model.Interfaces.iSavingsRegister;
 
 /**
@@ -7,13 +8,14 @@ import Model.Interfaces.iSavingsRegister;
  *
  * @author Artin
  */
-public class SavingGoal {
-   private  double savingGoalReached = 0;
-      double savingGoal;
+public class SavingGoal implements iSavingGoal {
+    private double savingGoalReached = 0;
+    double savingGoal;
     String savingName;
 
     /**
      * Constructor for a SavingGoal, instanciates the object with various imputs that are relevant to the goal
+     *
      * @param savingGoal the amount of money that needs to be saved to reach the goal
      * @param savingName name of the saving goal
      */
@@ -28,6 +30,7 @@ public class SavingGoal {
 
     /**
      * Money is added to the end savings goal.
+     *
      * @param money the amount of money that is added to the saving goal
      */
     public void addMoneyToSaving(double money) {

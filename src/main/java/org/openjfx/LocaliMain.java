@@ -5,11 +5,12 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+//TestCommit to check by Lenia
 
 public class LocaliMain extends Application {
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
         Scene scene = new Scene(PaneFactory.initMain(), 1440, 1024);
         stage.setTitle("Locali");
         stage.setResizable(false);

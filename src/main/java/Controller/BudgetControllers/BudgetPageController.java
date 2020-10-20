@@ -1,14 +1,14 @@
 package Controller.BudgetControllers;
 
 import Controller.Interfaces.ControllerInterface;
+import Interfaces.iBudget;
 import Model.BudgetLogic.Budget;
 import Model.BudgetLogic.BudgetSubject;
 import Model.Interfaces.BudgetObserver;
 import View.BudgetView.BudgetView;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.util.converter.NumberStringConverter;
+
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Controller for the budget page
@@ -19,20 +19,24 @@ public class BudgetPageController implements BudgetObserver, ControllerInterface
 
     //________________________________________________ VARIABLES _______________________________________________________
 
-    private ArrayList<Budget> budgetList = new ArrayList<Budget>();
-    int i = 1;
-    int selected = 0;
-    Budget budget;
-    BudgetView budgetView = BudgetView.getInstance();
+    private final List<iBudget> budgetList = new ArrayList<>();
+    private int menuItemNumber = 1;
+    private int selected = 0;
+    private iBudget budget;
+    private final BudgetView budgetView = BudgetView.getInstance();
+    private final BugetSliderController bugetSliderController = new BugetSliderController();
 
     //_________________________________________________ METHODS ________________________________________________________
 
+    /**
+     * Controller of Budget page.
+     */
     public BudgetPageController() {
         setAllViewListeners();
         budget = new Budget(0, 0, 0, 0, 0, 0, null);
         BudgetSubject.add(this);
-        listeningToChanges();
-        connectingTextFieldsAndSliders();
+        bugetSliderController.listeningToChanges();
+        bugetSliderController.connectingTextFieldsAndSliders();
         updateAllValues();
     }
 
@@ -40,7 +44,7 @@ public class BudgetPageController implements BudgetObserver, ControllerInterface
     public void setAllViewListeners() {
         budgetView.saveButton.setOnAction(a -> onSaveButtonPressed());
         budgetView.enterIncomeTextField.setOnAction(a -> updatingMoneyLeft());
-        budgetView.enterIncomeTextField.setOnMouseExited(a -> setMaxOnSlider());
+        budgetView.enterIncomeTextField.setOnMouseExited(a -> bugetSliderController.setMaxOnSlider());
         budgetView.previousBudgetComboBox.setOnAction(a -> comboSelector());
 
         budgetView.foodSlider.setOnMouseDragged(a -> updatingMoneyLeft());
@@ -59,48 +63,13 @@ public class BudgetPageController implements BudgetObserver, ControllerInterface
     }
 
     /**
-     * Listener that changes the progressbar according to the value of the slider
-     */
-
-    private void listeningToChanges() {
-        ChangeListener<Number> changeListener = new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable,
-                                Number oldValue, Number newValue) {
-                selected = 0;
-                updateProgress();
-            }
-        };
-
-        budgetView.foodSlider.valueProperty().addListener(changeListener);
-        budgetView.householdSlider.valueProperty().addListener(changeListener);
-        budgetView.shoppingSlider.valueProperty().addListener(changeListener);
-        budgetView.transportSlider.valueProperty().addListener(changeListener);
-        budgetView.otherSlider.valueProperty().addListener(changeListener);
-        budgetView.savingsSlider.valueProperty().addListener(changeListener);
-    }
-
-    /**
-     * Binds the sliders and the textFields
-     */
-
-    private void connectingTextFieldsAndSliders() {
-        budgetView.foodTextField.textProperty().bindBidirectional(budgetView.foodSlider.valueProperty(), new NumberStringConverter());
-        budgetView.householdTextField.textProperty().bindBidirectional(budgetView.householdSlider.valueProperty(), new NumberStringConverter());
-        budgetView.shoppingTextField.textProperty().bindBidirectional(budgetView.shoppingSlider.valueProperty(), new NumberStringConverter());
-        budgetView.transportTextField.textProperty().bindBidirectional(budgetView.transportSlider.valueProperty(), new NumberStringConverter());
-        budgetView.otherTextField.textProperty().bindBidirectional(budgetView.otherSlider.valueProperty(), new NumberStringConverter());
-        budgetView.savingsTextField.textProperty().bindBidirectional(budgetView.savingsSlider.valueProperty(), new NumberStringConverter());
-    }
-
-    /**
      * Adds a new budget to the list
      *
-     * @param i the current budgetnumber
+     * @param menuItemNumber the current budgetnumber
      */
 
-    private void addingMenuItem(int i) {
-        budgetView.previousBudgetComboBox.getItems().add("Budget " + i);
+    private void addingMenuItem(final int menuItemNumber) {
+        budgetView.previousBudgetComboBox.getItems().add("Budget " + menuItemNumber);
         budgetList.add(new Budget((int) budgetView.foodSlider.getValue(), (int) budgetView.householdSlider.getValue(),
                 (int) budgetView.shoppingSlider.getValue(), (int) budgetView.transportSlider.getValue(), (int) budgetView.savingsSlider.getValue(),
                 (int) budgetView.otherSlider.getValue(), budgetView.enterIncomeTextField.getText()));
@@ -112,7 +81,7 @@ public class BudgetPageController implements BudgetObserver, ControllerInterface
 
     private void comboSelector() {
         selected = budgetView.previousBudgetComboBox.getSelectionModel().getSelectedIndex();
-        budget.setIncome((budgetList.get(selected).getIncome()));
+        budget.setIncome(budgetList.get(selected).getIncome());
         budget.setFoodCost(budgetList.get(selected).getFoodCost());
         budget.setHouseholdCost(budgetList.get(selected).getHouseholdCost());
         budget.setShoppingCost(budgetList.get(selected).getShoppingCost());
@@ -120,8 +89,8 @@ public class BudgetPageController implements BudgetObserver, ControllerInterface
         budget.setSavingsCost(budgetList.get(selected).getSavingsCost());
         budget.setOtherCost(budgetList.get(selected).getOtherCost());
         budget.notifyBudgetListeners();
-        setMaxOnSlider();
-        updateProgress();
+        bugetSliderController.setMaxOnSlider();
+        bugetSliderController.updateProgress();
     }
 
     /**
@@ -139,8 +108,8 @@ public class BudgetPageController implements BudgetObserver, ControllerInterface
 
         updatingMoneyLeft();
         if (selected != -1) {
-            addingMenuItem(i);
-            i++;
+            addingMenuItem(menuItemNumber);
+            menuItemNumber++;
             selected = -1;
         }
         budgetView.setTotalMoney("0");
@@ -149,36 +118,21 @@ public class BudgetPageController implements BudgetObserver, ControllerInterface
     }
 
 
-
-    /**
-     * Sets the maxValues of the sliders according to the income
-     */
-
-    private void setMaxOnSlider() {
-        int income = Integer.parseInt(budgetView.enterIncomeTextField.getText());
-        budgetView.setSliders((int)income);
-        updateProgress();
-    }
-
     /**
      * Updates the money left and total sum labels
      */
 
     private void updatingMoneyLeft() {
         budgetView.setMoneyLeft("0");
-        int income = 0;
-        income = Integer.parseInt(budgetView.enterIncomeTextField.getText()); //view
+        int income;
+        income = Integer.parseInt(budgetView.enterIncomeTextField.getText());
 
-        if (budgetView.enterIncomeTextField.equals(null)) {
-            income = 0;
-        }
-
-        int totalSum = (int) (budgetView.foodSlider.getValue() + budgetView.householdSlider.getValue()
+        final int totalSum = (int) (budgetView.foodSlider.getValue() + budgetView.householdSlider.getValue()
                 + budgetView.shoppingSlider.getValue() + budgetView.transportSlider.getValue() + budgetView.otherSlider.getValue() + budgetView.savingsSlider.getValue());
 
         budgetView.setTotalMoney(String.valueOf(totalSum));
 
-        int difference = income - totalSum;
+        final int difference = income - totalSum;
         if (difference >= 0) {
             budgetView.setMoneyLeft(String.valueOf(difference));
             budgetView.setMoneyLeftToGreen();
@@ -189,41 +143,30 @@ public class BudgetPageController implements BudgetObserver, ControllerInterface
         }
     }
 
-    private void updateProgress() {
-        int income = Integer.parseInt(budgetView.enterIncomeTextField.getText());
-        double foodSlider = budgetView.foodSlider.getValue();
-        double houseHoldSlider = budgetView.householdSlider.getValue();
-        double shoppingSlider = budgetView.shoppingSlider.getValue();
-        double transportSlider = budgetView.transportSlider.getValue();
-        double otherSlider = budgetView.otherSlider.getValue();
-        double savingsSlider = budgetView.savingsSlider.getValue();
-        budgetView.setProgressBar(income,foodSlider,houseHoldSlider,shoppingSlider,transportSlider,otherSlider,savingsSlider);
-    }
-
-
     /**
      * Updates the sliders and textFields
      */
 
     private void updateAllValues() {
-        int foodBudget = budget.getFoodCost();
-        int houseHoldBudget = budget.getFoodCost();
-        int shoppingBudget = budget.getFoodCost();
-        int transportBudget = budget.getFoodCost();
-        int otherBudget = budget.getFoodCost();
-        int savingBudget = budget.getFoodCost();
-        String incomeBudget = budget.getIncome();
-        budgetView.updateSlidersWithBudget(foodBudget,houseHoldBudget,shoppingBudget,transportBudget,otherBudget,savingBudget,incomeBudget);
+        final int foodBudget = budget.getFoodCost();
+        final int houseHoldBudget = budget.getFoodCost();
+        final int shoppingBudget = budget.getFoodCost();
+        final int transportBudget = budget.getFoodCost();
+        final int otherBudget = budget.getFoodCost();
+        final int savingBudget = budget.getFoodCost();
+        final String incomeBudget = budget.getIncome();
+        budgetView.updateSlidersWithBudget(foodBudget, houseHoldBudget, shoppingBudget, transportBudget, otherBudget, savingBudget, incomeBudget);
     }
 
     @Override
-    public void update(Budget b) {
-        budget = b;
+    public void update(final iBudget budget2) {
+        budget = budget2;
         updateAllValues();
     }
 
 
 }
+
 
 
 

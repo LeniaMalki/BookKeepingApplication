@@ -1,8 +1,9 @@
 package Model.BudgetLogic;
 
+import Interfaces.iBudget;
 import Model.Interfaces.BudgetObserver;
 
-public class Budget extends BudgetSubject{
+public class Budget extends BudgetSubject implements iBudget {
 
     //________________________________________________ Variables  ______________________________________________________
 
@@ -87,7 +88,7 @@ public class Budget extends BudgetSubject{
 
     @Override
     public void notifyBudgetListeners() {
-        for (BudgetObserver o: observers){
+        for (BudgetObserver o : observers) {
             o.update(this);
 
         }

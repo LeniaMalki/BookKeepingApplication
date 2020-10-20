@@ -3,7 +3,7 @@ package Controller.EntryControllers;
 import Controller.Interfaces.ControllerInterface;
 import Controller.Interfaces.RemoveItemObserver;
 import Controller.Interfaces.RemoveItemSubject;
-import Model.EntryLogic.Entry;
+import Interfaces.iEntry;
 import View.EntryView.EntryListItemView;
 import javafx.fxml.FXMLLoader;
 
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class EntryListItemController implements RemoveItemSubject, ControllerInterface {
 
     private final EntryListItemView entryListItemView = new EntryListItemView();
-    private final Entry actualEntry;
+    private final iEntry actualEntry;
     private final ArrayList<RemoveItemObserver> observers = new ArrayList<>();
 
 
@@ -27,7 +27,7 @@ public class EntryListItemController implements RemoveItemSubject, ControllerInt
      *
      * @param entry is a entry submitted by the user and is used to set the name/cost/category of the listItem
      */
-    public EntryListItemController(final Entry entry) {
+    public EntryListItemController(final iEntry entry) {
         final FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/openjfx/entryPageScrollPaneInsert.fxml"));
         fxmlLoader.setController(entryListItemView);
         fxmlLoader.setRoot(entryListItemView);

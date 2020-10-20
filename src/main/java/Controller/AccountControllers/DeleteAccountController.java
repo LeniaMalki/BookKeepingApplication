@@ -1,7 +1,8 @@
 package Controller.AccountControllers;//NOPMD
 
-import Model.AccountLogic.AccountFacade;
 import Controller.Interfaces.ControllerInterface;
+import Interfaces.iAccountFacade;
+import Model.AccountLogic.AccountFacade;
 import View.AccountView.DeleteAccountView;
 
 /**
@@ -12,7 +13,7 @@ import View.AccountView.DeleteAccountView;
  */
 public class DeleteAccountController implements ControllerInterface {
 
-    private final AccountFacade accountFacade = AccountFacade.getInstance();
+    private final iAccountFacade accountFacade = AccountFacade.getInstance();
     private final DeleteAccountView deleteAccountView = DeleteAccountView.getInstance();
 
     public DeleteAccountController() {

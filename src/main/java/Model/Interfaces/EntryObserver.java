@@ -1,11 +1,11 @@
 package Model.Interfaces;
 
-import Model.EntryLogic.Entry;
+import Interfaces.iEntry;
 
 public interface EntryObserver {
 
     //method to update the observer, used by subject
     void update(String category, String type, double Value);
-    void update(Entry entry);
+    void update(iEntry entry);
 
 }
