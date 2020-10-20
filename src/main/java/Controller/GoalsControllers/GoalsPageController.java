@@ -1,5 +1,6 @@
 package Controller.GoalsControllers;
 
+import Controller.Interfaces.ControllerInterface;
 import View.GoalsView.GoalsView;
 
 /**
@@ -8,18 +9,19 @@ import View.GoalsView.GoalsView;
  * @author Artin
  */
 
-public class GoalsPageController {
+public class GoalsPageController implements ControllerInterface {
 
-private final GoalsView goalsView= GoalsView.getInstance();
-public GoalsPageController(){
-    setAllViewListeners();
-}
+    private final GoalsView goalsView = GoalsView.getInstance();
 
+    public GoalsPageController() {
+        setAllViewListeners();
+    }
 
-   private void setAllViewListeners(){
-       goalsView.seeBudgetButton.setOnAction(event -> openBudget());
-       goalsView.goToEntryButton.setOnAction(event -> openEntry());
-       goalsView.addNewSavingGoalButton.setOnAction(event -> addGoal());
+    @Override
+    public void setAllViewListeners() {
+        goalsView.seeBudgetButton.setOnAction(event -> openBudget());
+        goalsView.goToEntryButton.setOnAction(event -> openEntry());
+        goalsView.addNewSavingGoalButton.setOnAction(event -> addGoal());
     }
 
 
@@ -35,7 +37,7 @@ public GoalsPageController(){
      * open entry page
      */
     private void openEntry() {
-       goalsView.showEntryPage();
+        goalsView.showEntryPage();
     }
 
 
@@ -44,7 +46,7 @@ public GoalsPageController(){
      */
 
     private void addGoal() {
-        final NewGoalsInsertController goalsInsertController=new NewGoalsInsertController();
+        final NewGoalsInsertController goalsInsertController = new NewGoalsInsertController();
         goalsView.goalFlowPane.getChildren().add(goalsInsertController.getView());
     }
 

@@ -5,7 +5,7 @@ import Controller.Interfaces.RemoveItemObserver;
 import Model.EntryLogic.Entry;
 import Model.EntryLogic.EntryHandler;
 import Model.EntryLogic.EntrySubject;
-import Model.Interfaces.ControllerInterface;
+import Controller.Interfaces.ControllerInterface;
 import Model.Interfaces.EntryObserver;
 import View.EntryView.EntryListItemView;
 import View.StatisticsView.StatisticsDetailView;
@@ -23,9 +23,9 @@ public class StatisticsDetailController implements EntryObserver, RemoveItemObse
 
     //________________________________________________ VARIABLES _______________________________________________________
 
-    EntryHandler entryHandler = EntryHandler.getInstance();
-    boolean allEntries;
-    private StatisticsDetailView statisticsDetailView = StatisticsDetailView.getInstance();
+    private final EntryHandler entryHandler = EntryHandler.getInstance();
+    private boolean allEntries;
+    private final StatisticsDetailView statisticsDetailView = StatisticsDetailView.getInstance();
 
     //_________________________________________________ METHODS ________________________________________________________
 
@@ -39,11 +39,11 @@ public class StatisticsDetailController implements EntryObserver, RemoveItemObse
      * A function (when button pressed) removeEntry that iterates through the lists of entries and removes the entry
      * if its selected.
      */
-    public void update(Entry entry, EntryListItemView controller) {
+    public void update(final Entry entry, final EntryListItemView controller) {
         entryHandler.getEntries().remove(entry);
-        statisticsDetailView.flowpaneStat.getChildren().remove(controller);
+        statisticsDetailView.removeEntryListItemView(controller);
         updatePieChart();
-        for (Entry e : entryHandler.getEntries()) {
+        for (final Entry e : entryHandler.getEntries()) {
             if (!allEntries) {
                 entriesCheckCategory(e.getCategory());
             } else {
@@ -58,7 +58,7 @@ public class StatisticsDetailController implements EntryObserver, RemoveItemObse
      *
      * @param labelPieChart a string that is either "Daily", "Weekly", "Monthly"
      */
-    public void setLabelPieChart(String labelPieChart) {
+    public void setLabelPieChart(final String labelPieChart) {
         statisticsDetailView.setLabel(labelPieChart);
     }
 
@@ -68,7 +68,7 @@ public class StatisticsDetailController implements EntryObserver, RemoveItemObse
      */
     private void updatePieChart() {
         entryHandler.updateTotalCategoryValues();
-        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
+        final ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
                 new PieChart.Data("Food", entryHandler.getFoodAmount()),
                 new PieChart.Data("Transportation", entryHandler.getTransportationAmount()),
                 new PieChart.Data("Household", entryHandler.getHouseholdAmount()),
@@ -76,8 +76,10 @@ public class StatisticsDetailController implements EntryObserver, RemoveItemObse
                 new PieChart.Data("Other", entryHandler.getOtherAmount()));
         if (statisticsDetailView.chart == null) {
             statisticsDetailView.chart = new PieChart(pieChartData);
-            statisticsDetailView.chartPane.getChildren().add(statisticsDetailView.chart);
-        } else statisticsDetailView.chart.setData(pieChartData);
+            statisticsDetailView.addToPieChart();
+        } else {
+            statisticsDetailView.chart.setData(pieChartData);
+        }
     }
 
     /**
@@ -87,14 +89,14 @@ public class StatisticsDetailController implements EntryObserver, RemoveItemObse
      * @param category a string that represents the category of a certain entry.
      * @return
      */
-    private void entriesCheckCategory(String category) {
-        statisticsDetailView.flowpaneStat.getChildren().clear();
-        for (Entry entry : entryHandler.getEntries()) {
-            if (category.equals("") || entry.getCategory().equals(category)) {
+    private void entriesCheckCategory(final String category) {
+        statisticsDetailView.clearPane();
+        for (final Entry entry : entryHandler.getEntries()) {
+            if (category.equals(entry.getCategory()) || "".equals(category)) {
                 addEntryToFlowPane(entry);
             }
         }
-        allEntries = category.equals("");
+        allEntries = "".equals(category);
     }
 
     /**
@@ -102,9 +104,9 @@ public class StatisticsDetailController implements EntryObserver, RemoveItemObse
      *
      * @param entry is a an entry that we add to our EntryListItemController.
      */
-    private void addEntryToFlowPane(Entry entry) {
-        EntryListItemController entryListItemController = new EntryListItemController(entry);
-        statisticsDetailView.flowpaneStat.getChildren().add(entryListItemController.getView());
+    private void addEntryToFlowPane(final Entry entry) {
+        final EntryListItemController entryListItemController = new EntryListItemController(entry);
+        statisticsDetailView.addEntryListItemView(entryListItemController);
         entryListItemController.add(this);
     }
 
@@ -120,11 +122,11 @@ public class StatisticsDetailController implements EntryObserver, RemoveItemObse
     }
 
     @Override
-    public void update(String category, String type, double Value) {
+    public void update(final String category, final String type, final double Value) {
     }
 
     @Override
-    public void update(Entry entry) {
+    public void update(final Entry entry) {
         entriesCheckCategory("");
         updatePieChart();
     }

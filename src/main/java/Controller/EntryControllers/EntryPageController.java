@@ -1,5 +1,6 @@
 package Controller.EntryControllers;
 
+import Controller.Interfaces.ControllerInterface;
 import Controller.Interfaces.RemoveItemObserver;
 import Model.EntryLogic.Entry;
 import Model.Interfaces.SavingsObserver;
@@ -20,7 +21,7 @@ import java.util.ArrayList;
  * @author Artin
  */
 
-public class EntryPageController implements SavingsObserver, RemoveItemObserver {
+public class EntryPageController implements SavingsObserver, RemoveItemObserver, ControllerInterface {
     private final ArrayList<Button> entryButtonTypeCluster = new ArrayList<>();
     private final ArrayList<Entry> entryList = new ArrayList<>();
 
@@ -28,12 +29,12 @@ public class EntryPageController implements SavingsObserver, RemoveItemObserver 
     private final EntryView entryView = EntryView.getInstance();
 
     public EntryPageController() {
-        setAllViewLiseners();
+        setAllViewListeners();
         setValuesAtStart();
     }
 
-
-    private void setAllViewLiseners() {
+    @Override
+    public void setAllViewListeners() {
         entryView.expencesButton.setOnAction(this::activateEntryTypeButton);
         entryView.incomebutton.setOnAction(this::activateEntryTypeButton);
         entryView.savingButton.setOnAction(this::activateEntryTypeButton);

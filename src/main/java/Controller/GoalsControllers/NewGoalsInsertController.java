@@ -1,5 +1,6 @@
 package Controller.GoalsControllers;
 
+import Controller.Interfaces.ControllerInterface;
 import Model.EntryLogic.Entry;
 import Model.EntryLogic.EntrySubject;
 import Model.GoalsLogic.SavingGoal;
@@ -10,7 +11,7 @@ import javafx.fxml.FXMLLoader;
 
 import java.io.IOException;
 
-public class NewGoalsInsertController implements EntryObserver {
+public class NewGoalsInsertController implements EntryObserver, ControllerInterface {
     private final GoalsInsertView insertView = new GoalsInsertView();
     SavingsOverview savingsOverview;
     private double amountSaved = 0;
@@ -34,8 +35,8 @@ public class NewGoalsInsertController implements EntryObserver {
         EntrySubject.add(this);
 
     }
-
-    private void setAllViewListeners() {
+    @Override
+    public void setAllViewListeners() {
         insertView.okButton.setOnAction(e -> addNewGoal());
 
     }

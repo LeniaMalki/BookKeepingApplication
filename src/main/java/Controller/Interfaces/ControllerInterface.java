@@ -1,4 +1,4 @@
-package Model.Interfaces;
+package Controller.Interfaces;
 
 public interface ControllerInterface {
 

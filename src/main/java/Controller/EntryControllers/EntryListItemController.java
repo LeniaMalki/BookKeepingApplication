@@ -1,5 +1,6 @@
 package Controller.EntryControllers;
 
+import Controller.Interfaces.ControllerInterface;
 import Controller.Interfaces.RemoveItemObserver;
 import Controller.Interfaces.RemoveItemSubject;
 import Model.EntryLogic.Entry;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
  *
  * @author Artin
  */
-public class EntryListItemController implements RemoveItemSubject {
+public class EntryListItemController implements RemoveItemSubject, ControllerInterface {
 
     private final EntryListItemView entryListItemView = new EntryListItemView();
     private final Entry actualEntry;
@@ -34,12 +35,13 @@ public class EntryListItemController implements RemoveItemSubject {
             fxmlLoader.load();
         } catch (IOException exception) {
         }
-        setAllViewLiseners();
+        setAllViewListeners();
         entryListItemView.setFields(entry.getCategory(), entry.getAmount(), entry.getName());
         actualEntry = entry;
     }
 
-    private void setAllViewLiseners() {
+    @Override
+    public void setAllViewListeners() {
         entryListItemView.trashcan.setOnAction(event -> notifyListeners());
 
     }
