@@ -1,5 +1,6 @@
 package Model.EntryLogic;
 
+import Interfaces.iEntry;
 import Model.Interfaces.EntryObserver;
 
 /**
@@ -8,7 +9,7 @@ import Model.Interfaces.EntryObserver;
  * @author Artin
  */
 
-public class Entry extends EntrySubject implements Interfaces.iEntry {
+public class Entry extends EntrySubject implements iEntry {
     private final double amount;
    private final String name;
   private final String category;
