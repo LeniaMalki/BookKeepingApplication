@@ -1,7 +1,7 @@
 package Controller.AccountControllers;//NOPMD
 
 import Model.AccountLogic.AccountFacade;
-import Controller.Interfaces.AccountObserver;
+import Model.Interfaces.AccountObserver;
 import Controller.Interfaces.ControllerInterface;
 import View.AccountView.ProfilePageView;
 

@@ -22,8 +22,8 @@ public class StatisticsOverViewController implements EntryObserver, RemoveItemOb
 
     //________________________________________________ VARIABLES _______________________________________________________
 
-    private StatisticsOverviewView statisticsOverviewView = StatisticsOverviewView.getInstance();
-    EntryHandler entryHandler = EntryHandler.getInstance();
+    private final StatisticsOverviewView statisticsOverviewView = StatisticsOverviewView.getInstance();
+    private final EntryHandler entryHandler = EntryHandler.getInstance();
 
     //_________________________________________________ METHODS ________________________________________________________
 

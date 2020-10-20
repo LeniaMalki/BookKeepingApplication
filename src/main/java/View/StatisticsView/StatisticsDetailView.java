@@ -1,5 +1,7 @@
 package View.StatisticsView;
 
+import Controller.EntryControllers.EntryListItemController;
+import View.EntryView.EntryListItemView;
 import View.Interfaces.iPane;
 import Controller.MainControllers.MainController;
 import Controller.MainControllers.PaneFactory;
@@ -68,6 +70,25 @@ public class StatisticsDetailView implements iPane {
 
     }
 
+    public void clearPane(){
+        flowpaneStat.getChildren().clear();
+
+    }
+
+    public void removeEntryListItemView(EntryListItemView view){
+        flowpaneStat.getChildren().remove(view);
+
+    }
+
+    public void addEntryListItemView(EntryListItemController controller){
+        flowpaneStat.getChildren().add(controller.getView());
+
+    }
+
+    public void addToPieChart(){
+        chartPane.getChildren().add(statisticsDetailView.chart);
+
+    }
 
     @Override
     public void initPane(MainController parent) {
@@ -76,12 +97,4 @@ public class StatisticsDetailView implements iPane {
 
 
     }
-
-    /*@Override
-    public void initPane(MainController parent) {
-        this.parent = parent;
-        EntrySubject.add(this);
-        headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
-        allEntries = true;
-    }*/
 }
