@@ -37,7 +37,7 @@ public class StatisticsOverViewController implements EntryObserver, RemoveItemOb
      *
      * @param text that is either "Daily", "Monthly" or "Weekly"
      */
-    private void detailedStatistics(String text) {
+    private void detailedStatistics(final String text) {
         statisticsOverviewView.showDetailStatisticsPage(text);
     }
 
@@ -47,7 +47,7 @@ public class StatisticsOverViewController implements EntryObserver, RemoveItemOb
      * When implemented: should update category values and then call upon pieCharts to be updated according to daily
      * (entries today), weekly (entries the past 7 days) and monthly (the past 30 months) time-span.
      */
-    private void updateStatisticsPiechart(Entry entry) {
+    private void updateStatisticsPiechart(final Entry entry) {
         entryHandler.updateTotalCategoryValues();
         updateDailyStatistics();
         updateWeeklyStatistics();
@@ -55,7 +55,7 @@ public class StatisticsOverViewController implements EntryObserver, RemoveItemOb
     }
 
     private void updateDailyStatistics() {
-        ObservableList<PieChart.Data> pieChartData1 = FXCollections.observableArrayList(
+        final ObservableList<PieChart.Data> pieChartData1 = FXCollections.observableArrayList(
                 new PieChart.Data("Food", entryHandler.getFoodAmount()),
                 new PieChart.Data("Transportation", entryHandler.getTransportationAmount()),
                 new PieChart.Data("Household", entryHandler.getHouseholdAmount()),
@@ -64,11 +64,13 @@ public class StatisticsOverViewController implements EntryObserver, RemoveItemOb
         if (statisticsOverviewView.chart1 == null) {
             statisticsOverviewView.chart1 = new PieChart(pieChartData1);
             statisticsOverviewView.dailyAnchor.getChildren().add(statisticsOverviewView.chart1);
-        } else statisticsOverviewView.chart1.setData(pieChartData1);
+        } else {
+            statisticsOverviewView.chart1.setData(pieChartData1);
+        }
     }
 
     private void updateWeeklyStatistics() {
-        ObservableList<PieChart.Data> pieChartData2 = FXCollections.observableArrayList(
+        final ObservableList<PieChart.Data> pieChartData2 = FXCollections.observableArrayList(
                 new PieChart.Data("Food", entryHandler.getFoodAmount() + 205),
                 new PieChart.Data("Transportation", entryHandler.getTransportationAmount() + 200),
                 new PieChart.Data("Household", entryHandler.getHouseholdAmount() + 50),
@@ -77,11 +79,13 @@ public class StatisticsOverViewController implements EntryObserver, RemoveItemOb
         if (statisticsOverviewView.chart2 == null) {
             statisticsOverviewView.chart2 = new PieChart(pieChartData2);
             statisticsOverviewView.weeklyAnchor.getChildren().add(statisticsOverviewView.chart2);
-        } else statisticsOverviewView.chart2.setData(pieChartData2);
+        } else {
+            statisticsOverviewView.chart2.setData(pieChartData2);
+        }
     }
 
     private void updateMonthlyStatistics() {
-        ObservableList<PieChart.Data> pieChartData3 = FXCollections.observableArrayList(
+        final ObservableList<PieChart.Data> pieChartData3 = FXCollections.observableArrayList(
                 new PieChart.Data("Food", entryHandler.getFoodAmount() + 115),
                 new PieChart.Data("Transportation", entryHandler.getTransportationAmount() + 10),
                 new PieChart.Data("Household", entryHandler.getHouseholdAmount() + 50),
@@ -90,7 +94,9 @@ public class StatisticsOverViewController implements EntryObserver, RemoveItemOb
         if (statisticsOverviewView.chart3 == null) {
             statisticsOverviewView.chart3 = new PieChart(pieChartData3);
             statisticsOverviewView.monthlyAnchor.getChildren().add(statisticsOverviewView.chart3);
-        } else statisticsOverviewView.chart3.setData(pieChartData3);
+        } else {
+            statisticsOverviewView.chart3.setData(pieChartData3);
+        }
     }
 
     //__________________________________________________________________________________________________________________
@@ -104,18 +110,18 @@ public class StatisticsOverViewController implements EntryObserver, RemoveItemOb
     }
 
     @Override
-    public void update(String category, String type, double Value) {
+    public void update(final String category, final String type, final double Value) {
 
     }
 
     @Override
-    public void update(Entry entry) {
+    public void update(final Entry entry) {
         updateStatisticsPiechart(entry);
 
     }
 
     @Override
-    public void update(Entry entry, EntryListItemView controller) {
+    public void update(final Entry entry, final EntryListItemView controller) {
         updateStatisticsPiechart(entry);
     }
 }
