@@ -14,13 +14,22 @@ import javafx.fxml.FXMLLoader;
 import java.io.IOException;
 
 public class NewGoalsInsertController implements EntryObserver, ControllerInterface {
+    /**
+     * Controller for the SavingsInsertPage
+     * Responsibility: Updates and handles the savingsPageInsert
+     * Used by: GoalsPageController
+     *
+     * @author Artin
+     */
     private final GoalsInsertView insertView = new GoalsInsertView();
     iSavingsOverview savingsOverview;
     private double amountSaved = 0;
 
+    //________________________________________________ Methods _________________________________________________________
+
     /**
      * Creates and instantiates a pane that is a goals insert
-     * Adds the pane as an observer to Entry
+     * Adds the pane as an observer to iEntry
      */
 
     public NewGoalsInsertController() {
@@ -37,18 +46,6 @@ public class NewGoalsInsertController implements EntryObserver, ControllerInterf
         EntrySubject.add(this); //TODO denna är beroende på model
 
     }
-
-    @Override
-    public void setAllViewListeners() {
-        insertView.okButton.setOnAction(e -> addNewGoal());
-
-    }
-
-    public GoalsInsertView getView() {
-        return insertView;
-    }
-
-
     /**
      * Adds new a new goal object when you ckick on the make new goals button
      */
@@ -67,8 +64,6 @@ public class NewGoalsInsertController implements EntryObserver, ControllerInterf
         } finally {
             insertView.setRedField();
         }
-
-
     }
 
     /**
@@ -111,4 +106,22 @@ public class NewGoalsInsertController implements EntryObserver, ControllerInterf
         insertView.amoutSavedProgressBar.setProgress(amountSaved / Double.parseDouble(insertView.savingAmountTextField.getText()));
 
     }
+    //---------------------------------------------------- GETTERS/SETTERS -----------------------------------------------------
+    /**
+     * makes it so that the controller listens after actions from the view
+     */
+    @Override
+    public void setAllViewListeners() {
+        insertView.okButton.setOnAction(e -> addNewGoal());
+
+    }
+    /**
+     * gets the view
+     *
+     * @return returns an instance of the view
+     */
+    public GoalsInsertView getView() {
+        return insertView;
+    }
+
 }

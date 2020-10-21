@@ -12,6 +12,8 @@ import java.util.ArrayList;
 
 /**
  * Controller for a new entry as a listItem
+ * Responsibility: Create an insert with information about an entry
+ * Used by: EntryPageController and StatisticsDetailController
  *
  * @author Artin
  */
@@ -21,6 +23,7 @@ public class EntryListItemController implements RemoveItemSubject, ControllerInt
     private final iEntry actualEntry;
     private final ArrayList<RemoveItemObserver> observers = new ArrayList<>();
 
+    //________________________________________________ Methods _________________________________________________________
 
     /**
      * Creates a new insert for a list and sets the test that is suppose to go in it
@@ -40,25 +43,42 @@ public class EntryListItemController implements RemoveItemSubject, ControllerInt
         actualEntry = entry;
     }
 
-    @Override
-    public void setAllViewListeners() {
-        entryListItemView.trashcan.setOnAction(event -> notifyListeners());
-
-    }
-
+    /**
+     * adds observers that listen for changes in this object
+     *
+     * @param observer an observer
+     */
     @Override
     public void add(RemoveItemObserver observer) {
         observers.add(observer);
     }
 
+    /**
+     * notifies all the observers that something has happened
+     */
     @Override
     public void notifyListeners() {
         for (final RemoveItemObserver o : observers) {
             o.update(actualEntry, entryListItemView);
         }
     }
+    //---------------------------------------------------- GETTERS/SETTERS -----------------------------------------------------
 
+    /**
+     * gets the view
+     *
+     * @return returns an instance of the view
+     */
     public EntryListItemView getView() {
         return entryListItemView;
+    }
+
+    /**
+     * makes it so that the controller listens after actions from the view
+     */
+    @Override
+    public void setAllViewListeners() {
+        entryListItemView.trashcan.setOnAction(event -> notifyListeners());
+
     }
 }

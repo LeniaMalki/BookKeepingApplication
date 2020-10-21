@@ -1,15 +1,16 @@
 package Model.EntryLogic;
 
-import StairwayInterfaces.iEntry;
 import Model.Interfaces.EntryObserver;
 import Model.Interfaces.EntrySubject;
+import StairwayInterfaces.iEntry;
 
 /**
- * A class creates entries that are imputed by the user
+ * A class creates entries with the information that is inputted by the client
+ * Responsibility: create entries and inform others that it is created
+ * Used by: EntryHandler, indirectly though iEntry
  *
  * @author Artin
  */
-
 public class Entry  implements iEntry, EntrySubject {
     private final double amount;
    private final String name;
@@ -17,6 +18,7 @@ public class Entry  implements iEntry, EntrySubject {
   private final String typeOfEntry;
 
 
+    //________________________________________________ Methods _________________________________________________________
 
     /**
      * Constructor that initializes a new entry object
@@ -42,7 +44,7 @@ public class Entry  implements iEntry, EntrySubject {
         }
     }
 
-    //--------------------------------------- Getter/Setter---------------------------------------
+    //--------------------------------------- Getter---------------------------------------
     public double getAmount() {
         return amount;
     }

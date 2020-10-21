@@ -4,8 +4,9 @@ import StairwayInterfaces.iSavingGoal;
 import Model.Interfaces.iSavingsRegister;
 
 /**
- * Saving goals class that creates new goals for savings based on a users inputs
- *
+ * Saving goals class that creates new goals for savings based on a client input
+ * Responsibility: create savingGoal
+ * Used by: indirectly though iSavingGoal
  * @author Artin
  */
 public class SavingGoal implements iSavingGoal {

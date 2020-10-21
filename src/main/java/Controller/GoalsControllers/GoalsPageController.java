@@ -5,6 +5,8 @@ import View.GoalsView.GoalsView;
 
 /**
  * Controller for the Savings page
+ * Responsibility: Updates and handles the GoalsPage
+ * Used by: PaneFactory
  *
  * @author Artin
  */
@@ -13,17 +15,11 @@ public class GoalsPageController implements ControllerInterface {
 
     private final GoalsView goalsView = GoalsView.getInstance();
 
+    //________________________________________________ Methods _________________________________________________________
+
     public GoalsPageController() {
         setAllViewListeners();
     }
-
-    @Override
-    public void setAllViewListeners() {
-        goalsView.seeBudgetButton.setOnAction(event -> openBudget());
-        goalsView.goToEntryButton.setOnAction(event -> openEntry());
-        goalsView.addNewSavingGoalButton.setOnAction(event -> addGoal());
-    }
-
 
     /**
      * open the budget page
@@ -50,5 +46,14 @@ public class GoalsPageController implements ControllerInterface {
         goalsView.goalFlowPane.getChildren().add(goalsInsertController.getView());
     }
 
-
+    //---------------------------------------------------- GETTERS/SETTERS -----------------------------------------------------
+    /**
+     * makes it so that the controller listens after actions from the view
+     */
+    @Override
+    public void setAllViewListeners() {
+        goalsView.seeBudgetButton.setOnAction(event -> openBudget());
+        goalsView.goToEntryButton.setOnAction(event -> openEntry());
+        goalsView.addNewSavingGoalButton.setOnAction(event -> addGoal());
+    }
 }

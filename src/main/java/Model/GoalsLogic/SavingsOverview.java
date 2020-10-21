@@ -13,7 +13,8 @@ import java.util.HashMap;
 
 /**
  * A class that has a overview of all the savings
- *
+ * Responsibility: inform when a saving is created, add and remove money from savings and overview Savings
+ * Used by: indirectly though iSavingOverView
  * @author Artin
  */
 public class SavingsOverview implements iSavingsRegister, SavingsSubject, EntryObserver, iSavingsOverview {
@@ -102,4 +103,5 @@ public class SavingsOverview implements iSavingsRegister, SavingsSubject, EntryO
     public double getAmountSaved(String name) {
         return savingGoalHashMap.get(name).getSavingGoalReached();
     }
+
 }

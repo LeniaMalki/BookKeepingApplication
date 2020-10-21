@@ -2,10 +2,10 @@ package Controller.EntryControllers;
 
 import Controller.Interfaces.ControllerInterface;
 import Controller.Interfaces.RemoveItemObserver;
-import StairwayInterfaces.iEntry;
 import Model.EntryLogic.Entry;
 import Model.Interfaces.SavingsObserver;
 import Model.Interfaces.SavingsSubject;
+import StairwayInterfaces.iEntry;
 import View.EntryView.EntryListItemView;
 import View.EntryView.EntryView;
 import javafx.event.ActionEvent;
@@ -17,33 +17,19 @@ import javafx.scene.control.TextField;
 import java.util.ArrayList;
 
 /**
- * Controller for the entry page
+ * Controller for the entry page view
+ * Responsibility: Updates and handles the EntryView
+ * Used by: PaneFactory
  *
  * @author Artin
  */
 
 public class EntryPageController implements SavingsObserver, RemoveItemObserver, ControllerInterface {
+
     private final ArrayList<Button> entryButtonTypeCluster = new ArrayList<>();
     private final ArrayList<iEntry> entryList = new ArrayList<>();
-
     private Button currentActiveEntryButton;
     private final EntryView entryView = EntryView.getInstance();
-
-    public EntryPageController() {
-        setAllViewListeners();
-        setValuesAtStart();
-    }
-
-    @Override
-    public void setAllViewListeners() {
-        entryView.expencesButton.setOnAction(this::activateEntryTypeButton);
-        entryView.incomebutton.setOnAction(this::activateEntryTypeButton);
-        entryView.savingButton.setOnAction(this::activateEntryTypeButton);
-        entryView.addButton.setOnAction(e -> addEntry());
-        entryView.submitButton.setOnAction(e -> submitEntries());
-    }
-
-
     private final ArrayList<String> savingCategory = new ArrayList<>() {{
         add("General Saving");
     }};
@@ -53,20 +39,14 @@ public class EntryPageController implements SavingsObserver, RemoveItemObserver,
         add("Shopping");
         add("Transportation");
         add("Other");
-
     }};
 
-    /**
-     * sets the values that need to be added at the start of the program
-     */
-    private void setValuesAtStart() {
-        entryButtonTypeCluster.add(entryView.expencesButton);
-        entryButtonTypeCluster.add(entryView.savingButton);
-        entryButtonTypeCluster.add(entryView.incomebutton);
-        entryView.categoryComboBox.getItems().addAll(expenceCategory);
-        currentActiveEntryButton = entryView.expencesButton;
-        entryView.entryPageScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        SavingsSubject.observers.add(this);
+    //________________________________________________ Methods _________________________________________________________
+
+
+    public EntryPageController() {
+        setAllViewListeners();
+        setValuesAtStart();
     }
 
     /**
@@ -128,6 +108,14 @@ public class EntryPageController implements SavingsObserver, RemoveItemObserver,
         }
     }
 
+    /**
+     * Sets the color of things to red if they have an invalid input
+     *
+     * @param nameTextField    textfield with string input
+     * @param categoryComboBox combobox with string inputs
+     * @param costTextField    textfield with double inputs
+     */
+
     private void setColorRedIfInvalid(TextField nameTextField, ComboBox<String> categoryComboBox, TextField costTextField) {
 
         if (!checkIfNameIsFilledIn(nameTextField)) {
@@ -136,7 +124,7 @@ public class EntryPageController implements SavingsObserver, RemoveItemObserver,
             entryView.setGreyColor(nameTextField);
         }
 
-        if (checkIfCategoryIsFilledIn(categoryComboBox)) {
+        if (checkIfCategoryIsFilledIninCorrectly(categoryComboBox)) {
             entryView.setRedColor(categoryComboBox);
         } else {
             entryView.setGreyColor(categoryComboBox);
@@ -149,19 +137,46 @@ public class EntryPageController implements SavingsObserver, RemoveItemObserver,
         }
     }
 
+    /**
+     * checks if all fields are filled in correctly
+     *
+     * @param nameTextField    textfield with string input
+     * @param categoryComboBox combobox with string inputs
+     * @param costTextField    textfield with double inputs
+     * @return true iff all firlds are correct
+     */
+
     private boolean checkIfFieldsAreFilledInCorrectly(TextField nameTextField, ComboBox<String> categoryComboBox, TextField costTextField) {
-        return !checkIfCategoryIsFilledIn(categoryComboBox) && checkIfNameIsFilledIn(nameTextField) && !checkIfCostIsInCorrect(costTextField);
+        return !checkIfCategoryIsFilledIninCorrectly(categoryComboBox) && checkIfNameIsFilledIn(nameTextField) && !checkIfCostIsInCorrect(costTextField);
     }
 
+    /**
+     * checks if costfield is incorrect
+     *
+     * @param costTextField textfield with double inputs
+     * @return true if it doesnt match
+     */
     private boolean checkIfCostIsInCorrect(TextField costTextField) {
         return !costTextField.getText().matches("\\d+");
     }
 
+    /**
+     * checks if name is filled in
+     *
+     * @param nameTextField textfield with string input
+     * @return returns true if it has any symbol in it
+     */
     private boolean checkIfNameIsFilledIn(TextField nameTextField) {
         return !nameTextField.getText().equals("");
     }
 
-    private boolean checkIfCategoryIsFilledIn(ComboBox<String> categoryComboBox) {
+    /**
+     * checks if fields are incorrect
+     *
+     * @param categoryComboBox combobox with string inputs
+     * @return true if they are incorrect
+     */
+    private boolean checkIfCategoryIsFilledIninCorrectly(ComboBox<String> categoryComboBox) {
         return (categoryComboBox.getValue() == "" || categoryComboBox.getValue() == "Category" || categoryComboBox.getValue() == null);
     }
 
@@ -189,6 +204,7 @@ public class EntryPageController implements SavingsObserver, RemoveItemObserver,
         }
     }
 
+
     /**
      * Checks what category box is selected and fills it with the right info
      *
@@ -209,6 +225,34 @@ public class EntryPageController implements SavingsObserver, RemoveItemObserver,
     public void update(iEntry entry, EntryListItemView controller) {
         entryList.remove(entry);
         entryView.entryFlowPlane.getChildren().remove(controller);
+    }
+
+    //---------------------------------------------------- GETTERS/SETTERS -----------------------------------------------------
+
+
+    /**
+     * makes it so that the controller listens after actions from the view
+     */
+    @Override
+    public void setAllViewListeners() {
+        entryView.expencesButton.setOnAction(this::activateEntryTypeButton);
+        entryView.incomebutton.setOnAction(this::activateEntryTypeButton);
+        entryView.savingButton.setOnAction(this::activateEntryTypeButton);
+        entryView.addButton.setOnAction(e -> addEntry());
+        entryView.submitButton.setOnAction(e -> submitEntries());
+    }
+
+    /**
+     * sets the values that need to be added at the start of the program
+     */
+    private void setValuesAtStart() {
+        entryButtonTypeCluster.add(entryView.expencesButton);
+        entryButtonTypeCluster.add(entryView.savingButton);
+        entryButtonTypeCluster.add(entryView.incomebutton);
+        entryView.categoryComboBox.getItems().addAll(expenceCategory);
+        currentActiveEntryButton = entryView.expencesButton;
+        entryView.entryPageScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        SavingsSubject.observers.add(this);
     }
 }
 
