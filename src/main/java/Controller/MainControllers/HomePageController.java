@@ -1,5 +1,7 @@
 package Controller.MainControllers;
 
+import Controller.Interfaces.RemoveItemObserver;
+import Controller.Interfaces.RemoveItemSubject;
 import StairwayInterfaces.iBudget;
 import StairwayInterfaces.iEntry;
 import StairwayInterfaces.iEntryHandler;
@@ -9,9 +11,10 @@ import Model.EntryLogic.EntryHandler;
 import Model.Interfaces.EntrySubject;
 import Model.Interfaces.BudgetObserver;
 import Model.Interfaces.EntryObserver;
+import View.EntryView.EntryListItemView;
 import View.MainViews.HomeView;
 
-public class HomePageController implements EntryObserver, BudgetObserver {
+public class HomePageController implements EntryObserver, BudgetObserver, RemoveItemObserver {
 
     //________________________________________________ VARIABLES _______________________________________________________
 
@@ -25,6 +28,7 @@ public class HomePageController implements EntryObserver, BudgetObserver {
         EntrySubject.add(this);
         budget = new Budget(0, 0, 0, 0, 0, 0, "0");
         updateAllBudgets();
+        RemoveItemSubject.add(this);
     }
 
     //_________________________________________________ METHODS ________________________________________________________
@@ -70,5 +74,13 @@ public class HomePageController implements EntryObserver, BudgetObserver {
     public void update(final iBudget budget1) {
         budget = budget1;
         updateAllBudgets();
+    }
+
+
+    @Override
+    public void update(iEntry entry, EntryListItemView controller) {
+        entryHandler.getEntries().remove(entry);
+        updateAllBudgets();
+        changeProgress();
     }
 }

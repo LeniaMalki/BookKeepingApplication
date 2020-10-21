@@ -2,6 +2,7 @@ package Controller.StatisticsController;
 
 import Controller.Interfaces.ControllerInterface;
 import Controller.Interfaces.RemoveItemObserver;
+import Controller.Interfaces.RemoveItemSubject;
 import StairwayInterfaces.iEntry;
 import Model.EntryLogic.EntryHandler;
 import Model.Interfaces.EntrySubject;
@@ -30,6 +31,7 @@ public class StatisticsOverViewController implements EntryObserver, RemoveItemOb
     public StatisticsOverViewController() {
         setAllViewListeners();
         EntrySubject.add(this);
+        RemoveItemSubject.add(this);
     }
 
     /**
@@ -117,7 +119,6 @@ public class StatisticsOverViewController implements EntryObserver, RemoveItemOb
     @Override
     public void update(final iEntry entry) {
         updateStatisticsPiechart(entry);
-
     }
 
     @Override

@@ -78,7 +78,7 @@ public final class EntryHandler implements EntryObserver, iEntryHandler {
         shoppingAmount = 0;
         otherAmount = 0;
         generalSaving = 0;
-        for (final iEntry entry : entries) {
+        for ( iEntry entry : entries) {
             if ("Food".equals(entry.getCategory())) {
                 foodAmount += entry.getAmount();
             }
