@@ -24,7 +24,7 @@ public class BudgetPageController implements BudgetObserver, ControllerInterface
     private int selected = 0;
     private iBudget budget;
     private final BudgetView budgetView = BudgetView.getInstance();
-    private final BugetSliderController bugetSliderController = new BugetSliderController();
+    private final BudgetSliderController bugetSliderController = new BudgetSliderController();
 
     //_________________________________________________ METHODS ________________________________________________________
 

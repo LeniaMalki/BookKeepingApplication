@@ -13,6 +13,7 @@ public class HeaderController implements ControllerInterface {
 
     //________________________________________________ Methods _________________________________________________________
 
+    @Override
     public void setAllViewListeners() {
         headerView.budgetButton.setOnAction(a->headerView.showBudgetCharPage());
         headerView.homeButton.setOnAction(a->headerView.showFirstPage());

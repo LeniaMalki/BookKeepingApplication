@@ -11,7 +11,7 @@ import javafx.util.converter.NumberStringConverter;
  * @author viktoriawelzel
  */
 
-public class BugetSliderController {
+public class BudgetSliderController {
 
     private final BudgetView budgetView = BudgetView.getInstance();
     public int selected = 0;
