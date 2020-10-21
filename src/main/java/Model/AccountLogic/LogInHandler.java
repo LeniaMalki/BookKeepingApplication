@@ -1,13 +1,17 @@
 package Model.AccountLogic;//NOPMD
 
 
+import StairwayInterfaces.iAccountFacade;
 /**
  * A class that handles the logic of login in to logIn page
  * @author Lenia
  */
 public abstract class LogInHandler {//NOPMD
-    private final AccountFacade accountFacade = AccountFacade.getInstance();
 
+    //________________________________________________ Variables _______________________________________________________
+    private final iAccountFacade accountFacade = AccountFacade.getInstance();
+
+    //---------------------------------------------------- METHODS -----------------------------------------------------
     /**
      * checks whether the usernames matches
      * @param accountName is the variables obtained from logInTextField on logIn controller

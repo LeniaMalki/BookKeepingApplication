@@ -5,8 +5,10 @@ package Model.AccountLogic;//NOPMD
  * @author Lenia
  */
 public final class AccountValidityChecker {
+    //________________________________________________ Variables _______________________________________________________
     private static AccountValidityChecker accountValidityChecker;//NOPMD
 
+    //---------------------------------------------------- METHODS -----------------------------------------------------
     /**
      * Private constructor
      */
@@ -16,9 +18,10 @@ public final class AccountValidityChecker {
     /**
      * Method for obtaining a validity checker
      */
-    static AccountValidityChecker getInstance() {
+     static AccountValidityChecker getInstance() {
         if (accountValidityChecker == null) {
-            accountValidityChecker = new AccountValidityChecker();
+            synchronized (AccountValidityChecker.class) {
+            accountValidityChecker = new AccountValidityChecker();}
         }
         return accountValidityChecker;
     }
@@ -81,8 +84,7 @@ public final class AccountValidityChecker {
      * @return true/false
      */
     boolean isValidUsername(final String username) {
-        return !"".equals(username);
-    }
+        return !"".equals(username); }
 
     /**
      * A collective check for all account variables

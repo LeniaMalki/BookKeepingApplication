@@ -14,8 +14,8 @@ import javafx.scene.text.Text;
  */
 public class DeleteAccountView implements iPane {
 
-    public static DeleteAccountView deleteAccountView;
-
+    //________________________________________________ Variables _______________________________________________________
+    private static DeleteAccountView deleteAccountView;
     @FXML
     public PasswordField password;
     @FXML
@@ -24,14 +24,22 @@ public class DeleteAccountView implements iPane {
     @FXML
     public Button deleteAccountButton;//NOPMD
 
-
+    //________________________________________________ Methods _________________________________________________________
+    /**
+     * constructor
+     */
     public DeleteAccountView() {
         deleteAccountView = this;
     }
 
+    /**
+     * Singleton pattern for getting an view of delete account pop up
+     * @return instance of view
+     */
     public static DeleteAccountView getInstance() {
         if (deleteAccountView == null) {
-            deleteAccountView = new DeleteAccountView();
+            synchronized (DeleteAccountView.class) {
+            deleteAccountView = new DeleteAccountView();}
         }
         return deleteAccountView;
     }
@@ -43,6 +51,9 @@ public class DeleteAccountView implements iPane {
         this.parent = parent;
     }
 
+    /**
+     * Sets error message on view
+     */
     public void setMessage() {
         textMessage.setText("Password is incorrect! Try again.");
     }

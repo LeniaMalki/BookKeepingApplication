@@ -8,31 +8,33 @@ import View.AccountView.SignUpView;
 import java.util.ArrayList;
 
 /**
- * Controller for signUp pop up through logInPage
- *
- * @author Lenia
+ * @author : Lenia Malki
+ * Responsibility: Updates and handles the SignUpPage through the logic in AccountFacade
+ * Used by: PaneFactory
+ * Uses: ControllerInterface, iAccountFacade, SignUpView
  */
-
 public class SignUpPageController implements ControllerInterface {
 
     //________________________________________________ VARIABLES _______________________________________________________
-
     private final iAccountFacade accountFacade = AccountFacade.getInstance();
     private final SignUpView signUpView = SignUpView.getInstance();
 
     //________________________________________________ Methods _________________________________________________________
-
-
+    /**
+     * Constructor
+     */
     public SignUpPageController() {
         setAllViewListeners();
 
     }
 
+    /**
+     * Sets all relevant components of the SignUpView as listeners
+     */
     @Override
     public void setAllViewListeners() {
         signUpView.createAccount.setOnAction(event -> onCreateAccountClicked());
     }
-
     /**
      * Handles the mouse action of creating an account. The logic of creating and checking valid inputs is implemented
      * through the AccountFacade

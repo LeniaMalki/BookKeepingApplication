@@ -12,14 +12,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author : Lenia Malki Responsibility: Holds the relevant JavaFX variables of signing up and holds methods directly
+ * @author : Lenia Malki
+ * Responsibility: Holds the relevant JavaFX variables of signing up and holds methods directly
  * related to view
  * Used by: SignUpPageController, PaneFactory, signUpPopUp.fxml
  * Uses: iPane interface, MainController, JavaFX
  */
 public class SignUpView implements iPane {
-
-    public static SignUpView signUpView;
+    //________________________________________________ Variables _______________________________________________________
+    private static SignUpView signUpView;
     @FXML
     public TextField signUpName;
     @FXML
@@ -31,24 +32,38 @@ public class SignUpView implements iPane {
     @FXML
     public TextField signUpEmail;
     @FXML
-    public Text textMessage;
+    private Text textMessage;
     @FXML
     public Button createAccount;
-    MainController parent;
-    List<TextField> textFields = new ArrayList<>() {
-    };
 
+    MainController parent;
+    private final List<TextField> textFields = new ArrayList<>() {};
+
+    //---------------------------------------------------- METHODS -----------------------------------------------------
+
+    /**
+     * Constructor
+     */
     public SignUpView() {
         signUpView = this;
     }
 
+    /**
+     * Singleton pattern for getting an instance of this class
+     * @return instance of view
+     */
     public static SignUpView getInstance() {
         if (signUpView == null) {
-            signUpView = new SignUpView();
+            synchronized (SignUpView.class) {
+            signUpView = new SignUpView();}
         }
         return signUpView;
     }
 
+    /**
+     * Initializes the pane
+     * @param parent parent
+     */
     @Override
     public void initPane(final MainController parent) {
         this.parent = parent;
@@ -60,7 +75,10 @@ public class SignUpView implements iPane {
         textFields.add(signUpEmail);
 
     }
-
+    /**
+     * Sets message on view
+     * @param message obtained from controller
+     */
     public void setMessage(final String message) {
         textMessage.setText(message);
 

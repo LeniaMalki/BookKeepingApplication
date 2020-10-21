@@ -13,18 +13,14 @@ import java.util.List;
  * @author Lenia
  */
 public final class AccountFacade implements AccountSubject, iAccountFacade {
+
+    //________________________________________________ Variables _______________________________________________________
     private static AccountFacade accountFacade;
     private final AccountEditor accountEditor = AccountEditor.getInstance();
     private final List<AccountObserver> accountObservers = new ArrayList<>();
     private final AccountExistenceManager accountExistenceManager = AccountExistenceManager.getInstance();//NOPMD
     private final AccountValidityChecker accountValidityChecker = AccountValidityChecker.getInstance();//NOPMD
     private final SendMail sendMail = new SendMail();
-
-    /**
-     * Private constructor
-     */
-    private AccountFacade() {
-    }
 
     //---------------------------------------------------- GETTERS -----------------------------------------------------
 
@@ -33,7 +29,8 @@ public final class AccountFacade implements AccountSubject, iAccountFacade {
      */
     public static AccountFacade getInstance() {
         if (accountFacade == null) {
-            accountFacade = new AccountFacade();
+            synchronized (AccountFacade.class) {
+            accountFacade = new AccountFacade();}
         }
         return accountFacade;
     }
@@ -58,7 +55,7 @@ public final class AccountFacade implements AccountSubject, iAccountFacade {
      * Gets account password through delegation to accountEditor
      * @return returns account password
      */
-    private String getaccountPassword() {
+    private String getAccountPassword() {
         return accountEditor.getAccountPassword();
     }
 
@@ -72,6 +69,11 @@ public final class AccountFacade implements AccountSubject, iAccountFacade {
     }
 
     //---------------------------------------------------- METHODS -----------------------------------------------------
+    /**
+     * Private constructor
+     */
+    private AccountFacade() {
+    }
 
     /**
      * Sets account password through delegation to accountEditor
@@ -85,7 +87,7 @@ public final class AccountFacade implements AccountSubject, iAccountFacade {
      * sends an email to the user with their password
      */
     public void sendPasswordToEmail() {
-        sendMail.sendEmail(getAccountEmail(), getaccountPassword(), "ForgetPassword");
+        sendMail.sendEmail(getAccountEmail(), getAccountPassword(), "ForgetPassword");
     }
 
     /**
@@ -195,8 +197,6 @@ public final class AccountFacade implements AccountSubject, iAccountFacade {
     public boolean isValidPasswordFormat(final String password) {
         return accountValidityChecker.isValidPasswordLength(password);
     }
-    //---------------------------------------------------- Observer Pattern
-    // --------------------------------------------
 
     /**
      * Adds observers to its litst of UserObservers

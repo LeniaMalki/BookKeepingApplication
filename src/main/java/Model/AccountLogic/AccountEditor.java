@@ -1,20 +1,19 @@
 package Model.AccountLogic;//NOPMD
 
 /**
- * Handles all edits on the account, makes use of an accountInstance and is thus an instance itself
- * @author Lenia
+ * @author : Lenia Malki
+ * Responsibility: Handles all edits on the account, makes use of an accountInstance and is thus an instance itself
+ * Used by: AccountExistenceManager, AccountFacade
+ * Uses: AccountEditor, AccountValidityChecker
  */
 public final class AccountEditor {
-    private static AccountEditor accountEditor;
-
 
     //________________________________________________ Variables _______________________________________________________
-
     private final Account account = Account.getInstance();
     private final AccountValidityChecker accountValidityChecker = AccountValidityChecker.getInstance();//NOPMD
+    private static AccountEditor accountEditor;
 
     //________________________________________________ Methods _________________________________________________________
-
     /**
      * Private constructor
      */
@@ -26,7 +25,8 @@ public final class AccountEditor {
      */
     static AccountEditor getInstance() {
         if (accountEditor == null) {
-            accountEditor = new AccountEditor();
+            synchronized (AccountEditor.class) {
+            accountEditor = new AccountEditor();}
         }
         return accountEditor;
 

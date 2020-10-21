@@ -1,30 +1,36 @@
 package Controller.AccountControllers;//NOPMD
 
 import Controller.Interfaces.ControllerInterface;
-import StairwayInterfaces.iAccountFacade;
 import Model.AccountLogic.AccountFacade;
 import Model.Interfaces.AccountObserver;
+import StairwayInterfaces.iAccountFacade;
 import View.AccountView.ProfilePageView;
 
 /**
- * Controller for a handling the image view of the Account Page
- *
- * @author Lenia
+ * @author : Lenia Malki
+ * Responsibility: Updating the ProfilePageVIew through model
+ * Used by: PaneFactory
+ * Uses: ControllerInterface, iAccountFacade, ChangePasswordView
  */
 public class ProfilePageController implements AccountObserver, ControllerInterface {
     //________________________________________________ VARIABLES _______________________________________________________
-
     private final iAccountFacade accountFacade = AccountFacade.getInstance();
     private final ProfilePageView profilePageView = ProfilePageView.getInstance();
 
     //________________________________________________ Methods _________________________________________________________
 
+    /**
+     * Constructor
+     */
     public ProfilePageController() {
         accountFacade.add(this);
         setAllViewListeners();
 
     }
 
+    /**
+     * Sets all relevant profilePageView components to listeners
+     */
     @Override
     public void setAllViewListeners() {
         profilePageView.submitChangesButton.setOnAction(e -> onSubmitChangesClicked());
@@ -51,15 +57,15 @@ public class ProfilePageController implements AccountObserver, ControllerInterfa
     private void onSubmitChangesClicked() {
 
         final int changesMade = accountFacade.handleAccountChanges(profilePageView.username.getText(),
-                profilePageView.name.getText(),
-                profilePageView.email.getText());
+                                                                   profilePageView.name.getText(),
+                                                                   profilePageView.email.getText());
 
         if (changesMade == 0) {
             profilePageView.setMessage("No changes made");
         }
         if (changesMade > 0) {
             accountFacade.updateAccountFields(profilePageView.username.getText(), profilePageView.name.getText(),
-                    profilePageView.email.getText());
+                                              profilePageView.email.getText());
             profilePageView.setMessage("Changes saved!");
         }
         if (changesMade == 3) {
@@ -67,8 +73,6 @@ public class ProfilePageController implements AccountObserver, ControllerInterfa
 
         }
     }
-
-    //________________________________________________ PopUps __________________________________________________________
 
     /**
      * Handles the mouse action for when the delete account link is clicked on
