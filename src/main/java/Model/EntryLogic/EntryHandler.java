@@ -63,7 +63,7 @@ public final class EntryHandler implements EntryObserver, iEntryHandler {
      *
      * @param entry , an entry with a specific category
      */
-    public void removeEntry(Entry entry) {
+    public void removeEntry(iEntry entry) {
         entries.remove(entry);
     }
 
