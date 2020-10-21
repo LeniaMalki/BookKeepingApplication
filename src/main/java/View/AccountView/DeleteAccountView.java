@@ -1,7 +1,7 @@
 package View.AccountView;//NOPMD
 
 import View.Interfaces.iPane;
-import Controller.MainControllers.MainController;
+import View.MainViews.MainView;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -20,7 +20,7 @@ public class DeleteAccountView implements iPane {
     public PasswordField password;
     @FXML
     public Text textMessage;
-    public MainController parent;
+    public MainView parent;
     @FXML
     public Button deleteAccountButton;//NOPMD
 
@@ -47,7 +47,7 @@ public class DeleteAccountView implements iPane {
     /**
      * initialized this pane
      */
-    public void initPane(final MainController parent) {
+    public void initPane(final MainView parent) {
         this.parent = parent;
     }
 

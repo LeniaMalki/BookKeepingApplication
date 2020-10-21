@@ -7,7 +7,6 @@ import Controller.EntryControllers.EntryPageController;
 import Controller.GoalsControllers.GoalsPageController;
 import Controller.MainControllers.HeaderController;
 import Controller.MainControllers.HomePageController;
-import Controller.MainControllers.MainController;
 import Controller.StatisticsController.StatisticsDetailController;
 import Controller.StatisticsController.StatisticsOverViewController;
 import View.AccountView.*;
@@ -35,7 +34,7 @@ public class PaneFactory {
 
     //________________________________________________ VARIABLES _______________________________________________________
 
-    public static MainController parent;
+    public static MainView parent;
 
     //___________________________________-_____________ METHODS _______________________________________________________-
 
@@ -61,7 +60,7 @@ public class PaneFactory {
      */
     public static Parent initMain() {
         final Pane <MainView> pane = loadInPane("org/openjfx/mainAnchor.fxml");
-        PaneFactory.parent = new MainController();
+        PaneFactory.parent = pane.controller;
         parent.init();
         return  pane.anchorPane;
     }

@@ -1,6 +1,6 @@
 package View.Interfaces;
 
-import Controller.MainControllers.MainController;
+import View.MainViews.MainView;
 
 /**
  * A interface for all the panes that needs to be aware of the mainAnchor
@@ -8,6 +8,6 @@ import Controller.MainControllers.MainController;
  * @author Oscar
  */
 public interface iPane {
-    void initPane(MainController parent);
+    void initPane(MainView parent);
 
 }

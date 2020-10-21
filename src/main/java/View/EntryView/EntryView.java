@@ -1,8 +1,8 @@
 package View.EntryView;
 
 import View.Interfaces.iPane;
-import Controller.MainControllers.MainController;
 import Service.PaneFactory;
+import View.MainViews.MainView;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -37,7 +37,7 @@ public class EntryView implements iPane {
     @FXML
     public AnchorPane headerAnchorPane;
 
-    private MainController parent;
+    private MainView parent;
     static EntryView entryView;
 
     public EntryView() {
@@ -55,7 +55,7 @@ public class EntryView implements iPane {
     }
 
     @Override
-    public void initPane(MainController parent) {
+    public void initPane(MainView parent) {
         this.parent = parent;
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
     }

@@ -1,6 +1,5 @@
 package View.MainViews;
 
-import Controller.MainControllers.MainController;
 import View.Interfaces.iPane;
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
@@ -22,7 +21,7 @@ public class HeaderView implements iPane {
     public Hyperlink budgetButton;
     @FXML
     public Hyperlink goalButton;
-    private MainController parent;
+    private MainView parent;
 
     public static HeaderView getInstance() {
         if (headerView == null) {
@@ -36,7 +35,7 @@ public class HeaderView implements iPane {
     }
 
     @Override
-    public void initPane(MainController parent) {
+    public void initPane(MainView parent) {
         this.parent = parent;
     }
 

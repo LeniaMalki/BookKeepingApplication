@@ -1,7 +1,7 @@
 package View.AccountView;
 
 import View.Interfaces.iPane;
-import Controller.MainControllers.MainController;
+import View.MainViews.MainView;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
@@ -17,7 +17,7 @@ import javafx.scene.text.Text;
 public class LogInView implements iPane {
     //________________________________________________ Variables _______________________________________________________
     private static LogInView logInView;
-    public MainController parent;
+    public MainView parent;
     @FXML
     private AnchorPane pos_for_popUp_on_LogInPage;
     @FXML
@@ -61,7 +61,7 @@ public class LogInView implements iPane {
      * initialized this pane
      */
     @Override
-    public void initPane(final MainController parent) {
+    public void initPane(final MainView parent) {
         this.parent = parent;
     }
 

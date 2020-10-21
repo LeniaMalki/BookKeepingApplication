@@ -1,7 +1,7 @@
 package View.AccountView;//NOPMD
 
-import Controller.MainControllers.MainController;
 import View.Interfaces.iPane;
+import View.MainViews.MainView;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -24,7 +24,7 @@ public class ChangePasswordView implements iPane {
     public Text textMessage;
     @FXML
     public Button confirmChangeButton;//NOPMD
-    MainController parent;//NOPMD//NOPMD
+    MainView parent;//NOPMD//NOPMD
 
     //________________________________________________ Methods _________________________________________________________
     /**
@@ -72,7 +72,7 @@ public class ChangePasswordView implements iPane {
      * @param parent mainController
      */
     @Override
-    public void initPane(final MainController parent) {
+    public void initPane(final MainView parent) {
         this.parent = parent;
     }
 }

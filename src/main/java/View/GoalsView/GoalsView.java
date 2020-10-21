@@ -1,8 +1,8 @@
 package View.GoalsView;
 
 import View.Interfaces.iPane;
-import Controller.MainControllers.MainController;
 import Service.PaneFactory;
+import View.MainViews.MainView;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
@@ -10,7 +10,7 @@ import javafx.scene.layout.FlowPane;
 
 public class GoalsView implements iPane {
     static GoalsView goalsView;
-    private MainController parent;
+    private MainView parent;
     @FXML
     public FlowPane goalFlowPane;
     @FXML
@@ -37,7 +37,7 @@ public class GoalsView implements iPane {
     }
 
     @Override
-    public void initPane(MainController parent) {
+    public void initPane(MainView parent) {
         this.parent = parent;
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
         goalFlowPane.setVgap(10);

@@ -1,6 +1,5 @@
 package View.MainViews;
 
-import Controller.MainControllers.MainController;
 import Service.PaneFactory;
 import View.Interfaces.iPane;
 import javafx.event.ActionEvent;
@@ -41,7 +40,7 @@ public class HomeView implements iPane {
     public Label transportLabel;
     @FXML
     public Label otherLabel;
-    private MainController parent;
+    private MainView parent;
 
     public static HomeView getInstance() {
         if (homeView == null) {
@@ -55,7 +54,7 @@ public class HomeView implements iPane {
     }
 
     @Override
-    public void initPane(MainController parent) {
+    public void initPane(MainView parent) {
         this.parent = parent;
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
     }
@@ -77,6 +76,5 @@ public class HomeView implements iPane {
 
     public void setTextLabel(String string){
         foodLabel.setText(string);
-
     }
 }

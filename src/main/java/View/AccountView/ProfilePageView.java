@@ -1,8 +1,8 @@
 package View.AccountView;
 
 import View.Interfaces.iPane;
-import Controller.MainControllers.MainController;
 import Service.PaneFactory;
+import View.MainViews.MainView;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
@@ -33,7 +33,7 @@ public class ProfilePageView implements iPane {
     public TextField email;
     @FXML
     private Text textMessage;
-    public MainController parent;
+    public MainView parent;
     @FXML
     public Hyperlink changePasswordLink;
     @FXML
@@ -68,7 +68,7 @@ public class ProfilePageView implements iPane {
      * @param parent parent
      */
     @Override
-    public void initPane(final MainController parent) {
+    public void initPane(final MainView parent) {
         this.parent = parent;
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
     }

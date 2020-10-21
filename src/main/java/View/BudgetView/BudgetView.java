@@ -1,15 +1,15 @@
 package View.BudgetView;
 
 import View.Interfaces.iPane;
-import Controller.MainControllers.MainController;
 import Service.PaneFactory;
+import View.MainViews.MainView;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
 public class BudgetView implements iPane {
 
-    public MainController parent;
+    public MainView parent;
     static BudgetView budgetView;
 
     public BudgetView(){
@@ -29,7 +29,7 @@ public class BudgetView implements iPane {
      * Initializes this pane.
      */
     @Override
-    public void initPane(MainController parent) {
+    public void initPane(MainView parent) {
         this.parent = parent;
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
         stylingSlidersAndProgressBars();

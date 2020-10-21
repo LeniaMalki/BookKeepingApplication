@@ -1,8 +1,8 @@
 package View.StatisticsView;
 
 import View.Interfaces.iPane;
-import Controller.MainControllers.MainController;
 import Service.PaneFactory;
+import View.MainViews.MainView;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
@@ -12,7 +12,7 @@ public class StatisticsOverviewView implements iPane {
 
     //________________________________________________ VARIABLES _______________________________________________________
 
-    MainController parent;
+    MainView parent;
 
     static StatisticsOverviewView statisticsOverviewView;
 
@@ -61,7 +61,7 @@ public class StatisticsOverviewView implements iPane {
     }
 
     @Override
-    public void initPane(final MainController parent) {
+    public void initPane(final MainView parent) {
         this.parent = parent;
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
 

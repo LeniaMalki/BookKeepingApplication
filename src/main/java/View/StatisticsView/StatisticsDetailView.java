@@ -3,8 +3,8 @@ package View.StatisticsView;
 import Controller.EntryControllers.EntryListItemController;
 import View.EntryView.EntryListItemView;
 import View.Interfaces.iPane;
-import Controller.MainControllers.MainController;
 import Service.PaneFactory;
+import View.MainViews.MainView;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
@@ -17,7 +17,7 @@ public class StatisticsDetailView implements iPane {
     //________________________________________________ VARIABLES _______________________________________________________
 
     static StatisticsDetailView statisticsDetailView;
-    private MainController parent;
+    private MainView parent;
 
     @FXML
     public FlowPane flowpaneStat;
@@ -91,7 +91,7 @@ public class StatisticsDetailView implements iPane {
     }
 
     @Override
-    public void initPane(final MainController parent) {
+    public void initPane(final MainView parent) {
         this.parent=parent;
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
 

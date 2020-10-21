@@ -1,8 +1,8 @@
 package View.BudgetView;
 
 import View.Interfaces.iPane;
-import Controller.MainControllers.MainController;
 import Service.PaneFactory;
+import View.MainViews.MainView;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
@@ -11,11 +11,11 @@ import javafx.scene.layout.AnchorPane;
 
 public class BudgetChartView implements iPane {
 
-    public MainController parent;
+    public MainView parent;
     static BudgetChartView budgetChartView;
 
     @Override
-    public void initPane(MainController parent) {
+    public void initPane(MainView parent) {
         this.parent = parent;
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
     }
