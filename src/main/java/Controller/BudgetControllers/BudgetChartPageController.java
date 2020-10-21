@@ -117,7 +117,7 @@ public class BudgetChartPageController implements EntryObserver, BudgetObserver,
      * Creates/updates a Stacked bar chart with the budget values.
      */
 
-    public void updateGostGraph(final iBudget budget){
+    public void updateCostGraph(final iBudget budget){
         final XYChart.Series<String, Integer> series1 = new XYChart.Series<>();
         series1.setName("Budget");
         series1.getData().add(new XYChart.Data<>("Food", budget.getFoodCost()));
@@ -141,6 +141,6 @@ public class BudgetChartPageController implements EntryObserver, BudgetObserver,
 
     @Override
     public void update(final iBudget budget) {
-        updateGostGraph(budget);
+        updateCostGraph(budget);
     }
 }
