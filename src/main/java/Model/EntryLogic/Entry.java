@@ -1,6 +1,6 @@
 package Model.EntryLogic;
 
-import Interfaces.iEntry;
+import StairwayInterfaces.iEntry;
 import Model.Interfaces.EntryObserver;
 import Model.Interfaces.EntrySubject;
 

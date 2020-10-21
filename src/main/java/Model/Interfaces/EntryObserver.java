@@ -1,6 +1,6 @@
 package Model.Interfaces;
 
-import Interfaces.iEntry;
+import StairwayInterfaces.iEntry;
 
 public interface EntryObserver {
 

@@ -1,6 +1,6 @@
 package Model.BudgetLogic;
 
-import Interfaces.iBudget;
+import StairwayInterfaces.iBudget;
 import Model.Interfaces.BudgetObserver;
 import Model.Interfaces.BudgetSubject;
 

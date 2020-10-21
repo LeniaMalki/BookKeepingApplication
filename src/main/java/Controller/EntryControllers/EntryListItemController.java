@@ -3,7 +3,7 @@ package Controller.EntryControllers;
 import Controller.Interfaces.ControllerInterface;
 import Controller.Interfaces.RemoveItemObserver;
 import Controller.Interfaces.RemoveItemSubject;
-import Interfaces.iEntry;
+import StairwayInterfaces.iEntry;
 import View.EntryView.EntryListItemView;
 import javafx.fxml.FXMLLoader;
 

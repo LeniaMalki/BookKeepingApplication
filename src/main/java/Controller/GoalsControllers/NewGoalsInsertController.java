@@ -1,9 +1,9 @@
 package Controller.GoalsControllers;
 
 import Controller.Interfaces.ControllerInterface;
-import Interfaces.iEntry;
-import Interfaces.iSavingGoal;
-import Interfaces.iSavingsOverview;
+import StairwayInterfaces.iEntry;
+import StairwayInterfaces.iSavingGoal;
+import StairwayInterfaces.iSavingsOverview;
 import Model.Interfaces.EntrySubject;
 import Model.GoalsLogic.SavingGoal;
 import Model.GoalsLogic.SavingsOverview;

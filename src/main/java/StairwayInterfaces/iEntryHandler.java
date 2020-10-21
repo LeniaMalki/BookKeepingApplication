@@ -1,4 +1,4 @@
-package Interfaces;
+package StairwayInterfaces;
 
 import java.util.List;
 

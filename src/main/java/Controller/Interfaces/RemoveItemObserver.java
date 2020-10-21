@@ -1,6 +1,6 @@
 package Controller.Interfaces;
 
-import Interfaces.iEntry;
+import StairwayInterfaces.iEntry;
 import View.EntryView.EntryListItemView;
 
 public interface RemoveItemObserver {

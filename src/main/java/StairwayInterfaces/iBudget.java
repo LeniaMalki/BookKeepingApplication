@@ -1,4 +1,4 @@
-package Interfaces;
+package StairwayInterfaces;
 
 public interface iBudget {
     int getFoodCost();

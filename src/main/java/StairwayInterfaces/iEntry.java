@@ -1,4 +1,4 @@
-package Interfaces;
+package StairwayInterfaces;
 
 import Model.EntryLogic.Entry;
 

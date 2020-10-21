@@ -1,6 +1,6 @@
 package Model.AccountLogic;//NOPMD
 
-import Interfaces.iAccountFacade;
+import StairwayInterfaces.iAccountFacade;
 import Model.Interfaces.AccountObserver;
 import Model.Interfaces.AccountSubject;
 

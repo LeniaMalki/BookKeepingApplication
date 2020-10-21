@@ -1,6 +1,6 @@
 package Model.Interfaces;
 
-import Interfaces.iBudget;
+import StairwayInterfaces.iBudget;
 
 public interface BudgetObserver {
     void update(iBudget b);

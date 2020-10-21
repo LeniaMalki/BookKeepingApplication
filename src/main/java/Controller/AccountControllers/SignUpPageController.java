@@ -1,7 +1,7 @@
 package Controller.AccountControllers;//NOPMD
 
 import Controller.Interfaces.ControllerInterface;
-import Interfaces.iAccountFacade;
+import StairwayInterfaces.iAccountFacade;
 import Model.AccountLogic.AccountFacade;
 import View.AccountView.SignUpView;
 

@@ -3,7 +3,7 @@ package Controller.StatisticsController;
 import Controller.EntryControllers.EntryListItemController;
 import Controller.Interfaces.ControllerInterface;
 import Controller.Interfaces.RemoveItemObserver;
-import Interfaces.iEntry;
+import StairwayInterfaces.iEntry;
 import Model.EntryLogic.EntryHandler;
 import Model.Interfaces.EntrySubject;
 import Model.Interfaces.EntryObserver;

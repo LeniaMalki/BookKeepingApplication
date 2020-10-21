@@ -1,6 +1,6 @@
 package Model.GoalsLogic;
 
-import Interfaces.iSavingGoal;
+import StairwayInterfaces.iSavingGoal;
 import Model.Interfaces.iSavingsRegister;
 
 /**

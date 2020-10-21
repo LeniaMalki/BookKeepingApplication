@@ -1,6 +1,6 @@
 package Model.Interfaces;
 
-import Interfaces.iSavingGoal;
+import StairwayInterfaces.iSavingGoal;
 
 public interface iSavingsRegister {
     void addSavingsGoal(String name, iSavingGoal goal);

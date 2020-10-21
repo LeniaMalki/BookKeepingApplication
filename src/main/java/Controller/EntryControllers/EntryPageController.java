@@ -2,7 +2,7 @@ package Controller.EntryControllers;
 
 import Controller.Interfaces.ControllerInterface;
 import Controller.Interfaces.RemoveItemObserver;
-import Interfaces.iEntry;
+import StairwayInterfaces.iEntry;
 import Model.EntryLogic.Entry;
 import Model.Interfaces.SavingsObserver;
 import Model.Interfaces.SavingsSubject;

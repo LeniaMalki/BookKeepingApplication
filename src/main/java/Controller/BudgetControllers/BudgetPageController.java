@@ -1,7 +1,7 @@
 package Controller.BudgetControllers;
 
 import Controller.Interfaces.ControllerInterface;
-import Interfaces.iBudget;
+import StairwayInterfaces.iBudget;
 import Model.BudgetLogic.Budget;
 import Model.Interfaces.BudgetSubject;
 import Model.Interfaces.BudgetObserver;

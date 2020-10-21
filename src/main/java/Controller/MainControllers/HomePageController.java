@@ -1,8 +1,8 @@
 package Controller.MainControllers;
 
-import Interfaces.iBudget;
-import Interfaces.iEntry;
-import Interfaces.iEntryHandler;
+import StairwayInterfaces.iBudget;
+import StairwayInterfaces.iEntry;
+import StairwayInterfaces.iEntryHandler;
 import Model.BudgetLogic.Budget;
 import Model.Interfaces.BudgetSubject;
 import Model.EntryLogic.EntryHandler;

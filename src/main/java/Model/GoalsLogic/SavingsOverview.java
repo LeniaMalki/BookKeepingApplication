@@ -1,8 +1,8 @@
 package Model.GoalsLogic;
 
-import Interfaces.iEntry;
-import Interfaces.iSavingGoal;
-import Interfaces.iSavingsOverview;
+import StairwayInterfaces.iEntry;
+import StairwayInterfaces.iSavingGoal;
+import StairwayInterfaces.iSavingsOverview;
 import Model.Interfaces.EntrySubject;
 import Model.Interfaces.EntryObserver;
 import Model.Interfaces.SavingsObserver;
