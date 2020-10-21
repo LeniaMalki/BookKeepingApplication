@@ -161,7 +161,7 @@ public class PaneFactory {
     /**
      * A private class that let us store controllers and anchor panes as one.
      */
-    static class Pane<T> {
+    private static class Pane<T> {
         AnchorPane anchorPane;
         T controller;
 
