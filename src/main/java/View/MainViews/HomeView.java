@@ -70,33 +70,7 @@ public class HomeView implements iPane {
         parent.showBudgetPage();
     }
 
-    public void setProgressBarFood(int progress) {
-        foodBar.setProgress(progress);
-
-    }
-
-    public void setProgressBarHousehold(int progress) {
-        householdBar.setProgress(progress);
-
-    }
-
-    public void setProgressBarTransport(int progress) {
-        transportBar.setProgress(progress);
-
-    }
-
-    public void setProgressBarShopping(int progress) {
-        shoppingBar.setProgress(progress);
-
-    }
-
-    public void setProgressBarOther(int progress) {
-        otherbar.setProgress(progress);
-
-    }
-
     public void setProgressBar(double progress, String category) {
-
         switch (category) {
             case "Food" -> foodBar.setProgress(progress);
             case "Household" -> householdBar.setProgress(progress);
@@ -104,13 +78,9 @@ public class HomeView implements iPane {
             case "Transport" -> transportBar.setProgress(progress);
             case "Other" -> otherbar.setProgress(progress);
         }
-
-
     }
 
-
     public void setTextLabel(String amount, String category) {
-
         switch (category) {
             case "Food" -> foodLabel.setText(amount);
             case "Household" -> householdLabel.setText(amount);
@@ -118,7 +88,6 @@ public class HomeView implements iPane {
             case "Transport" -> transportLabel.setText(amount);
             case "Other" -> otherLabel.setText(amount);
         }
-
     }
 
 
