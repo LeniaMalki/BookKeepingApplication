@@ -95,23 +95,31 @@ public class HomeView implements iPane {
 
     }
 
-    public void setTextLabelFood(String string) {
-        foodLabel.setText(string);
+    public void setProgressBar(double progress, String category) {
+
+        switch (category) {
+            case "Food" -> foodBar.setProgress(progress);
+            case "Household" -> householdBar.setProgress(progress);
+            case "Shopping" -> shoppingBar.setProgress(progress);
+            case "Transport" -> transportBar.setProgress(progress);
+            case "Other" -> otherbar.setProgress(progress);
+        }
+
+
     }
 
-    public void setTextLabelShopping(String string) {
-        shoppingLabel.setText(string);
+
+    public void setTextLabel(String amount, String category) {
+
+        switch (category) {
+            case "Food" -> foodLabel.setText(amount);
+            case "Household" -> householdLabel.setText(amount);
+            case "Shopping" -> shoppingLabel.setText(amount);
+            case "Transport" -> transportLabel.setText(amount);
+            case "Other" -> otherLabel.setText(amount);
+        }
+
     }
 
-    public void setTextLabelTransport(String string) {
-        transportLabel.setText(string);
-    }
 
-    public void setTextLabelHousehold(String string) {
-        householdLabel.setText(string);
-    }
-
-    public void setTextLabelOther(String string) {
-        otherLabel.setText(string);
-    }
 }

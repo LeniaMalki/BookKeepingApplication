@@ -34,11 +34,11 @@ public class HomePageController implements EntryObserver, BudgetObserver {
      * Updates all the labels according to the entries and budgets.
      */
     private void updateAllBudgets() {
-        homeView.setTextLabelFood((int) entryHandler.getFoodAmount() + " kr of " + budget.getFoodCost() + " kr");
-        homeView.setTextLabelHousehold((int) entryHandler.getHouseholdAmount() + " kr of " + budget.getHouseholdCost() + " kr");
-        homeView.setTextLabelShopping((int) entryHandler.getShoppingAmount() + " kr of " + budget.getShoppingCost() + " kr");
-        homeView.setTextLabelTransport((int) entryHandler.getTransportationAmount() + " kr of " + budget.getTransportCost() + " kr");
-        homeView.setTextLabelOther((int) entryHandler.getOtherAmount() + " kr of " + budget.getOtherCost() + " kr");
+        homeView.setTextLabel((int) entryHandler.getFoodAmount() + " kr of " + budget.getFoodCost() + " kr","Food");
+        homeView.setTextLabel((int) entryHandler.getHouseholdAmount() + " kr of " + budget.getHouseholdCost() + " kr", "Household");
+        homeView.setTextLabel((int) entryHandler.getShoppingAmount() + " kr of " + budget.getShoppingCost() + " kr", "Shopping");
+        homeView.setTextLabel((int) entryHandler.getTransportationAmount() + " kr of " + budget.getTransportCost() + " kr", "Transport");
+        homeView.setTextLabel((int) entryHandler.getOtherAmount() + " kr of " + budget.getOtherCost() + " kr", "Other");
     }
 
     /**
@@ -48,11 +48,11 @@ public class HomePageController implements EntryObserver, BudgetObserver {
     private void changeProgress() {
         if (budget != null) {
             entryHandler.updateTotalCategoryValues();
-            homeView.setProgressBarFood((int) (entryHandler.getFoodAmount()/budget.getFoodCost()));
-            homeView.setProgressBarHousehold((int) (entryHandler.getHouseholdAmount()/budget.getHouseholdCost()));
-            homeView.setProgressBarShopping((int) (entryHandler.getShoppingAmount()/budget.getShoppingCost()));
-            homeView.setProgressBarTransport((int) (entryHandler.getTransportationAmount() / budget.getTransportCost()));
-            homeView.setProgressBarOther((int) (entryHandler.getOtherAmount() / budget.getOtherCost()));
+            homeView.setProgressBar( entryHandler.getFoodAmount()/budget.getFoodCost(), "Food");
+            homeView.setProgressBar(entryHandler.getHouseholdAmount()/budget.getHouseholdCost(), "Household");
+            homeView.setProgressBar( entryHandler.getShoppingAmount()/budget.getShoppingCost(), "Shopping");
+            homeView.setProgressBar( entryHandler.getTransportationAmount() / budget.getTransportCost(), "Transport");
+            homeView.setProgressBar( entryHandler.getOtherAmount() / budget.getOtherCost(), "Other");
             updateAllBudgets();
         }
     }
