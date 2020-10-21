@@ -9,20 +9,25 @@ import View.AccountView.DeleteAccountView;
  * @author : Lenia Malki
  * Responsibility: Updates and handles the DeleteAccountView through the logic in AccountFacade
  * Used by: PaneFactory
- * Uses: ControllerInterface, AccountFacade, DeleteAccountView
+ * Uses: ControllerInterface, iAccountFacade, DeleteAccountView
  */
 public class DeleteAccountController implements ControllerInterface {
 
+    //________________________________________________ Variables _______________________________________________________
     private final iAccountFacade accountFacade = AccountFacade.getInstance();
     private final DeleteAccountView deleteAccountView = DeleteAccountView.getInstance();
 
+    //---------------------------------------------------- METHODS -----------------------------------------------------
+
+    /**
+     * Constructor
+     */
     public DeleteAccountController() {
         setAllViewListeners();//NOPMD
     }
 
     @Override
     public void setAllViewListeners() {
-
         deleteAccountView.deleteAccountButton.setOnAction(e -> onConfirmDeleteClicked());
     }
 

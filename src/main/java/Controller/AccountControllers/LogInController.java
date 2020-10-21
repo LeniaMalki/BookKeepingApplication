@@ -1,20 +1,21 @@
 package Controller.AccountControllers;//NOPMD
 
 import Controller.Interfaces.ControllerInterface;
-import StairwayInterfaces.iAccountFacade;
 import Model.AccountLogic.AccountFacade;
 import Model.AccountLogic.LogInHandler;
 import Model.Interfaces.AccountObserver;
+import StairwayInterfaces.iAccountFacade;
 import View.AccountView.LogInView;
 
 /**
  * @author : Lenia Malki
  * Responsibility: Updates and handles the LogInPage through the logic in AccountFacade
  * Used by: PaneFactory
- * Uses: ControllerInterface, AccountObserver,  AccountFacade, LogInView, LogInHandler
+ * Uses: ControllerInterface, iAccountObserver, LogInView, LogInHandler
  */
 public class LogInController implements AccountObserver, ControllerInterface {
 
+    //________________________________________________ Variables _______________________________________________________
     private final LogInHandler logInHandler = new LogInHandler() {
         public boolean logIn(final String accountName, final String password) {
             return super.logIn(accountName, password);
@@ -24,15 +25,19 @@ public class LogInController implements AccountObserver, ControllerInterface {
     private final iAccountFacade accountFacade = AccountFacade.getInstance();
     private final LogInView logInView = LogInView.getInstance();
 
+    //---------------------------------------------------- METHODS -----------------------------------------------------
 
-    //________________________________________________ Methods
-    // _________________________________________________________//NOPMD
-
+    /**
+     * Constructor
+     */
     public LogInController() {
         accountFacade.add(this);
         setAllViewListeners();
     }
 
+    /**
+     * Sets all the controller's view components to listeners
+     */
     @Override
     public void setAllViewListeners() {
         logInView.signUpLink.setOnAction(e -> signUpButton());
@@ -72,7 +77,6 @@ public class LogInController implements AccountObserver, ControllerInterface {
      * managed//NOPMD by the account facade and logInHandler.
      */
     private void onLoginClicked() {
-        logInView.parent.showFirstPage();
         if (accountFacade.getAccountName() == null) {
             logInView.setMessage("No user registered!");
         } else if (logInHandler.logIn(logInView.usernameField.getText(), logInView.logInField.getText())) {

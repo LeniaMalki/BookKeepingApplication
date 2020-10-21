@@ -15,22 +15,21 @@ import javafx.scene.text.Text;
  * Uses: iPane interface, MainController, JavaFX
  */
 public class LogInView implements iPane {
-
-    public static LogInView logInView;
+    //________________________________________________ Variables _______________________________________________________
+    private static LogInView logInView;
     public MainController parent;
-
     @FXML
-    public AnchorPane pos_for_popUp_on_LogInPage;
+    private AnchorPane pos_for_popUp_on_LogInPage;
     @FXML
-    public AnchorPane back;
+    private AnchorPane back;
     @FXML
-    public AnchorPane logInContent;
+    private AnchorPane logInContent;
     @FXML
     public TextField logInField;
     @FXML
     public TextField usernameField;
     @FXML
-    public Text testMessage;
+    private Text testMessage;
     @FXML
     public Hyperlink signUpLink;
     @FXML
@@ -38,13 +37,22 @@ public class LogInView implements iPane {
     @FXML
     public Hyperlink forgotPassword;
 
+    //---------------------------------------------------- METHODS -----------------------------------------------------
+    /**
+     * Constructor
+     */
     public LogInView() {
         logInView = this;
     }
 
+    /**
+     * Singleton pattern for getting an instance of this class
+     * @return instance of view
+     */
     public static LogInView getInstance() {
         if (logInView == null) {
-            logInView = new LogInView();
+            synchronized (LogInView.class) {
+            logInView = new LogInView();}
         }
         return logInView;
     }
@@ -57,6 +65,9 @@ public class LogInView implements iPane {
         this.parent = parent;
     }
 
+    /**
+     * Opens the signUpPopUp
+     */
     public void showSignUpPopUp() {
 
         back.setVisible(true);
@@ -70,6 +81,10 @@ public class LogInView implements iPane {
         pos_for_popUp_on_LogInPage.toFront();
     }
 
+    /**
+     * Shows message on view
+     * @param message sent in by controller
+     */
     public void setMessage(final String message) {
         testMessage.setText(message);
     }

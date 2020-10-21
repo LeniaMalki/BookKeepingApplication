@@ -1,23 +1,22 @@
 package Model.AccountLogic;//NOPMD
 
 /**
- * The concept of an account; designed through singleton pattern.
- *
- * @author Lenia
+ * @author : Lenia Malki
+ * Responsibility: The concept of an account, implemented through singleton pattern
+ * Used by: AccountEditor
+ * Uses: -
  */
 public final class Account {
 
     //________________________________________________ Variables  ______________________________________________________
     private static Account accountInstance;
-
     private String name;
     private String username;
     private String emailAddress;
     private String password;
     //________________________________________________ Methods _________________________________________________________
-
     /**
-     * Private constructor
+     * Private constructor for singleton pattern
      */
     private Account() {
     }
@@ -27,13 +26,14 @@ public final class Account {
      */
     public static Account getInstance() {
         if (accountInstance == null) {
-            accountInstance = new Account();
+            synchronized (Account.class) {
+                accountInstance = new Account();
+            }
         }
         return accountInstance;
     }
 
     //________________________________________________ Getters/Setters _________________________________________________
-
     /**
      * Getter
      */

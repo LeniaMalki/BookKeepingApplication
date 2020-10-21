@@ -17,13 +17,14 @@ import javafx.scene.text.Text;
  */
 public class ProfilePageView implements iPane {
 
-    public static ProfilePageView profilePageView;
+    //________________________________________________ Variables _______________________________________________________
+    private static ProfilePageView profilePageView;
     @FXML
-    public AnchorPane headerAnchorPane;
+    private AnchorPane headerAnchorPane;
     @FXML
-    public AnchorPane popUpPosition;
+    private AnchorPane popUpPosition;
     @FXML
-    public AnchorPane back;
+    private AnchorPane back;
     @FXML
     public TextField username;
     @FXML
@@ -31,7 +32,7 @@ public class ProfilePageView implements iPane {
     @FXML
     public TextField email;
     @FXML
-    public Text textMessage;
+    private Text textMessage;
     public MainController parent;
     @FXML
     public Hyperlink changePasswordLink;
@@ -42,23 +43,40 @@ public class ProfilePageView implements iPane {
     @FXML
     public Button signOutButton;
 
+    //---------------------------------------------------- METHODS -----------------------------------------------------
+    /**
+     * Constructor
+     */
     public ProfilePageView() {
         profilePageView = this;
     }
 
+    /**
+     * Singleton pattern for getting an instance of this class
+     * @return instance of view
+     */
     public static ProfilePageView getInstance() {
         if (profilePageView == null) {
-            profilePageView = new ProfilePageView();
+            synchronized (ProfilePageView.class){
+            profilePageView = new ProfilePageView();}
         }
         return profilePageView;
     }
 
+    /**
+     * Initializes the pane
+     * @param parent parent
+     */
     @Override
     public void initPane(final MainController parent) {
         this.parent = parent;
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
     }
 
+    /**
+     * Sets message on view
+     * @param message obtained from controller
+     */
     public void setMessage(final String message) {
         textMessage.setText(message);
 
