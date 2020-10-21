@@ -74,22 +74,22 @@ public class EntryHandler implements EntryObserver, iEntryHandler {
         otherAmount = 0;
         generalSaving = 0;
         for (final iEntry entry : entries) {
-            if (entry.getCategory().equals("Food")) {
+            if ("Food".equals(entry.getCategory())) {
                 foodAmount += entry.getAmount();
             }
-            if (entry.getCategory().equals("Transportation")) {
+            if ("Transportation".equals(entry.getCategory())) {
                 transportationAmount += entry.getAmount();
             }
-            if (entry.getCategory().equals("Household")) {
+            if ("Household".equals(entry.getCategory())) {
                 householdAmount += entry.getAmount();
             }
-            if (entry.getCategory().equals("Shopping")) {
+            if ("Shopping".equals(entry.getCategory())) {
                 shoppingAmount += entry.getAmount();
             }
-            if (entry.getCategory().equals("Other")) {
+            if ("Other".equals(entry.getCategory())) {
                 otherAmount += entry.getAmount();
             }
-            if (entry.getCategory().equals("General Saving")) {
+            if ("General Saving".equals(entry.getCategory())) {
                 generalSaving += entry.getAmount();
             }
         }
