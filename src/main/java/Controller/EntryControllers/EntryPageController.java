@@ -2,6 +2,7 @@ package Controller.EntryControllers;
 
 import Controller.Interfaces.ControllerInterface;
 import Controller.Interfaces.RemoveItemObserver;
+import Controller.Interfaces.RemoveItemSubject;
 import Model.EntryLogic.Entry;
 import Model.Interfaces.SavingsObserver;
 import Model.Interfaces.SavingsSubject;
@@ -101,12 +102,14 @@ public class EntryPageController implements SavingsObserver, RemoveItemObserver,
                 entryView.costTextField.clear();
                 entryView.nameTextField.clear();
                 entryView.categoryComboBox.valueProperty().set("Category");
-                itemController.add(this);
+                RemoveItemSubject.add(this);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     }
+
+
 
     /**
      * Sets the color of things to red if they have an invalid input

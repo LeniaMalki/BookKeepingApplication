@@ -8,7 +8,6 @@ import View.EntryView.EntryListItemView;
 import javafx.fxml.FXMLLoader;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 /**
  * Controller for a new entry as a listItem
@@ -21,7 +20,6 @@ public class EntryListItemController implements RemoveItemSubject, ControllerInt
 
     private final EntryListItemView entryListItemView = new EntryListItemView();
     private final iEntry actualEntry;
-    private final ArrayList<RemoveItemObserver> observers = new ArrayList<>();
 
     //________________________________________________ Methods _________________________________________________________
 
@@ -44,24 +42,15 @@ public class EntryListItemController implements RemoveItemSubject, ControllerInt
     }
 
     /**
-     * adds observers that listen for changes in this object
-     *
-     * @param observer an observer
-     */
-    @Override
-    public void add(RemoveItemObserver observer) {
-        observers.add(observer);
-    }
-
-    /**
      * notifies all the observers that something has happened
      */
     @Override
-    public void notifyListeners() {
-        for (final RemoveItemObserver o : observers) {
+    synchronized public void notifyListeners() {
+        for (RemoveItemObserver o : observers) {
             o.update(actualEntry, entryListItemView);
         }
     }
+
     //---------------------------------------------------- GETTERS/SETTERS -----------------------------------------------------
 
     /**

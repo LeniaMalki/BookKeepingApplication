@@ -3,6 +3,7 @@ package Controller.StatisticsController;
 import Controller.EntryControllers.EntryListItemController;
 import Controller.Interfaces.ControllerInterface;
 import Controller.Interfaces.RemoveItemObserver;
+import Controller.Interfaces.RemoveItemSubject;
 import StairwayInterfaces.iEntry;
 import Model.EntryLogic.EntryHandler;
 import Model.Interfaces.EntrySubject;
@@ -40,7 +41,6 @@ public class StatisticsDetailController implements EntryObserver, RemoveItemObse
      * if its selected.
      */
     public void update(final iEntry entry, final EntryListItemView controller) {
-        entryHandler.getEntries().remove(entry);
         statisticsDetailView.removeEntryListItemView(controller);
         updatePieChart();
         for (final iEntry e : entryHandler.getEntries()) {
@@ -107,7 +107,7 @@ public class StatisticsDetailController implements EntryObserver, RemoveItemObse
     private void addEntryToFlowPane(final iEntry entry) {
         final EntryListItemController entryListItemController = new EntryListItemController(entry);
         statisticsDetailView.addEntryListItemView(entryListItemController);
-        entryListItemController.add(this);
+        RemoveItemSubject.add(this);
     }
 
     @Override

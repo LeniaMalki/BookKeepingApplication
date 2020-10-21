@@ -1,6 +1,8 @@
 package Controller.BudgetControllers;
 
 import Controller.Interfaces.ControllerInterface;
+import Controller.Interfaces.RemoveItemObserver;
+import Controller.Interfaces.RemoveItemSubject;
 import StairwayInterfaces.iBudget;
 import StairwayInterfaces.iEntry;
 import StairwayInterfaces.iEntryHandler;
@@ -11,6 +13,7 @@ import Model.Interfaces.EntrySubject;
 import Model.Interfaces.BudgetObserver;
 import Model.Interfaces.EntryObserver;
 import View.BudgetView.BudgetChartView;
+import View.EntryView.EntryListItemView;
 import javafx.collections.FXCollections;
 import javafx.scene.chart.XYChart;
 
@@ -22,7 +25,7 @@ import java.util.Arrays;
  *
  * @author viktoriawelzel
  */
-public class BudgetChartPageController implements EntryObserver, BudgetObserver, ControllerInterface {
+public class BudgetChartPageController implements EntryObserver, BudgetObserver, ControllerInterface, RemoveItemObserver {
 
     //________________________________________________ VARIABLES _______________________________________________________
 
@@ -30,7 +33,6 @@ public class BudgetChartPageController implements EntryObserver, BudgetObserver,
     private final iBudget budget = new Budget(2,3,2,5,2,1,"25");
     private final iEntryHandler entryHandler = EntryHandler.getInstance();
 
-    private final XYChart.Series<String, Number> series2 = new XYChart.Series<>();
     private final BudgetChartView budgetChartView = BudgetChartView.getInstance();
 
     //_________________________________________________ METHODS ________________________________________________________
@@ -43,6 +45,7 @@ public class BudgetChartPageController implements EntryObserver, BudgetObserver,
         setAllViewListeners();
         EntrySubject.add(this);
         BudgetSubject.add(this);
+        RemoveItemSubject.add(this);
         budgetChartView.xAxis.setCategories(FXCollections.<String>observableArrayList(Arrays.asList("Food", "Household", "Shopping", "Transport", "Other", "General Saving")));
     }
 
@@ -102,6 +105,7 @@ public class BudgetChartPageController implements EntryObserver, BudgetObserver,
      * Creates/updates a Stacked bar chart by the use of an EntryHandler that has access to entries.
      */
     private void updatingStackedBarChart() {
+         final XYChart.Series<String, Number> series2 = new XYChart.Series<>();
         series2.setName("Expenses");
         series2.getData().add(new XYChart.Data<>("Food", entryHandler.getFoodAmount()));
         series2.getData().add(new XYChart.Data<>("Household", entryHandler.getHouseholdAmount()));
@@ -109,7 +113,7 @@ public class BudgetChartPageController implements EntryObserver, BudgetObserver,
         series2.getData().add(new XYChart.Data<>("Transport", entryHandler.getTransportationAmount()));
         series2.getData().add(new XYChart.Data<>("Other", entryHandler.getOtherAmount()));
         series2.getData().add(new XYChart.Data<>("General Saving", entryHandler.getGeneralSaving()));
-        budgetChartView.barChart.getData().add(series2);
+        budgetChartView.barChart.getData().setAll(series2);
 
     }
 
@@ -136,11 +140,15 @@ public class BudgetChartPageController implements EntryObserver, BudgetObserver,
     @Override
     public void update(iEntry entry) {
         updateCharts();
-
     }
 
     @Override
     public void update(final iBudget budget) {
         updateCostGraph(budget);
+    }
+
+    @Override
+    public void update(iEntry entry, EntryListItemView controller) {
+        updateCharts();
     }
 }
