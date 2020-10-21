@@ -15,7 +15,7 @@ import java.util.List;
  * @author Oscar
  */
 
-public class EntryHandler implements EntryObserver, iEntryHandler {
+public final class EntryHandler implements EntryObserver, iEntryHandler {
 
     //________________________________________________ VARIABLES _______________________________________________________
 
@@ -37,9 +37,14 @@ public class EntryHandler implements EntryObserver, iEntryHandler {
         EntrySubject.add(this);
     }
 
-    synchronized public static EntryHandler getInstance() {
+
+    public static EntryHandler getInstance() {
         if (entryHandler == null) {
-            entryHandler = new EntryHandler();
+            synchronized (EntryHandler.class){
+                if(entryHandler == null){
+                    entryHandler = new EntryHandler();
+                }
+            }
         }
         return entryHandler;
     }
