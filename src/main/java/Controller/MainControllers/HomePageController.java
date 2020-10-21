@@ -15,8 +15,8 @@ public class HomePageController implements EntryObserver, BudgetObserver {
 
     //________________________________________________ VARIABLES _______________________________________________________
 
-    iBudget budget;
-    iEntryHandler entryHandler = EntryHandler.getInstance();
+    private iBudget budget;
+    private final iEntryHandler entryHandler = EntryHandler.getInstance();
     private final HomeView homeView = HomeView.getInstance();
 
 
@@ -34,11 +34,11 @@ public class HomePageController implements EntryObserver, BudgetObserver {
      * Updates all the labels according to the entries and budgets.
      */
     private void updateAllBudgets() {
-        homeView.foodLabel.setText((int) entryHandler.getFoodAmount() + " kr of " + budget.getFoodCost() + " kr");
-        homeView.householdLabel.setText((int) entryHandler.getHouseholdAmount() + " kr of " + budget.getHouseholdCost() + " kr");
-        homeView.shoppingLabel.setText((int) entryHandler.getShoppingAmount() + " kr of " + budget.getShoppingCost() + " kr");
-        homeView.transportLabel.setText((int) entryHandler.getTransportationAmount() + " kr of " + budget.getTransportCost() + " kr");
-        homeView.otherLabel.setText((int) entryHandler.getOtherAmount() + " kr of " + budget.getOtherCost() + " kr");
+        homeView.setTextLabel((int) entryHandler.getFoodAmount() + " kr of " + budget.getFoodCost() + " kr");
+        homeView.setTextLabel((int) entryHandler.getHouseholdAmount() + " kr of " + budget.getHouseholdCost() + " kr");
+        homeView.setTextLabel((int) entryHandler.getShoppingAmount() + " kr of " + budget.getShoppingCost() + " kr");
+        homeView.setTextLabel((int) entryHandler.getTransportationAmount() + " kr of " + budget.getTransportCost() + " kr");
+        homeView.setTextLabel((int) entryHandler.getOtherAmount() + " kr of " + budget.getOtherCost() + " kr");
     }
 
     /**
@@ -48,27 +48,27 @@ public class HomePageController implements EntryObserver, BudgetObserver {
     private void changeProgress() {
         if (budget != null) {
             entryHandler.updateTotalCategoryValues();
-            homeView.foodBar.setProgress(entryHandler.getFoodAmount() / budget.getFoodCost());
-            homeView.householdBar.setProgress(entryHandler.getHouseholdAmount() / budget.getHouseholdCost());
-            homeView.shoppingBar.setProgress(entryHandler.getShoppingAmount() / budget.getShoppingCost());
-            homeView.transportBar.setProgress(entryHandler.getTransportationAmount() / budget.getTransportCost());
-            homeView.otherbar.setProgress(entryHandler.getOtherAmount() / budget.getOtherCost());
+            homeView.setProgressBar((int) (entryHandler.getFoodAmount()/budget.getFoodCost()));
+            homeView.setProgressBar((int) (entryHandler.getHouseholdAmount()/budget.getHouseholdCost()));
+            homeView.setProgressBar((int) (entryHandler.getShoppingAmount()/budget.getShoppingCost()));
+            homeView.setProgressBar((int) (entryHandler.getTransportationAmount() / budget.getTransportCost()));
+            homeView.setProgressBar((int) (entryHandler.getOtherAmount() / budget.getOtherCost()));
             updateAllBudgets();
         }
     }
 
     @Override
-    public void update(String category, String type, double Value) {
+    public void update(final String category, final String type, final double Value) {
     }
 
     @Override
-    public void update(iEntry entry) {
+    public void update(final iEntry entry) {
         changeProgress();
     }
 
     @Override
-    public void update(iBudget b) {
-        budget = b;
+    public void update(final iBudget budget1) {
+        budget = budget1;
         updateAllBudgets();
     }
 }

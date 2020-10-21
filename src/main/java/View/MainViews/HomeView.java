@@ -70,5 +70,13 @@ public class HomeView implements iPane {
         parent.showBudgetPage();
     }
 
+    public void setProgressBar(int progress){
+        foodBar.setProgress(progress);
 
+    }
+
+    public void setTextLabel(String string){
+        foodLabel.setText(string);
+
+    }
 }
