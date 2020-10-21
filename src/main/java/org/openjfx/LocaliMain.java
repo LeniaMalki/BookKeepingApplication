@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+
 //TestCommit to check by Lenia
 
 public class LocaliMain extends Application {

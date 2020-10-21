@@ -6,7 +6,6 @@ import View.MainViews.MainView;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-
 public class BudgetView implements iPane {
 
     public MainView parent;
@@ -41,6 +40,7 @@ public class BudgetView implements iPane {
      */
 
     private void stylingSlidersAndProgressBars() {
+
         foodSlider.setStyle("-fx-control-inner-background: null");
         foodProgressBar.setStyle("-fx-accent: #F66A80");
         householdSlider.setStyle("-fx-control-inner-background: null");
@@ -52,8 +52,9 @@ public class BudgetView implements iPane {
         otherSlider.setStyle("-fx-control-inner-background: null");
         otherProgressBar.setStyle("-fx-accent: #F66A80");
         savingsSlider.setStyle("-fx-control-inner-background: null");
-        savingsProgressBar.setStyle("-fx-accent: #F66A80");
-    }
+        savingsProgressBar.setStyle("-fx-accent: #F66A80");}
+
+
 
 
     public void setSliders(int income){
@@ -112,6 +113,8 @@ public class BudgetView implements iPane {
     @FXML
     public Button saveButton;
     @FXML
+    public Button checkButton;
+    @FXML
     public AnchorPane headerAnchorPane;
     @FXML
     public ComboBox previousBudgetComboBox;
@@ -159,4 +162,12 @@ public class BudgetView implements iPane {
     @FXML
     public ProgressBar savingsProgressBar;
 
+    public void setIncomeToRed() {
+        enterIncomeTextField.setStyle(" -fx-border-color: Red");
+    }
+
+    public void setIncomeToGrey() {
+        enterIncomeTextField.setStyle(" -fx-border-color: Grey");
+
+    }
 }

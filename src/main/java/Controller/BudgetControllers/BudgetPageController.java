@@ -1,11 +1,13 @@
 package Controller.BudgetControllers;
 
 import Controller.Interfaces.ControllerInterface;
-import StairwayInterfaces.iBudget;
 import Model.BudgetLogic.Budget;
-import Model.Interfaces.BudgetSubject;
 import Model.Interfaces.BudgetObserver;
+import Model.Interfaces.BudgetSubject;
+import StairwayInterfaces.iBudget;
 import View.BudgetView.BudgetView;
+import javafx.geometry.NodeOrientation;
+import javafx.scene.control.Slider;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +27,16 @@ public class BudgetPageController implements BudgetObserver, ControllerInterface
     private iBudget budget;
     private final BudgetView budgetView = BudgetView.getInstance();
     private final BudgetSliderController bugetSliderController = new BudgetSliderController();
+    private final ArrayList<Slider> allSliders = new ArrayList<>() {{
+        add(budgetView.foodSlider);
+        add(budgetView.householdSlider);
+        add(budgetView.shoppingSlider);
+        add(budgetView.transportSlider);
+        add(budgetView.otherSlider);
+        add(budgetView.savingsSlider);
+    }};
+    int income = 0;
+
 
     //_________________________________________________ METHODS ________________________________________________________
 
@@ -38,13 +50,13 @@ public class BudgetPageController implements BudgetObserver, ControllerInterface
         bugetSliderController.listeningToChanges();
         bugetSliderController.connectingTextFieldsAndSliders();
         updateAllValues();
+        disableSlider();
     }
 
     @Override
     public void setAllViewListeners() {
         budgetView.saveButton.setOnAction(a -> onSaveButtonPressed());
-        budgetView.enterIncomeTextField.setOnAction(a -> updatingMoneyLeft());
-        budgetView.enterIncomeTextField.setOnMouseExited(a -> bugetSliderController.setMaxOnSlider());
+        budgetView.checkButton.setOnAction(a -> onIncomeTyped());
         budgetView.previousBudgetComboBox.setOnAction(a -> comboSelector());
 
         budgetView.foodSlider.setOnMouseDragged(a -> updatingMoneyLeft());
@@ -60,6 +72,24 @@ public class BudgetPageController implements BudgetObserver, ControllerInterface
         budgetView.transportTextField.setOnKeyTyped(a -> updatingMoneyLeft());
         budgetView.otherTextField.setOnKeyTyped(a -> updatingMoneyLeft());
         budgetView.savingsTextField.setOnKeyTyped(a -> updatingMoneyLeft());
+    }
+    private void onIncomeTyped(){
+        setIncome();
+        checkIfValidIncome();
+        updateAllValues();
+        updatingMoneyLeft();
+        bugetSliderController.setMaxOnSlider(income);
+        budgetView.enterIncomeTextField.setText(String.valueOf(income));
+    }
+
+    private void setIncome() {
+        try{
+            income = Integer.parseInt(budgetView.enterIncomeTextField.getText());
+            budgetView.setIncomeToGrey();
+        }catch (Exception e){
+            budgetView.setIncomeToRed();
+        }
+
     }
 
     /**
@@ -89,7 +119,7 @@ public class BudgetPageController implements BudgetObserver, ControllerInterface
         budget.setSavingsCost(budgetList.get(selected).getSavingsCost());
         budget.setOtherCost(budgetList.get(selected).getOtherCost());
         budget.notifyBudgetListeners();
-        bugetSliderController.setMaxOnSlider();
+        bugetSliderController.setMaxOnSlider(income);
         bugetSliderController.updateProgress();
     }
 
@@ -124,8 +154,7 @@ public class BudgetPageController implements BudgetObserver, ControllerInterface
 
     private void updatingMoneyLeft() {
         budgetView.setMoneyLeft("0");
-        int income;
-        income = Integer.parseInt(budgetView.enterIncomeTextField.getText());
+
 
         final int totalSum = (int) (budgetView.foodSlider.getValue() + budgetView.householdSlider.getValue()
                 + budgetView.shoppingSlider.getValue() + budgetView.transportSlider.getValue() + budgetView.otherSlider.getValue() + budgetView.savingsSlider.getValue());
@@ -140,6 +169,30 @@ public class BudgetPageController implements BudgetObserver, ControllerInterface
         } else {
             budgetView.setMoneyLeft(String.valueOf(difference));
             budgetView.setMoneyLeftToRed();
+        }
+    }
+
+    private void enableSlider() {
+        for (Slider slider:allSliders
+        ) {
+            slider.setDisable(false);
+        }
+    }
+
+    private void disableSlider(){
+        for (Slider slider:allSliders
+        ) {
+            slider.setDisable(true);
+        }
+    }
+    public void checkIfValidIncome() {
+        if ("".equals(budgetView.enterIncomeTextField.getText())){
+            income=0;
+        }
+        if (income!=0) {
+            disableSlider();
+        }else {
+           enableSlider();
         }
     }
 

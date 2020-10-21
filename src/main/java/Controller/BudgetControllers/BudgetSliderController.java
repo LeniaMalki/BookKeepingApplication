@@ -15,6 +15,7 @@ public class BudgetSliderController {
 
     private final BudgetView budgetView = BudgetView.getInstance();
     public int selected = 0;
+    int income;
 
     /**
      * Listener that changes the progressbar according to the value of the slider.
@@ -55,10 +56,16 @@ public class BudgetSliderController {
      * Sets the maxValues of the sliders according to the income.
      */
 
-    protected void setMaxOnSlider() {
-        final int income = Integer.parseInt(budgetView.enterIncomeTextField.getText());
-        budgetView.setSliders((int) income);
+    protected void setMaxOnSlider(int income) {
+        try{
+        budgetView.setSliders(income);
+        this.income=income;
         updateProgress();
+        budgetView.setIncomeToGrey();
+        }
+        catch (Exception ignored){
+            budgetView.setIncomeToRed();
+        }
     }
 
     /**
@@ -66,7 +73,6 @@ public class BudgetSliderController {
      */
 
     protected void updateProgress() {
-        final int income = Integer.parseInt(budgetView.enterIncomeTextField.getText());
         final double foodSlider = budgetView.foodSlider.getValue();
         final double houseHoldSlider = budgetView.householdSlider.getValue();
         final double shoppingSlider = budgetView.shoppingSlider.getValue();
