@@ -79,7 +79,7 @@ public class MainView{
      *
      * @param pane an AnchorPane that is one of our visible pages in our program
      */
-    public void showPage(AnchorPane pane) {
+    public void showPage(final AnchorPane pane) {
         mainView.mainAnchor.getChildren().clear();
         mainView.mainAnchor.getChildren().add(pane);
         mainView.mainAnchor.toFront();
@@ -112,8 +112,8 @@ public class MainView{
      */
 
 
-    public void showStatisticsDetailPage(String text) {
-        StatisticsDetailController statisticsDetailController = new StatisticsDetailController();
+    public void showStatisticsDetailPage(final String text) {
+        final StatisticsDetailController statisticsDetailController = new StatisticsDetailController();
         statisticsDetailController.setLabelPieChart(text);
         showPage(mainView.detailStatistics);
 

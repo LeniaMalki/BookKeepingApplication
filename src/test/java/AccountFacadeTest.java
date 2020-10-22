@@ -36,7 +36,7 @@ class AccountFacadeTest {
         Goes through accountExistenceManager.createAccount() which passes  signUpFieldsChecker() and assignUserFields()
         in AccountExistenceManager
          */
-        boolean validAccount = accountFacade.createAccount(name, username, password, confirmPassword, email);
+        final boolean validAccount = accountFacade.createAccount(name, username, password, confirmPassword, email);
         assertTrue(validAccount);
 
         assertEquals(account.getName(), name);
@@ -47,7 +47,7 @@ class AccountFacadeTest {
         assertNotEquals(account.getName(), empty);
 
         //creates an invalid account by leaving the field for name blank, will thus return null, i.e. no account
-        boolean inValidAccount = accountFacade.createAccount(empty, username, password, confirmPassword,
+        final boolean inValidAccount = accountFacade.createAccount(empty, username, password, confirmPassword,
                                                              email);
         assertFalse(inValidAccount);
 
@@ -59,7 +59,7 @@ class AccountFacadeTest {
             /*
         Creates an account and assigns values to account variables
          */
-        boolean validAccount = accountFacade.createAccount(name, username, password, confirmPassword, email);
+        final boolean validAccount = accountFacade.createAccount(name, username, password, confirmPassword, email);
         assertTrue(validAccount);
         assertEquals(account.getName(), name);
 
@@ -80,14 +80,14 @@ class AccountFacadeTest {
         account.setEmailAddress(email);
 
         //New inputs
-        String newUsername = "newUsername";
-        String newName = "newName";
-        String newEmail = "newEmail@hot.com";
+         String newUsername = "newUsername";
+         String newName = "newName";
+         String newEmail = "newEmail@hot.com";
 
 
-        int i = accountFacade.handleAccountChanges(newUsername, newName, newEmail);
-        int x = accountFacade.handleAccountChanges(account.getUsername(), account.getName(), account.getEmailAddress());
-        int y = accountFacade.handleAccountChanges("", account.getName(), account.getEmailAddress());
+        final int i = accountFacade.handleAccountChanges(newUsername, newName, newEmail);
+        final int x = accountFacade.handleAccountChanges(account.getUsername(), account.getName(), account.getEmailAddress());
+        final int y = accountFacade.handleAccountChanges("", account.getName(), account.getEmailAddress());
 
         assertEquals(i, 1);
         assertEquals(x, 0);

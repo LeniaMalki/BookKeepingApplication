@@ -116,7 +116,7 @@ public class ProfilePageView implements iPane {
      * Graphic method to hide pop ups
      */
     @FXML
-    private void hidePopUp() {
+    private void hidePopUp() {//NOPMD
         back.setVisible(false);
         popUpPosition.setVisible(false);
         headerAnchorPane.toFront();

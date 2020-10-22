@@ -138,7 +138,7 @@ public class BudgetChartPageController implements EntryObserver, BudgetObserver,
     }
 
     @Override
-    public void update(iEntry entry) {
+    public void update(final iEntry entry) {
         updateCharts();
     }
 
@@ -148,7 +148,7 @@ public class BudgetChartPageController implements EntryObserver, BudgetObserver,
     }
 
     @Override
-    public void update(iEntry entry, EntryListItemView controller) {
+    public void update(final iEntry entry, final EntryListItemView controller) {
         updateCharts();
     }
 }

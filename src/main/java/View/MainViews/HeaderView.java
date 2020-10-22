@@ -35,7 +35,7 @@ public class HeaderView implements iPane {
     }
 
     @Override
-    public void initPane(MainView parent) {
+    public void initPane(final MainView parent) {
         this.parent = parent;
     }
 

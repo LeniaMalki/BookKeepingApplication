@@ -16,6 +16,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Controller for the entry page view
@@ -27,14 +28,14 @@ import java.util.ArrayList;
 
 public class EntryPageController implements SavingsObserver, RemoveItemObserver, ControllerInterface {
 
-    private final ArrayList<Button> entryButtonTypeCluster = new ArrayList<>();
-    private final ArrayList<iEntry> entryList = new ArrayList<>();
+    private final List<Button> entryButtonTypeCluster = new ArrayList<>();
+    private final List<iEntry> entryList = new ArrayList<>();
     private Button currentActiveEntryButton;
     private final EntryView entryView = EntryView.getInstance();
-    private final ArrayList<String> savingCategory = new ArrayList<>() {{
+    private final List<String> savingCategory = new ArrayList<>() {{
         add("General Saving");
     }};
-    private final ArrayList<String> expenceCategory = new ArrayList<>() {{
+    private final List<String> expenceCategory = new ArrayList<>() {{
         add("Food");
         add("Household");
         add("Shopping");
@@ -55,7 +56,7 @@ public class EntryPageController implements SavingsObserver, RemoveItemObserver,
      *
      * @param event if something is pressed an ActionEvent is fired and tells the system what happened
      */
-    private void activateEntryTypeButton(ActionEvent event) {
+    private void activateEntryTypeButton(final ActionEvent event) {
         final Button btn = (Button) event.getSource();
         for (final Button b : entryButtonTypeCluster) {
             b.getStyleClass().remove("activeEntryButton");
@@ -75,7 +76,7 @@ public class EntryPageController implements SavingsObserver, RemoveItemObserver,
      *
      * @param btn the button that is clicked
      */
-    private void incomeButtonAction(Button btn) {
+    private void incomeButtonAction(final Button btn) {
         if (btn == entryView.incomebutton) {
             entryView.hideIncomeCategory();
 
@@ -119,7 +120,7 @@ public class EntryPageController implements SavingsObserver, RemoveItemObserver,
      * @param costTextField    textfield with double inputs
      */
 
-    private void setColorRedIfInvalid(TextField nameTextField, ComboBox<String> categoryComboBox, TextField costTextField) {
+    private void setColorRedIfInvalid(final TextField nameTextField, final ComboBox<String> categoryComboBox,final  TextField costTextField) {
 
         if (!checkIfNameIsFilledIn(nameTextField)) {
             entryView.setRedColor(nameTextField);
@@ -149,7 +150,7 @@ public class EntryPageController implements SavingsObserver, RemoveItemObserver,
      * @return true iff all firlds are correct
      */
 
-    private boolean checkIfFieldsAreFilledInCorrectly(TextField nameTextField, ComboBox<String> categoryComboBox, TextField costTextField) {
+    private boolean checkIfFieldsAreFilledInCorrectly(final TextField nameTextField, final ComboBox<String> categoryComboBox, final TextField costTextField) {
         return !checkIfCategoryIsFilledIninCorrectly(categoryComboBox) && checkIfNameIsFilledIn(nameTextField) && !checkIfCostIsInCorrect(costTextField);
     }
 
@@ -159,7 +160,7 @@ public class EntryPageController implements SavingsObserver, RemoveItemObserver,
      * @param costTextField textfield with double inputs
      * @return true if it doesnt match
      */
-    private boolean checkIfCostIsInCorrect(TextField costTextField) {
+    private boolean checkIfCostIsInCorrect(final TextField costTextField) {
         return !costTextField.getText().matches("\\d+");
     }
 
@@ -169,8 +170,8 @@ public class EntryPageController implements SavingsObserver, RemoveItemObserver,
      * @param nameTextField textfield with string input
      * @return returns true if it has any symbol in it
      */
-    private boolean checkIfNameIsFilledIn(TextField nameTextField) {
-        return !nameTextField.getText().equals("");
+    private boolean checkIfNameIsFilledIn(final TextField nameTextField) {
+        return !"".equals(nameTextField.getText());
     }
 
     /**
@@ -179,8 +180,8 @@ public class EntryPageController implements SavingsObserver, RemoveItemObserver,
      * @param categoryComboBox combobox with string inputs
      * @return true if they are incorrect
      */
-    private boolean checkIfCategoryIsFilledIninCorrectly(ComboBox<String> categoryComboBox) {
-        return (categoryComboBox.getValue() == "" || categoryComboBox.getValue() == "Category" || categoryComboBox.getValue() == null);
+    private boolean checkIfCategoryIsFilledIninCorrectly(final ComboBox<String> categoryComboBox) {
+        return categoryComboBox.getValue() == "" || categoryComboBox.getValue() == "Category" || categoryComboBox.getValue() == null;
     }
 
     /**
@@ -200,7 +201,7 @@ public class EntryPageController implements SavingsObserver, RemoveItemObserver,
      * @param string a string has been sent with the change
      */
     @Override
-    public void update(String string) {
+    public void update(final String string) {
         savingCategory.add(string);
         if (currentActiveEntryButton == entryView.savingButton) {
             entryView.categoryComboBox.getItems().add(string);
@@ -213,7 +214,7 @@ public class EntryPageController implements SavingsObserver, RemoveItemObserver,
      *
      * @param button is the button that is active
      */
-    private void checkCategoryBox(Button button) {
+    private void checkCategoryBox(final Button button) {
         entryView.categoryComboBox.getItems().clear();
         if (button == entryView.savingButton) {
             entryView.categoryComboBox.getItems().removeAll(expenceCategory);
@@ -225,7 +226,7 @@ public class EntryPageController implements SavingsObserver, RemoveItemObserver,
     }
 
     @Override
-    public void update(iEntry entry, EntryListItemView controller) {
+    public void update(final iEntry entry, final EntryListItemView controller) {
         entryList.remove(entry);
         entryView.entryFlowPlane.getChildren().remove(controller);
     }

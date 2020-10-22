@@ -6,6 +6,7 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 public class SendMail {
@@ -18,7 +19,7 @@ public class SendMail {
         setSender();
     }
 
-    HashMap<String, String> messageChooser = new HashMap<>() {{
+    Map<String, String> messageChooser = new HashMap<>() {{
         put("ForgetPassword", "Hello!\n\nWe all forget our password from time to time and that's fine!\nYour password is: ");
         put("SignUp", "Hi!\n\n Welcome to Locali, a place where you can do all of your budgeting and economics locally on " +
                 "your computer. We hope you enjoy the application and if you have any questions you can send an email to our support " +
@@ -47,13 +48,6 @@ public class SendMail {
         properties.put("mail.smtp.auth", "true");
     }
 
-    /**
-     * sends an email to the user
-     *
-     * @param message the constructed message
-     */
-    private void sendMessage(Message message) throws MessagingException {
-    }
 
     /**
      * creates an email with text and header
@@ -61,13 +55,13 @@ public class SendMail {
      * @param to              the recipient of the email
      * @param passwordMessage the password that they've forgotten
      */
-    public void sendEmail(String to, String passwordMessage, String typeOfMessage) {
+    public void sendEmail(final String to, final String passwordMessage, final String typeOfMessage) {
         // Used to debug SMTP issues
         session.setDebug(true);
         try {
-            StringBuilder stringBuilder= new StringBuilder();
+            final StringBuilder stringBuilder= new StringBuilder();
             // Create a default MimeMessage object.
-            Message message = new MimeMessage(session);
+            final Message message = new MimeMessage(session);
             // Set From: header field of the header.
             message.setFrom(new InternetAddress(senderEmail));
             // Set To: header field of the header.
@@ -76,16 +70,16 @@ public class SendMail {
             // Set Subject: header field
             message.setSubject("Locali Team");
             // Create the message part
-            BodyPart messageBodyPart = new MimeBodyPart();
+            final BodyPart messageBodyPart = new MimeBodyPart();
             stringBuilder.append(messageChooser.get(typeOfMessage));
 
 
-            if (typeOfMessage.equals("ForgetPassword")) {
+            if ("ForgetPassword".equals(typeOfMessage)) {
                 stringBuilder.append(passwordMessage);
             }
             stringBuilder.append("\n\nBest Regards\nThe Locali Team");
             messageBodyPart.setText(stringBuilder.toString());
-            Multipart textBody = new MimeMultipart();
+            final Multipart textBody = new MimeMultipart();
             textBody.addBodyPart(messageBodyPart);
             // Send the complete message parts
             message.setContent(textBody);

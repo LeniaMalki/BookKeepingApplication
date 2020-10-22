@@ -11,14 +11,14 @@ class LogInHandlerTest {
     @Test
     void logIn() {
 
-        LogInHandler logInHandler = new LogInHandler() {
+        final LogInHandler logInHandler = new LogInHandler() {
             /**
              * handles the actual login
              * @param accountName is the variables obtained from logInTextField on logIn controller
              * @param password is the variables obtained from logInTextField on logIn controller
              */
             @Override
-            public boolean logIn(String accountName, String password) {
+            public boolean logIn(final String accountName, final String password) {
                 return super.logIn(accountName, password);
             }
         };

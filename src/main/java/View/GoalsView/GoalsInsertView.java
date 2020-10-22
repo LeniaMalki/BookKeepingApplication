@@ -32,7 +32,7 @@ public class GoalsInsertView extends AnchorPane{
     @FXML
     public Button okButton;
 
-    public void setName(String text) {
+    public void setName(final String text) {
         savingNameText.setText(text);
     }
 
@@ -40,7 +40,7 @@ public class GoalsInsertView extends AnchorPane{
         savingAmountTextField.setStyle("-fx-text-box-border: Red;");
     }
 
-    public void updateSavingsLabel(double amoutSaved, String text) {
+    public void updateSavingsLabel(final double amoutSaved, final String text) {
         savingGoalText.setText(amoutSaved + " of " + text + " saved");
     }
 }

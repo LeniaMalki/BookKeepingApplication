@@ -1,12 +1,14 @@
 package Controller.Interfaces;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public interface RemoveItemSubject {
-    static void add(RemoveItemObserver o){
+    List<RemoveItemObserver> observers = new ArrayList<>();
+
+    static void add(RemoveItemObserver o) {
         observers.add(o);
     }
-    ArrayList<RemoveItemObserver> observers = new ArrayList<>();
 
     void notifyListeners();
 }

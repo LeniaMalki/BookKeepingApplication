@@ -49,7 +49,7 @@ public final class AccountValidityChecker {
      * @param email email textfield
      */
     boolean isValidEmail(final String email) {
-        final String regex = "^[\\w-_.+]*[\\w-_.]@([\\w]+\\.)+[\\w]+[\\w]$";
+        String regex = "^[\\w-_.+]*[\\w-_.]@([\\w]+\\.)+[\\w]+[\\w]$";
         return email.matches(regex);
     }
 

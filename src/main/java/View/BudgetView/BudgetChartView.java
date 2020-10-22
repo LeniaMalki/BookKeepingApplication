@@ -1,7 +1,7 @@
 package View.BudgetView;
 
-import View.Interfaces.iPane;
 import Service.PaneFactory;
+import View.Interfaces.iPane;
 import View.MainViews.MainView;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
@@ -11,30 +11,8 @@ import javafx.scene.layout.AnchorPane;
 
 public class BudgetChartView implements iPane {
 
-    public MainView parent;
     static BudgetChartView budgetChartView;
-
-    @Override
-    public void initPane(MainView parent) {
-        this.parent = parent;
-        headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
-    }
-
-    public BudgetChartView(){
-        budgetChartView = this;
-    }
-
-    public static BudgetChartView getInstance(){
-        if (budgetChartView == null){
-            budgetChartView = new BudgetChartView();
-        }
-        return budgetChartView;
-    }
-
-    public void showBudgetPage(){
-        parent.showBudgetPage();
-    }
-
+    public MainView parent;
     @FXML
     public AnchorPane headerAnchorPane;
     @FXML
@@ -47,5 +25,26 @@ public class BudgetChartView implements iPane {
     public Button addNewBudgetButton;
     @FXML
     public Button editBudgetButton;
+
+    public BudgetChartView() {
+        budgetChartView = this;
+    }
+
+    public static BudgetChartView getInstance() {
+        if (budgetChartView == null) {
+            budgetChartView = new BudgetChartView();
+        }
+        return budgetChartView;
+    }
+
+    @Override
+    public void initPane(final MainView parent) {
+        this.parent = parent;
+        headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
+    }
+
+    public void showBudgetPage() {
+        parent.showBudgetPage();
+    }
 
 }

@@ -55,7 +55,7 @@ public class EntryView implements iPane {
     }
 
     @Override
-    public void initPane(MainView parent) {
+    public void initPane(final MainView parent) {
         this.parent = parent;
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
     }
@@ -70,20 +70,20 @@ public class EntryView implements iPane {
         entryView.costTextField.setLayoutY(391);
     }
 
-    public void setRedColor(TextField textField) {
+    public void setRedColor(final TextField textField) {
         textField.setStyle(" -fx-border-color: Red;");
     }
 
-    public void setGreyColor(TextField textField) {
+    public void setGreyColor(final TextField textField) {
         textField.setStyle(" -fx-border-color: Grey;");
     }
 
-    public void setRedColor(ComboBox<String> categoryComboBox) {
+    public void setRedColor(final ComboBox<String> categoryComboBox) {
         categoryComboBox.setStyle(" -fx-border-color: Red;");
 
     }
 
-    public void setGreyColor(ComboBox<String> categoryComboBox) {
+    public void setGreyColor(final ComboBox<String> categoryComboBox) {
         categoryComboBox.setStyle(" -fx-border-color: Grey;");
     }
 }

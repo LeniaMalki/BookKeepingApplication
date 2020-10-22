@@ -7,11 +7,11 @@ import javafx.util.converter.NumberStringConverter;
 
 /**
  * Controller for the sliders and progress bars of the Budget Page.
- *
  * @author viktoriawelzel
  */
 
 public class BudgetSliderController {
+
 
     private final BudgetView budgetView = BudgetView.getInstance();
     public int selected = 0;
@@ -20,6 +20,7 @@ public class BudgetSliderController {
     /**
      * Listener that changes the progressbar according to the value of the slider.
      */
+
 
     protected void listeningToChanges() {
         final ChangeListener<Number> changeListener = new ChangeListener<Number>() {
@@ -44,26 +45,31 @@ public class BudgetSliderController {
      */
 
     protected void connectingTextFieldsAndSliders() {
-        budgetView.foodTextField.textProperty().bindBidirectional(budgetView.foodSlider.valueProperty(), new NumberStringConverter());
-        budgetView.householdTextField.textProperty().bindBidirectional(budgetView.householdSlider.valueProperty(), new NumberStringConverter());
-        budgetView.shoppingTextField.textProperty().bindBidirectional(budgetView.shoppingSlider.valueProperty(), new NumberStringConverter());
-        budgetView.transportTextField.textProperty().bindBidirectional(budgetView.transportSlider.valueProperty(), new NumberStringConverter());
-        budgetView.otherTextField.textProperty().bindBidirectional(budgetView.otherSlider.valueProperty(), new NumberStringConverter());
-        budgetView.savingsTextField.textProperty().bindBidirectional(budgetView.savingsSlider.valueProperty(), new NumberStringConverter());
+        budgetView.foodTextField.textProperty().bindBidirectional(budgetView.foodSlider.valueProperty(),
+                                                                  new NumberStringConverter());
+        budgetView.householdTextField.textProperty().bindBidirectional(budgetView.householdSlider.valueProperty(),
+                                                                       new NumberStringConverter());
+        budgetView.shoppingTextField.textProperty().bindBidirectional(budgetView.shoppingSlider.valueProperty(),
+                                                                      new NumberStringConverter());
+        budgetView.transportTextField.textProperty().bindBidirectional(budgetView.transportSlider.valueProperty(),
+                                                                       new NumberStringConverter());
+        budgetView.otherTextField.textProperty().bindBidirectional(budgetView.otherSlider.valueProperty(),
+                                                                   new NumberStringConverter());
+        budgetView.savingsTextField.textProperty().bindBidirectional(budgetView.savingsSlider.valueProperty(),
+                                                                     new NumberStringConverter());
     }
 
     /**
      * Sets the maxValues of the sliders according to the income.
      */
 
-    protected void setMaxOnSlider(int income) {
-        try{
-        budgetView.setSliders(income);
-        this.income=income;
-        updateProgress();
-        budgetView.setIncomeToGrey();
-        }
-        catch (Exception ignored){
+    protected void setMaxOnSlider(final int income) {
+        try {
+            budgetView.setSliders(income);
+            this.income = income;
+            updateProgress();
+            budgetView.setIncomeToGrey();
+        } catch (Exception ignored) {
             budgetView.setIncomeToRed();
         }
     }
@@ -79,7 +85,8 @@ public class BudgetSliderController {
         final double transportSlider = budgetView.transportSlider.getValue();
         final double otherSlider = budgetView.otherSlider.getValue();
         final double savingsSlider = budgetView.savingsSlider.getValue();
-        budgetView.setProgressBar(income, foodSlider, houseHoldSlider, shoppingSlider, transportSlider, otherSlider, savingsSlider);
+        budgetView.setProgressBar(income, foodSlider, houseHoldSlider, shoppingSlider, transportSlider, otherSlider,
+                                  savingsSlider);
     }
 
 }

@@ -10,6 +10,7 @@ import Model.Interfaces.SavingsSubject;
 import Model.Interfaces.iSavingsRegister;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A class that has a overview of all the savings
@@ -17,8 +18,8 @@ import java.util.HashMap;
  * Used by: indirectly though iSavingOverView
  * @author Artin
  */
-public class SavingsOverview implements iSavingsRegister, SavingsSubject, EntryObserver, iSavingsOverview {
-    HashMap<String, iSavingGoal> savingGoalHashMap = new HashMap<>();
+public final class SavingsOverview implements iSavingsRegister, SavingsSubject, EntryObserver, iSavingsOverview {
+    Map<String, iSavingGoal> savingGoalHashMap = new HashMap<>();
     private static SavingsOverview savingsInstance;
 
     /**
@@ -41,7 +42,7 @@ public class SavingsOverview implements iSavingsRegister, SavingsSubject, EntryO
      * @param category the category that the saving is, basically the name of the saving
      * @param cost     the amout of money that one wants to add to the saving
      */
-    public void addToSaving(String category, double cost) {
+    public void addToSaving(final String category,final  double cost) {
         savingGoalHashMap.get(category).addMoneyToSaving(cost);
     }
 
@@ -53,7 +54,7 @@ public class SavingsOverview implements iSavingsRegister, SavingsSubject, EntryO
      * @param goal the amount that is needed to reach the goal
      */
     @Override
-    public void addSavingsGoal(String name, iSavingGoal goal) {
+    public void addSavingsGoal(final String name, final iSavingGoal goal) {
         savingGoalHashMap.put(name, goal);
         notifyListeners(name);
     }
@@ -64,7 +65,7 @@ public class SavingsOverview implements iSavingsRegister, SavingsSubject, EntryO
      * @param o
      */
     @Override
-    public void add(SavingsObserver o) {
+    public void add(final SavingsObserver o) {
         observers.add(o);
     }
 
@@ -74,8 +75,8 @@ public class SavingsOverview implements iSavingsRegister, SavingsSubject, EntryO
      * @param name name a parameter that being sent to an observer
      */
     @Override
-    public void notifyListeners(String name) {
-        for (SavingsObserver o : observers) {
+    public void notifyListeners(final String name) {
+        for (final SavingsObserver o : observers) {
             o.update(name);
         }
     }
@@ -88,19 +89,19 @@ public class SavingsOverview implements iSavingsRegister, SavingsSubject, EntryO
      * @param money    the amount of money the change is about
      */
     @Override
-    public void update(String category, String type, double money) {
-        if (type.equals("Savings")) {
+    public void update(final String category,final  String type, final double money) {
+        if ("Savings".equals(type)) {
             addToSaving(category, money);
         }
     }
 
     @Override
-    public void update(iEntry entry) {
+    public void update(final iEntry entry) {
 // TODO have to make it only one update
     }
 
 
-    public double getAmountSaved(String name) {
+    public double getAmountSaved(final String name) {
         return savingGoalHashMap.get(name).getSavingGoalReached();
     }
 

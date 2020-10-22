@@ -9,14 +9,14 @@ class SavingsOverviewTest {
 
     @BeforeAll
     static void addSavingGoalTest(){
-        SavingGoal goal = new SavingGoal(1000,"testSaving");
+        final SavingGoal goal = new SavingGoal(1000,"testSaving");
         savingsOverview.addSavingsGoal("testGoal",goal );
 
     }
 
     @Test
     void getInstance() {
-        SavingsOverview testSavings = SavingsOverview.getInstance();
+        final SavingsOverview testSavings = SavingsOverview.getInstance();
         Assertions.assertEquals(testSavings, savingsOverview);
     }
 

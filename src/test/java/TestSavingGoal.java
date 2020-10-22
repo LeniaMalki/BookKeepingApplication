@@ -6,7 +6,7 @@ class TestSavingGoal {
 
     @Test
    public void addMoneyToSaving() {
-        SavingGoal savingGoal = new SavingGoal(1000,"testSaving");
+        final SavingGoal savingGoal = new SavingGoal(1000,"testSaving");
         savingGoal.addMoneyToSaving(12);
         Assertions.assertEquals(savingGoal.getSavingGoalReached(), 12);
     }

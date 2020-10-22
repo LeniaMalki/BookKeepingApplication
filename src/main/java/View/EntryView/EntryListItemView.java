@@ -18,10 +18,11 @@ public class EntryListItemView extends AnchorPane {
     @FXML
     public Button trashcan;
 
-    public void setFields(String category, double amount, String name) {
+    public void setFields(final String category, final double amount, final String name) {
         categoryName.setText(category);
         costName.setText(String.valueOf(amount));
         articleName.setText(name);
     }
+
 
 }
