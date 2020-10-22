@@ -7,14 +7,6 @@ import Model.Interfaces.EntrySubject;
 
 import java.util.ArrayList;
 import java.util.List;
-
-
-/**
- * A class that handles the entries in our program
- *
- * @author Oscar
- */
-
 /**
  * @author : Oscar Forsberg
  * Responsibility: A class for handling all the entries in our program.
