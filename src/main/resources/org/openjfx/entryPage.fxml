@@ -71,12 +71,12 @@
                 <String fx:value="whiteBackground" />
             </styleClass>
         </Pane>
-        <Text layoutX="93.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-Round" text="Lorem Ipsum är en utfyllnadstext från tryck- och förlagsindustrin. Lorem ipsum har varit standard ända sedan 1500-talet, när en okänd boksättare tog att antal bokstäver och blandade dem för att göra ett provexemplar av en bok. Lorem ipsum har inte bara överlevt fem århundraden" wrappingWidth="1209.310546875">
+        <Text layoutX="93.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-Round" text="On this page you can enter all of your expences/income and savings you have done, note that you have to click the submit button to save the inputs. You can create more specific savings catogories under goals" wrappingWidth="1209.310546875">
             <font>
                 <Font size="18.0" />
             </font>
         </Text>
-        <ScrollPane fx:id="entryPageScrollPane" layoutX="717.0" layoutY="347.0" prefHeight="583.0" prefWidth="646.0" style="-fx-background-color: FFFFFF;">
+        <ScrollPane fx:id="entryPageScrollPane" layoutX="717.0" layoutY="336.0" prefHeight="583.0" prefWidth="646.0" style="-fx-background-color: FFFFFF;">
             <styleClass>
                 <String fx:value="dropShadow-scrollpane" />
                 <String fx:value="whiteBackground" />
@@ -85,22 +85,22 @@
             <FlowPane fx:id="entryFlowPlane" prefHeight="581.0" prefWidth="644.0" style="-fx-background-color: FFFFFF;" />
          </content>
         </ScrollPane>
-        <Text fill="#5f6368" layoutX="749.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-BoldRound" text="Article">
+        <Text fill="#5f6368" layoutX="749.0" layoutY="317.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-BoldRound" text="Article">
             <font>
                 <Font size="24.0" />
             </font>
         </Text>
-        <Text fill="#5f6368" layoutX="976.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-BoldRound" text="Category">
+        <Text fill="#5f6368" layoutX="976.0" layoutY="317.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-BoldRound" text="Category">
             <font>
                 <Font size="24.0" />
             </font>
         </Text>
-        <Text fill="#5f6368" layoutX="1258.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-BoldRound" text="Cost">
+        <Text fill="#5f6368" layoutX="1258.0" layoutY="319.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Enrique-BoldRound" text="Cost">
             <font>
                 <Font size="24.0" />
             </font>
         </Text>
-        <Button fx:id="submitButton" layoutX="1135.0" layoutY="230.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="219.0" text="Submit">
+        <Button fx:id="submitButton" layoutX="1144.0" layoutY="939.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="219.0" text="Submit">
             <font>
                 <Font size="25.0" />
             </font>
@@ -110,7 +110,7 @@
                 <String fx:value="droSshadow" />
             </styleClass>
         </Button>
-        <Line endX="544.0" layoutX="818.0" layoutY="345.0" startX="-100.0" stroke="#0000004d" strokeWidth="2.0" />
+        <Line endX="544.0" layoutX="818.0" layoutY="334.0" startX="-100.0" stroke="#0000004d" strokeWidth="2.0" />
     </children>
     <stylesheets>
         <URL value="@../../cssFolder/font.css" />
