@@ -190,9 +190,9 @@ public class BudgetPageController implements BudgetObserver, ControllerInterface
             income=0;
         }
         if (income!=0) {
-            disableSlider();
+            enableSlider();
         }else {
-           enableSlider();
+           disableSlider();
         }
     }
 
