@@ -9,6 +9,13 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
 
 public class HomeView implements iPane {
+    /**
+     * @author : Oscar Forsberg
+     * Responsibility: In charge of displaying the page for the home page.
+     * Used by: HomePageController, PaneFactory
+     * Uses: iPane, JavaFX, MainView, PaneFactory
+     */
+    //________________________________________________ VARIABLES _______________________________________________________
 
     static HomeView homeView;
     @FXML
@@ -37,36 +44,48 @@ public class HomeView implements iPane {
     public Label transportLabel;
     @FXML
     public Label otherLabel;
+
     private MainView parent;
 
+    //______________________________________________ METHODS ___________________________________________________________
+    /**
+     * Constructor for MainView
+     */
     public HomeView() {
         homeView = this;
     }
 
+    /**
+     * Singleton pattern for getting an instance of this class
+     *
+     * @return instance of view
+     */
     public static HomeView getInstance() {
         if (homeView == null) {
             homeView = new HomeView();
         }
         return homeView;
-
     }
 
-    @Override
-    public void initPane(final MainView parent) {
-        this.parent = parent;
-        headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
-    }
-
-    @FXML
+    /**
+     * Method that shows the "EntryPage" of our program
+     */
     public void loadEntryPage() {
         parent.showEntryPage();
     }
 
-    @FXML
+    /**
+     * Method that shows the "BudgetPage" of our program
+     */
     public void goToBudgetButton() {
         parent.showBudgetPage();
     }
 
+    /**
+     * Method that updates sliders depending on which category sent in
+     * @param progress a double that is used to set our progress in a slider
+     * @param category a String that decides which slider that will be updated
+     */
     public void setProgressBar(final double progress, final String category) {
         switch (category) {
             case "Food" -> foodBar.setProgress(progress);
@@ -77,6 +96,11 @@ public class HomeView implements iPane {
         }
     }
 
+    /**
+     * Method that updates TextFields depending on which category sent in
+     * @param amount a String that is used to set our amount in a TextField
+     * @param category a String that decides which TextField that will be updated
+     */
     public void setTextLabel(final String amount, final String category) {
         switch (category) {
             case "Food" -> foodLabel.setText(amount);
@@ -87,5 +111,14 @@ public class HomeView implements iPane {
         }
     }
 
+    /**
+     * initialized this pane and sets header
+     * @param parent a MainView
+     */
+    @Override
+    public void initPane(final MainView parent) {
+        this.parent = parent;
+        headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
+    }
 
 }

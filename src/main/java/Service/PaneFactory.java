@@ -22,13 +22,16 @@ import View.StatisticsView.StatisticsOverviewView;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
-
 import java.io.IOException;
-
-
 /**
- * A class that works as a factory for all the panes
- * @author Oscar
+ * @author : Oscar Forsberg
+ * Responsibility: A class that works as a factory for all the panes. Inner class makes us able to store panes and
+ *                 controllers as one.
+ * Used by: MainView, ProfilePageView, BudgetChartView, BudgetView, EntryView, GoalsView, HomeView, StatisticsDetailView,
+ *          StatisticsOverviewView.
+ * Uses: JavaFX, MainView, HeaderView, LogInView, HomeView, ProfilePageView, BudgetView, EntryView, SignUpView,
+ *       BudgetChartView, GoalsView, StatisticsDetailView, StatisticsOverviewView, DeleteAccountView,
+ *       ChangePasswordView, Pane<T> (inner class)
  */
 public class PaneFactory {
 
@@ -39,8 +42,8 @@ public class PaneFactory {
     //___________________________________-_____________ METHODS _______________________________________________________-
 
     /**
-     * A generalized function for fetching root and controller from a function
-     * @param path a path to desired fx ml
+     * A generalized function for fetching root and controller from a function.
+     * @param path a path to desired fx ml.
      */
     private static <T> Pane<T> loadInPane(final String path) {
         Pane<T> pane = null;
@@ -56,7 +59,8 @@ public class PaneFactory {
     }
 
     /**
-     * Down below are similar functions that loads in different panes using fxml files
+     * Down below are similar functions that loads in different panes using fxml files.
+     * It sets controllers and different views depending on the page we want to show.
      */
     public static Parent initMain() {
         final Pane <MainView> pane = loadInPane("org/openjfx/mainAnchor.fxml");
