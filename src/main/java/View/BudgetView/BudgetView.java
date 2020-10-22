@@ -1,34 +1,86 @@
 package View.BudgetView;
 
-import View.Interfaces.iPane;
 import Service.PaneFactory;
+import View.Interfaces.iPane;
 import View.MainViews.MainView;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+
 public class BudgetView implements iPane {
 
-    public MainView parent;
     static BudgetView budgetView;
+    public MainView parent;
+    @FXML
+    public TextField enterIncomeTextField;
+    @FXML
+    public Button saveButton;
+    @FXML
+    public Button checkButton;
+    @FXML
+    public AnchorPane headerAnchorPane;
+    @FXML
+    public ComboBox previousBudgetComboBox;
+    @FXML
+    public Label moneyLeft;
+    @FXML
+    public Label totalMoney;
+    @FXML
+    public Slider foodSlider;
+    @FXML
+    public Slider householdSlider;
+    @FXML
+    public Slider shoppingSlider;
+    @FXML
+    public Slider transportSlider;
+    @FXML
+    public Slider otherSlider;
+    @FXML
+    public Slider savingsSlider;
+    @FXML
+    public TextField foodTextField;
+    @FXML
+    public TextField householdTextField;
+    @FXML
+    public TextField shoppingTextField;
+    @FXML
+    public TextField transportTextField;
+    @FXML
+    public TextField otherTextField;
+    @FXML
+    public TextField savingsTextField;
+    @FXML
+    public ProgressBar foodProgressBar;
+    @FXML
+    public ProgressBar householdProgressBar;
+    @FXML
+    public ProgressBar shoppingProgressBar;
+    @FXML
+    public ProgressBar transportProgressBar;
+    @FXML
+    public ProgressBar otherProgressBar;
+    @FXML
+    public ProgressBar savingsProgressBar;
 
-    public BudgetView(){
+    public BudgetView() {
         budgetView = this;
     }
 
     /**
      * Method for obtaining the BudgetView instance.
      */
-    public static BudgetView getInstance(){
-        if (budgetView == null){
+    public static BudgetView getInstance() {
+        if (budgetView == null) {
             budgetView = new BudgetView();
         }
         return budgetView;
     }
+
     /**
      * Initializes this pane.
      */
     @Override
-    public void initPane(MainView parent) {
+    public void initPane(final MainView parent) {
         this.parent = parent;
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
         stylingSlidersAndProgressBars();
@@ -52,12 +104,10 @@ public class BudgetView implements iPane {
         otherSlider.setStyle("-fx-control-inner-background: null");
         otherProgressBar.setStyle("-fx-accent: #F66A80");
         savingsSlider.setStyle("-fx-control-inner-background: null");
-        savingsProgressBar.setStyle("-fx-accent: #F66A80");}
+        savingsProgressBar.setStyle("-fx-accent: #F66A80");
+    }
 
-
-
-
-    public void setSliders(int income){
+    public void setSliders(final int income) {
         foodSlider.setMax(income);
         householdSlider.setMax(income);
         shoppingSlider.setMax(income);
@@ -66,9 +116,9 @@ public class BudgetView implements iPane {
         otherSlider.setMax(income);
     }
 
-    public void setProgressBar(int income, double foodSlider, double houseHoldSlider,
-                               double shoppingSlider, double transportSlider,
-                               double otherSlider, double savingsSlider){
+    public void setProgressBar(final int income, final double foodSlider, final double houseHoldSlider,
+                               final double shoppingSlider, final double transportSlider,
+                               final double otherSlider, final double savingsSlider) {
 
         foodProgressBar.setProgress(foodSlider / income);
         householdProgressBar.setProgress(houseHoldSlider / income);
@@ -78,8 +128,9 @@ public class BudgetView implements iPane {
         savingsProgressBar.setProgress(savingsSlider / income);
     }
 
-    public void updateSlidersWithBudget(int foodBudget,int houseHoldBudget,int shoppingBudget,int transportBudget,
-                                        int otherBudget,int savingBudget, String incomeBudget){
+    public void updateSlidersWithBudget(final int foodBudget, final int houseHoldBudget, final int shoppingBudget,
+                                        final int transportBudget,
+                                        final int otherBudget, final int savingBudget, final String incomeBudget) {
         foodSlider.setValue(foodBudget);
         householdSlider.setValue(houseHoldBudget);
         shoppingSlider.setValue(shoppingBudget);
@@ -89,78 +140,25 @@ public class BudgetView implements iPane {
         enterIncomeTextField.setText(incomeBudget);
     }
 
-    public void setTotalMoney(String number){
+    public void setTotalMoney(final String number) {
         totalMoney.setText(number);
     }
 
-    public void setMoneyLeft(String number){
+    public void setMoneyLeft(final String number) {
         moneyLeft.setText(number);
     }
 
-    public void setMoneyLeftToGreen(){
+    public void setMoneyLeftToGreen() {
         moneyLeft.setStyle("-fx-text-fill: green");
     }
-    public void setMoneyLeftToRed(){
+
+    public void setMoneyLeftToRed() {
         moneyLeft.setStyle("-fx-text-fill: red");
     }
-    public void showBudgetChartPage(){
+
+    public void showBudgetChartPage() {
         parent.showBudgetCharPage();
     }
-
-
-    @FXML
-    public TextField enterIncomeTextField;
-    @FXML
-    public Button saveButton;
-    @FXML
-    public Button checkButton;
-    @FXML
-    public AnchorPane headerAnchorPane;
-    @FXML
-    public ComboBox previousBudgetComboBox;
-    @FXML
-    public Label moneyLeft;
-    @FXML
-    public Label totalMoney;
-
-    @FXML
-    public Slider foodSlider;
-    @FXML
-    public Slider householdSlider;
-    @FXML
-    public Slider shoppingSlider;
-    @FXML
-    public Slider transportSlider;
-    @FXML
-    public Slider otherSlider;
-    @FXML
-    public Slider savingsSlider;
-
-    @FXML
-    public TextField foodTextField;
-    @FXML
-    public TextField householdTextField;
-    @FXML
-    public TextField shoppingTextField;
-    @FXML
-    public TextField transportTextField;
-    @FXML
-    public TextField otherTextField;
-    @FXML
-    public TextField savingsTextField;
-
-    @FXML
-    public ProgressBar foodProgressBar;
-    @FXML
-    public ProgressBar householdProgressBar;
-    @FXML
-    public ProgressBar shoppingProgressBar;
-    @FXML
-    public ProgressBar transportProgressBar;
-    @FXML
-    public ProgressBar otherProgressBar;
-    @FXML
-    public ProgressBar savingsProgressBar;
 
     public void setIncomeToRed() {
         enterIncomeTextField.setStyle(" -fx-border-color: Red");

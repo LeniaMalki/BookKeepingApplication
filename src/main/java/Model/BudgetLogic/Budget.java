@@ -18,7 +18,7 @@ public class Budget   implements iBudget, BudgetSubject {
 
     //________________________________________________ Methods _________________________________________________________
 
-    public Budget(int foodCost, int householdCost, int shoppingCost, int transportCost, int savingsCost, int otherCost, String income) {
+    public Budget(final int foodCost, final int householdCost, final int shoppingCost, final int transportCost,final  int savingsCost, final int otherCost, final String income) {
         this.foodCost = foodCost;
         this.householdCost = householdCost;
         this.shoppingCost = shoppingCost;
@@ -35,7 +35,7 @@ public class Budget   implements iBudget, BudgetSubject {
         return this.foodCost;
     }
 
-    public void setFoodCost(int foodCost) {
+    public void setFoodCost(final int foodCost) {
         this.foodCost = foodCost;
     }
 
@@ -43,7 +43,7 @@ public class Budget   implements iBudget, BudgetSubject {
         return this.householdCost;
     }
 
-    public void setHouseholdCost(int householdCost) {
+    public void setHouseholdCost(final int householdCost) {
         this.householdCost = householdCost;
     }
 
@@ -51,7 +51,7 @@ public class Budget   implements iBudget, BudgetSubject {
         return this.shoppingCost;
     }
 
-    public void setShoppingCost(int shoppingCost) {
+    public void setShoppingCost(final int shoppingCost) {
         this.shoppingCost = shoppingCost;
     }
 
@@ -59,7 +59,7 @@ public class Budget   implements iBudget, BudgetSubject {
         return this.transportCost;
     }
 
-    public void setTransportCost(int transportCost) {
+    public void setTransportCost(final int transportCost) {
         this.transportCost = transportCost;
     }
 
@@ -67,7 +67,7 @@ public class Budget   implements iBudget, BudgetSubject {
         return this.savingsCost;
     }
 
-    public void setSavingsCost(int savingsCost) {
+    public void setSavingsCost(final int savingsCost) {
         this.savingsCost = savingsCost;
     }
 
@@ -75,7 +75,7 @@ public class Budget   implements iBudget, BudgetSubject {
         return this.otherCost;
     }
 
-    public void setOtherCost(int otherCost) {
+    public void setOtherCost(final int otherCost) {
         this.otherCost = otherCost;
     }
 
@@ -83,13 +83,13 @@ public class Budget   implements iBudget, BudgetSubject {
         return this.income;
     }
 
-    public void setIncome(String income) {
+    public void setIncome(final String income) {
         this.income = income;
     }
 
     @Override
     public void notifyBudgetListeners() {
-        for (BudgetObserver o : observers) {
+        for (final BudgetObserver o : observers) {
             o.update(this);
 
         }

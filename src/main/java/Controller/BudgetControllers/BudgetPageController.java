@@ -6,7 +6,6 @@ import Model.Interfaces.BudgetObserver;
 import Model.Interfaces.BudgetSubject;
 import StairwayInterfaces.iBudget;
 import View.BudgetView.BudgetView;
-import javafx.geometry.NodeOrientation;
 import javafx.scene.control.Slider;
 
 import java.util.ArrayList;
@@ -27,7 +26,7 @@ public class BudgetPageController implements BudgetObserver, ControllerInterface
     private iBudget budget;
     private final BudgetView budgetView = BudgetView.getInstance();
     private final BudgetSliderController bugetSliderController = new BudgetSliderController();
-    private final ArrayList<Slider> allSliders = new ArrayList<>() {{
+    private final List<Slider> allSliders = new ArrayList<>() {{
         add(budgetView.foodSlider);
         add(budgetView.householdSlider);
         add(budgetView.shoppingSlider);
@@ -173,14 +172,14 @@ public class BudgetPageController implements BudgetObserver, ControllerInterface
     }
 
     private void enableSlider() {
-        for (Slider slider:allSliders
+        for (final Slider slider:allSliders
         ) {
             slider.setDisable(false);
         }
     }
 
     private void disableSlider(){
-        for (Slider slider:allSliders
+        for (final Slider slider:allSliders
         ) {
             slider.setDisable(true);
         }

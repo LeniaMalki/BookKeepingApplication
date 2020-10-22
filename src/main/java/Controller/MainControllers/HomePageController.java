@@ -78,7 +78,7 @@ public class HomePageController implements EntryObserver, BudgetObserver, Remove
 
 
     @Override
-    public void update(iEntry entry, EntryListItemView controller) {
+    public void update(final iEntry entry, final EntryListItemView controller) {
         entryHandler.getEntries().remove(entry);
         updateAllBudgets();
         changeProgress();

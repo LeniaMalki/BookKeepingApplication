@@ -46,7 +46,7 @@ public class EntryListItemController implements RemoveItemSubject, ControllerInt
      */
     @Override
     synchronized public void notifyListeners() {
-        for (RemoveItemObserver o : observers) {
+        for (final RemoveItemObserver o : observers) {
             o.update(actualEntry, entryListItemView);
         }
     }

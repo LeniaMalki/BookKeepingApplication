@@ -2,14 +2,11 @@ package View.MainViews;
 
 import Service.PaneFactory;
 import View.Interfaces.iPane;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
-
-import java.io.IOException;
 
 public class HomeView implements iPane {
 
@@ -42,6 +39,10 @@ public class HomeView implements iPane {
     public Label otherLabel;
     private MainView parent;
 
+    public HomeView() {
+        homeView = this;
+    }
+
     public static HomeView getInstance() {
         if (homeView == null) {
             homeView = new HomeView();
@@ -50,27 +51,23 @@ public class HomeView implements iPane {
 
     }
 
-    public HomeView() {
-        homeView = this;
-    }
-
     @Override
-    public void initPane(MainView parent) {
+    public void initPane(final MainView parent) {
         this.parent = parent;
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
     }
 
     @FXML
-    public void loadEntryPage(ActionEvent event) throws IOException {
+    public void loadEntryPage() {
         parent.showEntryPage();
     }
 
     @FXML
-    public void goToBudgetButton(ActionEvent event) throws IOException {
+    public void goToBudgetButton() {
         parent.showBudgetPage();
     }
 
-    public void setProgressBar(double progress, String category) {
+    public void setProgressBar(final double progress, final String category) {
         switch (category) {
             case "Food" -> foodBar.setProgress(progress);
             case "Household" -> householdBar.setProgress(progress);
@@ -80,7 +77,7 @@ public class HomeView implements iPane {
         }
     }
 
-    public void setTextLabel(String amount, String category) {
+    public void setTextLabel(final String amount, final String category) {
         switch (category) {
             case "Food" -> foodLabel.setText(amount);
             case "Household" -> householdLabel.setText(amount);

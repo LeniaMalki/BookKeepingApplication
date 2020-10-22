@@ -1,21 +1,19 @@
 package Model.Interfaces;
 
-import Model.Interfaces.BudgetObserver;
-
 import java.util.ArrayList;
+import java.util.List;
 
 public interface BudgetSubject {
 
-     ArrayList<BudgetObserver> observers = new ArrayList<>();
+    List<BudgetObserver> observers = new ArrayList<>();
 
     //methods to register observers
 
     /**
      * adds observers to a class that extends this
-     *
      * @param o the observer that subscribes as a listener
      */
-     static void add(BudgetObserver o) {
+    static void add(BudgetObserver o) {
         observers.add(o);
     }
 
