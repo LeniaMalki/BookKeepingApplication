@@ -15,6 +15,12 @@ import java.util.List;
  * @author Oscar
  */
 
+/**
+ * @author : Oscar Forsberg
+ * Responsibility: A class for handling all the entries in our program.
+ * Used by: BudgetChartPageController, HomePageController, StatisticsDetailController, StatisticsOverviewController
+ * Uses: iEntry, EntryObserver, iEntryHandler
+ */
 public final class EntryHandler implements EntryObserver, iEntryHandler {
 
     //________________________________________________ VARIABLES _______________________________________________________
@@ -31,13 +37,16 @@ public final class EntryHandler implements EntryObserver, iEntryHandler {
     //_________________________________________________ METHODS ________________________________________________________
 
     /**
-     * private constructor so that there will only be one object that oversees all the entries
+     * Constructor
      */
     private EntryHandler() {
         EntrySubject.add(this);
     }
 
-
+    /**
+     * Singleton pattern for getting an instance of this class
+     * @return instance of view
+     */
     public static EntryHandler getInstance() {
         if (entryHandler == null) {
             synchronized (EntryHandler.class){
