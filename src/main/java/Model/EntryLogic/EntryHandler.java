@@ -112,31 +112,52 @@ public final class EntryHandler implements EntryObserver, iEntryHandler {
     }
 
     //____________________________________________ GETTERS / SETTERS ___________________________________________________
-
+    /**
+     * Getter
+     * @return sum of values of entries with category "Food"
+     */
     public double getFoodAmount() {
         return foodAmount;
     }
-
+    /**
+     * Getter
+     * @return sum of values of entries with category "Transportation"
+     */
     public double getTransportationAmount() {
         return transportationAmount;
     }
-
+    /**
+     * Getter
+     * @return sum of values of entries with category "Household"
+     */
     public double getHouseholdAmount() {
         return householdAmount;
     }
-
+    /**
+     * Getter
+     * @return sum of values of entries with category "Shopping"
+     */
     public double getShoppingAmount() {
         return shoppingAmount;
     }
-
+    /**
+     * Getter
+     * @return sum of values of entries with category "Other"
+     */
     public double getOtherAmount() {
         return otherAmount;
     }
-
+    /**
+     * Getter
+     * @return sum of values of entries with category "General Saving"
+     */
     public double getGeneralSaving() {
         return generalSaving;
     }
-
+    /**
+     * Getter
+     * @return list of entries
+     */
     public List<iEntry> getEntries() {
         return entries;
     }

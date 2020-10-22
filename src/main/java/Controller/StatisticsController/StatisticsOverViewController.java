@@ -124,18 +124,24 @@ public class StatisticsOverViewController implements EntryObserver, RemoveItemOb
 
     }
 
-    @Override
-    public void update(final String category, final String type, final double Value) {
-
-    }
-
+    /**
+     * Update method when an object gets added
+     */
     @Override
     public void update(final iEntry entry) {
         updateStatisticsPiechart(entry);
     }
 
+    /**
+     * Update method when an object gets deleted
+     */
     @Override
     public void update(final iEntry entry, final EntryListItemView controller) {
         updateStatisticsPiechart(entry);
+    }
+
+    @Override
+    public void update(String category, String type, double Value) {
+
     }
 }

@@ -91,7 +91,6 @@ public class StatisticsDetailController implements EntryObserver, RemoveItemObse
      * entries match the given one. In that case, we add it to our FlowPane.
      *
      * @param category a string that represents the category of a certain entry.
-     * @return
      */
     private void entriesCheckCategory(final String category) {
         statisticsDetailView.clearPane();
@@ -128,15 +127,20 @@ public class StatisticsDetailController implements EntryObserver, RemoveItemObse
 
     }
 
-    @Override
-    public void update(final String category, final String type, final double Value) {
-    }
-
+    /**
+     * Update method when an object gets added
+     */
     @Override
     public void update(final iEntry entry) {
         entriesCheckCategory("");
         updatePieChart();
     }
+
+
+    @Override
+    public void update(final String category, final String type, final double Value) {
+    }
+
 
 }
 
