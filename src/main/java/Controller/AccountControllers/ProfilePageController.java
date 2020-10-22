@@ -62,6 +62,7 @@ public class ProfilePageController implements AccountObserver, ControllerInterfa
 
         if (changesMade == 0) {
             profilePageView.setMessage("No changes made");
+            update();
         }
         if (changesMade > 0) {
             accountFacade.updateAccountFields(profilePageView.username.getText(), profilePageView.name.getText(),
@@ -70,7 +71,7 @@ public class ProfilePageController implements AccountObserver, ControllerInterfa
         }
         if (changesMade == 3) {
             profilePageView.setMessage("Incorrect input(s)!");
-
+            update();
         }
     }
 
