@@ -67,9 +67,14 @@ public class HomePageController implements EntryObserver, BudgetObserver, Remove
         }
     }
 
+<<<<<<< Updated upstream
     /**
      * Updates information when an iEntry is added
      */
+=======
+
+
+>>>>>>> Stashed changes
     @Override
     public void update(final iEntry entry) {
         changeProgress();

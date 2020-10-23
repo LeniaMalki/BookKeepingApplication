@@ -1,6 +1,8 @@
 package Controller.GoalsControllers;
 
 import Controller.Interfaces.ControllerInterface;
+import Controller.Interfaces.EntryInformationObserver;
+import Model.Interfaces.EntryInfomrationSubject;
 import StairwayInterfaces.iEntry;
 import StairwayInterfaces.iSavingGoal;
 import StairwayInterfaces.iSavingsOverview;
@@ -13,7 +15,7 @@ import javafx.fxml.FXMLLoader;
 
 import java.io.IOException;
 
-public class NewGoalsInsertController implements EntryObserver, ControllerInterface {
+public class NewGoalsInsertController implements ControllerInterface, EntryInformationObserver {
     /**
      * Controller for the SavingsInsertPage
      * Responsibility: Updates and handles the savingsPageInsert
@@ -43,7 +45,7 @@ public class NewGoalsInsertController implements EntryObserver, ControllerInterf
         }
         setAllViewListeners();
         savingsOverview = SavingsOverview.getInstance();
-        EntrySubject.add(this); //TODO denna är beroende på model
+        EntryInfomrationSubject.add(this);
 
     }
     /**
@@ -84,11 +86,6 @@ public class NewGoalsInsertController implements EntryObserver, ControllerInterf
             updateSavingLabel();
             updateProgressBar();
         }
-
-    }
-
-    @Override
-    public void update(final iEntry entry) {
 
     }
 

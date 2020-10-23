@@ -1,13 +1,10 @@
 package Model.GoalsLogic;
 
+import Controller.Interfaces.EntryInformationObserver;
+import Model.Interfaces.*;
 import StairwayInterfaces.iEntry;
 import StairwayInterfaces.iSavingGoal;
 import StairwayInterfaces.iSavingsOverview;
-import Model.Interfaces.EntrySubject;
-import Model.Interfaces.EntryObserver;
-import Model.Interfaces.SavingsObserver;
-import Model.Interfaces.SavingsSubject;
-import Model.Interfaces.iSavingsRegister;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,7 +15,7 @@ import java.util.Map;
  * Used by: indirectly though iSavingOverView
  * @author Artin
  */
-public final class SavingsOverview implements iSavingsRegister, SavingsSubject, EntryObserver, iSavingsOverview {
+public final class SavingsOverview implements iSavingsRegister, SavingsSubject, EntryInformationObserver, iSavingsOverview {
     Map<String, iSavingGoal> savingGoalHashMap = new HashMap<>();
     private static SavingsOverview savingsInstance;
 
@@ -26,7 +23,7 @@ public final class SavingsOverview implements iSavingsRegister, SavingsSubject, 
      * private constructor so that there will only be one object that oversees all the savings
      */
     private SavingsOverview() {
-        EntrySubject.add(this);
+        EntryInfomrationSubject.add(this);
     }
 
     synchronized public static SavingsOverview getInstance() {
@@ -95,10 +92,13 @@ public final class SavingsOverview implements iSavingsRegister, SavingsSubject, 
         }
     }
 
+<<<<<<< Updated upstream
     @Override
     public void update(final iEntry entry) {
         // TODO have to make it only one update
     }
+=======
+>>>>>>> Stashed changes
 
 
     public double getAmountSaved(final String name) {

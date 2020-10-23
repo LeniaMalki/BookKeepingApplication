@@ -1,5 +1,7 @@
 package Model.EntryLogic;
 
+import Controller.Interfaces.EntryInformationObserver;
+import Model.Interfaces.EntryInfomrationSubject;
 import Model.Interfaces.EntryObserver;
 import Model.Interfaces.EntrySubject;
 import StairwayInterfaces.iEntry;
@@ -11,7 +13,7 @@ import StairwayInterfaces.iEntry;
  *
  * @author Artin
  */
-public class Entry  implements iEntry, EntrySubject {
+public class Entry  implements iEntry, EntrySubject, EntryInfomrationSubject {
     private final double amount;
    private final String name;
   private final String category;
@@ -40,6 +42,10 @@ public class Entry  implements iEntry, EntrySubject {
     public void notifyEntryListeners() {
         for (final EntryObserver observer : observers) {
             observer.update(this);
+
+        }
+        for (final EntryInformationObserver observer:informationObservers
+             ) {
             observer.update(getCategory(), getTypeOfEntry(), getAmount());
         }
     }

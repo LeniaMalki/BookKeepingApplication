@@ -127,9 +127,7 @@ public class BudgetChartPageController implements EntryObserver, BudgetObserver,
         budgetChartView.barChart.getData().setAll(series1);
     }
 
-    @Override
-    public void update(final String category, final String type, final double Value) {
-    }
+   
 
     @Override
     public void update(final iEntry entry) {
