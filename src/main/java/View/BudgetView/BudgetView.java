@@ -17,6 +17,7 @@ public class BudgetView implements iPane {
     //________________________________________________ Variables _______________________________________________________
 
     public MainView parent;
+    static BudgetView budgetView;
     @FXML
     public TextField enterIncomeTextField;
     @FXML
