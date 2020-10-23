@@ -8,7 +8,12 @@ import javax.mail.internet.MimeMultipart;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
-
+/**
+ * @author : Artin Abiri
+ * Responsibility: A class responsible for sending e-mail
+ * Used by: AccountFacade
+ * Uses: Properties, Session
+ */
 public class SendMail {
     Properties properties;
     Session session;

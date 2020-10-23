@@ -12,7 +12,7 @@ import javafx.scene.text.Text;
  * @author : Lenia Malki
  * Responsibility: Holds the relevant JavaFX variables of the login and holds methods directly related to view
  * Used by: LogInController, PaneFactory, logInPage.fxml
- * Uses: iPane interface, MainController, JavaFX
+ * Uses: iPane interface, MainController, JavaFX, MainView
  */
 public class LogInView implements iPane {
     //________________________________________________ Variables _______________________________________________________

@@ -11,7 +11,7 @@ import javafx.scene.text.Text;
  * @author : Lenia Malki
  * Responsibility: In charge of displaying the pop up for changing account password.
  * Used by: PasswordEditController
- * Uses: iPane, JavaFX, MainController
+ * Uses: iPane, JavaFX, MainController, MainView
  */
 public class ChangePasswordView implements iPane {
     //________________________________________________ Variables _______________________________________________________

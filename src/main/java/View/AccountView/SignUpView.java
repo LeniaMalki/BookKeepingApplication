@@ -16,7 +16,7 @@ import java.util.List;
  * Responsibility: Holds the relevant JavaFX variables of signing up and holds methods directly
  * related to view
  * Used by: SignUpPageController, PaneFactory, signUpPopUp.fxml
- * Uses: iPane interface, MainController, JavaFX
+ * Uses: iPane interface, MainController, JavaFX, MainView
  */
 public class SignUpView implements iPane {
     //________________________________________________ Variables _______________________________________________________

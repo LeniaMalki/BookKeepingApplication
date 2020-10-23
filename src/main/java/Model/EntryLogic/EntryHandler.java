@@ -105,7 +105,9 @@ public final class EntryHandler implements EntryObserver, iEntryHandler {
     public void update(final String category, final String type, final double Value) {
 
     }
-
+    /**
+     * Method for updating when an entry is added
+     */
     @Override
     public void update(final iEntry entry) {
         addEntry(entry);

@@ -13,7 +13,7 @@ import javafx.scene.text.Text;
  * @author : Lenia Malki
  * Responsibility: Holds the relevant JavaFX variables of the profile page and  methods directly related to it's view
  * Used by: ProfilePageController, PaneFactory, accountPage.fxml
- * Uses: iPane interface, MainController, JavaFX
+ * Uses: iPane interface, MainController, JavaFX, MainView
  */
 public class ProfilePageView implements iPane {
 

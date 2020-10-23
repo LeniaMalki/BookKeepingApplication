@@ -11,8 +11,15 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 
-
+/**
+ * @author : Artin Abiri
+ * Responsibility: In charge of showing entries
+ * Used by: PaneFactory, EntryPageController
+ * Uses: JavaFX, iPane, MainView
+ */
 public class EntryView implements iPane {
+
+    //________________________________________________ VARIABLES _______________________________________________________
 
     @FXML
     public Button submitButton;
@@ -40,6 +47,11 @@ public class EntryView implements iPane {
     private MainView parent;
     static EntryView entryView;
 
+    //______________________________________________ METHODS ___________________________________________________________
+
+    /**
+     * Constructor
+     */
     public EntryView() {
         entryView = this;
     }
@@ -53,36 +65,50 @@ public class EntryView implements iPane {
         }
         return entryView;
     }
-
+    /**
+     * Method that initializes pane and sets header
+     * @param parent a MainView
+     */
     @Override
     public void initPane(final MainView parent) {
         this.parent = parent;
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
     }
-
+    /**
+     * Method that hides the income category
+     */
     public void hideIncomeCategory() {
         categoryComboBox.setVisible(false);
         costTextField.setLayoutY(282);
     }
-
+    /**
+     * Method that shows the category
+     */
     public void showCategory() {
         entryView.categoryComboBox.setVisible(true);
         entryView.costTextField.setLayoutY(391);
     }
-
+    /**
+     * Method that sets textfield to red
+     */
     public void setRedColor(final TextField textField) {
         textField.setStyle(" -fx-border-color: Red;");
     }
-
+    /**
+     * Method that sets textfield to grey
+     */
     public void setGreyColor(final TextField textField) {
         textField.setStyle(" -fx-border-color: Grey;");
     }
-
+    /**
+     * Method that sets combobox to red
+     */
     public void setRedColor(final ComboBox<String> categoryComboBox) {
         categoryComboBox.setStyle(" -fx-border-color: Red;");
-
     }
-
+    /**
+     * Method that sets combobox to grey
+     */
     public void setGreyColor(final ComboBox<String> categoryComboBox) {
         categoryComboBox.setStyle(" -fx-border-color: Grey;");
     }

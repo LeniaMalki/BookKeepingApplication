@@ -12,7 +12,7 @@ public class BudgetView implements iPane {
     /**
      * @author : viktoriawelzel
      * Responsibility: In charge of creating/ displaying the BudgetChartPage
-     * Uses: iPane
+     * Uses: iPane, MainView
      */
     //________________________________________________ Variables _______________________________________________________
 

@@ -13,6 +13,13 @@ import Model.Interfaces.BudgetObserver;
 import Model.Interfaces.EntryObserver;
 import View.EntryView.EntryListItemView;
 import View.MainViews.HomeView;
+/**
+ * @author : Oscar Forsberg, Lenia Malki
+ * Responsibility: Handles all edits on the account, makes use of an accountInstance and is thus an instance itself
+ * Used by: AccountExistenceManager, AccountFacade
+ * Uses: iBudget, iEntryHandler, HomeView, EntryObserver, BudgetObserver, RemoveItemObserver
+ */
+
 
 public class HomePageController implements EntryObserver, BudgetObserver, RemoveItemObserver {
 
@@ -22,7 +29,10 @@ public class HomePageController implements EntryObserver, BudgetObserver, Remove
     private final iEntryHandler entryHandler = EntryHandler.getInstance();
     private final HomeView homeView = HomeView.getInstance();
 
-
+    //_________________________________________________ METHODS ________________________________________________________
+    /**
+     * Constructor
+     */
     public HomePageController() {
         BudgetSubject.add(this);
         EntrySubject.add(this);
@@ -30,10 +40,6 @@ public class HomePageController implements EntryObserver, BudgetObserver, Remove
         updateAllBudgets();
         RemoveItemSubject.add(this);
     }
-
-    //_________________________________________________ METHODS ________________________________________________________
-
-
     /**
      * Updates all the labels according to the entries and budgets.
      */
@@ -61,26 +67,32 @@ public class HomePageController implements EntryObserver, BudgetObserver, Remove
         }
     }
 
-    @Override
-    public void update(final String category, final String type, final double Value) {
-    }
-
+    /**
+     * Updates information when an iEntry is added
+     */
     @Override
     public void update(final iEntry entry) {
         changeProgress();
     }
 
+    /**
+     * Updates information when a Budget added
+     */
     @Override
     public void update(final iBudget budget1) {
         budget = budget1;
         updateAllBudgets();
     }
-
-
+    /**
+     * Updates information when an iEntry is deleted
+     */
     @Override
     public void update(final iEntry entry, final EntryListItemView controller) {
         entryHandler.getEntries().remove(entry);
         updateAllBudgets();
         changeProgress();
+    }
+    @Override
+    public void update(final String category, final String type, final double Value) {
     }
 }
