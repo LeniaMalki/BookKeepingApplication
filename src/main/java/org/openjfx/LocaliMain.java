@@ -6,13 +6,11 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 
-//TestCommit to check by Lenia
-
 public class LocaliMain extends Application {
 
     @Override
-    public void start(Stage stage) {
-        Scene scene = new Scene(PaneFactory.initMain(), 1440, 1024);
+    public void start(final Stage stage) {
+        final Scene scene = new Scene(PaneFactory.initMain(), 1440, 1024);
         stage.setTitle("Locali");
         stage.setResizable(false);
         stage.setScene(scene);
@@ -21,7 +19,7 @@ public class LocaliMain extends Application {
 
     }
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         launch(args);
 
 

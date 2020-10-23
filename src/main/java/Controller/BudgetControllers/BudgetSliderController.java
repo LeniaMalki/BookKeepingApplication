@@ -42,25 +42,31 @@ public class BudgetSliderController {
      * Binds the sliders and the textFields.
      */
     protected void connectingTextFieldsAndSliders() {
-        budgetView.foodTextField.textProperty().bindBidirectional(budgetView.foodSlider.valueProperty(), new NumberStringConverter());
-        budgetView.householdTextField.textProperty().bindBidirectional(budgetView.householdSlider.valueProperty(), new NumberStringConverter());
-        budgetView.shoppingTextField.textProperty().bindBidirectional(budgetView.shoppingSlider.valueProperty(), new NumberStringConverter());
-        budgetView.transportTextField.textProperty().bindBidirectional(budgetView.transportSlider.valueProperty(), new NumberStringConverter());
-        budgetView.otherTextField.textProperty().bindBidirectional(budgetView.otherSlider.valueProperty(), new NumberStringConverter());
-        budgetView.savingsTextField.textProperty().bindBidirectional(budgetView.savingsSlider.valueProperty(), new NumberStringConverter());
+        budgetView.foodTextField.textProperty().bindBidirectional(budgetView.foodSlider.valueProperty(),
+                                                                  new NumberStringConverter());
+        budgetView.householdTextField.textProperty().bindBidirectional(budgetView.householdSlider.valueProperty(),
+                                                                       new NumberStringConverter());
+        budgetView.shoppingTextField.textProperty().bindBidirectional(budgetView.shoppingSlider.valueProperty(),
+                                                                      new NumberStringConverter());
+        budgetView.transportTextField.textProperty().bindBidirectional(budgetView.transportSlider.valueProperty(),
+                                                                       new NumberStringConverter());
+        budgetView.otherTextField.textProperty().bindBidirectional(budgetView.otherSlider.valueProperty(),
+                                                                   new NumberStringConverter());
+        budgetView.savingsTextField.textProperty().bindBidirectional(budgetView.savingsSlider.valueProperty(),
+                                                                     new NumberStringConverter());
     }
 
     /**
      * Sets the maxValues of the sliders according to the income.
      */
+
     protected void setMaxOnSlider(final int income) {
-        try{
-        budgetView.setSliders(income);
-        this.income=income;
-        updateProgress();
-        budgetView.setIncomeToGrey();
-        }
-        catch (Exception ignored){
+        try {
+            budgetView.setSliders(income);
+            this.income = income;
+            updateProgress();
+            budgetView.setIncomeToGrey();
+        } catch (Exception ignored) {
             budgetView.setIncomeToRed();
         }
     }
@@ -75,7 +81,8 @@ public class BudgetSliderController {
         final double transportSlider = budgetView.transportSlider.getValue();
         final double otherSlider = budgetView.otherSlider.getValue();
         final double savingsSlider = budgetView.savingsSlider.getValue();
-        budgetView.setProgressBar(income, foodSlider, houseHoldSlider, shoppingSlider, transportSlider, otherSlider, savingsSlider);
+        budgetView.setProgressBar(income, foodSlider, houseHoldSlider, shoppingSlider, transportSlider, otherSlider,
+                                  savingsSlider);
     }
 
 }

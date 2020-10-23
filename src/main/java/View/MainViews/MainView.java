@@ -7,10 +7,16 @@ import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 
 /**
- * @author : Oscar
+ * @author : Oscar Forsberg
+ * Responsibility: In charge of initalizing all pages and ables them to actually be shown
+ * Used by: ChangePasswordView, DeleteAccountView, LogInView, ProfilPageView, SignUpView, BudgetChartView, BudgetView,
+ *          EntryView, GoalsView, HeaderView, HomeView, StatisticsDetailView, StatisticsOverviewView, iPane, PaneFactory
+ * Uses: JavaFX, PaneFactory, StatisticsDetailController, PaneFactory
  */
 
 public class MainView{
+
+    //________________________________________________ VARIABLES _______________________________________________________
 
     static MainView mainView;
 
@@ -41,18 +47,25 @@ public class MainView{
     @FXML
     public AnchorPane mainAnchor;
 
+    //______________________________________________ METHODS ___________________________________________________________
+
+    /**
+     * Constructor for MainView
+     */
+    public MainView() {
+        mainView = this;;
+    }
+
+    /**
+     * Singleton pattern for getting an instance of this class
+     * @return instance of view
+     */
     public static MainView getInstance() {
         if (mainView == null) {
             mainView = new MainView();
         }
         return mainView;
-
     }
-
-    public MainView() {
-        mainView = this;;
-    }
-    //______________________________________________ METHODS ___________________________________________________________
 
     /**
      * A function that assigns variables with different initialized pages that later can be shown in our program by
@@ -79,7 +92,7 @@ public class MainView{
      *
      * @param pane an AnchorPane that is one of our visible pages in our program
      */
-    public void showPage(AnchorPane pane) {
+    public void showPage(final AnchorPane pane) {
         mainView.mainAnchor.getChildren().clear();
         mainView.mainAnchor.getChildren().add(pane);
         mainView.mainAnchor.toFront();
@@ -110,13 +123,10 @@ public class MainView{
      * A function that uses the function "showPage" to show us a specific AnchorPane. Takes in a string and uses a
      * controller to set a label on that specific AnchorPane.
      */
-
-
-    public void showStatisticsDetailPage(String text) {
-        StatisticsDetailController statisticsDetailController = new StatisticsDetailController();
+    public void showStatisticsDetailPage(final String text) {
+        final StatisticsDetailController statisticsDetailController = new StatisticsDetailController();
         statisticsDetailController.setLabelPieChart(text);
         showPage(mainView.detailStatistics);
-
     }
 
     /**
@@ -156,14 +166,22 @@ public class MainView{
 
     //____________________________________________ GETTERS / SETTERS ___________________________________________________
 
+    /**
+     * A getter for retrieving the AnchorPane, a pop-up screen, for when you sign up
+     */
     public AnchorPane getSignUpPopUp() {
         return mainView.signUpPopUp;
     }
-
+    /**
+     * A getter for retrieving the AnchorPane, a pop-up screen, for when you delete your account
+     */
     public AnchorPane getDeleteAccountPopUp() {
         return mainView.deleteAccountPopUp;
     }
 
+    /**
+     * A getter for retrieving the Node for when you change your password
+     */
     public Node getChangePasswordPopUp() {
         return mainView.changePasswordPopUp;
     }

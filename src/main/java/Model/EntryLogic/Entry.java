@@ -27,7 +27,7 @@ public class Entry  implements iEntry, EntrySubject {
      * @param category the category that the entry falls under
      * @param typeOfEntry the type of entry the object is, income, expense or savings
      */
-    public Entry(double cost, String name, String category, String typeOfEntry) {
+    public Entry(final double cost, final String name, final String category,final  String typeOfEntry) {
         this.amount = cost;
         this.name = name;
         this.category = category;

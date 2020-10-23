@@ -33,7 +33,7 @@ public class NewGoalsInsertController implements EntryObserver, ControllerInterf
      */
 
     public NewGoalsInsertController() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/openjfx/GoalsInseet.fxml"));
+        final FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/openjfx/GoalsInseet.fxml"));
         fxmlLoader.setController(insertView);
         fxmlLoader.setRoot(insertView);
         try {
@@ -72,13 +72,13 @@ public class NewGoalsInsertController implements EntryObserver, ControllerInterf
      * @param goal the goal you want to reach
      * @param name name of the goal
      */
-    private void registerSavingGoal(double goal, String name) {
-        iSavingGoal savingGoal = new SavingGoal(goal, name);
+    private void registerSavingGoal(final double goal, final  String name) {
+        final iSavingGoal savingGoal = new SavingGoal(goal, name);
     }
 
 
     @Override
-    public void update(String category, String type, double Value) {
+    public void update(final String category, final String type, final  double Value) {
         if (category.equals(insertView.nameOfSavingTextField.getText())) {
             amountSaved += savingsOverview.getAmountSaved(category);
             updateSavingLabel();
@@ -88,7 +88,7 @@ public class NewGoalsInsertController implements EntryObserver, ControllerInterf
     }
 
     @Override
-    public void update(iEntry entry) {
+    public void update(final iEntry entry) {
 
     }
 

@@ -1,11 +1,12 @@
 package View.BudgetView;
 
-import View.Interfaces.iPane;
 import Service.PaneFactory;
+import View.Interfaces.iPane;
 import View.MainViews.MainView;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+
 public class BudgetView implements iPane {
 
     /**
@@ -16,9 +17,6 @@ public class BudgetView implements iPane {
     //________________________________________________ Variables _______________________________________________________
 
     public MainView parent;
-    static BudgetView budgetView;
-
-
     @FXML
     public TextField enterIncomeTextField;
     @FXML
@@ -33,7 +31,6 @@ public class BudgetView implements iPane {
     public Label moneyLeft;
     @FXML
     public Label totalMoney;
-
     @FXML
     public Slider foodSlider;
     @FXML
@@ -46,7 +43,6 @@ public class BudgetView implements iPane {
     public Slider otherSlider;
     @FXML
     public Slider savingsSlider;
-
     @FXML
     public TextField foodTextField;
     @FXML
@@ -59,7 +55,6 @@ public class BudgetView implements iPane {
     public TextField otherTextField;
     @FXML
     public TextField savingsTextField;
-
     @FXML
     public ProgressBar foodProgressBar;
     @FXML
@@ -73,21 +68,15 @@ public class BudgetView implements iPane {
     @FXML
     public ProgressBar savingsProgressBar;
 
-    //---------------------------------------------------- METHODS -----------------------------------------------------
-
-
-    /**
-     * constructor.
-     */
-    public BudgetView(){
+    public BudgetView() {
         budgetView = this;
     }
 
     /**
      * Method for obtaining the BudgetView instance.
      */
-    public static BudgetView getInstance(){
-        if (budgetView == null){
+    public static BudgetView getInstance() {
+        if (budgetView == null) {
             budgetView = new BudgetView();
         }
         return budgetView;

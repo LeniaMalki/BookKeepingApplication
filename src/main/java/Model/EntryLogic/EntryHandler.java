@@ -7,14 +7,12 @@ import Model.Interfaces.EntrySubject;
 
 import java.util.ArrayList;
 import java.util.List;
-
-
 /**
- * A class that handles the entries in our program
- *
- * @author Oscar
+ * @author : Oscar Forsberg
+ * Responsibility: A class for handling all the entries in our program.
+ * Used by: BudgetChartPageController, HomePageController, StatisticsDetailController, StatisticsOverviewController
+ * Uses: iEntry, EntryObserver, iEntryHandler
  */
-
 public final class EntryHandler implements EntryObserver, iEntryHandler {
 
     //________________________________________________ VARIABLES _______________________________________________________
@@ -31,13 +29,16 @@ public final class EntryHandler implements EntryObserver, iEntryHandler {
     //_________________________________________________ METHODS ________________________________________________________
 
     /**
-     * private constructor so that there will only be one object that oversees all the entries
+     * Constructor
      */
     private EntryHandler() {
         EntrySubject.add(this);
     }
 
-
+    /**
+     * Singleton pattern for getting an instance of this class
+     * @return instance of view
+     */
     public static EntryHandler getInstance() {
         if (entryHandler == null) {
             synchronized (EntryHandler.class){
@@ -54,7 +55,7 @@ public final class EntryHandler implements EntryObserver, iEntryHandler {
      *
      * @param entry , an entry with a specific category
      */
-    public void addEntry(iEntry entry) {
+    public void addEntry(final iEntry entry) {
         entries.add(entry);
     }
 
@@ -63,7 +64,7 @@ public final class EntryHandler implements EntryObserver, iEntryHandler {
      *
      * @param entry , an entry with a specific category
      */
-    public void removeEntry(iEntry entry) {
+    public void removeEntry(final iEntry entry) {
         entries.remove(entry);
     }
 
@@ -78,7 +79,7 @@ public final class EntryHandler implements EntryObserver, iEntryHandler {
         shoppingAmount = 0;
         otherAmount = 0;
         generalSaving = 0;
-        for ( iEntry entry : entries) {
+        for ( final iEntry entry : entries) {
             if ("Food".equals(entry.getCategory())) {
                 foodAmount += entry.getAmount();
             }
@@ -101,41 +102,62 @@ public final class EntryHandler implements EntryObserver, iEntryHandler {
     }
 
     @Override
-    public void update(String category, String type, double Value) {
+    public void update(final String category, final String type, final double Value) {
 
     }
 
     @Override
-    public void update(iEntry entry) {
+    public void update(final iEntry entry) {
         addEntry(entry);
     }
 
     //____________________________________________ GETTERS / SETTERS ___________________________________________________
-
+    /**
+     * Getter
+     * @return sum of values of entries with category "Food"
+     */
     public double getFoodAmount() {
         return foodAmount;
     }
-
+    /**
+     * Getter
+     * @return sum of values of entries with category "Transportation"
+     */
     public double getTransportationAmount() {
         return transportationAmount;
     }
-
+    /**
+     * Getter
+     * @return sum of values of entries with category "Household"
+     */
     public double getHouseholdAmount() {
         return householdAmount;
     }
-
+    /**
+     * Getter
+     * @return sum of values of entries with category "Shopping"
+     */
     public double getShoppingAmount() {
         return shoppingAmount;
     }
-
+    /**
+     * Getter
+     * @return sum of values of entries with category "Other"
+     */
     public double getOtherAmount() {
         return otherAmount;
     }
-
+    /**
+     * Getter
+     * @return sum of values of entries with category "General Saving"
+     */
     public double getGeneralSaving() {
         return generalSaving;
     }
-
+    /**
+     * Getter
+     * @return list of entries
+     */
     public List<iEntry> getEntries() {
         return entries;
     }

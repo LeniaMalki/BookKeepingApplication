@@ -27,7 +27,7 @@ public class BudgetPageController implements BudgetObserver, ControllerInterface
     private iBudget budget;
     private final BudgetView budgetView = BudgetView.getInstance();
     private final BudgetSliderController bugetSliderController = new BudgetSliderController();
-    private final ArrayList<Slider> allSliders = new ArrayList<>() {{
+    private final List<Slider> allSliders = new ArrayList<>() {{
         add(budgetView.foodSlider);
         add(budgetView.householdSlider);
         add(budgetView.shoppingSlider);
@@ -206,9 +206,9 @@ public class BudgetPageController implements BudgetObserver, ControllerInterface
             income=0;
         }
         if (income!=0) {
-            disableSlider();
+            enableSlider();
         }else {
-           enableSlider();
+           disableSlider();
         }
     }
 

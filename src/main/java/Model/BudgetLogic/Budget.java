@@ -115,5 +115,4 @@ public class Budget implements iBudget, BudgetSubject {
     public void setIncome(final String income) {
         this.income = income;
     }
-
 }

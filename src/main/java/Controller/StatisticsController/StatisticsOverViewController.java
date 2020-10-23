@@ -14,10 +14,11 @@ import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
 
 /**
- * A controller that handles the overview statistics page
- * It listens to what happens to entries by implementing EntryObserver
- *
- * @author Oscar
+ * @author : Oscar Forsberg
+ * Responsibility: A controller class for handling the page for overview statistics. It listens to what happens to
+ *                 entries by implementing EntryObserver and RemoveItemObserver
+ * Used by: PaneFactory
+ * Uses: ControllerInterface, StatisticsOverviewView, EntryObserver, RemoveItemObserver
  */
 public class StatisticsOverViewController implements EntryObserver, RemoveItemObserver, ControllerInterface {
 
@@ -28,6 +29,9 @@ public class StatisticsOverViewController implements EntryObserver, RemoveItemOb
 
     //_________________________________________________ METHODS ________________________________________________________
 
+    /**
+     * Constructor
+     */
     public StatisticsOverViewController() {
         setAllViewListeners();
         EntrySubject.add(this);
@@ -55,7 +59,9 @@ public class StatisticsOverViewController implements EntryObserver, RemoveItemOb
         updateWeeklyStatistics();
         updateMonthlyStatistics();
     }
-
+    /**
+     * When implemented: should update dailyStatistics PieChart using entries from the same day
+     */
     private void updateDailyStatistics() {
         final ObservableList<PieChart.Data> pieChartData1 = FXCollections.observableArrayList(
                 new PieChart.Data("Food", entryHandler.getFoodAmount()),
@@ -70,7 +76,9 @@ public class StatisticsOverViewController implements EntryObserver, RemoveItemOb
             statisticsOverviewView.chart1.setData(pieChartData1);
         }
     }
-
+    /**
+     * When implemented: should update dailyStatistics PieChart using entries from the past 7 days
+     */
     private void updateWeeklyStatistics() {
         final ObservableList<PieChart.Data> pieChartData2 = FXCollections.observableArrayList(
                 new PieChart.Data("Food", entryHandler.getFoodAmount() + 205),
@@ -85,7 +93,9 @@ public class StatisticsOverViewController implements EntryObserver, RemoveItemOb
             statisticsOverviewView.chart2.setData(pieChartData2);
         }
     }
-
+    /**
+     * When implemented: should update dailyStatistics PieChart using entries from the past 30 days
+     */
     private void updateMonthlyStatistics() {
         final ObservableList<PieChart.Data> pieChartData3 = FXCollections.observableArrayList(
                 new PieChart.Data("Food", entryHandler.getFoodAmount() + 115),
@@ -103,6 +113,9 @@ public class StatisticsOverViewController implements EntryObserver, RemoveItemOb
 
     //__________________________________________________________________________________________________________________
 
+    /**
+     * Method that says what should happen when pressing different buttons. Sends that information to the view.
+     */
     @Override
     public void setAllViewListeners() {
         statisticsOverviewView.toDailyStatistics.setOnAction(event -> detailedStatistics("Daily"));
@@ -111,18 +124,24 @@ public class StatisticsOverViewController implements EntryObserver, RemoveItemOb
 
     }
 
-    @Override
-    public void update(final String category, final String type, final double Value) {
-
-    }
-
+    /**
+     * Update method when an object gets added
+     */
     @Override
     public void update(final iEntry entry) {
         updateStatisticsPiechart(entry);
     }
 
+    /**
+     * Update method when an object gets deleted
+     */
     @Override
     public void update(final iEntry entry, final EntryListItemView controller) {
         updateStatisticsPiechart(entry);
+    }
+
+    @Override
+    public void update(String category, String type, double Value) {
+
     }
 }

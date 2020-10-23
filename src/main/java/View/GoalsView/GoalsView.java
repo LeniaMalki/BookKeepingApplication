@@ -37,7 +37,7 @@ public class GoalsView implements iPane {
     }
 
     @Override
-    public void initPane(MainView parent) {
+    public void initPane(final MainView parent) {
         this.parent = parent;
         headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
         goalFlowPane.setVgap(10);

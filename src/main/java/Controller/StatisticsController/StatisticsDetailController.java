@@ -15,10 +15,11 @@ import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
 
 /**
- * A controller class for handling the page for detail statistics.
- * It listens to what happens to entries by implementing EntryObserver
- *
- * @author Oscar
+ * @author : Oscar Forsberg
+ * Responsibility: A controller class for handling the page for detail statistics. It listens to what happens to
+ *                 entries by implementing EntryObserver and RemoveItemObserver
+ * Used by: PaneFactory
+ * Uses: ControllerInterface, StatisticsDetailView, EntryObserver, RemoveItemObserver
  */
 public class StatisticsDetailController implements EntryObserver, RemoveItemObserver, ControllerInterface {
 
@@ -30,6 +31,9 @@ public class StatisticsDetailController implements EntryObserver, RemoveItemObse
 
     //_________________________________________________ METHODS ________________________________________________________
 
+    /**
+     * Constructor
+     */
     public StatisticsDetailController() {
         setAllViewListeners();
         EntrySubject.add(this);
@@ -87,7 +91,6 @@ public class StatisticsDetailController implements EntryObserver, RemoveItemObse
      * entries match the given one. In that case, we add it to our FlowPane.
      *
      * @param category a string that represents the category of a certain entry.
-     * @return
      */
     private void entriesCheckCategory(final String category) {
         statisticsDetailView.clearPane();
@@ -110,6 +113,9 @@ public class StatisticsDetailController implements EntryObserver, RemoveItemObse
         RemoveItemSubject.add(this);
     }
 
+    /**
+     * Method that says what should happen when pressing different buttons. Sends that information to the view.
+     */
     @Override
     public void setAllViewListeners() {
         statisticsDetailView.statisticsButtonAllEntries.setOnAction(a -> entriesCheckCategory(""));
@@ -121,15 +127,20 @@ public class StatisticsDetailController implements EntryObserver, RemoveItemObse
 
     }
 
-    @Override
-    public void update(final String category, final String type, final double Value) {
-    }
-
+    /**
+     * Update method when an object gets added
+     */
     @Override
     public void update(final iEntry entry) {
         entriesCheckCategory("");
         updatePieChart();
     }
+
+
+    @Override
+    public void update(final String category, final String type, final double Value) {
+    }
+
 
 }
 

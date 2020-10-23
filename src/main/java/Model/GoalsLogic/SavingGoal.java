@@ -20,11 +20,11 @@ public class SavingGoal implements iSavingGoal {
      * @param savingGoal the amount of money that needs to be saved to reach the goal
      * @param savingName name of the saving goal
      */
-    public SavingGoal(double savingGoal, String savingName) {
+    public SavingGoal(final double savingGoal, final  String savingName) {
         this.savingGoal = savingGoal;
         this.savingName = savingName;
 
-        iSavingsRegister register = SavingsOverview.getInstance();
+        final iSavingsRegister register = SavingsOverview.getInstance();
         register.addSavingsGoal(savingName, this);
     }
 
@@ -34,7 +34,7 @@ public class SavingGoal implements iSavingGoal {
      *
      * @param money the amount of money that is added to the saving goal
      */
-    public void addMoneyToSaving(double money) {
+    public void addMoneyToSaving(final double money) {
         savingGoalReached = +money;
     }
 

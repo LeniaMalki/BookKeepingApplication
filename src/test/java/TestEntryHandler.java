@@ -53,7 +53,7 @@ public class TestEntryHandler {
     @Test
     //Test that checks the entryHandlers instance
     public void testGetInstance() {
-        EntryHandler entryHandlerNew = EntryHandler.getInstance();
+        final EntryHandler entryHandlerNew = EntryHandler.getInstance();
         Assertions.assertEquals(entryHandler, entryHandlerNew);
     }
 

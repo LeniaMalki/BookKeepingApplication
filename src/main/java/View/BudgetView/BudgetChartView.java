@@ -1,7 +1,7 @@
 package View.BudgetView;
 
-import View.Interfaces.iPane;
 import Service.PaneFactory;
+import View.Interfaces.iPane;
 import View.MainViews.MainView;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
