@@ -124,12 +124,10 @@ public class StatisticsOverViewController implements EntryObserver, RemoveItemOb
 
     }
 
-<<<<<<< Updated upstream
     /**
      * Update method when an object gets added
      */
-=======
->>>>>>> Stashed changes
+
     @Override
     public void update(final iEntry entry) {
         updateStatisticsPiechart(entry);
@@ -143,8 +141,5 @@ public class StatisticsOverViewController implements EntryObserver, RemoveItemOb
         updateStatisticsPiechart(entry);
     }
 
-    @Override
-    public void update(String category, String type, double Value) {
 
-    }
 }

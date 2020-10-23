@@ -127,23 +127,16 @@ public class StatisticsDetailController implements EntryObserver, RemoveItemObse
 
     }
 
-<<<<<<< Updated upstream
     /**
      * Update method when an object gets added
      */
-=======
 
->>>>>>> Stashed changes
     @Override
     public void update(final iEntry entry) {
         entriesCheckCategory("");
         updatePieChart();
     }
 
-
-    @Override
-    public void update(final String category, final String type, final double Value) {
-    }
 
 
 }

@@ -101,17 +101,9 @@ public final class EntryHandler implements EntryObserver, iEntryHandler {
         }
     }
 
-<<<<<<< Updated upstream
-    @Override
-    public void update(final String category, final String type, final double Value) {
-
-    }
     /**
      * Method for updating when an entry is added
      */
-=======
-
->>>>>>> Stashed changes
     @Override
     public void update(final iEntry entry) {
         addEntry(entry);

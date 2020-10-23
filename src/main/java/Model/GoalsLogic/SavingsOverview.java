@@ -92,14 +92,6 @@ public final class SavingsOverview implements iSavingsRegister, SavingsSubject, 
         }
     }
 
-<<<<<<< Updated upstream
-    @Override
-    public void update(final iEntry entry) {
-        // TODO have to make it only one update
-    }
-=======
->>>>>>> Stashed changes
-
 
     public double getAmountSaved(final String name) {
         return savingGoalHashMap.get(name).getSavingGoalReached();
