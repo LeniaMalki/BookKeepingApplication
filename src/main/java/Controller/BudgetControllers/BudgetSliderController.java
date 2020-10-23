@@ -6,21 +6,20 @@ import javafx.beans.value.ObservableValue;
 import javafx.util.converter.NumberStringConverter;
 
 /**
- * Controller for the sliders and progress bars of the Budget Page.
- *
- * @author viktoriawelzel
+ * @author : viktoriawelzel
+ * Responsibility: Updates and handles the Sliders and ProgressBars
+ * Used by: BudgetPageController
  */
 
 public class BudgetSliderController {
 
     private final BudgetView budgetView = BudgetView.getInstance();
     public int selected = 0;
-    int income;
+    private int income;
 
     /**
      * Listener that changes the progressbar according to the value of the slider.
      */
-
     protected void listeningToChanges() {
         final ChangeListener<Number> changeListener = new ChangeListener<Number>() {
             @Override
@@ -42,7 +41,6 @@ public class BudgetSliderController {
     /**
      * Binds the sliders and the textFields.
      */
-
     protected void connectingTextFieldsAndSliders() {
         budgetView.foodTextField.textProperty().bindBidirectional(budgetView.foodSlider.valueProperty(), new NumberStringConverter());
         budgetView.householdTextField.textProperty().bindBidirectional(budgetView.householdSlider.valueProperty(), new NumberStringConverter());
@@ -55,8 +53,7 @@ public class BudgetSliderController {
     /**
      * Sets the maxValues of the sliders according to the income.
      */
-
-    protected void setMaxOnSlider(int income) {
+    protected void setMaxOnSlider(final int income) {
         try{
         budgetView.setSliders(income);
         this.income=income;
@@ -71,7 +68,6 @@ public class BudgetSliderController {
     /**
      * Updates the progress bars.
      */
-
     protected void updateProgress() {
         final double foodSlider = budgetView.foodSlider.getValue();
         final double houseHoldSlider = budgetView.householdSlider.getValue();

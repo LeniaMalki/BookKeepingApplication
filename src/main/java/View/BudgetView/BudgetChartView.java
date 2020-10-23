@@ -11,29 +11,15 @@ import javafx.scene.layout.AnchorPane;
 
 public class BudgetChartView implements iPane {
 
+    /**
+     * @author : viktoriawelzel
+     * Responsibility: In charge of creating/ displaying the BudgetChartPage.
+     * Uses: iPane
+     */
+    //________________________________________________ Variables _______________________________________________________
+
     public MainView parent;
     static BudgetChartView budgetChartView;
-
-    @Override
-    public void initPane(MainView parent) {
-        this.parent = parent;
-        headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
-    }
-
-    public BudgetChartView(){
-        budgetChartView = this;
-    }
-
-    public static BudgetChartView getInstance(){
-        if (budgetChartView == null){
-            budgetChartView = new BudgetChartView();
-        }
-        return budgetChartView;
-    }
-
-    public void showBudgetPage(){
-        parent.showBudgetPage();
-    }
 
     @FXML
     public AnchorPane headerAnchorPane;
@@ -47,5 +33,40 @@ public class BudgetChartView implements iPane {
     public Button addNewBudgetButton;
     @FXML
     public Button editBudgetButton;
+
+    //---------------------------------------------------- METHODS -----------------------------------------------------
+
+    /**
+     * initialized this pane.
+     */
+    @Override
+    public void initPane(final MainView parent) {
+        this.parent = parent;
+        headerAnchorPane.getChildren().setAll(PaneFactory.initHeader());
+    }
+
+    /**
+     * constructor.
+     */
+    public BudgetChartView(){
+        budgetChartView = this;
+    }
+
+    /**
+     * Method for obtaining the BudgetChartView instance.
+     */
+    public static BudgetChartView getInstance(){
+        if (budgetChartView == null){
+            budgetChartView = new BudgetChartView();
+        }
+        return budgetChartView;
+    }
+
+    /**
+     * Shows the Budget Page.
+     */
+    public void showBudgetPage(){
+        parent.showBudgetPage();
+    }
 
 }

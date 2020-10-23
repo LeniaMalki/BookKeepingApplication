@@ -21,9 +21,10 @@ import java.io.IOException;
 import java.util.Arrays;
 
 /**
- * Controller for the budget chart
- *
- * @author viktoriawelzel
+ * @author : viktoriawelzel
+ * Responsibility: Updates and handles the BudgetChartPage
+ * Used by: PaneFactory
+ * Uses: ControllerInterface, EntryObserver, BudgetObserver, RemoveItemObserver, iBudget, iEntryHandler
  */
 public class BudgetChartPageController implements EntryObserver, BudgetObserver, ControllerInterface, RemoveItemObserver {
 
@@ -38,9 +39,8 @@ public class BudgetChartPageController implements EntryObserver, BudgetObserver,
     //_________________________________________________ METHODS ________________________________________________________
 
     /**
-     * Controller of the Budget Chart Page.
+     * Constructor.
      */
-
     public BudgetChartPageController(){
         setAllViewListeners();
         EntrySubject.add(this);
@@ -49,6 +49,9 @@ public class BudgetChartPageController implements EntryObserver, BudgetObserver,
         budgetChartView.xAxis.setCategories(FXCollections.<String>observableArrayList(Arrays.asList("Food", "Household", "Shopping", "Transport", "Other", "General Saving")));
     }
 
+    /**
+     * Sets all the controller's view components to listeners.
+     */
     @Override
     public void setAllViewListeners (){
         budgetChartView.addNewBudgetButton.setOnAction(a -> addNewBudgetButton());
@@ -56,11 +59,8 @@ public class BudgetChartPageController implements EntryObserver, BudgetObserver,
     }
 
     /**
-     * Sets the values that need to be added at the start of the program when pressing on the addNewBudget button
-     * //@param event if something is pressed an ActionEvent is fired and tells the system what happened
-     * @throws IOException
+     * Sets the values that need to be added at the start of the program when pressing on the addNewBudget button.
      */
-
     private void addNewBudgetButton() {
         budgetChartView.showBudgetPage();
         budget.setIncome(null);
@@ -75,10 +75,7 @@ public class BudgetChartPageController implements EntryObserver, BudgetObserver,
 
     /**
      * Gets the values that need to be added at the start of the program when pressing on the editBudgetButton button
-     * //@param event if something is pressed an ActionEvent is fired and tells the system what happened
-     * @throws IOException
      */
-
     private void editBudgetButton() {
         budgetChartView.showBudgetPage();
         budget.getIncome();
@@ -92,10 +89,7 @@ public class BudgetChartPageController implements EntryObserver, BudgetObserver,
 
     /**
      * Adds the entry to the visual list of entries in our program and updates the values of a Stacked bar chart.
-     * //@param entry an Entry that is added to the FlowPane of entries.
      */
-
-
     private void updateCharts() {
         entryHandler.updateTotalCategoryValues();
         updatingStackedBarChart();
@@ -120,7 +114,6 @@ public class BudgetChartPageController implements EntryObserver, BudgetObserver,
     /**
      * Creates/updates a Stacked bar chart with the budget values.
      */
-
     public void updateCostGraph(final iBudget budget){
         final XYChart.Series<String, Integer> series1 = new XYChart.Series<>();
         series1.setName("Budget");
@@ -138,7 +131,7 @@ public class BudgetChartPageController implements EntryObserver, BudgetObserver,
     }
 
     @Override
-    public void update(iEntry entry) {
+    public void update(final iEntry entry) {
         updateCharts();
     }
 
@@ -148,7 +141,7 @@ public class BudgetChartPageController implements EntryObserver, BudgetObserver,
     }
 
     @Override
-    public void update(iEntry entry, EntryListItemView controller) {
+    public void update(final iEntry entry, final EntryListItemView controller) {
         updateCharts();
     }
 }

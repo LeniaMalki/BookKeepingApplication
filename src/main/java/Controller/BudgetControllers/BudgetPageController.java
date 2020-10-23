@@ -6,16 +6,16 @@ import Model.Interfaces.BudgetObserver;
 import Model.Interfaces.BudgetSubject;
 import StairwayInterfaces.iBudget;
 import View.BudgetView.BudgetView;
-import javafx.geometry.NodeOrientation;
 import javafx.scene.control.Slider;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Controller for the budget page
- *
- * @author viktoriawelzel
+ * @author : viktoriawelzel
+ * Responsibility: Updates and handles the BudgetPage
+ * Used by: PaneFactory
+ * Uses: ControllerInterface, BudgetObserver, iBudget, BudgetSliderController
  */
 public class BudgetPageController implements BudgetObserver, ControllerInterface {
 
@@ -35,13 +35,13 @@ public class BudgetPageController implements BudgetObserver, ControllerInterface
         add(budgetView.otherSlider);
         add(budgetView.savingsSlider);
     }};
-    int income = 0;
+    private int income = 0;
 
 
     //_________________________________________________ METHODS ________________________________________________________
 
     /**
-     * Controller of Budget page.
+     * Constructor.
      */
     public BudgetPageController() {
         setAllViewListeners();
@@ -53,6 +53,9 @@ public class BudgetPageController implements BudgetObserver, ControllerInterface
         disableSlider();
     }
 
+    /**
+     * Sets all the controller's view components to listeners.
+     */
     @Override
     public void setAllViewListeners() {
         budgetView.saveButton.setOnAction(a -> onSaveButtonPressed());
@@ -73,6 +76,10 @@ public class BudgetPageController implements BudgetObserver, ControllerInterface
         budgetView.otherTextField.setOnKeyTyped(a -> updatingMoneyLeft());
         budgetView.savingsTextField.setOnKeyTyped(a -> updatingMoneyLeft());
     }
+
+    /**
+     * Handles the oder of operations to be done.
+     */
     private void onIncomeTyped(){
         setIncome();
         checkIfValidIncome();
@@ -82,6 +89,9 @@ public class BudgetPageController implements BudgetObserver, ControllerInterface
         budgetView.enterIncomeTextField.setText(String.valueOf(income));
     }
 
+    /**
+     * Handles color of "Enter Income" textField
+     */
     private void setIncome() {
         try{
             income = Integer.parseInt(budgetView.enterIncomeTextField.getText());
@@ -97,7 +107,6 @@ public class BudgetPageController implements BudgetObserver, ControllerInterface
      *
      * @param menuItemNumber the current budgetnumber
      */
-
     private void addingMenuItem(final int menuItemNumber) {
         budgetView.previousBudgetComboBox.getItems().add("Budget " + menuItemNumber);
         budgetList.add(new Budget((int) budgetView.foodSlider.getValue(), (int) budgetView.householdSlider.getValue(),
@@ -106,9 +115,8 @@ public class BudgetPageController implements BudgetObserver, ControllerInterface
     }
 
     /**
-     * Handles selection of the ComboBox for the previous budgets
+     * Handles selection of the ComboBox for the previous budgets.
      */
-
     private void comboSelector() {
         selected = budgetView.previousBudgetComboBox.getSelectionModel().getSelectedIndex();
         budget.setIncome(budgetList.get(selected).getIncome());
@@ -124,9 +132,8 @@ public class BudgetPageController implements BudgetObserver, ControllerInterface
     }
 
     /**
-     * Saves all the values
+     * Saves all the values.
      */
-
     private void onSaveButtonPressed() {
         budget.setFoodCost((int) budgetView.foodSlider.getValue());
         budget.setHouseholdCost((int) budgetView.householdSlider.getValue());
@@ -149,9 +156,8 @@ public class BudgetPageController implements BudgetObserver, ControllerInterface
 
 
     /**
-     * Updates the money left and total sum labels
+     * Updates the money left and total sum labels.
      */
-
     private void updatingMoneyLeft() {
         budgetView.setMoneyLeft("0");
 
@@ -172,19 +178,29 @@ public class BudgetPageController implements BudgetObserver, ControllerInterface
         }
     }
 
+    /**
+     * Handles the enabling of the sliders.
+     */
     private void enableSlider() {
-        for (Slider slider:allSliders
+        for (final Slider slider:allSliders
         ) {
             slider.setDisable(false);
         }
     }
 
+    /**
+     * Handles the disabling of the sliders.
+     */
     private void disableSlider(){
-        for (Slider slider:allSliders
+        for (final Slider slider:allSliders
         ) {
             slider.setDisable(true);
         }
     }
+
+    /**
+     * Checks if the income is valid.
+     */
     public void checkIfValidIncome() {
         if ("".equals(budgetView.enterIncomeTextField.getText())){
             income=0;
@@ -197,9 +213,8 @@ public class BudgetPageController implements BudgetObserver, ControllerInterface
     }
 
     /**
-     * Updates the sliders and textFields
+     * Updates the sliders and textFields.
      */
-
     private void updateAllValues() {
         final int foodBudget = budget.getFoodCost();
         final int houseHoldBudget = budget.getFoodCost();

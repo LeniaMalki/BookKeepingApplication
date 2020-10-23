@@ -66,37 +66,37 @@
                   <StackPane prefHeight="120.0" prefWidth="691.0">
                      <children>
                         <ProgressBar fx:id="foodProgressBar" minHeight="10.0" prefHeight="15.0" prefWidth="679.0" progress="0.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" styleClass="droSshadow" />
-                        <Slider fx:id="foodSlider" prefWidth="678.0" />
+                        <Slider fx:id="foodSlider" majorTickUnit="1.0" minorTickCount="0" prefWidth="678.0" snapToTicks="true" />
                      </children>
                   </StackPane>
                   <StackPane prefHeight="150.0" prefWidth="200.0">
                      <children>
                         <ProgressBar fx:id="householdProgressBar" prefHeight="15.0" prefWidth="677.0" progress="0.0" styleClass="droSshadow" />
-                        <Slider fx:id="householdSlider" prefWidth="678.0" />
+                        <Slider fx:id="householdSlider" majorTickUnit="1.0" minorTickCount="0" prefWidth="678.0" snapToTicks="true" />
                      </children>
                   </StackPane>
                   <StackPane prefHeight="150.0" prefWidth="200.0">
                      <children>
                         <ProgressBar fx:id="shoppingProgressBar" prefHeight="15.0" prefWidth="775.0" progress="0.0" styleClass="droSshadow" />
-                        <Slider fx:id="shoppingSlider" />
+                        <Slider fx:id="shoppingSlider" majorTickUnit="1.0" minorTickCount="0" snapToTicks="true" />
                      </children>
                   </StackPane>
                   <StackPane prefHeight="150.0" prefWidth="669.0">
                      <children>
                         <ProgressBar fx:id="transportProgressBar" prefHeight="15.0" prefWidth="765.0" progress="0.0" styleClass="droSshadow" />
-                        <Slider fx:id="transportSlider" prefHeight="16.0" prefWidth="703.0" />
+                        <Slider fx:id="transportSlider" majorTickUnit="1.0" minorTickCount="0" prefHeight="16.0" prefWidth="703.0" snapToTicks="true" />
                      </children>
                   </StackPane>
                   <StackPane prefHeight="150.0" prefWidth="200.0">
                      <children>
                         <ProgressBar fx:id="otherProgressBar" prefHeight="15.0" prefWidth="674.0" progress="0.0" styleClass="droSshadow" />
-                        <Slider fx:id="otherSlider" />
+                        <Slider fx:id="otherSlider" majorTickUnit="1.0" minorTickCount="0" snapToTicks="true" />
                      </children>
                   </StackPane>
                   <StackPane prefHeight="150.0" prefWidth="200.0">
                      <children>
                         <ProgressBar fx:id="savingsProgressBar" prefHeight="15.0" prefWidth="785.0" progress="0.0" styleClass="droSshadow" />
-                        <Slider fx:id="savingsSlider" />
+                        <Slider fx:id="savingsSlider" majorTickUnit="1.0" minorTickCount="0" snapToTicks="true" />
                      </children>
                   </StackPane>
                </children>
